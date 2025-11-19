@@ -1383,6 +1383,7 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             geometry = inputs.get('Geometry')
             if geometry is None:
                 raise ValueError(f"Area component missing Geometry input")
+            
             result = func(geometry)
             # Area component returns dict with 'Area' and 'Centroid'
             if isinstance(result, dict):

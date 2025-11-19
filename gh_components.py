@@ -972,7 +972,66 @@ def area_component(geometry: Any) -> Dict[str, Any]:
     
     # Single geometry processing
     if isinstance(geometry, dict):
-        if 'corners' in geometry:
+        # Handle box geometry
+        if geometry.get('type') == 'box':
+            vertices = geometry.get('vertices', [])
+            min_corner = geometry.get('min')
+            max_corner = geometry.get('max')
+            
+            # Compute centroid from box geometry
+            # For a box, the centroid is the geometric center
+            # Prefer computing from actual vertices to ensure accuracy after transformations
+            if vertices and len(vertices) >= 4:
+                # Compute actual min/max from vertices (more accurate after transforms)
+                actual_min = [
+                    min(v[0] for v in vertices if len(v) > 0),
+                    min(v[1] for v in vertices if len(v) > 1),
+                    min(v[2] for v in vertices if len(v) > 2)
+                ]
+                actual_max = [
+                    max(v[0] for v in vertices if len(v) > 0),
+                    max(v[1] for v in vertices if len(v) > 1),
+                    max(v[2] for v in vertices if len(v) > 2)
+                ]
+                # Centroid is the average of actual min and max
+                centroid = [
+                    (actual_min[0] + actual_max[0]) / 2.0,
+                    (actual_min[1] + actual_max[1]) / 2.0,
+                    (actual_min[2] + actual_max[2]) / 2.0
+                ]
+            elif min_corner and max_corner and len(min_corner) >= 3 and len(max_corner) >= 3:
+                # Fallback: use stored min/max
+                centroid = [
+                    (min_corner[0] + max_corner[0]) / 2.0,
+                    (min_corner[1] + max_corner[1]) / 2.0,
+                    (min_corner[2] + max_corner[2]) / 2.0
+                ]
+            else:
+                # Fallback: use corner1 and corner2 if available
+                corner1 = geometry.get('corner1')
+                corner2 = geometry.get('corner2')
+                if corner1 and corner2 and len(corner1) >= 3 and len(corner2) >= 3:
+                    centroid = [
+                        (corner1[0] + corner2[0]) / 2.0,
+                        (corner1[1] + corner2[1]) / 2.0,
+                        (corner1[2] + corner2[2]) / 2.0
+                    ]
+                else:
+                    centroid = [0.0, 0.0, 0.0]
+            
+            # Compute box area (sum of all 6 face areas)
+            # For a box, area is 2 * (width*height + width*depth + height*depth)
+            if min_corner and max_corner and len(min_corner) >= 3 and len(max_corner) >= 3:
+                width = abs(max_corner[0] - min_corner[0])
+                height = abs(max_corner[1] - min_corner[1])
+                depth = abs(max_corner[2] - min_corner[2])
+                area = 2.0 * (width * height + width * depth + height * depth)
+            else:
+                area = 0.0
+            
+            return {'Area': area, 'Centroid': centroid}
+        
+        elif 'corners' in geometry:
             # Rectangle - compute centroid from corners
             corners = geometry['corners']
             if corners and len(corners) >= 2:
