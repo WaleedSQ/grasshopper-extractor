@@ -217,6 +217,61 @@ def parse_ghx(filename: str):
                                                 if param_instance_guid == "3fe645ec-446c-49e2-aac5-ed0396624da0":
                                                     print(f"DEBUG: Error extracting vector: {e}")
                                                 pass
+                                    # Check for plane (gh_plane) - for Polar Array and other components
+                                    plane_elem = items_elem.find(".//item[@name='plane']")
+                                    if plane_elem is not None:
+                                        # Extract plane components: Ox, Oy, Oz (origin), Xx, Xy, Xz (x-axis), Yx, Yy, Yz (y-axis)
+                                        ox_elem = plane_elem.find('Ox')
+                                        oy_elem = plane_elem.find('Oy')
+                                        oz_elem = plane_elem.find('Oz')
+                                        xx_elem = plane_elem.find('Xx')
+                                        xy_elem = plane_elem.find('Xy')
+                                        xz_elem = plane_elem.find('Xz')
+                                        yx_elem = plane_elem.find('Yx')
+                                        yy_elem = plane_elem.find('Yy')
+                                        yz_elem = plane_elem.find('Yz')
+                                        if (ox_elem is not None and oy_elem is not None and oz_elem is not None and
+                                            xx_elem is not None and xy_elem is not None and xz_elem is not None and
+                                            yx_elem is not None and yy_elem is not None and yz_elem is not None):
+                                            try:
+                                                origin = [
+                                                    float(ox_elem.text) if ox_elem.text else 0.0,
+                                                    float(oy_elem.text) if oy_elem.text else 0.0,
+                                                    float(oz_elem.text) if oz_elem.text else 0.0
+                                                ]
+                                                x_axis = [
+                                                    float(xx_elem.text) if xx_elem.text else 1.0,
+                                                    float(xy_elem.text) if xy_elem.text else 0.0,
+                                                    float(xz_elem.text) if xz_elem.text else 0.0
+                                                ]
+                                                y_axis = [
+                                                    float(yx_elem.text) if yx_elem.text else 0.0,
+                                                    float(yy_elem.text) if yy_elem.text else 1.0,
+                                                    float(yz_elem.text) if yz_elem.text else 0.0
+                                                ]
+                                                # Calculate z-axis (normal) as cross product of x_axis and y_axis
+                                                z_axis = [
+                                                    x_axis[1] * y_axis[2] - x_axis[2] * y_axis[1],
+                                                    x_axis[2] * y_axis[0] - x_axis[0] * y_axis[2],
+                                                    x_axis[0] * y_axis[1] - x_axis[1] * y_axis[0]
+                                                ]
+                                                # Store as JSON string representation of plane dict
+                                                plane_dict = {
+                                                    'origin': origin,
+                                                    'x_axis': x_axis,
+                                                    'y_axis': y_axis,
+                                                    'z_axis': z_axis,
+                                                    'normal': z_axis
+                                                }
+                                                plane_json = json.dumps(plane_dict)
+                                                persistent_values.append(plane_json)
+                                                # Debug: Log when we extract a plane
+                                                if param_instance_guid == "f4135d17-3e3e-4ba4-814b-c1ab10466c1e":
+                                                    print(f"DEBUG: Extracted plane from PersistentData: {plane_json} for Plane param")
+                                            except (ValueError, TypeError) as e:
+                                                if param_instance_guid == "f4135d17-3e3e-4ba4-814b-c1ab10466c1e":
+                                                    print(f"DEBUG: Error extracting plane: {e}")
+                                                pass
                         # Also check direct items in PersistentData
                         for item in persistent_data_chunk.findall(".//item"):
                             item_name = item.get("name")

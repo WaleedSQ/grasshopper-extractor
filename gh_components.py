@@ -831,18 +831,39 @@ def area_component(geometry: Any) -> Dict[str, Any]:
     """
     GH Area component
     Computes area and centroid of geometry.
+    In Grasshopper, if a list of geometries is connected, it processes each one.
     
     Inputs:
-        geometry: geometry object (brep, mesh, or planar closed curve)
+        geometry: geometry object (brep, mesh, or planar closed curve) or list of geometries
     
     Outputs:
-        area: area value
-        centroid: [x, y, z] centroid point
+        area: area value or list of areas
+        centroid: [x, y, z] centroid point or list of centroids
     """
     # GH <Area> <NickName> <GUID>
-    # Simplified - would need actual geometry area calculation
-    # For now, return placeholder values
-    # If geometry is a rectangle, try to compute centroid from corners
+    # If geometry is a list, process each item
+    if isinstance(geometry, list) and len(geometry) > 0:
+        # Check if it's a list of geometries (not a list of points)
+        if isinstance(geometry[0], dict) or (isinstance(geometry[0], list) and len(geometry[0]) > 3):
+            # List of geometries - process each
+            areas = []
+            centroids = []
+            for geom in geometry:
+                result = area_component(geom)  # Recursive call for single geometry
+                areas.append(result.get('Area', 0.0))
+                centroids.append(result.get('Centroid', [0.0, 0.0, 0.0]))
+            return {'Area': areas, 'Centroid': centroids}
+        # If it's a list of points, treat as single polyline
+        elif isinstance(geometry[0], list) and len(geometry[0]) == 3:
+            # List of points - compute centroid from all points
+            centroid = [
+                sum(p[0] for p in geometry) / len(geometry),
+                sum(p[1] for p in geometry) / len(geometry),
+                sum(p[2] if len(p) > 2 else 0 for p in geometry) / len(geometry)
+            ]
+            return {'Area': 0.0, 'Centroid': centroid}
+    
+    # Single geometry processing
     if isinstance(geometry, dict):
         if 'corners' in geometry:
             # Rectangle - compute centroid from corners
@@ -902,6 +923,33 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
                     ])
             transform = {'type': 'translation', 'motion': motion, 'translation': motion}
             return moved_points, transform
+        # If geometry is a single geometry dict (rectangle, etc.), create a list of moved geometries
+        elif isinstance(geometry, dict):
+            # Single geometry dict with list of motion vectors - create list of moved geometries
+            moved_geometries = []
+            for vec in motion:
+                if isinstance(vec, list) and len(vec) >= 3:
+                    moved_geom = dict(geometry)
+                    # Try to find and update point data (corners, origin, etc.)
+                    # For rectangles, update corners
+                    if 'corners' in moved_geom:
+                        corners = moved_geom['corners']
+                        if corners:
+                            moved_geom['corners'] = [
+                                [c[0] + vec[0], c[1] + vec[1], c[2] + vec[2] if len(c) > 2 else vec[2]]
+                                for c in corners
+                            ]
+                    # Update other point-like keys
+                    for key in ['point', 'Point', 'origin', 'Origin', 'center', 'Center', 'pointA', 'pointB', 'corner1', 'corner2', 'corner3', 'corner4']:
+                        if key in moved_geom and isinstance(moved_geom[key], list) and len(moved_geom[key]) >= 3:
+                            moved_geom[key] = [
+                                moved_geom[key][0] + vec[0],
+                                moved_geom[key][1] + vec[1],
+                                moved_geom[key][2] + vec[2] if len(moved_geom[key]) > 2 else vec[2]
+                            ]
+                    moved_geometries.append(moved_geom)
+            transform = {'type': 'translation', 'motion': motion, 'translation': motion}
+            return moved_geometries, transform
         # If geometry is a list of points, apply motion vectors pairwise (shortest list)
         elif isinstance(geometry, list) and len(geometry) > 0:
             if isinstance(geometry[0], list) and len(geometry[0]) == 3:
@@ -1018,26 +1066,52 @@ def polar_array_component(geometry: Any, plane: dict, count: int, angle: float) 
     # Calculate angle step
     angle_step = angle / count_int if count_int > 1 else 0.0
     
-    # Create array of geometries
-    # For now, we return copies of the geometry
-    # In a full implementation, each copy would be rotated by the appropriate angle
-    # around the plane's origin, using the plane's z-axis as the rotation axis
+    # Create array of geometries with rotation
+    # Rotate each copy around the plane's z-axis (normal) by the appropriate angle
     array = []
     for i in range(count_int):
         # Calculate rotation angle for this item
         rotation_angle = i * angle_step
         
-        # For now, return the geometry as-is (simplified)
-        # In a full implementation, we would:
-        # 1. Translate geometry to origin
-        # 2. Rotate around z-axis by rotation_angle
-        # 3. Translate back
-        # This requires proper 3D transformation matrices
+        # Rotate the geometry around the z-axis (plane normal)
+        # For 2D rotation in XY plane around Z-axis:
+        # x' = x*cos(θ) - y*sin(θ)
+        # y' = x*sin(θ) + y*cos(θ)
+        # z' = z
+        cos_a = math.cos(rotation_angle)
+        sin_a = math.sin(rotation_angle)
         
-        # If geometry is a list, create a copy (shallow copy is fine for now)
+        # Handle different geometry types
         if isinstance(geometry, list):
-            array.append(list(geometry))
+            # List of points - rotate each point
+            rotated_geometry = []
+            for item in geometry:
+                if isinstance(item, list) and len(item) >= 3:
+                    # Point [x, y, z]
+                    x, y, z = item[0], item[1], item[2] if len(item) > 2 else 0.0
+                    # Translate to origin, rotate, translate back
+                    x_rel = x - origin[0] if len(origin) > 0 else x
+                    y_rel = y - origin[1] if len(origin) > 1 else y
+                    z_rel = z - origin[2] if len(origin) > 2 else z
+                    
+                    # Rotate around z-axis
+                    x_rot = x_rel * cos_a - y_rel * sin_a
+                    y_rot = x_rel * sin_a + y_rel * cos_a
+                    z_rot = z_rel
+                    
+                    # Translate back
+                    x_new = x_rot + (origin[0] if len(origin) > 0 else 0.0)
+                    y_new = y_rot + (origin[1] if len(origin) > 1 else 0.0)
+                    z_new = z_rot + (origin[2] if len(origin) > 2 else 0.0)
+                    
+                    rotated_geometry.append([x_new, y_new, z_new])
+                else:
+                    # Non-point item - keep as-is
+                    rotated_geometry.append(item)
+            array.append(rotated_geometry)
         else:
+            # Single geometry item - for now, just copy it
+            # In a full implementation, we'd apply rotation transformation
             array.append(geometry)
     
     return array

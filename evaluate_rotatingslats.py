@@ -57,8 +57,12 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
     
     # Check external_inputs by parameter GUID first (before persistent_values/values)
     # This allows overriding default/placeholder values with real values
+    # BUT: For Plane parameters, we'll check PersistentData first since it has the correct plane structure
     external_inputs = get_external_inputs()
-    if param_guid and param_guid in external_inputs:
+    param_name = param_info.get('data', {}).get('NickName', '') or param_info.get('data', {}).get('Name', '')
+    is_plane_param = param_name == 'Plane'
+    
+    if param_guid and param_guid in external_inputs and not is_plane_param:
         ext_value = external_inputs[param_guid]
         if isinstance(ext_value, dict):
             ext_val = ext_value.get('value', ext_value)
@@ -100,16 +104,27 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
     
     # Handle persistent_values
     persistent_vector = None
+    persistent_plane = None
     if persistent_values:
-        # Check if persistent_values contains a vector (JSON string)
+        # Check if persistent_values contains a vector (JSON string) or plane (JSON object)
         for pv in persistent_values:
             if isinstance(pv, str):
                 pv_stripped = pv.strip()
                 # Check if it's a JSON array (vector)
                 if pv_stripped.startswith('[') and pv_stripped.endswith(']'):
                     try:
-                        persistent_vector = json.loads(pv_stripped)
-                        if isinstance(persistent_vector, list) and len(persistent_vector) == 3:
+                        parsed = json.loads(pv_stripped)
+                        if isinstance(parsed, list) and len(parsed) == 3:
+                            persistent_vector = parsed
+                            break
+                    except (json.JSONDecodeError, ValueError):
+                        pass
+                # Check if it's a JSON object (plane dict)
+                elif pv_stripped.startswith('{') and pv_stripped.endswith('}'):
+                    try:
+                        parsed = json.loads(pv_stripped)
+                        if isinstance(parsed, dict) and 'origin' in parsed and 'x_axis' in parsed:
+                            persistent_plane = parsed
                             break
                     except (json.JSONDecodeError, ValueError):
                         pass
@@ -117,6 +132,9 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
     # Only use persistent_values if there are NO sources
     # IMPORTANT: Check if sources list is actually non-empty (not just truthy)
     if (not sources or len(sources) == 0) and persistent_values:
+        # If we have a persistent plane, return it
+        if persistent_plane:
+            return persistent_plane
         # If we have a persistent vector, return it
         if persistent_vector:
             return persistent_vector
@@ -230,14 +248,17 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                         comp_outputs = evaluated.get(source_obj_guid, {})
                         if isinstance(comp_outputs, dict):
                             source_param_name = source_info['param_info'].get('data', {}).get('NickName', '')
-                            # Try to match the output parameter name first
-                            for key in [source_param_name, 'Result', 'Value', 'Output', 'Vector', 'Geometry', 'Item', 'Series', 'Line', 'Point', 'Plane', 'Normal', 'Angle', 'Degrees']:
-                                if key in comp_outputs:
-                                    source_value = comp_outputs[key]
-                                    break
-                            # If still None, try to get the first value
-                            if source_value is None and comp_outputs:
-                                source_value = list(comp_outputs.values())[0]
+                            # For Polar Array and similar components, prioritize 'Geometry' key
+                            # This ensures correct extraction when output param name is 'Geometry'
+                            if source_param_name == 'Geometry' and 'Geometry' in comp_outputs:
+                                source_value = comp_outputs['Geometry']
+                            else:
+                                for key in [source_param_name, 'Geometry', 'Result', 'Value', 'Output', 'Vector']:
+                                    if key in comp_outputs:
+                                        source_value = comp_outputs[key]
+                                        break
+                                if source_value is None and comp_outputs:
+                                    source_value = list(comp_outputs.values())[0]
                         else:
                             source_value = comp_outputs
                     elif source_obj_guid:
@@ -452,10 +473,45 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                 print(f"DEBUG: No resolved values for Move Motion input (had {len(sources)} sources)")
             return None
         elif len(resolved_values) == 1:
-            # Single source - use the resolved value directly
-            # NOTE: In Grasshopper, if there's a source connection, PersistentData is ignored
-            # PersistentData is only used when there's NO source connection
+            # Single source - check if it's Amplitude component
+            # For "Targets" Move component, if source is Amplitude, ignore PersistentData
+            # (screenshot shows Motion = Amplitude value without PersistentData)
+            is_amplitude_source = False
+            if sources and len(sources) == 1:
+                source_obj_guid = sources[0].get('source_obj_guid')
+                if source_obj_guid:
+                    comp = graph.get(source_obj_guid) if graph else None
+                    if not comp:
+                        for obj_key, obj in all_objects.items():
+                            if obj.get('instance_guid') == source_obj_guid:
+                                comp = {'obj': obj, 'inputs': {}, 'outputs': {}}
+                                if graph:
+                                    for cid, cdata in graph.items():
+                                        if isinstance(cdata, dict) and cdata.get('obj', {}).get('instance_guid') == source_obj_guid:
+                                            comp = cdata
+                                            break
+                                break
+                    if comp and comp.get('obj', {}).get('type') == 'Amplitude':
+                        is_amplitude_source = True
+            
+            # Only add PersistentData if source is NOT Amplitude
+            persistent_vector = None
+            if not is_amplitude_source and persistent_values:
+                for pv in persistent_values:
+                    if isinstance(pv, str):
+                        pv_stripped = pv.strip()
+                        if pv_stripped.startswith('[') and pv_stripped.endswith(']'):
+                            try:
+                                persistent_vector = json.loads(pv_stripped)
+                                if isinstance(persistent_vector, list) and len(persistent_vector) == 3:
+                                    break
+                            except (json.JSONDecodeError, ValueError):
+                                pass
+            
             result = resolved_values[0]
+            # Add persistent vector if present and result is a vector (and not Amplitude source)
+            if persistent_vector and isinstance(result, list) and len(result) == 3 and all(isinstance(x, (int, float)) for x in result):
+                result = [result[i] + persistent_vector[i] for i in range(3)]
             return result
         else:
             # Multiple sources - for Move component Motion input
@@ -595,6 +651,31 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
         raise ValueError(f"Unknown component type: {comp_type} (GUID: {comp_id[:8]}...)")
     
     func = gh_components.COMPONENT_FUNCTIONS[comp_type]
+    
+    # Build inputs from obj.params if inputs key is missing
+    if 'inputs' not in comp_info or not comp_info.get('inputs'):
+        obj_params = comp_info['obj'].get('params', {})
+        comp_info['inputs'] = {}
+        for param_key, param_data in obj_params.items():
+            if param_key.startswith('param_input'):
+                param_name = param_data.get('data', {}).get('NickName', '') or param_data.get('data', {}).get('Name', '')
+                if param_name:
+                    # Convert sources from obj.params format (guid) to inputs format (source_guid)
+                    sources = []
+                    for src in param_data.get('sources', []):
+                        if isinstance(src, dict):
+                            # Convert guid to source_guid
+                            source_guid = src.get('guid') or src.get('source_guid')
+                            if source_guid:
+                                sources.append({
+                                    'source_guid': source_guid,
+                                    'guid': source_guid,  # Keep both for compatibility
+                                    'index': src.get('index', 0)
+                                })
+                    comp_info['inputs'][param_key] = {
+                        'name': param_name,
+                        'sources': sources
+                    }
     
     # Resolve inputs
     inputs = {}
@@ -1943,7 +2024,6 @@ if __name__ == '__main__':
         'external_division_component.json',
         'external_subtraction_e2671ced.json',
         'external_subtraction_components.json',
-        'external_vector_xyz_component.json',
         'external_vector_d0668a07_component.json',
         'external_vector_2pt_1f794702_component.json',
         'external_mirror_component.json',
