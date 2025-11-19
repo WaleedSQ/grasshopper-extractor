@@ -1,0 +1,46 @@
+{
+  "guid": "2c56ab33-c7cc-4129-886c-d5856b714010",
+  "name": "Subtraction",
+  "nickname": "-",
+  "instance_guid": "e2671ced-ddeb-4187-8048-66f3d519cefb",
+  "type": "Subtraction",
+  "params": {
+    "param_input_0": {
+      "data": {
+        "Description": "Item to subtract from (minuend)",
+        "InstanceGuid": "df2c8bb6-a707-4c7e-bb11-eae4fd258b37",
+        "Name": "A",
+        "NickName": "A",
+        "Optional": "false",
+        "Source": [
+          "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+        ],
+        "SourceCount": 1,
+        "WireDisplay": "2"
+      }
+    },
+    "param_input_1": {
+      "data": {
+        "Description": "Item to subtract (subtrahend)",
+        "InstanceGuid": "cce9829a-ed41-4574-81af-33d0d5e3d0ba",
+        "Name": "B",
+        "NickName": "B",
+        "Optional": "false",
+        "SourceCount": 0,
+        "persistent_values": [
+          "1"
+        ]
+      }
+    },
+    "param_output_0": {
+      "data": {
+        "Description": "The result of the Subtraction",
+        "InstanceGuid": "6c807a4e-25c2-4574-a89d-fa5bcfca769e",
+        "Name": "Result",
+        "NickName": "Result",
+        "Optional": "false",
+        "SourceCount": 0
+      }
+    }
+  }
+}

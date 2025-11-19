@@ -1,0 +1,54 @@
+{
+  "0f1fee1c-9854-45f7-9eda-181589bca495": {
+    "nickname": "Distance between targets",
+    "source_guid": "133aa1b3-f899-4543-88d4-cde6da741d95"
+  },
+  "0d80077b-10ab-418f-a349-12cceeeb4730": {
+    "nickname": "Slats distance from window",
+    "source_guid": "507b14ee-692b-41df-973f-6bfef76514c2"
+  },
+  "d1793081-6841-4117-bc0f-e6e4492b65f6": {
+    "nickname": "Horisontal shift between slats",
+    "source_guid": "bdac63ee-60a4-4873-8860-06e887053c0e"
+  },
+  "0554769c-8547-45c4-b96b-c1aef99b5d53": {
+    "nickname": "Slats hight",
+    "source_guid": "456d176f-14cf-4134-9062-b4623202c00e"
+  },
+  "06d478b1-5fdf-4861-8f0e-1772b5bbf067": {
+    "nickname": "Distance between slats",
+    "source_guid": "d019d2ee-57d3-4d51-ba22-5ed7ca4fa4f8"
+  },
+  "2959ea40-ab1b-4321-979b-7101ceda46d6": {
+    "nickname": "Number of slats",
+    "source_guid": "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+  },
+  "c5e7e181-612d-4c3c-8981-f8504b6d21f8": {
+    "nickname": "Scale shift between slats",
+    "source_guid": "aac6be9b-e58d-41a0-ad01-87e05dbd7fc2"
+  },
+  "86579bec-da13-4c6a-b062-c5d940e2296b": {
+    "nickname": "Slat thickness",
+    "source_guid": "c8e7c033-d1e5-43ee-87ce-efbb92bc68ae"
+  },
+  "0d27dd7f-44bf-4778-8d07-d44b711c47f2": {
+    "nickname": "Slat width",
+    "source_guid": "c8dfe19f-4140-41a4-973e-a2acb75038d7"
+  },
+  "fadbd125-0838-4663-8a0a-720e129a5b8f": {
+    "nickname": "Slat lenght",
+    "source_guid": "4c2fdd4e-7313-4735-8688-1dbdf5aeaee0"
+  },
+  "ea4a4a5b-1de9-4688-adcd-50b400004e88": {
+    "nickname": "Last target form slats",
+    "source_guid": "125e7c20-d243-4cdc-927b-568ceb6315b5"
+  },
+  "bd56a2ba-7ac5-4a89-b456-f36c4c15e3f6": {
+    "nickname": "Distance between targets",
+    "source_guid": "133aa1b3-f899-4543-88d4-cde6da741d95"
+  },
+  "2953f208-21ca-441d-8207-54bb5906d980": {
+    "nickname": "Targets Height",
+    "source_guid": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "guid": "6ec39468-dae7-4ffa-a766-f2ab22a2c62e",
+  "name": "Amplitude",
+  "type": "Amplitude",
+  "nickname": "Amplitude",
+  "instance_guid": "f54babb4-b955-42d1-aeb1-3b2192468fed",
+  "params": {
+    "param_input_0": {
+      "data": {
+        "Description": "Base vector",
+        "InstanceGuid": "35887ee4-e288-4feb-8980-f0562967a711",
+        "Name": "Vector",
+        "NickName": "Vector",
+        "Optional": "false",
+        "SourceCount": 1
+      },
+      "persistent_values": [],
+      "values": [],
+      "sources": [
+        {
+          "guid": "84214afe-c1b8-443f-8209-3ed4dcca86b9",
+          "index": 0
+        }
+      ],
+      "source_params": []
+    },
+    "param_input_1": {
+      "data": {
+        "Description": "Amplitude (length) value",
+        "InstanceGuid": "81d77933-1c0b-4840-b922-62ca3ade08c7",
+        "Name": "Amplitude",
+        "NickName": "Amplitude",
+        "Optional": "false",
+        "SourceCount": 1,
+        "WireDisplay": "2"
+      },
+      "persistent_values": [
+        "1"
+      ],
+      "values": [],
+      "sources": [
+        {
+          "guid": "dac68df4-106f-4c64-b9b8-054d488cf4df",
+          "index": 0
+        }
+      ],
+      "source_params": []
+    },
+    "param_output_0": {
+      "data": {
+        "Description": "Resulting vector",
+        "InstanceGuid": "d0668a07-838c-481c-88eb-191574362cc2",
+        "Name": "Vector",
+        "NickName": "Vector",
+        "Optional": "false",
+        "ReverseData": "true",
+        "SourceCount": 0
+      },
+      "persistent_values": [],
+      "values": [],
+      "sources": [],
+      "source_params": []
+    }
+  }
+}
