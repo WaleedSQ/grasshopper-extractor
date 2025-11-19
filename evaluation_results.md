@@ -10,7 +10,7 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 2 | `49f55226...` | Construct Point | `Target point.Point` | `[0.0, -4.5, 4.0]` |
 | 3 | `34529a8c...` | Area | `Area.Centroid` | `[0.0, 0.0, 0.0]` |
 | 4 | `456d176f...` | Number Slider | `Slats height (top)` | `{'Value': 3.8}` |
-| 5 | `3d373d1a...` | Move | `Box to project.Geometry` | `{'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0]}` |
+| 5 | `3d373d1a...` | Move | `Box to project.Geometry` | `{'type': 'box', 'corner1': [11.327429598006665, -25.346834162334087, 7.0], 'corner2': [11.3274295...` |
 | 6 | `dd0f4d1f...` | Move | `New Sun.Geometry` | `[33219.837229, -61164.521016, 71800.722722]` |
 | 7 | `81565b66...` | Unit Y | `Unit Y.Unit vector` | `[[0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [...` |
 | 8 | `65a37667...` | PolyLine | `PolyLine.Polyline` | `None` |
@@ -35,7 +35,7 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 27 | `2cc32a65...` | Construct Point | `p1.Point` | `[0.0, 3.0, -3.0]` |
 | 28 | `4fa54506...` | Unit Z | `Unit Z.Unit vector` | `[[0.0, 0.0, 3.8], [0.0, 0.0, 3.722222222222222], [0.0, 0.0, 3.6444444444444444], [0.0, 0.0, 3.566...` |
 | 29 | `8cb00f94...` | Subtraction | `-.Result` | `3.5` |
-| 30 | `f12438b5...` | Box 2Pt | `Box 2Pt.Box` | `{'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0]}` |
+| 30 | `f12438b5...` | Box 2Pt | `Box 2Pt.Box` | `{'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0...` |
 | 31 | `3560b89d...` | Rotate | `Rotate.Geometry` | `{'polygon': 'polygon_geometry', 'vertices': [[1.1480502970952695, 2.77163859753386, 0.0], [-1.148...` |
 | 32 | `bdac63ee...` | Negative | `-.Result` | `-0.0` |
 | 33 | `ac0efd11...` | Divide Length | `DL.Points` | `[[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [2.0, 0.0, 0.0]]` |
@@ -44,7 +44,7 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 36 | `c8dfe19f...` | Number Slider | `Slat width` | `{'Value': 0.08}` |
 | 37 | `4d5670e5...` | Degrees | `Degrees.Degrees` | `0.0` |
 | 38 | `4c2fdd4e...` | Division | `/.Result` | `2.5` |
-| 39 | `00d89d35...` | Polar Array | `Polar Array.Geometry` | `[{'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0]}, {'corner1': [0.0, -2.0, 7.0], 'corne...` |
+| 39 | `00d89d35...` | Polar Array | `Polar Array.Geometry` | `[{'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, 7.0], 'vertices': [[0.0, -2.0...` |
 | 40 | `0460d28c...` | Divide Length | `DL.Points` | `[[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [2.0, 0.0, 0.0]]` |
 | 41 | `73455c39...` | Line | `Between.Line` | `{'start': [1.0, 0.0, 0.0], 'end': [1.0, 0.0, 0.0], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}` |
 | 42 | `01fd4f89...` | Area | `Area.Centroid` | `[0.0, 0.0, 0.0]` |
@@ -64,11 +64,11 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 56 | `84214afe...` | Vector 2Pt | `Vector 2Pt.Vector` | `[1.14805029709527, -2.77163859753386, 0.0]` |
 | 57 | `7de8f856...` | List Item | `LI.i` | `None` |
 | 58 | `d0668a07...` | Amplitude | `Amplitude.Vector` | `[11.327429598006665, -27.346834162334087, 0.0]` |
-| 59 | `cf5fed0c...` | Plane Normal | `PN.Plane` | `{'origin': [0.0, 0.0, 0.0], 'normal': [0.0, 0.0, 2.0], 'z_axis': [0.0, 0.0, 2.0]}` |
+| 59 | `cf5fed0c...` | Plane Normal | `PN.Plane` | `{'origin': [0.0, 0.0, 0.0], 'normal': [-1.0, 0.0, 1.0], 'z_axis': [-1.0, 0.0, 1.0]}` |
 | 60 | `6c807a4e...` | Subtraction | `-.Result` | `9.0` |
 | 61 | `3a96e7fa...` | Negative | `-.Result` | `[3.8, 3.722222222222222, 3.6444444444444444, 3.5666666666666664, 3.488888888888889, 3.41111111111...` |
 | 62 | `e5d1f3af...` | Value List | `Orientations` | `{'Values': [4.0]}` |
-| 63 | `e41d5eba...` | Evaluate Surface | `Evaluate Surface.Normal` | `[0.0, 0.0, 1.0]` |
+| 63 | `e41d5eba...` | Evaluate Surface | `Evaluate Surface.Normal` | `[-1.0, 0.0, 0.0]` |
 | 64 | `db399c50...` | Mirror | `Mirror.Geometry` | `{'polygon': 'polygon_geometry', 'vertices': [[-1.1480502970952695, 2.77163859753386, 0.0], [1.148...` |
 | 65 | `638a56be...` | Plane Normal | `Plane Normal.Plane` | `{'origin': 0.0, 'normal': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, ...` |
 | 66 | `133aa1b3...` | Division | `/.Result` | `0.3888888888888889` |
@@ -81,7 +81,7 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 73 | `20f5465a...` | Division | `/.Result` | `0.07777777777777775` |
 | 74 | `def742ff...` | PolyLine | `PolyLine.Polyline` | `None` |
 | 75 | `902866aa...` | Construct Point | `CP.Point` | `[2.5, 0.04, 0.0]` |
-| 76 | `c4c92669...` | MD Slider | `MD Slider` | `{'Value': 0.5}` |
+| 76 | `c4c92669...` | MD Slider | `MD Slider` | `{'Value': 0.5, 'Point': [0.5, 0.5, 0.5]}` |
 | 77 | `4218a4e5...` | Move | `Slats original.Geometry` | `{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [...` |
 | 78 | `a7d2817a...` | Number Slider | `room width` | `{'Value': 5.0}` |
 | 79 | `dbc236d4...` | Rectangle 2Pt | `Rectangle 2Pt.Rectangle` | `{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [...` |
@@ -93,7 +93,7 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 85 | `a7644f3e...` | Subtraction | `-` | `{'Result': 3.5}` |
 | 86 | `e11dd9b3...` | Subtraction | `-` | `{'Result': 9.0}` |
 | 87 | `a2151ddb...` | Polygon | `Polygon` | `{'Polygon': {'polygon': 'polygon_geometry', 'vertices': [[3.0, 0.0, 0.0], [2.121320343559643, 2.1...` |
-| 88 | `b908d823...` | Box 2Pt | `Box 2Pt` | `{'Box': {'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0]}}` |
+| 88 | `b908d823...` | Box 2Pt | `Box 2Pt` | `{'Box': {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0...` |
 | 89 | `32cc502c...` | Division | `/` | `{'Result': 2.5}` |
 | 90 | `b3c71890...` | Negative | `-` | `{'Result': -3.8}` |
 | 91 | `d055df7d...` | Subtraction | `-` | `{'Result': 0.6999999999999997}` |
@@ -105,7 +105,7 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 97 | `680b290d...` | Series | `Series` | `{'Series': [-0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07]}` |
 | 98 | `be907c11...` | Construct Point | `CP` | `{'Point': [2.5, 0.04, 0.0]}` |
 | 99 | `f9a68fee...` | Division | `/` | `{'Result': 0.07777777777777775}` |
-| 100 | `d8f9c0ae...` | Polar Array | `Polar Array` | `{'Geometry': [{'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0]}, {'corner1': [0.0, -2.0,...` |
+| 100 | `d8f9c0ae...` | Polar Array | `Polar Array` | `{'Geometry': [{'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, 7.0], 'vertices'...` |
 | 101 | `57648120...` | Construct Point | `Target point` | `{'Point': [0.0, -4.5, 4.0]}` |
 | 102 | `835d042f...` | Negative | `-` | `{'Result': -2.5}` |
 | 103 | `524ba570...` | Division | `/` | `{'Result': 0.3888888888888889}` |
@@ -114,7 +114,7 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 106 | `67b3eb53...` | Construct Point | `CP` | `{'Point': [-2.5, -0.04, 0.0]}` |
 | 107 | `47650d42...` | Mirror | `Mirror` | `{'Geometry': {'polygon': 'polygon_geometry', 'vertices': [[-1.1480502970952695, 2.77163859753386,...` |
 | 108 | `268410b9...` | Unit Y | `Unit Y` | `{'Vector': [[0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0....` |
-| 109 | `e5850abb...` | List Item | `LI` | `{'Item': {'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0]}}` |
+| 109 | `e5850abb...` | List Item | `LI` | `{'Item': {'type': 'box', 'corner1': [2.4492935982947064e-16, 2.0, 7.0], 'corner2': [-3.6739403974...` |
 | 110 | `b785e424...` | Series | `Series` | `{'Series': [-3.8, -3.722222222222222, -3.6444444444444444, -3.5666666666666664, -3.48888888888888...` |
 | 111 | `4775d3bf...` | Negative | `-` | `{'Result': [3.8, 3.722222222222222, 3.6444444444444444, 3.5666666666666664, 3.488888888888889, 3....` |
 | 112 | `16022012...` | Area | `Area` | `{'Area': 0.0, 'Centroid': [0.0, 0.0, 0.0]}` |
@@ -130,12 +130,12 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 122 | `b4a4862a...` | Polar Array | `PA` | `{'Geometry': [[[0.0, -4.5, 4.0], [0.0, -4.111111111111111, 4.0], [0.0, -3.7222222222222223, 4.0],...` |
 | 123 | `f03b9ab7...` | List Item | `LI` | `{'Item': [[5.51091059616309e-16, 4.5, 4.0], [5.034659063161341e-16, 4.111111111111111, 4.0], [4.5...` |
 | 124 | `ddb9e6ae...` | Move | `Slats original` | `{'Geometry': {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0]...` |
-| 125 | `dfbbd4a2...` | Move | `Box to project` | `{'Geometry': {'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0]}, 'Transform': {'type': 't...` |
-| 126 | `d8de94de...` | Evaluate Surface | `Evaluate Surface` | `{'Point': [0.5, 0.5, 0.0], 'Normal': [0.0, 0.0, 1.0], 'Frame': None}` |
+| 125 | `dfbbd4a2...` | Move | `Box to project` | `{'Geometry': {'type': 'box', 'corner1': [11.327429598006665, -25.346834162334087, 7.0], 'corner2'...` |
+| 126 | `d8de94de...` | Evaluate Surface | `Evaluate Surface` | `{'Point': [11.327429598006665, -27.846834162334087, 2.0], 'Normal': [-1.0, 0.0, 0.0], 'Frame': None}` |
 | 127 | `b38a38f1...` | Move | `Targets` | `{'Geometry': [[11.327429598006665, -22.846834162334087, 4.0], [11.327429598006665, -23.2357230512...` |
 | 128 | `77f7eddb...` | Area | `Area` | `{'Area': 0.0, 'Centroid': [0.0, 0.0, 0.0]}` |
 | 129 | `7ad636cc...` | Polar Array | `Polar Array` | `{'Geometry': [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0...` |
-| 130 | `09db66ec...` | Plane Normal | `PN` | `{'Normal': [0.0, 0.0, 2.0], 'Plane': {'origin': [0.0, 0.0, 0.0], 'normal': [0.0, 0.0, 2.0], 'z_ax...` |
+| 130 | `09db66ec...` | Plane Normal | `PN` | `{'Normal': [-1.0, 0.0, 1.0], 'Plane': {'origin': [0.0, 0.0, 0.0], 'normal': [-1.0, 0.0, 1.0], 'z_...` |
 | 131 | `ef803855...` | PolyLine | `PolyLine` | `{'PolyLine': {'points': [[11.327429598006665, -22.846834162334087, 4.0], [11.327429598006665, -23...` |
 | 132 | `27933633...` | List Item | `LI` | `{'Item': {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y...` |
 | 133 | `0532cbdf...` | Move | `Slats original` | `{'Geometry': {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0]...` |

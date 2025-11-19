@@ -248,12 +248,18 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                         comp_outputs = evaluated.get(source_obj_guid, {})
                         if isinstance(comp_outputs, dict):
                             source_param_name = source_info['param_info'].get('data', {}).get('NickName', '')
+                            # Check if source component is MD Slider - if so, get the full point value
+                            source_obj = source_info.get('obj', {})
+                            source_comp_type = source_obj.get('type', '')
+                            if source_comp_type == 'MD Slider' and 'Point' in comp_outputs:
+                                # MD Slider with point3d - return the full point
+                                source_value = comp_outputs['Point']
                             # For Polar Array and similar components, prioritize 'Geometry' key
                             # This ensures correct extraction when output param name is 'Geometry'
-                            if source_param_name == 'Geometry' and 'Geometry' in comp_outputs:
+                            elif source_param_name == 'Geometry' and 'Geometry' in comp_outputs:
                                 source_value = comp_outputs['Geometry']
                             else:
-                                for key in [source_param_name, 'Geometry', 'Result', 'Value', 'Output', 'Vector']:
+                                for key in [source_param_name, 'Geometry', 'Result', 'Value', 'Output', 'Vector', 'Point']:
                                     if key in comp_outputs:
                                         source_value = comp_outputs[key]
                                         break
@@ -1524,11 +1530,24 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                 if comp_id in external_inputs:
                     ext_value = external_inputs[comp_id]
                     # MD Slider might return a point3d [x, y, z] or a single value
-                    if isinstance(ext_value, list):
-                        # If it's a point3d, use the first coordinate or the whole point
+                    if isinstance(ext_value, dict):
+                        ext_val = ext_value.get('value', ext_value)
+                        if isinstance(ext_val, list):
+                            # If it's a point3d, return the whole point for downstream components
+                            # But for the component's own Value output, use first coordinate
+                            value = ext_val[0] if len(ext_val) > 0 else 0.0
+                            # Store full point for source resolution
+                            result = ext_val
+                        else:
+                            value = ext_val
+                            result = value
+                    elif isinstance(ext_value, list):
+                        # If it's a point3d, return the whole point for downstream components
                         value = ext_value[0] if len(ext_value) > 0 else 0.0
+                        result = ext_value
                     else:
                         value = ext_value
+                        result = value
                 else:
                     # MD Slider might not have a value stored - treat as external input
                     param_info = comp_info['obj'].get('params', {})
@@ -1542,9 +1561,15 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                     if not has_sources:
                         print(f"Warning: MD Slider component {comp_id[:8]}... has no value - treating as external (defaulting to 0.0)")
                         value = 0.0
+                        result = value
                     else:
                         raise ValueError(f"MD Slider component missing Value input")
-            result = func(value)
+            else:
+                result = func(value)
+            # Return both Value (for component output) and the full point (for source resolution)
+            # If result is a list, it's a point3d - return it as-is for downstream components
+            if isinstance(result, list):
+                return {'Value': result[0] if len(result) > 0 else 0.0, 'Point': result}
             return {'Value': result}
         
         elif comp_type == 'Box 2Pt':
@@ -1766,17 +1791,35 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                 raise ValueError(f"Evaluate Surface component missing Point input")
             # Point can be a list [u, v] or a point [x, y, z]
             # For Evaluate Surface, we need u and v parameters
-            # If point is from MD Slider, it might be a point3d [x, y, z]
-            # For now, extract u and v from the point
+            # If point is from MD Slider, it might be a point3d [x, y, z] or [u, v, w]
+            # MD Slider typically provides [u, v, w] where u and v are the UV coordinates
             if isinstance(point, list):
                 if len(point) >= 2:
                     u, v = float(point[0]), float(point[1])
                 else:
                     u, v = 0.0, 0.0
+            elif isinstance(point, dict):
+                # If point is a dict, try to extract value
+                point_val = point.get('Value', point.get('value', [0.5, 0.5]))
+                if isinstance(point_val, list) and len(point_val) >= 2:
+                    u, v = float(point_val[0]), float(point_val[1])
+                else:
+                    u, v = 0.5, 0.5  # Default UV coordinates
             else:
-                u, v = 0.0, 0.0
+                u, v = 0.5, 0.5  # Default UV coordinates
+            
             result = func(surface, u, v)
-            return {'Point': result, 'Normal': [0.0, 0.0, 1.0], 'Frame': None}  # Simplified outputs
+            # result is now a dict with 'point' and 'normal' keys
+            if isinstance(result, dict):
+                normal = result.get('normal', [0.0, 0.0, 1.0])
+                return {
+                    'Point': result.get('point', [u, v, 0.0]),
+                    'Normal': normal,
+                    'Frame': None
+                }
+            else:
+                # Fallback for old return format
+                return {'Point': result, 'Normal': [0.0, 0.0, 1.0], 'Frame': None}
         
         elif comp_type == 'Divide Length':
             curve = inputs.get('Curve') or inputs.get('Geometry')
