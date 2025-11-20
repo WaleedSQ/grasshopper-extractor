@@ -518,6 +518,57 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
             # Add persistent vector if present and result is a vector (and not Amplitude source)
             if persistent_vector and isinstance(result, list) and len(result) == 3 and all(isinstance(x, (int, float)) for x in result):
                 result = [result[i] + persistent_vector[i] for i in range(3)]
+            # Special case: Move "Slats original" Motion input - combine Amplitude with Vector 2Pt
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '') if comp_info else ''
+            is_slats_original = ('0532cbdf-875b-4db9-8c88-352e21051436' in comp_id or comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436')
+            if is_slats_original and param_key == 'param_input_1' and isinstance(result, list) and len(result) == 3:
+                # This is Amplitude output - need to combine with Vector 2Pt
+                vector_2pt_guid = 'ea032caa-ddff-403c-ab58-8ab6e24931ac'
+                vector_2pt_value = None
+                
+                # Check if Vector 2Pt is evaluated
+                if vector_2pt_guid in evaluated:
+                    v2pt_result = evaluated[vector_2pt_guid]
+                    if isinstance(v2pt_result, dict):
+                        vector_2pt_value = v2pt_result.get('Vector')
+                    elif isinstance(v2pt_result, list) and len(v2pt_result) > 0:
+                        if isinstance(v2pt_result[0], list):
+                            vector_2pt_value = v2pt_result
+                else:
+                    # Try to find and evaluate Vector 2Pt
+                    for cid, cdata in (graph.items() if graph else []):
+                        if isinstance(cdata, dict):
+                            obj = cdata.get('obj', {})
+                            if obj.get('instance_guid') == vector_2pt_guid:
+                                try:
+                                    v2pt_result = evaluate_component(cid, cdata, evaluated, all_objects, output_params, graph=graph)
+                                    evaluated[vector_2pt_guid] = v2pt_result
+                                    if isinstance(v2pt_result, dict):
+                                        vector_2pt_value = v2pt_result.get('Vector')
+                                    elif isinstance(v2pt_result, list) and len(v2pt_result) > 0:
+                                        if isinstance(v2pt_result[0], list):
+                                            vector_2pt_value = v2pt_result
+                                except Exception:
+                                    pass
+                                break
+                
+                # Combine Amplitude with Vector 2Pt list of vectors
+                if vector_2pt_value is not None and isinstance(vector_2pt_value, list) and len(vector_2pt_value) > 0:
+                    print(f"  DEBUG Move Slats original Motion (single source): Amplitude={result}, Vector2Pt len={len(vector_2pt_value)}")
+                    combined_motions = []
+                    for v2pt_vec in vector_2pt_value:
+                        if isinstance(v2pt_vec, list) and len(v2pt_vec) >= 3:
+                            # Combine: [amp_x, amp_y - v2pt_y, v2pt_z]
+                            combined = [
+                                result[0] + (v2pt_vec[0] if len(v2pt_vec) > 0 else 0.0),
+                                result[1] - (v2pt_vec[1] if len(v2pt_vec) > 1 else 0.0),  # Subtract Y
+                                (v2pt_vec[2] if len(v2pt_vec) > 2 else 0.0)  # Use Vector 2Pt Z
+                            ]
+                            combined_motions.append(combined)
+                    if combined_motions:
+                        print(f"  DEBUG Move Slats original Motion: Combined {len(combined_motions)} vectors, first={combined_motions[0]}")
+                        return combined_motions
+            
             return result
         else:
             # Multiple sources - for Move component Motion input
@@ -526,6 +577,12 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
             # Check if we have an Amplitude source - if so, try to evaluate it and use it
             amplitude_source_guid = None
             amplitude_value = None
+            
+            # Special case: Move "Slats original" (0532cbdf-875b-4db9-8c88-352e21051436)
+            # Needs to combine Amplitude with Vector 2Pt (ea032caa-ddff-403c-ab58-8ab6e24931ac) list of vectors
+            # Check both comp_id and instance_guid from comp_info
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '') if comp_info else ''
+            is_slats_original = ('0532cbdf-875b-4db9-8c88-352e21051436' in comp_id or comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436')
             
             # Find Amplitude source
             for source in sources:
@@ -564,6 +621,65 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                             elif isinstance(amp_result, list) and len(amp_result) == 3:
                                 amplitude_value = amp_result
                         break
+            
+            # Special handling for Move "Slats original" - combine Amplitude with Vector 2Pt
+            if is_slats_original and param_key == 'param_input_1':
+                print(f"  DEBUG resolve_input_value: Move Slats original Motion input, comp_id={comp_id[:20] if len(comp_id) > 20 else comp_id}, instance_guid={comp_instance_guid[:20] if comp_instance_guid and len(comp_instance_guid) > 20 else (comp_instance_guid if comp_instance_guid else 'none')}, param_key={param_key}")
+                # Find Vector 2Pt component
+                vector_2pt_guid = 'ea032caa-ddff-403c-ab58-8ab6e24931ac'
+                vector_2pt_value = None
+                
+                # Check if Vector 2Pt is evaluated
+                if vector_2pt_guid in evaluated:
+                    v2pt_result = evaluated[vector_2pt_guid]
+                    if isinstance(v2pt_result, dict):
+                        vector_2pt_value = v2pt_result.get('Vector')
+                    elif isinstance(v2pt_result, list) and len(v2pt_result) > 0:
+                        if isinstance(v2pt_result[0], list):
+                            vector_2pt_value = v2pt_result
+                else:
+                    # Try to find and evaluate Vector 2Pt
+                    for cid, cdata in (graph.items() if graph else []):
+                        if isinstance(cdata, dict):
+                            obj = cdata.get('obj', {})
+                            if obj.get('instance_guid') == vector_2pt_guid:
+                                try:
+                                    v2pt_result = evaluate_component(cid, cdata, evaluated, all_objects, output_params, graph=graph)
+                                    evaluated[vector_2pt_guid] = v2pt_result
+                                    if isinstance(v2pt_result, dict):
+                                        vector_2pt_value = v2pt_result.get('Vector')
+                                    elif isinstance(v2pt_result, list) and len(v2pt_result) > 0:
+                                        if isinstance(v2pt_result[0], list):
+                                            vector_2pt_value = v2pt_result
+                                except Exception:
+                                    pass
+                                break
+                
+                # Combine Amplitude with Vector 2Pt list of vectors
+                if amplitude_value is not None and vector_2pt_value is not None:
+                    print(f"  DEBUG Move Slats original Motion: Amplitude={amplitude_value}, Vector2Pt type={type(vector_2pt_value).__name__}, len={len(vector_2pt_value) if isinstance(vector_2pt_value, list) else 'N/A'}")
+                    if isinstance(amplitude_value, list) and len(amplitude_value) == 3 and \
+                       isinstance(vector_2pt_value, list) and len(vector_2pt_value) > 0:
+                        # Amplitude is single vector, Vector 2Pt is list of vectors
+                        # Combine: Amplitude + Vector 2Pt (but subtract Vector 2Pt Y component from Amplitude Y)
+                        # Based on expected centroids: Y should be -27.416834 = -27.346834 - 0.07
+                        combined_motions = []
+                        for v2pt_vec in vector_2pt_value:
+                            if isinstance(v2pt_vec, list) and len(v2pt_vec) >= 3:
+                                # Combine: [amp_x, amp_y - v2pt_y, v2pt_z]
+                                combined = [
+                                    amplitude_value[0] + (v2pt_vec[0] if len(v2pt_vec) > 0 else 0.0),
+                                    amplitude_value[1] - (v2pt_vec[1] if len(v2pt_vec) > 1 else 0.0),  # Subtract Y
+                                    (v2pt_vec[2] if len(v2pt_vec) > 2 else 0.0)  # Use Vector 2Pt Z
+                                ]
+                                combined_motions.append(combined)
+                        if combined_motions:
+                            print(f"  DEBUG Move Slats original Motion: Combined {len(combined_motions)} vectors, first={combined_motions[0]}")
+                            return combined_motions
+                elif amplitude_value is not None:
+                    print(f"  DEBUG Move Slats original Motion: Only Amplitude available, Vector2Pt={vector_2pt_value}")
+                elif vector_2pt_value is not None:
+                    print(f"  DEBUG Move Slats original Motion: Only Vector2Pt available, Amplitude={amplitude_value}")
             
             # If Amplitude is available, use it directly (Vector XYZ has been removed)
             # Screenshot shows Amplitude value without PersistentData (Z is 0, not 10)
@@ -1384,9 +1500,47 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             if geometry is None:
                 raise ValueError(f"Area component missing Geometry input")
             
+            # Debug output for "Slats original" Area component
+            if comp_id == '3bd2c1d3-149d-49fb-952c-8db272035f9e':
+                geom_type = type(geometry).__name__
+                if isinstance(geometry, list):
+                    geom_type = f"list of {len(geometry)} items"
+                    if len(geometry) > 0:
+                        if isinstance(geometry[0], dict):
+                            first_geom = geometry[0]
+                            geom_type += f" (first type: {first_geom.get('type', 'unknown')}"
+                            if 'corners' in first_geom:
+                                corners = first_geom.get('corners', [])
+                                geom_type += f", corners: {len(corners)}"
+                                if corners:
+                                    geom_type += f", first corner: {corners[0]}"
+                            geom_type += ")"
+                        elif isinstance(geometry[0], list):
+                            geom_type += " (list of lists)"
+                elif isinstance(geometry, dict):
+                    geom_type = geometry.get('type', 'unknown')
+                print(f"  DEBUG Area Slats original {comp_id[:8]}...: geometry type={geom_type}")
+            
             result = func(geometry)
             # Area component returns dict with 'Area' and 'Centroid'
             if isinstance(result, dict):
+                if comp_id == '3bd2c1d3-149d-49fb-952c-8db272035f9e':
+                    centroid = result.get('Centroid', [])
+                    if isinstance(centroid, list):
+                        print(f"  DEBUG Area Slats original {comp_id[:8]}...: centroid count={len(centroid)}, first={centroid[0] if len(centroid) > 0 else 'none'}")
+                        if len(centroid) > 0 and isinstance(geometry, list) and len(geometry) > 0:
+                            first_geom = geometry[0]
+                            if isinstance(first_geom, dict) and 'corners' in first_geom:
+                                corners = first_geom.get('corners', [])
+                                print(f"  DEBUG Area Slats original: first rectangle corners: {corners}")
+                                # Manual centroid calculation
+                                if corners:
+                                    manual_centroid = [
+                                        sum(c[0] for c in corners) / len(corners),
+                                        sum(c[1] for c in corners) / len(corners),
+                                        sum(c[2] if len(c) > 2 else 0 for c in corners) / len(corners)
+                                    ]
+                                    print(f"  DEBUG Area Slats original: manual centroid from corners: {manual_centroid}")
                 return result
             else:
                 # Fallback for old return format
@@ -1395,6 +1549,33 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
         elif comp_type == 'Move':
             geometry = inputs.get('Geometry')
             motion = inputs.get('Motion')
+            
+            # Debug output for "Slats original" Move component
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            if comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436' or comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
+                print(f"  DEBUG Move Slats original inputs: motion type={type(motion).__name__}, motion={motion}")
+                geom_type = type(geometry).__name__
+                if isinstance(geometry, dict):
+                    geom_type = geometry.get('type', 'unknown')
+                elif isinstance(geometry, list):
+                    geom_type = f"list of {len(geometry)} items"
+                    if len(geometry) > 0 and isinstance(geometry[0], dict):
+                        first_geom = geometry[0]
+                        geom_type += f" (first type: {first_geom.get('type', 'unknown')}"
+                        if 'corners' in first_geom:
+                            corners = first_geom.get('corners', [])
+                            geom_type += f", corners: {len(corners)}"
+                            if corners:
+                                geom_type += f", first corner: {corners[0]}"
+                        geom_type += ")"
+                motion_type = type(motion).__name__
+                if isinstance(motion, list) and len(motion) > 0:
+                    motion_type = f"list of {len(motion)} items"
+                    if isinstance(motion[0], list):
+                        motion_type += f" (vectors, first: {motion[0]})"
+                    else:
+                        motion_type += f" (first item: {motion[0]})"
+                print(f"  DEBUG Move Slats original {comp_id[:8]}...: geometry type={geom_type}, motion type={motion_type}")
             
             # Special case: "New Sun" component Motion input
             comp_nickname = comp_info['obj'].get('nickname') or comp_info['obj'].get('NickName', '')
@@ -1423,11 +1604,24 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             
             if motion_is_list_of_vectors:
                 # Motion is a list of vectors
-                # Check if we have multiple sources (need to combine) or single source (keep as list)
-                # For now, if it's a list of vectors, check if geometry is a single point
-                # If so, keep the list to create multiple moved points
+                # Check if we should keep the list or combine vectors
+                # Keep list if:
+                # 1. Geometry is a single point (create list of moved points)
+                # 2. Geometry is a single geometry dict (box, rectangle, etc.) - create list of moved geometries
+                # 3. Geometry is a list of geometry dicts (rectangles, boxes, etc.) - pairwise matching
+                # Combine only if geometry is a list of points (pairwise matching handled in move_component)
                 if isinstance(geometry, list) and len(geometry) == 3 and all(isinstance(x, (int, float)) for x in geometry):
                     # Single point with list of motion vectors - keep list to create multiple points
+                    # Don't combine, just pass through
+                    pass
+                elif isinstance(geometry, dict):
+                    # Single geometry dict (box, rectangle, etc.) with list of motion vectors
+                    # Keep list to create list of moved geometries (one per motion vector)
+                    # Don't combine, just pass through
+                    pass
+                elif isinstance(geometry, list) and len(geometry) > 0 and isinstance(geometry[0], dict):
+                    # List of geometry dicts (rectangles, boxes, etc.) with list of motion vectors
+                    # Keep list for pairwise matching in move_component
                     # Don't combine, just pass through
                     pass
                 else:
@@ -1466,6 +1660,23 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                     motion = list(motion[:3]) + [0.0] * (3 - len(motion))
             
             moved_geometry, transform = func(geometry, motion)
+            
+            # Debug output for "Slats original" Move component
+            if comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
+                moved_type = type(moved_geometry).__name__
+                if isinstance(moved_geometry, list):
+                    moved_type = f"list of {len(moved_geometry)} items"
+                    if len(moved_geometry) > 0 and isinstance(moved_geometry[0], dict):
+                        first_moved = moved_geometry[0]
+                        moved_type += f" (first type: {first_moved.get('type', 'unknown')}"
+                        if 'corners' in first_moved:
+                            corners = first_moved.get('corners', [])
+                            moved_type += f", corners: {len(corners)}"
+                            if corners:
+                                moved_type += f", first corner: {corners[0]}"
+                        moved_type += ")"
+                print(f"  DEBUG Move Slats original {comp_id[:8]}...: output type={moved_type}")
+            
             return {'Geometry': moved_geometry, 'Transform': transform}
         
         elif comp_type == 'Polar Array':

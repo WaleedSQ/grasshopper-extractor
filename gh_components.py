@@ -1074,6 +1074,15 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
     # Check if motion is a list of vectors (list of lists)
     motion_is_list = isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list)
     
+    # Debug for Slats original Move
+    if isinstance(geometry, list) and len(geometry) > 0 and isinstance(geometry[0], dict) and geometry[0].get('type') == 'rectangle':
+        print(f"  DEBUG move_component START: geometry type=list of {len(geometry)} rectangles, motion_is_list={motion_is_list}, motion type={type(motion).__name__}, motion len={len(motion) if isinstance(motion, list) else 'N/A'}")
+        print(f"  DEBUG move_component: motion value={motion}")
+        if motion_is_list and len(motion) > 0:
+            print(f"  DEBUG move_component: first motion vector={motion[0]}")
+        if len(geometry) > 0 and 'corners' in geometry[0]:
+            print(f"  DEBUG move_component: first rectangle first corner={geometry[0]['corners'][0] if geometry[0].get('corners') else 'none'}")
+    
     if motion_is_list:
         # Motion is a list of vectors - apply each to geometry
         # If geometry is a single point, create a list of moved points
@@ -1089,35 +1098,86 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
                     ])
             transform = {'type': 'translation', 'motion': motion, 'translation': motion}
             return moved_points, transform
-        # If geometry is a single geometry dict (rectangle, etc.), create a list of moved geometries
+        # If geometry is a single geometry dict (rectangle, box, etc.), create a list of moved geometries
         elif isinstance(geometry, dict):
             # Single geometry dict with list of motion vectors - create list of moved geometries
             moved_geometries = []
             for vec in motion:
                 if isinstance(vec, list) and len(vec) >= 3:
                     moved_geom = dict(geometry)
-                    # Try to find and update point data (corners, origin, etc.)
-                    # For rectangles, update corners
-                    if 'corners' in moved_geom:
-                        corners = moved_geom['corners']
-                        if corners:
-                            moved_geom['corners'] = [
-                                [c[0] + vec[0], c[1] + vec[1], c[2] + vec[2] if len(c) > 2 else vec[2]]
-                                for c in corners
+                    
+                    # Handle box geometry specifically
+                    if moved_geom.get('type') == 'box':
+                        # Transform all vertices
+                        if 'vertices' in moved_geom:
+                            moved_geom['vertices'] = [
+                                [v[0] + vec[0], v[1] + vec[1], v[2] + vec[2] if len(v) > 2 else vec[2]]
+                                for v in moved_geom['vertices']
                             ]
-                    # Update other point-like keys
-                    for key in ['point', 'Point', 'origin', 'Origin', 'center', 'Center', 'pointA', 'pointB', 'corner1', 'corner2', 'corner3', 'corner4']:
-                        if key in moved_geom and isinstance(moved_geom[key], list) and len(moved_geom[key]) >= 3:
-                            moved_geom[key] = [
-                                moved_geom[key][0] + vec[0],
-                                moved_geom[key][1] + vec[1],
-                                moved_geom[key][2] + vec[2] if len(moved_geom[key]) > 2 else vec[2]
+                        # Transform corner points
+                        if 'corner1' in moved_geom:
+                            moved_geom['corner1'] = [
+                                moved_geom['corner1'][0] + vec[0],
+                                moved_geom['corner1'][1] + vec[1],
+                                moved_geom['corner1'][2] + vec[2] if len(moved_geom['corner1']) > 2 else vec[2]
                             ]
+                        if 'corner2' in moved_geom:
+                            moved_geom['corner2'] = [
+                                moved_geom['corner2'][0] + vec[0],
+                                moved_geom['corner2'][1] + vec[1],
+                                moved_geom['corner2'][2] + vec[2] if len(moved_geom['corner2']) > 2 else vec[2]
+                            ]
+                        # Transform min/max bounds
+                        if 'min' in moved_geom:
+                            moved_geom['min'] = [
+                                moved_geom['min'][0] + vec[0],
+                                moved_geom['min'][1] + vec[1],
+                                moved_geom['min'][2] + vec[2] if len(moved_geom['min']) > 2 else vec[2]
+                            ]
+                        if 'max' in moved_geom:
+                            moved_geom['max'] = [
+                                moved_geom['max'][0] + vec[0],
+                                moved_geom['max'][1] + vec[1],
+                                moved_geom['max'][2] + vec[2] if len(moved_geom['max']) > 2 else vec[2]
+                            ]
+                        # Note: Face normals don't change with translation, but u_range/v_range do
+                        if 'faces' in moved_geom:
+                            for face in moved_geom['faces']:
+                                if 'u_range' in face:
+                                    face['u_range'] = [
+                                        face['u_range'][0] + (vec[1] if 'y' in face['name'] else vec[0]),
+                                        face['u_range'][1] + (vec[1] if 'y' in face['name'] else vec[0])
+                                    ]
+                                if 'v_range' in face:
+                                    face['v_range'] = [
+                                        face['v_range'][0] + vec[2],
+                                        face['v_range'][1] + vec[2]
+                                    ]
+                    else:
+                        # Handle other geometry types (rectangles, etc.)
+                        # Try to find and update point data (corners, origin, etc.)
+                        # For rectangles, update corners
+                        if 'corners' in moved_geom:
+                            corners = moved_geom['corners']
+                            if corners:
+                                moved_geom['corners'] = [
+                                    [c[0] + vec[0], c[1] + vec[1], c[2] + vec[2] if len(c) > 2 else vec[2]]
+                                    for c in corners
+                                ]
+                        # Update other point-like keys
+                        for key in ['point', 'Point', 'origin', 'Origin', 'center', 'Center', 'pointA', 'pointB', 'corner1', 'corner2', 'corner3', 'corner4']:
+                            if key in moved_geom and isinstance(moved_geom[key], list) and len(moved_geom[key]) >= 3:
+                                moved_geom[key] = [
+                                    moved_geom[key][0] + vec[0],
+                                    moved_geom[key][1] + vec[1],
+                                    moved_geom[key][2] + vec[2] if len(moved_geom[key]) > 2 else vec[2]
+                                ]
                     moved_geometries.append(moved_geom)
             transform = {'type': 'translation', 'motion': motion, 'translation': motion}
             return moved_geometries, transform
-        # If geometry is a list of points, apply motion vectors pairwise (shortest list)
+        # If geometry is a list, check if it's points or geometry dicts
         elif isinstance(geometry, list) and len(geometry) > 0:
+            print(f"  DEBUG move_component: geometry is list of {len(geometry)} items, first type={type(geometry[0]).__name__}, motion_is_list={motion_is_list}")
             if isinstance(geometry[0], list) and len(geometry[0]) == 3:
                 # List of points with list of motion vectors - apply pairwise
                 min_len = min(len(geometry), len(motion))
@@ -1132,6 +1192,73 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
                     ])
                 transform = {'type': 'translation', 'motion': motion, 'translation': motion}
                 return moved_points, transform
+            elif isinstance(geometry[0], dict):
+                # List of geometry dicts (rectangles, boxes, etc.) with list of motion vectors - apply pairwise
+                min_len = min(len(geometry), len(motion))
+                moved_geometries = []
+                for i in range(min_len):
+                    geom = geometry[i]
+                    vec = motion[i] if isinstance(motion[i], list) and len(motion[i]) >= 3 else [0.0, 0.0, 0.0]
+                    moved_geom = dict(geom)
+                    
+                    # Handle rectangle geometry
+                    if 'corners' in moved_geom:
+                        corners = moved_geom['corners']
+                        if corners:
+                            # Debug for first rectangle
+                            if i == 0 and len(corners) > 0:
+                                print(f"  DEBUG move_component: rectangle {i}, vec={vec}, first corner before={corners[0]}")
+                            moved_geom['corners'] = [
+                                [c[0] + vec[0], c[1] + vec[1], c[2] + vec[2] if len(c) > 2 else vec[2]]
+                                for c in corners
+                            ]
+                            if i == 0 and len(moved_geom['corners']) > 0:
+                                print(f"  DEBUG move_component: rectangle {i}, first corner after={moved_geom['corners'][0]}")
+                    
+                    # Handle box geometry
+                    if moved_geom.get('type') == 'box':
+                        if 'vertices' in moved_geom:
+                            moved_geom['vertices'] = [
+                                [v[0] + vec[0], v[1] + vec[1], v[2] + vec[2] if len(v) > 2 else vec[2]]
+                                for v in moved_geom['vertices']
+                            ]
+                        if 'corner1' in moved_geom:
+                            moved_geom['corner1'] = [
+                                moved_geom['corner1'][0] + vec[0],
+                                moved_geom['corner1'][1] + vec[1],
+                                moved_geom['corner1'][2] + vec[2] if len(moved_geom['corner1']) > 2 else vec[2]
+                            ]
+                        if 'corner2' in moved_geom:
+                            moved_geom['corner2'] = [
+                                moved_geom['corner2'][0] + vec[0],
+                                moved_geom['corner2'][1] + vec[1],
+                                moved_geom['corner2'][2] + vec[2] if len(moved_geom['corner2']) > 2 else vec[2]
+                            ]
+                        if 'min' in moved_geom:
+                            moved_geom['min'] = [
+                                moved_geom['min'][0] + vec[0],
+                                moved_geom['min'][1] + vec[1],
+                                moved_geom['min'][2] + vec[2] if len(moved_geom['min']) > 2 else vec[2]
+                            ]
+                        if 'max' in moved_geom:
+                            moved_geom['max'] = [
+                                moved_geom['max'][0] + vec[0],
+                                moved_geom['max'][1] + vec[1],
+                                moved_geom['max'][2] + vec[2] if len(moved_geom['max']) > 2 else vec[2]
+                            ]
+                    
+                    # Update other point-like keys
+                    for key in ['point', 'Point', 'origin', 'Origin', 'center', 'Center', 'pointA', 'pointB', 'corner1', 'corner2', 'corner3', 'corner4']:
+                        if key in moved_geom and isinstance(moved_geom[key], list) and len(moved_geom[key]) >= 3:
+                            moved_geom[key] = [
+                                moved_geom[key][0] + vec[0],
+                                moved_geom[key][1] + vec[1],
+                                moved_geom[key][2] + vec[2] if len(moved_geom[key]) > 2 else vec[2]
+                            ]
+                    
+                    moved_geometries.append(moved_geom)
+                transform = {'type': 'translation', 'motion': motion, 'translation': motion}
+                return moved_geometries, transform
     
     # Motion is a single vector - normalize to list of 3 floats
     if not isinstance(motion, list):

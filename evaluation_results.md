@@ -6,12 +6,12 @@ Components evaluated in dependency order, from early inputs to final outputs.
 
 | # | Component GUID | Type | Name/NickName | Output |
 |---|----------------|------|---------------|--------|
-| 1 | `9822511c...` | Line | `In Ray.Line` | `[{'start': [0.0, 0.0, 0.0], 'end': [11.327429598006665, -22.846834162334087, 4.0], 'direction': [...` |
+| 1 | `9822511c...` | Line | `In Ray.Line` | `[{'start': [11.327429598006665, -27.346834162334087, 7.6], 'end': [11.327429598006665, -22.846834...` |
 | 2 | `49f55226...` | Construct Point | `Target point.Point` | `[0.0, -4.5, 4.0]` |
 | 3 | `34529a8c...` | Area | `Area.Centroid` | `[11.327429598006665, -27.846834162334087, 2.0]` |
 | 4 | `456d176f...` | Number Slider | `Slats height (top)` | `{'Value': 3.8}` |
 | 5 | `3d373d1a...` | Move | `Box to project.Geometry` | `{'type': 'box', 'corner1': [11.327429598006665, -25.346834162334087, 7.0], 'corner2': [11.3274295...` |
-| 6 | `dd0f4d1f...` | Move | `New Sun.Geometry` | `[33219.837229, -61164.521016, 71800.722722]` |
+| 6 | `dd0f4d1f...` | Move | `New Sun.Geometry` | `[[33231.164658598005, -61191.867850162336, 71808.32272200001], [33231.164658598005, -61191.867850...` |
 | 7 | `81565b66...` | Unit Y | `Unit Y.Unit vector` | `[[0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [0.0, -0.07, 0.0], [...` |
 | 8 | `65a37667...` | PolyLine | `PolyLine.Polyline` | `None` |
 | 9 | `ea2c7d7f...` | Number Slider | `Slats height (threshold)` | `{'Value': 3.1}` |
@@ -26,12 +26,12 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 18 | `f8fdffb7...` | Negative | `-.Result` | `-3.8` |
 | 19 | `24f7f310...` | List Item | `LI.i` | `None` |
 | 20 | `6ce8bcba...` | Point On Curve | `Point On Curve` | `{'Point': [1.14805029709527, -2.77163859753386, 0.0]}` |
-| 21 | `aeedb946...` | Project | `Project.Curve` | `{'start': [0.0, 0.0, 0.0], 'end': [33219.837229, -61164.521016, 71800.722722], 'direction': [3321...` |
+| 21 | `aeedb946...` | Project | `Project.Curve` | `[{'start': [11.327429598006665, -27.346834162334087, 7.6], 'end': [33231.164658598005, -61191.867...` |
 | 22 | `b94e42e9...` | Polygon | `Polygon.Polygon` | `{'polygon': 'polygon_geometry', 'vertices': [[3.0, 0.0, 0.0], [2.121320343559643, 2.1213203435596...` |
 | 23 | `bd24b9c6...` | Number Slider | `Targets Height` | `{'Value': 4.0}` |
 | 24 | `80fd9f48...` | Move | `Targets.Geometry` | `[[11.327429598006665, -22.846834162334087, 4.0], [11.327429598006665, -23.235723051222976, 4.0], ...` |
 | 25 | `95282afd...` | Negative | `-.Result` | `-4.5` |
-| 26 | `4b0092c3...` | Plane Normal | `Plane Normal.Plane` | `{'origin': [0.0, 0.0, 0.0], 'normal': {'points': [[11.327429598006665, -22.846834162334087, 4.0],...` |
+| 26 | `4b0092c3...` | Plane Normal | `Plane Normal.Plane` | `{'origin': [[11.327429598006665, -27.346834162334087, 7.6], [11.327429598006665, -27.346834162334...` |
 | 27 | `2cc32a65...` | Construct Point | `p1.Point` | `[0.0, 3.0, -3.0]` |
 | 28 | `4fa54506...` | Unit Z | `Unit Z.Unit vector` | `[[0.0, 0.0, 3.8], [0.0, 0.0, 3.722222222222222], [0.0, 0.0, 3.6444444444444444], [0.0, 0.0, 3.566...` |
 | 29 | `8cb00f94...` | Subtraction | `-.Result` | `3.5` |
@@ -47,16 +47,16 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 39 | `00d89d35...` | Polar Array | `Polar Array.Geometry` | `[{'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, 7.0], 'vertices': [[0.0, -2.0...` |
 | 40 | `0460d28c...` | Divide Length | `DL.Points` | `[[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [2.0, 0.0, 0.0]]` |
 | 41 | `73455c39...` | Line | `Between.Line` | `{'start': [1.0, 0.0, 0.0], 'end': [1.0, 0.0, 0.0], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}` |
-| 42 | `01fd4f89...` | Area | `Area.Centroid` | `[0.0, 0.0, 0.0]` |
+| 42 | `01fd4f89...` | Area | `Area.Centroid` | `[[11.327429598006665, -27.346834162334087, 7.6], [11.327429598006665, -27.346834162334087, 7.4444...` |
 | 43 | `8a96679d...` | Negative | `-.Result` | `-2.5` |
 | 44 | `a7dd54c8...` | Subtraction | `-.Result` | `9.0` |
-| 45 | `47af807c...` | Move | `Slats original.Geometry` | `{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [...` |
+| 45 | `47af807c...` | Move | `Slats original.Geometry` | `[{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': ...` |
 | 46 | `0fb443ce...` | Construct Point | `p1.Point` | `[0.0, -2.0, 7.0]` |
 | 47 | `6b94f6c4...` | List Item | `List Item.i` | `None` |
 | 48 | `507b14ee...` | Number Slider | `Distance from window` | `{'Value': -0.07}` |
 | 49 | `c0f3d527...` | List Item | `LI.i` | `None` |
 | 50 | `a6b98c27...` | Construct Point | `p1` | `{'Point': [0.0, 3.0, -3.0]}` |
-| 51 | `9bf9263c...` | Construct Plane | `Construct Plane.Plane` | `{'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0,...` |
+| 51 | `9bf9263c...` | Construct Plane | `Construct Plane.Plane` | `{'origin': [[11.327429598006665, -27.346834162334087, 7.6], [11.327429598006665, -27.346834162334...` |
 | 52 | `160dcd76...` | Series | `Series.Series` | `[-3.8, -3.722222222222222, -3.6444444444444444, -3.5666666666666664, -3.488888888888889, -3.41111...` |
 | 53 | `07dcee6c...` | Vector 2Pt | `Vector 2Pt.Vector` | `[[0.0, 0.07, 3.8], [0.0, 0.07, 3.722222222222222], [0.0, 0.07, 3.6444444444444444], [0.0, 0.07, 3...` |
 | 54 | `23900bd5...` | Angle | `Angle.Angle` | `0.0` |
@@ -70,11 +70,11 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 62 | `e5d1f3af...` | Value List | `Orientations` | `{'Values': [4.0]}` |
 | 63 | `e41d5eba...` | Evaluate Surface | `Evaluate Surface.Normal` | `[-1.0, 0.0, 0.0]` |
 | 64 | `db399c50...` | Mirror | `Mirror.Geometry` | `{'polygon': 'polygon_geometry', 'vertices': [[-1.1480502970952695, 2.77163859753386, 0.0], [1.148...` |
-| 65 | `638a56be...` | Plane Normal | `Plane Normal.Plane` | `{'origin': 0.0, 'normal': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, ...` |
+| 65 | `638a56be...` | Plane Normal | `Plane Normal.Plane` | `{'origin': [11.327429598006665, -27.346834162334087, 7.6], 'normal': {'origin': [[11.327429598006...` |
 | 66 | `133aa1b3...` | Division | `/.Result` | `0.3888888888888889` |
 | 67 | `e81f2ba2...` | Number Slider | `1st targets from slats` | `{'Value': 1.0}` |
 | 68 | `08edbcda...` | Number Slider | `Horizontal shift between slats` | `{'Value': 0.0}` |
-| 69 | `1a00d7ad...` | Polar Array | `Polar Array.Geometry` | `[{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': ...` |
+| 69 | `1a00d7ad...` | Polar Array | `Polar Array.Geometry` | `[[{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis':...` |
 | 70 | `125e7c20...` | Number Slider | `Last target from slats` | `{'Value': 4.5}` |
 | 71 | `dac68df4...` | Number Slider | `Room - Distance from origen` | `{'Value': 29.6}` |
 | 72 | `e7683176...` | Polar Array | `PA.Geometry` | `[[[0.0, -4.5, 4.0], [0.0, -4.111111111111111, 4.0], [0.0, -3.7222222222222223, 4.0], [0.0, -3.333...` |
@@ -82,12 +82,12 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 74 | `def742ff...` | PolyLine | `PolyLine.Polyline` | `None` |
 | 75 | `902866aa...` | Construct Point | `CP.Point` | `[2.5, 0.04, 0.0]` |
 | 76 | `c4c92669...` | MD Slider | `MD Slider` | `{'Value': 0.5, 'Point': [0.5, 0.5, 0.5]}` |
-| 77 | `4218a4e5...` | Move | `Slats original.Geometry` | `{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [...` |
+| 77 | `4218a4e5...` | Move | `Slats original.Geometry` | `[{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': ...` |
 | 78 | `a7d2817a...` | Number Slider | `room width` | `{'Value': 5.0}` |
 | 79 | `dbc236d4...` | Rectangle 2Pt | `Rectangle 2Pt.Rectangle` | `{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [...` |
 | 80 | `370f6ae5...` | Negative | `-.Result` | `-0.04` |
 | 81 | `537142d8...` | Number Slider | `Number of slats` | `{'Value': 10.0}` |
-| 82 | `e898f4cb...` | Line | `Out Ray.Line` | `{'start': [0.0, 0.0, 0.0], 'end': [33219.837229, -61164.521016, 71800.722722], 'direction': [3321...` |
+| 82 | `e898f4cb...` | Line | `Out Ray.Line` | `[{'start': [11.327429598006665, -27.346834162334087, 7.6], 'end': [33231.164658598005, -61191.867...` |
 | 83 | `71c9ab9c...` | Number Slider | `Number of orientations` | `{'Value': 8.0}` |
 | 84 | `306c324a...` | Series | `Series.Series` | `[-0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07, -0.07]` |
 | 85 | `a7644f3e...` | Subtraction | `-` | `{'Result': 3.5}` |
@@ -129,28 +129,28 @@ Components evaluated in dependency order, from early inputs to final outputs.
 | 121 | `ea032caa...` | Vector 2Pt | `Vector 2Pt` | `{'Vector': [[0.0, 0.07, 3.8], [0.0, 0.07, 3.722222222222222], [0.0, 0.07, 3.6444444444444444], [0...` |
 | 122 | `b4a4862a...` | Polar Array | `PA` | `{'Geometry': [[[0.0, -4.5, 4.0], [0.0, -4.111111111111111, 4.0], [0.0, -3.7222222222222223, 4.0],...` |
 | 123 | `f03b9ab7...` | List Item | `LI` | `{'Item': [[5.51091059616309e-16, 4.5, 4.0], [5.034659063161341e-16, 4.111111111111111, 4.0], [4.5...` |
-| 124 | `ddb9e6ae...` | Move | `Slats original` | `{'Geometry': {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0]...` |
+| 124 | `ddb9e6ae...` | Move | `Slats original` | `{'Geometry': [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0...` |
 | 125 | `dfbbd4a2...` | Move | `Box to project` | `{'Geometry': {'type': 'box', 'corner1': [11.327429598006665, -25.346834162334087, 7.0], 'corner2'...` |
 | 126 | `d8de94de...` | Evaluate Surface | `Evaluate Surface` | `{'Point': [11.327429598006665, -27.846834162334087, 2.0], 'Normal': [-1.0, 0.0, 0.0], 'Frame': None}` |
 | 127 | `b38a38f1...` | Move | `Targets` | `{'Geometry': [[11.327429598006665, -22.846834162334087, 4.0], [11.327429598006665, -23.2357230512...` |
 | 128 | `77f7eddb...` | Area | `Area` | `{'Area': 100.0, 'Centroid': [11.327429598006665, -27.846834162334087, 2.0]}` |
-| 129 | `7ad636cc...` | Polar Array | `Polar Array` | `{'Geometry': [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0...` |
+| 129 | `7ad636cc...` | Polar Array | `Polar Array` | `{'Geometry': [[{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0....` |
 | 130 | `09db66ec...` | Plane Normal | `PN` | `{'Normal': [-1.0, 0.0, 1.0], 'Plane': {'origin': [11.327429598006665, -27.846834162334087, 2.0], ...` |
 | 131 | `ef803855...` | PolyLine | `PolyLine` | `{'PolyLine': {'points': [[11.327429598006665, -22.846834162334087, 4.0], [11.327429598006665, -23...` |
-| 132 | `27933633...` | List Item | `LI` | `{'Item': {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y...` |
-| 133 | `0532cbdf...` | Move | `Slats original` | `{'Geometry': {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0]...` |
-| 134 | `3bd2c1d3...` | Area | `Area` | `{'Area': 0.4, 'Centroid': [0.0, 0.0, 0.0]}` |
-| 135 | `9ff79870...` | List Item | `List Item` | `{'Item': 0.0}` |
+| 132 | `27933633...` | List Item | `LI` | `{'Item': [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], '...` |
+| 133 | `0532cbdf...` | Move | `Slats original` | `{'Geometry': [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0...` |
+| 134 | `3bd2c1d3...` | Area | `Area` | `{'Area': [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4], 'Centroid': [[11.327429598006665, -2...` |
+| 135 | `9ff79870...` | List Item | `List Item` | `{'Item': [11.327429598006665, -27.346834162334087, 7.6]}` |
 | 136 | `326da981...` | Plane Normal | `Plane Normal` | `{'Normal': {'points': [[11.327429598006665, -22.846834162334087, 4.0], [11.327429598006665, -23.2...` |
-| 137 | `910c335c...` | PolyLine | `PolyLine` | `{'PolyLine': {'points': [0.0, 0.0, 0.0], 'closed': 'false'}}` |
-| 138 | `0f529988...` | Move | `New Sun` | `{'Geometry': [33219.837229, -61164.521016, 71800.722722], 'Transform': {'type': 'translation', 'm...` |
-| 139 | `c7dba531...` | Line | `In Ray` | `{'Line': [{'start': [0.0, 0.0, 0.0], 'end': [11.327429598006665, -22.846834162334087, 4.0], 'dire...` |
-| 140 | `157c48b5...` | List Item | `List Item` | `{'Item': {'origin': [0.0, 0.0, 0.0], 'normal': {'points': [[11.327429598006665, -22.8468341623340...` |
-| 141 | `9a33273a...` | Line | `Out Ray` | `{'Line': {'start': [0.0, 0.0, 0.0], 'end': [33219.837229, -61164.521016, 71800.722722], 'directio...` |
+| 137 | `910c335c...` | PolyLine | `PolyLine` | `{'PolyLine': {'points': [[11.327429598006665, -27.346834162334087, 7.6], [11.327429598006665, -27...` |
+| 138 | `0f529988...` | Move | `New Sun` | `{'Geometry': [[33231.164658598005, -61191.867850162336, 71808.32272200001], [33231.164658598005, ...` |
+| 139 | `c7dba531...` | Line | `In Ray` | `{'Line': [{'start': [11.327429598006665, -27.346834162334087, 7.6], 'end': [11.327429598006665, -...` |
+| 140 | `157c48b5...` | List Item | `List Item` | `{'Item': {'origin': [[11.327429598006665, -27.346834162334087, 7.6], [11.327429598006665, -27.346...` |
+| 141 | `9a33273a...` | Line | `Out Ray` | `{'Line': [{'start': [11.327429598006665, -27.346834162334087, 7.6], 'end': [33231.164658598005, -...` |
 | 142 | `c7b8773d...` | Divide Length | `DL` | `{'Points': [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [2.0, 0.0, 0.0]], 'Parameters': []}` |
-| 143 | `30f76ec5...` | Construct Plane | `Construct Plane` | `{'Plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_ax...` |
-| 144 | `9cd053c9...` | Project | `Project` | `{'Curve': {'start': [0.0, 0.0, 0.0], 'end': [33219.837229, -61164.521016, 71800.722722], 'directi...` |
-| 145 | `011398ea...` | Plane Normal | `Plane Normal` | `{'Normal': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_a...` |
+| 143 | `30f76ec5...` | Construct Plane | `Construct Plane` | `{'Plane': {'origin': [[11.327429598006665, -27.346834162334087, 7.6], [11.327429598006665, -27.34...` |
+| 144 | `9cd053c9...` | Project | `Project` | `{'Curve': [{'start': [11.327429598006665, -27.346834162334087, 7.6], 'end': [33231.164658598005, ...` |
+| 145 | `011398ea...` | Plane Normal | `Plane Normal` | `{'Normal': {'origin': [[11.327429598006665, -27.346834162334087, 7.6], [11.327429598006665, -27.3...` |
 | 146 | `ed4878fc...` | List Item | `LI` | `{'Item': [1.0, 0.0, 0.0]}` |
 | 147 | `1e2231f7...` | Divide Length | `DL` | `{'Points': [[0.0, 0.0, 0.0], [1.0, 0.0, 0.0], [2.0, 0.0, 0.0]], 'Parameters': []}` |
 | 148 | `3f21b46a...` | List Item | `LI` | `{'Item': [1.0, 0.0, 0.0]}` |
