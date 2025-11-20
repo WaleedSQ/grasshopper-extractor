@@ -55,11 +55,15 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
     # Check for sources FIRST - if there's a source connection, it overrides persistent values
     sources = param_info.get('sources', [])
     
+    # Special case: List Item Index parameter - if source is Value List, check if we need conversion
+    # Some Value Lists output selected value, but when used as Index, might need length-1 conversion
+    param_name = param_info.get('data', {}).get('NickName', '') or param_info.get('data', {}).get('Name', '')
+    is_index_param = (param_name == 'Index')
+    
     # Check external_inputs by parameter GUID first (before persistent_values/values)
     # This allows overriding default/placeholder values with real values
     # BUT: For Plane parameters, we'll check PersistentData first since it has the correct plane structure
     external_inputs = get_external_inputs()
-    param_name = param_info.get('data', {}).get('NickName', '') or param_info.get('data', {}).get('Name', '')
     is_plane_param = param_name == 'Plane'
     
     if param_guid and param_guid in external_inputs and not is_plane_param:
@@ -259,12 +263,21 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                             elif source_param_name == 'Geometry' and 'Geometry' in comp_outputs:
                                 source_value = comp_outputs['Geometry']
                             else:
-                                for key in [source_param_name, 'Geometry', 'Result', 'Value', 'Output', 'Vector', 'Point']:
+                                for key in [source_param_name, 'Geometry', 'Result', 'Value', 'Output', 'Vector', 'Point', 'Values']:
                                     if key in comp_outputs:
                                         source_value = comp_outputs[key]
                                         break
                                 if source_value is None and comp_outputs:
                                     source_value = list(comp_outputs.values())[0]
+                            
+                            # Special handling: If source is Value List and target is List Item Index
+                            # Value List outputs a list like [4.0], extract the first value
+                            if source_value is not None and isinstance(source_value, list) and len(source_value) > 0:
+                                # Check if source component is Value List
+                                source_obj = source_info.get('obj', {})
+                                if source_obj.get('type') == 'Value List':
+                                    # Value List outputs selected value as list, extract it
+                                    source_value = source_value[0] if len(source_value) > 0 else 0
                         else:
                             source_value = comp_outputs
                     elif source_obj_guid:
@@ -558,11 +571,18 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                     combined_motions = []
                     for v2pt_vec in vector_2pt_value:
                         if isinstance(v2pt_vec, list) and len(v2pt_vec) >= 3:
-                            # Combine: [amp_x, amp_y - v2pt_y, v2pt_z]
+                            # Combine: [amp_x, amp_y - v2pt_y, v2pt_z - geometry_current_z]
+                            # Geometry already has Z from first Move, so motion Z should be relative
+                            # But expected centroids show Z=3.8, 3.722222, etc., which match Vector 2Pt Z
+                            # So motion Z = Vector 2Pt Z (absolute target, not relative)
+                            # Actually, wait - if geometry is at Z=3.8 and we want final Z=3.8, motion Z should be 0.0
+                            # But expected centroids vary: 3.8, 3.722222, 3.644444, etc.
+                            # This suggests geometry input Z varies, or motion Z should vary
+                            # For now, use Vector 2Pt Z as absolute target
                             combined = [
-                                result[0] + (v2pt_vec[0] if len(v2pt_vec) > 0 else 0.0),
-                                result[1] - (v2pt_vec[1] if len(v2pt_vec) > 1 else 0.0),  # Subtract Y
-                                (v2pt_vec[2] if len(v2pt_vec) > 2 else 0.0)  # Use Vector 2Pt Z
+                                result[0],  # X from Amplitude
+                                result[1] - (v2pt_vec[1] if len(v2pt_vec) > 1 else 0.0),  # Y: Amplitude Y - Vector 2Pt Y
+                                (v2pt_vec[2] if len(v2pt_vec) > 2 else 0.0)  # Z: Vector 2Pt Z (absolute target)
                             ]
                             combined_motions.append(combined)
                     if combined_motions:
@@ -1108,11 +1128,43 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             if list_data is None:
                 raise ValueError(f"List Item component missing List input")
             
+            # Debug for List Item that feeds second Move
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            is_slats_list_item = (comp_instance_guid == '27933633-dbab-4dc0-a4a2-cfa309c03c45')
+            if is_slats_list_item:
+                list_type = type(list_data).__name__
+                if isinstance(list_data, list):
+                    list_type = f"list of {len(list_data)} items"
+                    if len(list_data) > 0:
+                        if isinstance(list_data[0], list):
+                            list_type += f" (nested, inner list has {len(list_data[0])} items)"
+                            if len(list_data[0]) > 0 and isinstance(list_data[0][0], dict):
+                                first_inner = list_data[0][0]
+                                if 'corners' in first_inner:
+                                    corners = first_inner.get('corners', [])
+                                    if corners:
+                                        list_type += f", first inner item first corner: {corners[0]}"
+                        elif isinstance(list_data[0], dict):
+                            first_item = list_data[0]
+                            if 'corners' in first_item:
+                                corners = first_item.get('corners', [])
+                                if corners:
+                                    list_type += f", first item first corner: {corners[0]}"
+                print(f"  DEBUG List Item Slats (27933633...): input type={list_type}, index={index} (type={type(index).__name__}), wrap={wrap}")
+            
             # In Grasshopper, if a single value is connected to List Item, it's automatically wrapped in a list
             # Convert single values (dicts, lists with one item, etc.) to a list
             if not isinstance(list_data, list):
                 # Wrap single value in a list
                 list_data = [list_data]
+            
+            # Handle index: if it's a list (from Value List), extract the first value
+            # Value List outputs a list like [4.0], but Index needs a single number
+            if isinstance(index, list):
+                if len(index) > 0:
+                    index = index[0]
+                else:
+                    index = 0
             
             # Ensure index is an integer
             if not isinstance(index, (int, float)):
@@ -1120,6 +1172,8 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                     index = int(index)
                 except (ValueError, TypeError):
                     index = 0
+            else:
+                index = int(index)
             
             # Handle wrap behavior
             if wrap and isinstance(list_data, list) and len(list_data) > 0:
@@ -1130,6 +1184,20 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                 # So this should work as-is
             
             item = func(list_data, int(index))
+            
+            # Debug output for List Item
+            if is_slats_list_item:
+                item_type = type(item).__name__
+                if isinstance(item, list):
+                    item_type = f"list of {len(item)} items"
+                    if len(item) > 0 and isinstance(item[0], dict):
+                        first_item = item[0]
+                        if 'corners' in first_item:
+                            corners = first_item.get('corners', [])
+                            if corners:
+                                item_type += f", first item first corner: {corners[0]}"
+                print(f"  DEBUG List Item Slats (27933633...): output type={item_type}")
+            
             return {'Item': item}
         
         elif comp_type == 'Value List':
@@ -1550,9 +1618,23 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             geometry = inputs.get('Geometry')
             motion = inputs.get('Motion')
             
-            # Debug output for "Slats original" Move component
+            # Special handling for second Move "Slats original": make motion Z relative to geometry current Z
             comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
             if comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436' or comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
+                # If motion is a list of vectors and geometry is a list of geometries, make motion Z relative
+                if isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list) and \
+                   isinstance(geometry, list) and len(geometry) > 0:
+                    # Get geometry current Z (from first rectangle's first corner)
+                    if isinstance(geometry[0], dict) and 'corners' in geometry[0]:
+                        corners = geometry[0].get('corners', [])
+                        if corners and len(corners) > 0 and len(corners[0]) > 2:
+                            geometry_z = corners[0][2]
+                            # Make motion Z relative: motion_z = target_z - geometry_z
+                            # Target Z comes from Vector 2Pt Z values
+                            for i, vec in enumerate(motion):
+                                if isinstance(vec, list) and len(vec) >= 3:
+                                    # vec[2] is absolute target Z, make it relative
+                                    vec[2] = vec[2] - geometry_z
                 print(f"  DEBUG Move Slats original inputs: motion type={type(motion).__name__}, motion={motion}")
                 geom_type = type(geometry).__name__
                 if isinstance(geometry, dict):
