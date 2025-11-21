@@ -31,9 +31,60 @@ def vector_2pt_component(pointA: Union[List[float], List[List[float]]],
     # GH <Vector 2Pt> <NickName> <GUID>
     import math
     
-    # Check if inputs are lists of points
-    pointA_is_list = isinstance(pointA, list) and len(pointA) > 0 and isinstance(pointA[0], list)
-    pointB_is_list = isinstance(pointB, list) and len(pointB) > 0 and isinstance(pointB[0], list)
+    def normalize_point(pt):
+        """Convert a point to [x, y, z] format, handling dicts, lists, etc."""
+        if pt is None:
+            return [0.0, 0.0, 0.0]
+        # If it's a dict, extract the point
+        if isinstance(pt, dict):
+            # Try common keys
+            for key in ['Centroid', 'Point', 'Value', 'Result', 'Vector']:
+                if key in pt:
+                    return normalize_point(pt[key])
+            # If single key, use that
+            if len(pt) == 1:
+                return normalize_point(list(pt.values())[0])
+            # Try to find any list value
+            for v in pt.values():
+                if isinstance(v, list) and len(v) >= 3:
+                    return normalize_point(v)
+            raise ValueError(f"Vector 2Pt: Cannot extract point from dict: {pt}")
+        # If it's a list
+        if isinstance(pt, list):
+            # If first element is a dict, recurse
+            if len(pt) > 0 and isinstance(pt[0], dict):
+                return normalize_point(pt[0])
+            # If it's a list of numbers, return first 3
+            if len(pt) >= 3 and all(isinstance(x, (int, float)) for x in pt[:3]):
+                return list(pt[:3])
+            # If it's a list of lists, take first list
+            if len(pt) > 0 and isinstance(pt[0], list):
+                return normalize_point(pt[0])
+        # Try to convert to list
+        try:
+            as_list = list(pt)
+            if len(as_list) >= 3:
+                return [float(as_list[0]), float(as_list[1]), float(as_list[2])]
+        except:
+            pass
+        raise ValueError(f"Vector 2Pt: Cannot normalize point: {type(pt).__name__} = {pt}")
+    
+    # Normalize points first
+    try:
+        pointA_normalized = normalize_point(pointA)
+        pointB_normalized = normalize_point(pointB)
+    except Exception as e:
+        raise ValueError(f"Vector 2Pt: Error normalizing points - A: {type(pointA).__name__}={pointA}, B: {type(pointB).__name__}={pointB}, Error: {e}")
+    
+    # Check if inputs are lists of points (after normalization, they should be single points)
+    # But we need to check the original inputs to see if they were lists
+    pointA_is_list = isinstance(pointA, list) and len(pointA) > 0 and isinstance(pointA[0], list) and not isinstance(pointA[0], dict)
+    pointB_is_list = isinstance(pointB, list) and len(pointB) > 0 and isinstance(pointB[0], list) and not isinstance(pointB[0], dict)
+    
+    # If normalized points are single points, use them directly
+    if not pointA_is_list and not pointB_is_list:
+        pointA = pointA_normalized
+        pointB = pointB_normalized
     
     if pointA_is_list and pointB_is_list:
         # Both are lists - process pairwise (shortest list matching)
@@ -41,12 +92,8 @@ def vector_2pt_component(pointA: Union[List[float], List[List[float]]],
         vectors = []
         lengths = []
         for i in range(min_len):
-            pa = pointA[i]
-            pb = pointB[i]
-            if len(pa) < 3:
-                pa = list(pa) + [0.0] * (3 - len(pa))
-            if len(pb) < 3:
-                pb = list(pb) + [0.0] * (3 - len(pb))
+            pa = normalize_point(pointA[i])
+            pb = normalize_point(pointB[i])
             vec = [pb[0] - pa[0], pb[1] - pa[1], pb[2] - pa[2]]
             length = math.sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
             if unitize and length > 0:
@@ -56,13 +103,11 @@ def vector_2pt_component(pointA: Union[List[float], List[List[float]]],
         return vectors, lengths
     elif pointA_is_list:
         # Point A is list, Point B is single - process each Point A with Point B
-        if len(pointB) < 3:
-            pointB = list(pointB) + [0.0] * (3 - len(pointB))
+        pointB = pointB_normalized
         vectors = []
         lengths = []
-        for pa in pointA:
-            if len(pa) < 3:
-                pa = list(pa) + [0.0] * (3 - len(pa))
+        for pa_item in pointA:
+            pa = normalize_point(pa_item)
             vec = [pointB[0] - pa[0], pointB[1] - pa[1], pointB[2] - pa[2]]
             length = math.sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
             if unitize and length > 0:
@@ -72,13 +117,11 @@ def vector_2pt_component(pointA: Union[List[float], List[List[float]]],
         return vectors, lengths
     elif pointB_is_list:
         # Point A is single, Point B is list - process Point A with each Point B
-        if len(pointA) < 3:
-            pointA = list(pointA) + [0.0] * (3 - len(pointA))
+        pointA = pointA_normalized
         vectors = []
         lengths = []
-        for pb in pointB:
-            if len(pb) < 3:
-                pb = list(pb) + [0.0] * (3 - len(pb))
+        for pb_item in pointB:
+            pb = normalize_point(pb_item)
             vec = [pb[0] - pointA[0], pb[1] - pointA[1], pb[2] - pointA[2]]
             length = math.sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
             if unitize and length > 0:
@@ -156,8 +199,32 @@ def amplitude_component(vector: List[float], amplitude: float) -> List[float]:
         vector: [x, y, z] scaled vector
     """
     # GH <Amplitude> <NickName> <GUID>
+    import math
+    
+    # Handle list of vectors - take first one
+    if isinstance(vector, list) and len(vector) > 0:
+        if isinstance(vector[0], list) and len(vector[0]) >= 3:
+            # List of vectors - use first one
+            vector = vector[0]
+        elif not isinstance(vector[0], (int, float)) and len(vector) >= 3:
+            # Might be nested - try to flatten
+            if hasattr(vector[0], '__iter__') and not isinstance(vector[0], (str, bytes)):
+                try:
+                    vector = list(vector[0])[:3]
+                except:
+                    pass
+    
+    # Ensure vector is a list of 3 numbers
+    if not isinstance(vector, list):
+        raise ValueError(f"Amplitude: Vector must be a list, got {type(vector).__name__}")
     if len(vector) < 3:
-        raise ValueError("Vector must have at least 3 components")
+        raise ValueError(f"Amplitude: Vector must have at least 3 components, got {len(vector)}")
+    # Ensure all elements are numbers
+    try:
+        vector = [float(vector[0]), float(vector[1]), float(vector[2])]
+    except (TypeError, ValueError, IndexError) as e:
+        raise ValueError(f"Amplitude: Vector elements must be numbers, got {vector}, error: {e}")
+    
     # Normalize the vector first, then scale by amplitude
     length = math.sqrt(vector[0]**2 + vector[1]**2 + vector[2]**2)
     if length < 1e-10:
@@ -366,9 +433,39 @@ def line_component(start_point: Union[List[float], List[List[float]]],
     # GH <Line> <NickName> <GUID>
     import math
     
-    # Check if inputs are lists of points
-    start_is_list = isinstance(start_point, list) and len(start_point) > 0 and isinstance(start_point[0], list)
-    end_is_list = isinstance(end_point, list) and len(end_point) > 0 and isinstance(end_point[0], list)
+    # Normalize points using the same helper as Vector 2Pt
+    def normalize_point(pt):
+        """Convert a point to [x, y, z] format, handling dicts, lists, etc."""
+        if pt is None:
+            return [0.0, 0.0, 0.0]
+        if isinstance(pt, dict):
+            for key in ['Centroid', 'Point', 'Value', 'Result', 'Vector']:
+                if key in pt:
+                    return normalize_point(pt[key])
+            if len(pt) == 1:
+                return normalize_point(list(pt.values())[0])
+        if isinstance(pt, list):
+            if len(pt) > 0 and isinstance(pt[0], dict):
+                return normalize_point(pt[0])
+            if len(pt) >= 3 and all(isinstance(x, (int, float)) for x in pt[:3]):
+                return list(pt[:3])
+            if len(pt) > 0 and isinstance(pt[0], list):
+                return normalize_point(pt[0])
+        try:
+            as_list = list(pt)
+            if len(as_list) >= 3:
+                return [float(as_list[0]), float(as_list[1]), float(as_list[2])]
+        except:
+            pass
+        return [0.0, 0.0, 0.0]
+    
+    # Normalize inputs first
+    start_point_normalized = normalize_point(start_point)
+    end_point_normalized = normalize_point(end_point)
+    
+    # Check if inputs are lists of points (check original inputs, not normalized)
+    start_is_list = isinstance(start_point, list) and len(start_point) > 0 and isinstance(start_point[0], list) and not isinstance(start_point[0], dict)
+    end_is_list = isinstance(end_point, list) and len(end_point) > 0 and isinstance(end_point[0], list) and not isinstance(end_point[0], dict)
     
     if start_is_list or end_is_list:
         # Handle list inputs
@@ -377,12 +474,8 @@ def line_component(start_point: Union[List[float], List[List[float]]],
             min_len = min(len(start_point), len(end_point))
             lines = []
             for i in range(min_len):
-                sp = start_point[i]
-                ep = end_point[i]
-                if len(sp) < 3:
-                    sp = list(sp) + [0.0] * (3 - len(sp))
-                if len(ep) < 3:
-                    ep = list(ep) + [0.0] * (3 - len(ep))
+                sp = normalize_point(start_point[i])
+                ep = normalize_point(end_point[i])
                 direction = [ep[0] - sp[0], ep[1] - sp[1], ep[2] - sp[2]]
                 length = math.sqrt(direction[0]**2 + direction[1]**2 + direction[2]**2)
                 lines.append({
@@ -394,30 +487,26 @@ def line_component(start_point: Union[List[float], List[List[float]]],
             return lines
         elif start_is_list:
             # Start is list, end is single - process each start with end
-            if len(end_point) < 3:
-                end_point = list(end_point) + [0.0] * (3 - len(end_point))
+            ep = end_point_normalized
             lines = []
-            for sp in start_point:
-                if len(sp) < 3:
-                    sp = list(sp) + [0.0] * (3 - len(sp))
-                direction = [end_point[0] - sp[0], end_point[1] - sp[1], end_point[2] - sp[2]]
+            for sp_item in start_point:
+                sp = normalize_point(sp_item)
+                direction = [ep[0] - sp[0], ep[1] - sp[1], ep[2] - sp[2]]
                 length = math.sqrt(direction[0]**2 + direction[1]**2 + direction[2]**2)
                 lines.append({
                     'start': sp,
-                    'end': end_point,
+                    'end': ep,
                     'direction': direction,
                     'length': length
                 })
             return lines
         else:
             # End is list, start is single - process start with each end
-            if len(start_point) < 3:
-                start_point = list(start_point) + [0.0] * (3 - len(start_point))
+            sp = start_point_normalized
             lines = []
-            for ep in end_point:
-                if len(ep) < 3:
-                    ep = list(ep) + [0.0] * (3 - len(ep))
-                direction = [ep[0] - start_point[0], ep[1] - start_point[1], ep[2] - start_point[2]]
+            for ep_item in end_point:
+                ep = normalize_point(ep_item)
+                direction = [ep[0] - sp[0], ep[1] - sp[1], ep[2] - sp[2]]
                 length = math.sqrt(direction[0]**2 + direction[1]**2 + direction[2]**2)
                 lines.append({
                     'start': start_point,
@@ -426,24 +515,18 @@ def line_component(start_point: Union[List[float], List[List[float]]],
                     'length': length
                 })
             return lines
-    
-    # Both are single points - normal processing
-    if len(start_point) < 3:
-        start_point = list(start_point) + [0.0] * (3 - len(start_point))
-    if len(end_point) < 3:
-        end_point = list(end_point) + [0.0] * (3 - len(end_point))
-    
-    direction = [end_point[0] - start_point[0], 
-                 end_point[1] - start_point[1], 
-                 end_point[2] - start_point[2]]
-    length = math.sqrt(direction[0]**2 + direction[1]**2 + direction[2]**2)
-    
-    return {
-        'start': start_point,
-        'end': end_point,
-        'direction': direction,
-        'length': length
-    }
+    else:
+        # Both are single points - normal processing
+        sp = start_point_normalized
+        ep = end_point_normalized
+        direction = [ep[0] - sp[0], ep[1] - sp[1], ep[2] - sp[2]]
+        length = math.sqrt(direction[0]**2 + direction[1]**2 + direction[2]**2)
+        return {
+            'start': sp,
+            'end': ep,
+            'direction': direction,
+            'length': length
+        }
 
 
 # ============================================================================
@@ -465,6 +548,36 @@ def angle_component(vectorA: List[float], vectorB: List[float], plane: Optional[
         reflex: reflex angle in radians (2π - angle)
     """
     # GH <Angle> <NickName> <GUID>
+    import math
+    
+    # Normalize vectors using same helper as Vector 2Pt
+    def normalize_vector(v):
+        if v is None:
+            return [0.0, 0.0, 0.0]
+        if isinstance(v, dict):
+            for key in ['Vector', 'Value', 'Result']:
+                if key in v:
+                    return normalize_vector(v[key])
+            if len(v) == 1:
+                return normalize_vector(list(v.values())[0])
+        if isinstance(v, list):
+            if len(v) > 0 and isinstance(v[0], dict):
+                return normalize_vector(v[0])
+            if len(v) >= 3 and all(isinstance(x, (int, float)) for x in v[:3]):
+                return list(v[:3])
+            if len(v) > 0 and isinstance(v[0], list):
+                return normalize_vector(v[0])
+        try:
+            as_list = list(v)
+            if len(as_list) >= 3:
+                return [float(as_list[0]), float(as_list[1]), float(as_list[2])]
+        except:
+            pass
+        return [0.0, 0.0, 0.0]
+    
+    vectorA = normalize_vector(vectorA)
+    vectorB = normalize_vector(vectorB)
+    
     if len(vectorA) < 3 or len(vectorB) < 3:
         raise ValueError("Vectors must have at least 3 components")
     
@@ -600,9 +713,22 @@ def negative_component(value: Union[float, List[float]]) -> Union[float, List[fl
         result: negated value
     """
     # GH <Negative> <NickName> <GUID>
+    import math
     if isinstance(value, list):
-        return [-v for v in value]
-    return -float(value)
+        result = []
+        for v in value:
+            negated = -float(v)
+            # Normalize -0.0 to 0.0
+            if negated == 0.0 and math.copysign(1, negated) < 0:
+                result.append(0.0)
+            else:
+                result.append(negated)
+        return result
+    result = -float(value)
+    # Normalize -0.0 to 0.0
+    if result == 0.0 and math.copysign(1, result) < 0:
+        return 0.0
+    return result
 
 
 # ============================================================================
@@ -630,26 +756,74 @@ def series_component(start: float, count: int, step: float) -> List[float]:
     return [start + i * step for i in range(count_int)]
 
 
-def list_item_component(list_data: List[Any], index: int) -> Any:
+def list_item_component(list_data: Any, index: Any, wrap: bool = False) -> Any:
     """
-    GH List Item component
-    Gets an item from a list by index.
+    GH List Item component with proper tree semantics.
+    Works per-branch: selects item[index] from each branch, preserving paths.
     
     Inputs:
-        list_data: input list
-        index: item index (should already be wrapped/clamped by evaluate_component if wrap is enabled)
+        list_data: input list or DataTree (tree_L)
+        index: item index (can be tree_I, but typically scalar) - broadcast to all branches
+        wrap: if True, wrap index to branch bounds
     
     Outputs:
-        item: list item at index
+        item or tree: selected item(s) with preserved paths
     """
     # GH <List Item> <NickName> <GUID>
+    try:
+        from gh_data_tree import DataTree, to_tree, is_tree, from_tree
+        use_tree = True
+    except ImportError:
+        use_tree = False
+    
+    # Convert to tree if needed
+    if use_tree:
+        if is_tree(list_data):
+            input_tree = list_data
+        else:
+            input_tree = to_tree(list_data)
+        
+        # Resolve index: if index is a tree, flatten it; otherwise use directly
+        # GH: if I has 1 item total, it is broadcast to all branches
+        if is_tree(index):
+            idx_values = index.flatten()
+            if not idx_values:
+                return DataTree()  # empty, nothing to pick
+            base_idx = int(round(idx_values[0]))
+        else:
+            # Scalar index - broadcast to all branches
+            base_idx = int(round(float(index)))
+        
+        # Work per-branch: select item[index] from each branch
+        output_tree = DataTree()
+        
+        # Iterate over all branches in input tree
+        for path, branch in input_tree.items():
+            n = len(branch)
+            if n == 0:
+                continue
+            
+            idx = base_idx
+            if wrap:
+                idx = idx % n
+            else:
+                if idx < 0 or idx >= n:
+                    # GH: returns null (no item) → skip this branch
+                    continue
+            
+            # Select item at index from this branch
+            item = branch[idx]
+            # Preserve path: output uses same path as input, single-item branch
+            output_tree.set_branch(path, [item])
+        
+        return output_tree
+    
+    # Fallback to old behavior for backward compatibility
     if not isinstance(list_data, list):
         raise ValueError("First input must be a list")
-    # Ensure index is an integer
     index_int = int(index)
-    # Note: The wrap logic is handled in evaluate_component before calling this function
-    # So if wrap is enabled, the index should already be in range
-    # If wrap is disabled and index is out of range, we raise an error (Grasshopper behavior)
+    if wrap:
+        index_int = index_int % len(list_data) if len(list_data) > 0 else 0
     if index_int < 0 or index_int >= len(list_data):
         raise IndexError(f"Index {index_int} out of range for list of length {len(list_data)}")
     return list_data[index_int]
@@ -1295,13 +1469,21 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
             moved_geometries = []
             for geom in geometry:
                 moved_geom = dict(geom)
+                # Handle rectangles - update corners
+                if 'corners' in moved_geom:
+                    corners = moved_geom['corners']
+                    if corners:
+                        moved_geom['corners'] = [
+                            [c[0] + motion[0], c[1] + motion[1], c[2] + motion[2] if len(c) > 2 else motion[2]]
+                            for c in corners
+                        ]
                 # Try to find and update point data
-                for key in ['point', 'Point', 'origin', 'Origin', 'center', 'Center']:
+                for key in ['point', 'Point', 'origin', 'Origin', 'center', 'Center', 'pointA', 'pointB', 'corner1', 'corner2', 'corner3', 'corner4']:
                     if key in moved_geom and isinstance(moved_geom[key], list) and len(moved_geom[key]) >= 3:
                         moved_geom[key] = [
                             moved_geom[key][0] + motion[0],
                             moved_geom[key][1] + motion[1],
-                            moved_geom[key][2] + motion[2]
+                            moved_geom[key][2] + motion[2] if len(moved_geom[key]) > 2 else motion[2]
                         ]
                 moved_geometries.append(moved_geom)
             transform = {'type': 'translation', 'motion': motion, 'translation': motion}
@@ -1375,7 +1557,7 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
     return geometry, transform
 
 
-def polar_array_component(geometry: Any, plane: dict, count: int, angle: float) -> List[Any]:
+def polar_array_component(geometry: Any, plane: dict, count: int, angle: float, use_tree: bool = True) -> Any:
     """
     GH Polar Array component
     Creates polar array of geometry rotated around a plane's origin.
@@ -1408,18 +1590,84 @@ def polar_array_component(geometry: Any, plane: dict, count: int, angle: float) 
     # Calculate angle step
     angle_step = angle / count_int if count_int > 1 else 0.0
     
+    # Import DataTree for tree-based output
+    try:
+        from gh_data_tree import DataTree, to_tree, is_tree
+        use_tree = True
+    except ImportError:
+        use_tree = False
+    
+    # Check if input is already a tree
+    input_tree = None
+    if use_tree:
+        try:
+            if is_tree(geometry):
+                input_tree = geometry
+            else:
+                input_tree = to_tree(geometry)
+            # Debug: check if tree conversion worked
+            if input_tree is not None:
+                paths = input_tree.paths()
+                print(f"  DEBUG [TREE-CONV] Polar Array: input_tree has {len(paths)} paths")
+                if paths:
+                    first_path = sorted(paths)[0]
+                    items_in_first = len(input_tree.get_branch(first_path))
+                    print(f"  DEBUG [TREE-CONV] Polar Array: input_tree first path {first_path} has {items_in_first} items")
+                    if len(paths) == 1 and items_in_first > 1:
+                        print(f"  DEBUG [TREE-CONV] Polar Array: WARNING - input has 1 branch with {items_in_first} items (should be {items_in_first} branches)")
+        except Exception as e:
+            use_tree = False
+            # print(f"DEBUG Polar Array: tree conversion failed: {e}")
+    
     # Create array of geometries with rotation
-    # Rotate each copy around the plane's z-axis (normal) by the appropriate angle
+    # In GH tree semantics: each input item becomes a branch, each rotation becomes an item in that branch
+    if use_tree and input_tree is not None:
+        # Tree-based output: preserve input paths, add rotations as items in each branch
+        output_tree = DataTree()
+        for path, items in input_tree.items():
+            # For each item in this branch, create all rotations
+            # CRITICAL: In GH, each input item gets its own branch in the output
+            # Strategy:
+            # - If input has 10 paths (0,), (1,), ..., (9,), each with 1 item, preserve paths: output (0,), (1,), ..., (9,)
+            # - If input has 1 path (0,) with 10 items, create 10 output paths: (0,), (1,), ..., (9,)
+            for item_idx, item in enumerate(items):
+                # Create a new branch for this input item
+                if len(items) == 1:
+                    # Single item in branch: preserve the input path
+                    new_path = path
+                elif len(path) == 1:
+                    # Multiple items in single-level path: use item index as new path
+                    new_path = (item_idx,)
+                else:
+                    # Multiple items in multi-level path: append item index
+                    new_path = (*path, item_idx)
+                
+                rotated_items = []
+                for rot_idx in range(count_int):
+                    rotation_angle = rot_idx * angle_step
+                    cos_a = math.cos(rotation_angle)
+                    sin_a = math.sin(rotation_angle)
+                    rotated_item = _rotate_geometry(item, origin, cos_a, sin_a)
+                    if rotated_item is None:
+                        rotated_item = item  # Fallback if rotation failed
+                    rotated_items.append(rotated_item)
+                output_tree.set_branch(new_path, rotated_items)
+        
+        # Debug: log tree output
+        paths = output_tree.paths()
+        print(f"  DEBUG [TREE-CONV] Polar Array: output_tree has {len(paths)} paths")
+        if paths:
+            first_path = sorted(paths)[0]
+            items_in_first = len(output_tree.get_branch(first_path))
+            print(f"  DEBUG [TREE-CONV] Polar Array: first path {first_path} has {items_in_first} items (rotations)")
+        return output_tree
+    
+    # Fallback to list-based output for backward compatibility
+    # print(f"DEBUG Polar Array: Using fallback list-based output (use_tree={use_tree}, input_tree={input_tree is not None})")
     array = []
     for i in range(count_int):
         # Calculate rotation angle for this item
         rotation_angle = i * angle_step
-        
-        # Rotate the geometry around the z-axis (plane normal)
-        # For 2D rotation in XY plane around Z-axis:
-        # x' = x*cos(θ) - y*sin(θ)
-        # y' = x*sin(θ) + y*cos(θ)
-        # z' = z
         cos_a = math.cos(rotation_angle)
         sin_a = math.sin(rotation_angle)
         
@@ -1428,87 +1676,70 @@ def polar_array_component(geometry: Any, plane: dict, count: int, angle: float) 
             # List of points - rotate each point
             rotated_geometry = []
             for item in geometry:
-                if isinstance(item, list) and len(item) >= 3:
-                    # Point [x, y, z]
-                    x, y, z = item[0], item[1], item[2] if len(item) > 2 else 0.0
-                    # Translate to origin, rotate, translate back
+                rotated_item = _rotate_geometry(item, origin, cos_a, sin_a)
+                if rotated_item is not None:
+                    rotated_geometry.append(rotated_item)
+                else:
+                    # Fallback for non-point items
+                    rotated_geometry.append(item)
+            array.append(rotated_geometry)
+        else:
+            rotated_item = _rotate_geometry(geometry, origin, cos_a, sin_a)
+            if rotated_item is not None:
+                array.append(rotated_item)
+            else:
+                array.append(geometry)
+    
+    return array
+
+
+def _rotate_geometry(item: Any, origin: List[float], cos_a: float, sin_a: float) -> Any:
+    """Helper to rotate a single geometry item."""
+    if isinstance(item, list) and len(item) >= 3:
+        # Point [x, y, z]
+        x, y, z = item[0], item[1], item[2] if len(item) > 2 else 0.0
+        # Translate to origin, rotate, translate back
+        x_rel = x - origin[0] if len(origin) > 0 else x
+        y_rel = y - origin[1] if len(origin) > 1 else y
+        z_rel = z - origin[2] if len(origin) > 2 else z
+        
+        # Rotate around z-axis
+        x_rot = x_rel * cos_a - y_rel * sin_a
+        y_rot = x_rel * sin_a + y_rel * cos_a
+        z_rot = z_rel
+        
+        # Translate back
+        x_new = x_rot + (origin[0] if len(origin) > 0 else 0.0)
+        y_new = y_rot + (origin[1] if len(origin) > 1 else 0.0)
+        z_new = z_rot + (origin[2] if len(origin) > 2 else 0.0)
+        
+        return [x_new, y_new, z_new]
+    elif isinstance(item, dict) and 'corners' in item:
+        # Rectangle or similar - rotate corners
+        rotated_geom = dict(item)
+        if 'corners' in rotated_geom:
+            rotated_corners = []
+            for corner in rotated_geom['corners']:
+                if isinstance(corner, list) and len(corner) >= 3:
+                    x, y, z = corner[0], corner[1], corner[2]
                     x_rel = x - origin[0] if len(origin) > 0 else x
                     y_rel = y - origin[1] if len(origin) > 1 else y
                     z_rel = z - origin[2] if len(origin) > 2 else z
-                    
-                    # Rotate around z-axis
                     x_rot = x_rel * cos_a - y_rel * sin_a
                     y_rot = x_rel * sin_a + y_rel * cos_a
                     z_rot = z_rel
-                    
-                    # Translate back
-                    x_new = x_rot + (origin[0] if len(origin) > 0 else 0.0)
-                    y_new = y_rot + (origin[1] if len(origin) > 1 else 0.0)
-                    z_new = z_rot + (origin[2] if len(origin) > 2 else 0.0)
-                    
-                    rotated_geometry.append([x_new, y_new, z_new])
-                else:
-                    # Non-point item - keep as-is
-                    rotated_geometry.append(item)
-            array.append(rotated_geometry)
-        elif isinstance(geometry, dict) and geometry.get('type') == 'box':
-            # Rotate box geometry
-            rotated_box = dict(geometry)
-            if 'vertices' in rotated_box:
-                rotated_vertices = []
-                for vertex in rotated_box['vertices']:
-                    if isinstance(vertex, list) and len(vertex) >= 3:
-                        x, y, z = vertex[0], vertex[1], vertex[2]
-                        # Translate to origin
-                        x_rel = x - origin[0] if len(origin) > 0 else x
-                        y_rel = y - origin[1] if len(origin) > 1 else y
-                        z_rel = z - origin[2] if len(origin) > 2 else z
-                        # Rotate around z-axis
-                        x_rot = x_rel * cos_a - y_rel * sin_a
-                        y_rot = x_rel * sin_a + y_rel * cos_a
-                        z_rot = z_rel
-                        # Translate back
-                        x_new = x_rot + (origin[0] if len(origin) > 0 else 0.0)
-                        y_new = y_rot + (origin[1] if len(origin) > 1 else 0.0)
-                        z_new = z_rot + (origin[2] if len(origin) > 2 else 0.0)
-                        rotated_vertices.append([x_new, y_new, z_new])
-                    else:
-                        rotated_vertices.append(vertex)
-                rotated_box['vertices'] = rotated_vertices
-            
-            # Rotate face normals (rotate around z-axis)
-            if 'faces' in rotated_box:
-                for face in rotated_box['faces']:
-                    if 'normal' in face:
-                        n = face['normal']
-                        if len(n) >= 2:
-                            # Rotate normal vector around z-axis
-                            nx_rot = n[0] * cos_a - n[1] * sin_a
-                            ny_rot = n[0] * sin_a + n[1] * cos_a
-                            face['normal'] = [nx_rot, ny_rot, n[2] if len(n) > 2 else 0.0]
-            
-            # Rotate corner points
-            for key in ['corner1', 'corner2']:
-                if key in rotated_box and isinstance(rotated_box[key], list) and len(rotated_box[key]) >= 3:
-                    pt = rotated_box[key]
-                    x_rel = pt[0] - origin[0] if len(origin) > 0 else pt[0]
-                    y_rel = pt[1] - origin[1] if len(origin) > 1 else pt[1]
-                    z_rel = pt[2] - origin[2] if len(origin) > 2 else pt[2]
-                    x_rot = x_rel * cos_a - y_rel * sin_a
-                    y_rot = x_rel * sin_a + y_rel * cos_a
-                    rotated_box[key] = [
+                    rotated_corners.append([
                         x_rot + (origin[0] if len(origin) > 0 else 0.0),
                         y_rot + (origin[1] if len(origin) > 1 else 0.0),
                         z_rot + (origin[2] if len(origin) > 2 else 0.0)
-                    ]
-            
-            array.append(rotated_box)
-        else:
-            # Single geometry item - for now, just copy it
-            # In a full implementation, we'd apply rotation transformation
-            array.append(geometry)
+                    ])
+                else:
+                    rotated_corners.append(corner)
+            rotated_geom['corners'] = rotated_corners
+        return rotated_geom
     
-    return array
+    # Unknown type - return None to signal fallback
+    return None
 
 
 def md_slider_component(value: float) -> float:

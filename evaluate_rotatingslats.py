@@ -7,6 +7,7 @@ import math
 from collections import defaultdict, OrderedDict
 from typing import Dict, List, Any, Optional, Union
 import gh_components
+from gh_data_tree import DataTree, to_tree, from_tree, is_tree
 
 
 # Hard-coded sun values as specified
@@ -52,7 +53,8 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
         param_info = comp_info['obj'].get('params', {}).get(param_key, {})
     param_guid = param_info.get('data', {}).get('InstanceGuid')
     
-    # Check for sources FIRST - if there's a source connection, it overrides persistent values
+    # Check for sources FIRST - if there's a source connection, it overrides everything
+    # This is critical: sources must be checked before external_inputs by parameter GUID
     sources = param_info.get('sources', [])
     
     # Special case: List Item Index parameter - if source is Value List, check if we need conversion
@@ -60,7 +62,38 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
     param_name = param_info.get('data', {}).get('NickName', '') or param_info.get('data', {}).get('Name', '')
     is_index_param = (param_name == 'Index')
     
-    # Check external_inputs by parameter GUID first (before persistent_values/values)
+    # If there are sources, resolve them FIRST before checking external_inputs by parameter GUID
+    # This ensures source connections take priority over PersistentData and external_inputs by param GUID
+    if sources:
+        external_inputs = get_external_inputs()
+        for source in sources:
+            source_guid = source.get('source_guid') or source.get('guid')
+            if not source_guid:
+                continue
+            
+            # First check if source is an external input (slider, panel, etc.) by object GUID
+            if source_guid in external_inputs:
+                ext_value = external_inputs[source_guid]
+                if isinstance(ext_value, dict):
+                    source_value = ext_value.get('value', ext_value)
+                else:
+                    source_value = ext_value
+                if source_value is not None and not (isinstance(source_value, str) and not source_value.strip()):
+                    # Found source value from external_inputs - return it immediately
+                    return source_value
+            else:
+                # Also check by object_guid in external_inputs
+                for key, ext_val in external_inputs.items():
+                    if isinstance(ext_val, dict) and ext_val.get('object_guid') == source_guid:
+                        source_value = ext_val.get('value', ext_val)
+                        if source_value is not None and not (isinstance(source_value, str) and not source_value.strip()):
+                            return source_value
+                        break
+            
+            # If not found in external inputs, check output params and evaluated components
+            # (This logic continues below in the existing source resolution code)
+    
+    # Check external_inputs by parameter GUID (only if no sources or sources didn't resolve)
     # This allows overriding default/placeholder values with real values
     # BUT: For Plane parameters, we'll check PersistentData first since it has the correct plane structure
     external_inputs = get_external_inputs()
@@ -278,8 +311,22 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                                 if source_obj.get('type') == 'Value List':
                                     # Value List outputs selected value as list, extract it
                                     source_value = source_value[0] if len(source_value) > 0 else 0
+                            
+                            # Convert trees to lists for components that don't handle trees
+                            # EXCEPT for Polar Array which needs trees
+                            if source_value is not None and is_tree(source_value):
+                                # Check if target component is Polar Array - if so, keep the tree
+                                target_comp_type = comp_info.get('obj', {}).get('type', '')
+                                if target_comp_type != 'Polar Array':
+                                    source_value = from_tree(source_value)
                         else:
                             source_value = comp_outputs
+                            # Convert trees to lists
+                            # EXCEPT for Polar Array and List Item which need trees
+                            if is_tree(source_value):
+                                target_comp_type = comp_info.get('obj', {}).get('type', '')
+                                if target_comp_type not in ['Polar Array', 'List Item']:
+                                    source_value = from_tree(source_value)
                     elif source_obj_guid:
                         # Parent component not yet evaluated - try to evaluate it now
                         # This handles cases where dependencies aren't evaluated in order
@@ -531,180 +578,10 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
             # Add persistent vector if present and result is a vector (and not Amplitude source)
             if persistent_vector and isinstance(result, list) and len(result) == 3 and all(isinstance(x, (int, float)) for x in result):
                 result = [result[i] + persistent_vector[i] for i in range(3)]
-            # Special case: Move "Slats original" Motion input - combine Amplitude with Vector 2Pt
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '') if comp_info else ''
-            is_slats_original = ('0532cbdf-875b-4db9-8c88-352e21051436' in comp_id or comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436')
-            if is_slats_original and param_key == 'param_input_1' and isinstance(result, list) and len(result) == 3:
-                # This is Amplitude output - need to combine with Vector 2Pt
-                vector_2pt_guid = 'ea032caa-ddff-403c-ab58-8ab6e24931ac'
-                vector_2pt_value = None
-                
-                # Check if Vector 2Pt is evaluated
-                if vector_2pt_guid in evaluated:
-                    v2pt_result = evaluated[vector_2pt_guid]
-                    if isinstance(v2pt_result, dict):
-                        vector_2pt_value = v2pt_result.get('Vector')
-                    elif isinstance(v2pt_result, list) and len(v2pt_result) > 0:
-                        if isinstance(v2pt_result[0], list):
-                            vector_2pt_value = v2pt_result
-                else:
-                    # Try to find and evaluate Vector 2Pt
-                    for cid, cdata in (graph.items() if graph else []):
-                        if isinstance(cdata, dict):
-                            obj = cdata.get('obj', {})
-                            if obj.get('instance_guid') == vector_2pt_guid:
-                                try:
-                                    v2pt_result = evaluate_component(cid, cdata, evaluated, all_objects, output_params, graph=graph)
-                                    evaluated[vector_2pt_guid] = v2pt_result
-                                    if isinstance(v2pt_result, dict):
-                                        vector_2pt_value = v2pt_result.get('Vector')
-                                    elif isinstance(v2pt_result, list) and len(v2pt_result) > 0:
-                                        if isinstance(v2pt_result[0], list):
-                                            vector_2pt_value = v2pt_result
-                                except Exception:
-                                    pass
-                                break
-                
-                # Combine Amplitude with Vector 2Pt list of vectors
-                if vector_2pt_value is not None and isinstance(vector_2pt_value, list) and len(vector_2pt_value) > 0:
-                    print(f"  DEBUG Move Slats original Motion (single source): Amplitude={result}, Vector2Pt len={len(vector_2pt_value)}")
-                    combined_motions = []
-                    for v2pt_vec in vector_2pt_value:
-                        if isinstance(v2pt_vec, list) and len(v2pt_vec) >= 3:
-                            # Combine: [amp_x, amp_y - v2pt_y, v2pt_z - geometry_current_z]
-                            # Geometry already has Z from first Move, so motion Z should be relative
-                            # But expected centroids show Z=3.8, 3.722222, etc., which match Vector 2Pt Z
-                            # So motion Z = Vector 2Pt Z (absolute target, not relative)
-                            # Actually, wait - if geometry is at Z=3.8 and we want final Z=3.8, motion Z should be 0.0
-                            # But expected centroids vary: 3.8, 3.722222, 3.644444, etc.
-                            # This suggests geometry input Z varies, or motion Z should vary
-                            # For now, use Vector 2Pt Z as absolute target
-                            combined = [
-                                result[0],  # X from Amplitude
-                                result[1] - (v2pt_vec[1] if len(v2pt_vec) > 1 else 0.0),  # Y: Amplitude Y - Vector 2Pt Y
-                                (v2pt_vec[2] if len(v2pt_vec) > 2 else 0.0)  # Z: Vector 2Pt Z (absolute target)
-                            ]
-                            combined_motions.append(combined)
-                    if combined_motions:
-                        print(f"  DEBUG Move Slats original Motion: Combined {len(combined_motions)} vectors, first={combined_motions[0]}")
-                        return combined_motions
             
             return result
         else:
-            # Multiple sources - for Move component Motion input
-            # Since Vector XYZ has been removed from the GHX file, we should only have Amplitude now
-            # The screenshot shows Motion = {11.32743, -27.346834, 0} which is exactly Amplitude's output
-            # Check if we have an Amplitude source - if so, try to evaluate it and use it
-            amplitude_source_guid = None
-            amplitude_value = None
-            
-            # Special case: Move "Slats original" (0532cbdf-875b-4db9-8c88-352e21051436)
-            # Needs to combine Amplitude with Vector 2Pt (ea032caa-ddff-403c-ab58-8ab6e24931ac) list of vectors
-            # Check both comp_id and instance_guid from comp_info
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '') if comp_info else ''
-            is_slats_original = ('0532cbdf-875b-4db9-8c88-352e21051436' in comp_id or comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436')
-            
-            # Find Amplitude source
-            for source in sources:
-                source_obj_guid = source.get('source_obj_guid')
-                if source_obj_guid:
-                    # Check if this is Amplitude component
-                    comp = graph.get(source_obj_guid) if graph else None
-                    if not comp:
-                        for obj_key, obj in all_objects.items():
-                            if obj.get('instance_guid') == source_obj_guid:
-                                comp = {'obj': obj, 'inputs': {}, 'outputs': {}}
-                                # Try to get full comp from graph
-                                if graph:
-                                    for cid, cdata in graph.items():
-                                        if isinstance(cdata, dict) and cdata.get('obj', {}).get('instance_guid') == source_obj_guid:
-                                            comp = cdata
-                                            break
-                                break
-                    if comp and comp.get('obj', {}).get('type') == 'Amplitude':
-                        amplitude_source_guid = source.get('source_guid')
-                        # Try to evaluate Amplitude if not already evaluated
-                        if source_obj_guid not in evaluated:
-                            # Use recursive evaluation to get Amplitude
-                            try:
-                                # This will be handled by the recursive evaluation in resolve_input_value
-                                # But we can try to evaluate it here too
-                                result = evaluate_component(source_obj_guid, comp, evaluated, all_objects, output_params, graph=graph)
-                                evaluated[source_obj_guid] = result
-                            except Exception:
-                                pass
-                        # Check if Amplitude was evaluated
-                        if source_obj_guid in evaluated:
-                            amp_result = evaluated[source_obj_guid]
-                            if isinstance(amp_result, dict):
-                                amplitude_value = amp_result.get('Vector')
-                            elif isinstance(amp_result, list) and len(amp_result) == 3:
-                                amplitude_value = amp_result
-                        break
-            
-            # Special handling for Move "Slats original" - combine Amplitude with Vector 2Pt
-            if is_slats_original and param_key == 'param_input_1':
-                print(f"  DEBUG resolve_input_value: Move Slats original Motion input, comp_id={comp_id[:20] if len(comp_id) > 20 else comp_id}, instance_guid={comp_instance_guid[:20] if comp_instance_guid and len(comp_instance_guid) > 20 else (comp_instance_guid if comp_instance_guid else 'none')}, param_key={param_key}")
-                # Find Vector 2Pt component
-                vector_2pt_guid = 'ea032caa-ddff-403c-ab58-8ab6e24931ac'
-                vector_2pt_value = None
-                
-                # Check if Vector 2Pt is evaluated
-                if vector_2pt_guid in evaluated:
-                    v2pt_result = evaluated[vector_2pt_guid]
-                    if isinstance(v2pt_result, dict):
-                        vector_2pt_value = v2pt_result.get('Vector')
-                    elif isinstance(v2pt_result, list) and len(v2pt_result) > 0:
-                        if isinstance(v2pt_result[0], list):
-                            vector_2pt_value = v2pt_result
-                else:
-                    # Try to find and evaluate Vector 2Pt
-                    for cid, cdata in (graph.items() if graph else []):
-                        if isinstance(cdata, dict):
-                            obj = cdata.get('obj', {})
-                            if obj.get('instance_guid') == vector_2pt_guid:
-                                try:
-                                    v2pt_result = evaluate_component(cid, cdata, evaluated, all_objects, output_params, graph=graph)
-                                    evaluated[vector_2pt_guid] = v2pt_result
-                                    if isinstance(v2pt_result, dict):
-                                        vector_2pt_value = v2pt_result.get('Vector')
-                                    elif isinstance(v2pt_result, list) and len(v2pt_result) > 0:
-                                        if isinstance(v2pt_result[0], list):
-                                            vector_2pt_value = v2pt_result
-                                except Exception:
-                                    pass
-                                break
-                
-                # Combine Amplitude with Vector 2Pt list of vectors
-                if amplitude_value is not None and vector_2pt_value is not None:
-                    print(f"  DEBUG Move Slats original Motion: Amplitude={amplitude_value}, Vector2Pt type={type(vector_2pt_value).__name__}, len={len(vector_2pt_value) if isinstance(vector_2pt_value, list) else 'N/A'}")
-                    if isinstance(amplitude_value, list) and len(amplitude_value) == 3 and \
-                       isinstance(vector_2pt_value, list) and len(vector_2pt_value) > 0:
-                        # Amplitude is single vector, Vector 2Pt is list of vectors
-                        # Combine: Amplitude + Vector 2Pt (but subtract Vector 2Pt Y component from Amplitude Y)
-                        # Based on expected centroids: Y should be -27.416834 = -27.346834 - 0.07
-                        combined_motions = []
-                        for v2pt_vec in vector_2pt_value:
-                            if isinstance(v2pt_vec, list) and len(v2pt_vec) >= 3:
-                                # Combine: [amp_x, amp_y - v2pt_y, v2pt_z]
-                                combined = [
-                                    amplitude_value[0] + (v2pt_vec[0] if len(v2pt_vec) > 0 else 0.0),
-                                    amplitude_value[1] - (v2pt_vec[1] if len(v2pt_vec) > 1 else 0.0),  # Subtract Y
-                                    (v2pt_vec[2] if len(v2pt_vec) > 2 else 0.0)  # Use Vector 2Pt Z
-                                ]
-                                combined_motions.append(combined)
-                        if combined_motions:
-                            print(f"  DEBUG Move Slats original Motion: Combined {len(combined_motions)} vectors, first={combined_motions[0]}")
-                            return combined_motions
-                elif amplitude_value is not None:
-                    print(f"  DEBUG Move Slats original Motion: Only Amplitude available, Vector2Pt={vector_2pt_value}")
-                elif vector_2pt_value is not None:
-                    print(f"  DEBUG Move Slats original Motion: Only Vector2Pt available, Amplitude={amplitude_value}")
-            
-            # If Amplitude is available, use it directly (Vector XYZ has been removed)
-            # Screenshot shows Amplitude value without PersistentData (Z is 0, not 10)
-            if amplitude_value is not None:
-                return amplitude_value
+            # Multiple sources - combine them (vector addition)
             
             # Otherwise, combine all vectors (original behavior)
             # Also check if there's PersistentData to add
@@ -773,6 +650,40 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
     
     # Default: return None (will cause error if required)
     return None
+
+
+def debug_tree_structure(comp_id: str, comp_type: str, result: Any, output_key: str = 'Geometry') -> None:
+    """Debug helper to print tree structure at component output."""
+    from gh_data_tree import is_tree, DataTree
+    
+    # Get component GUID for identification
+    comp_instance_guid = comp_id[:8] if len(comp_id) >= 8 else comp_id
+    
+    # Check if result is a dict with the output key
+    if isinstance(result, dict) and output_key in result:
+        value = result[output_key]
+    else:
+        value = result
+    
+    # Debug tree structure
+    if is_tree(value):
+        paths = value.paths()
+        print(f"  DEBUG [TREE-STRUCT] {comp_type} ({comp_instance_guid}...): output '{output_key}' is DataTree")
+        print(f"    Branch count: {len(paths)}")
+        print(f"    Paths: {sorted(paths)[:10] if len(paths) > 10 else sorted(paths)}")
+        for path in sorted(paths)[:5]:  # Show first 5 branches
+            branch = value.get_branch(path)
+            print(f"    Path {path}: {len(branch)} items")
+    elif isinstance(value, list):
+        print(f"  DEBUG [TREE-STRUCT] {comp_type} ({comp_instance_guid}...): output '{output_key}' is list")
+        print(f"    Length: {len(value)}")
+        if len(value) > 0:
+            if isinstance(value[0], list):
+                print(f"    Nested list: first branch has {len(value[0])} items")
+            else:
+                print(f"    Flat list: first item type={type(value[0]).__name__}")
+    else:
+        print(f"  DEBUG [TREE-STRUCT] {comp_type} ({comp_instance_guid}...): output '{output_key}' type={type(value).__name__}")
 
 
 def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
@@ -938,6 +849,76 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             if pointA is None or pointB is None:
                 raise ValueError(f"Vector 2Pt component missing inputs: Point A={pointA}, Point B={pointB}")
             
+            # Debug: log what we received
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            if comp_instance_guid == '1f794702-1a6b-441e-b41d-c4749b372177':
+                print(f"  DEBUG Vector 2Pt (1f794702): pointA type={type(pointA).__name__}, pointB type={type(pointB).__name__}")
+                if isinstance(pointA, dict):
+                    print(f"    pointA keys: {list(pointA.keys())}")
+                if isinstance(pointB, dict):
+                    print(f"    pointB keys: {list(pointB.keys())}")
+            
+            # Extract point values from dicts (e.g., Area output dict with 'Centroid' key)
+            def extract_point(value):
+                """Extract a point [x, y, z] from various input formats."""
+                if value is None:
+                    return None
+                # If it's already a list of 3 numbers, return it
+                if isinstance(value, list) and len(value) >= 3 and all(isinstance(x, (int, float)) for x in value[:3]):
+                    return value[:3]
+                # If it's a dict, try to extract the point
+                if isinstance(value, dict):
+                    # Check for common output keys
+                    for key in ['Centroid', 'Point', 'Value', 'Result', 'Vector', 'Geometry']:
+                        if key in value:
+                            return extract_point(value[key])  # Recursive extraction
+                    # If single key, use that value
+                    if len(value) == 1:
+                        return extract_point(list(value.values())[0])
+                    # If multiple keys, try 'Centroid' first, then any list value
+                    if 'Centroid' in value:
+                        return extract_point(value['Centroid'])
+                    for v in value.values():
+                        if isinstance(v, list) and len(v) >= 3:
+                            return extract_point(v)
+                    # Last resort: return first value
+                    if value:
+                        return extract_point(list(value.values())[0])
+                # If it's a list, check if it contains points
+                if isinstance(value, list):
+                    if len(value) > 0:
+                        # If first element is a list of 3 numbers, it's a list of points - take first
+                        if isinstance(value[0], list) and len(value[0]) >= 3:
+                            return value[0][:3]
+                        # If it's a flat list of 3+ numbers, use first 3
+                        if len(value) >= 3 and all(isinstance(x, (int, float)) for x in value[:3]):
+                            return value[:3]
+                        # If first element is a dict, recurse
+                        if isinstance(value[0], dict):
+                            return extract_point(value[0])
+                # Convert trees
+                if is_tree(value):
+                    value = from_tree(value)
+                    return extract_point(value)  # Recurse after conversion
+                # If we still have something, try to convert to list
+                if hasattr(value, '__iter__') and not isinstance(value, (str, bytes)):
+                    try:
+                        as_list = list(value)
+                        if len(as_list) >= 3:
+                            return as_list[:3]
+                    except:
+                        pass
+                return value
+            
+            pointA = extract_point(pointA)
+            pointB = extract_point(pointB)
+            
+            # Final validation
+            if not isinstance(pointA, list) or len(pointA) < 3:
+                raise ValueError(f"Vector 2Pt: Point A is not a valid point [x, y, z]. Got: {type(pointA).__name__} = {pointA}")
+            if not isinstance(pointB, list) or len(pointB) < 3:
+                raise ValueError(f"Vector 2Pt: Point B is not a valid point [x, y, z]. Got: {type(pointB).__name__} = {pointB}")
+            
             # Ensure unitize is a boolean
             if not isinstance(unitize, bool):
                 if isinstance(unitize, str):
@@ -949,6 +930,21 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             # If pointA or pointB is a list of vectors, pass it directly to the function
             # The function will handle the list matching logic
             vector, length = func(pointA, pointB, unitize)
+            
+            # Debug output for Vector 2Pt component that receives Unit Y list
+            # Check if pointA is a list of vectors (from Unit Y)
+            pointA_is_list = isinstance(pointA, list) and len(pointA) > 0 and isinstance(pointA[0], list)
+            if pointA_is_list:
+                vector_preview = vector[:3] if isinstance(vector, list) and len(vector) >= 3 else vector
+                print(f"  DEBUG [Y-TRACE] Vector 2Pt: Point A type=list (len={len(pointA)}), first 3 vectors={vector_preview}")
+                if isinstance(vector, list) and len(vector) >= 3:
+                    print(f"  DEBUG [Y-TRACE] Vector 2Pt: First 3 Y components: {[v[1] if isinstance(v, list) and len(v) > 1 else 'N/A' for v in vector[:3]]}")
+                    if isinstance(pointA, list) and len(pointA) >= 3:
+                        print(f"  DEBUG [Y-TRACE] Vector 2Pt: Point A first 3 Y values: {[p[1] if isinstance(p, list) and len(p) > 1 else 'N/A' for p in pointA[:3]]}")
+                    if isinstance(pointB, list) and len(pointB) >= 3:
+                        print(f"  DEBUG [Y-TRACE] Vector 2Pt: Point B Y value: {pointB[1] if len(pointB) > 1 else 'N/A'}")
+                    elif not isinstance(pointB, list):
+                        print(f"  DEBUG [Y-TRACE] Vector 2Pt: Point B Y value: {pointB[1] if isinstance(pointB, list) and len(pointB) > 1 else 'N/A'}")
             
             # Debug output for Vector 2Pt component
             if comp_id == 'ea032caa-ddff-403c-ab58-8ab6e24931ac':
@@ -964,7 +960,13 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                 else:
                     print(f"    Vector output: {vector}")
             
-            return {'Vector': vector, 'Length': length}
+            result_dict = {'Vector': vector, 'Length': length}
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            is_amplitude = (comp_instance_guid == 'd0668a07-838c-481c-88eb-191574362cc2' or
+                           comp_id == 'd0668a07-838c-481c-88eb-191574362cc2')
+            if is_amplitude:
+                debug_tree_structure(comp_id, 'Amplitude', result_dict, 'Vector')
+            return result_dict
         
         elif comp_type == 'Unitize':
             vector = inputs.get('Vector')
@@ -985,9 +987,48 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             except (ValueError, TypeError):
                 x = y = z = 0.0
             vector = func(x, y, z)
-            return {'Vector': vector}
+            result_dict = {'Vector': vector}
+            # Debug tree structure
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            is_amplitude = (comp_instance_guid == 'd0668a07-838c-481c-88eb-191574362cc2' or
+                           comp_id == 'd0668a07-838c-481c-88eb-191574362cc2')
+            if is_amplitude:
+                debug_tree_structure(comp_id, 'Amplitude', result_dict, 'Vector')
+            return result_dict
         
         elif comp_type == 'Amplitude':
+            vector = inputs.get('Vector')
+            amplitude = inputs.get('Amplitude', 1.0)
+            
+            if vector is None:
+                raise ValueError(f"Amplitude component missing Vector input")
+            
+            # Handle list of vectors - take first one if it's a list
+            if isinstance(vector, list) and len(vector) > 0:
+                if isinstance(vector[0], list) and len(vector[0]) >= 3:
+                    # List of vectors - use first one
+                    vector = vector[0]
+                elif len(vector) >= 3 and all(isinstance(x, (int, float)) for x in vector[:3]):
+                    # Single vector as list
+                    vector = vector[:3]
+            
+            # Convert trees
+            if is_tree(vector):
+                vector = from_tree(vector)
+                if isinstance(vector, list) and len(vector) > 0:
+                    if isinstance(vector[0], list):
+                        vector = vector[0]
+            
+            # Ensure amplitude is a number
+            if isinstance(amplitude, list):
+                amplitude = amplitude[0] if len(amplitude) > 0 else 1.0
+            if not isinstance(amplitude, (int, float)):
+                try:
+                    amplitude = float(amplitude)
+                except:
+                    amplitude = 1.0
+            
+            result = func(vector, float(amplitude))
             vector = inputs.get('Vector')
             amplitude = inputs.get('Amplitude')
             if vector is None or amplitude is None:
@@ -1014,6 +1055,17 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                     except (ValueError, TypeError):
                         factor = 1.0
                 unit_y = func(factor)
+            
+            # Debug for Unit Y component that receives Series output
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            # Check if this Unit Y receives Series 680b290d output
+            # We'll identify it by checking if Factor is a list with 10 values
+            if isinstance(factor, list) and len(factor) >= 10:
+                unit_y_preview = unit_y[:3] if isinstance(unit_y, list) and len(unit_y) >= 3 else unit_y
+                print(f"  DEBUG [Y-TRACE] Unit Y: Factor type=list (len={len(factor)}), first 3 vectors={unit_y_preview}")
+                if isinstance(unit_y, list) and len(unit_y) >= 3:
+                    print(f"  DEBUG [Y-TRACE] Unit Y: First 3 Y components: {[v[1] if isinstance(v, list) and len(v) > 1 else 'N/A' for v in unit_y[:3]]}")
+            
             return {'Vector': unit_y, 'Unit vector': unit_y}
         
         elif comp_type == 'Unit Z':
@@ -1119,6 +1171,17 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             count = inputs.get('Count', 0)
             step = inputs.get('Step', 1.0)
             series = func(start, count, step)
+            
+            # Debug for Series component 680b290d (feeds Unit Y)
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            is_series_680b290d = (comp_instance_guid == '680b290d-e662-4a76-9b3c-e5e921230589')
+            if is_series_680b290d:
+                series_preview = series[:10] if isinstance(series, list) and len(series) >= 10 else series
+                print(f"  DEBUG [Y-TRACE] Series (680b290d): Start={start}, Step={step}, Count={count}")
+                print(f"  DEBUG [Y-TRACE] Series (680b290d): first 10 values={series_preview}")
+                if isinstance(series, list) and len(series) >= 10:
+                    print(f"  DEBUG [Y-TRACE] Series (680b290d): Y values (for Unit Y Factor): {series[:10]}")
+            
             return {'Series': series}
         
         elif comp_type == 'List Item':
@@ -1175,15 +1238,78 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             else:
                 index = int(index)
             
-            # Handle wrap behavior
-            if wrap and isinstance(list_data, list) and len(list_data) > 0:
-                # Wrap index to list bounds (handles both positive and negative indices)
-                index = index % len(list_data)
-                # For negative indices, modulo gives a positive result, but we need to handle it correctly
-                # Python's % operator already handles negatives correctly (e.g., -1 % 5 = 4)
-                # So this should work as-is
+            # Convert to tree if needed for proper GH semantics
+            list_data_tree = None
+            if is_tree(list_data):
+                list_data_tree = list_data
+            else:
+                list_data_tree = to_tree(list_data)
             
-            item = func(list_data, int(index))
+            # Convert index to tree if needed (GH broadcasts scalar index to all branches)
+            index_tree = None
+            if is_tree(index):
+                index_tree = index
+            else:
+                # Scalar index - will be broadcast in list_item_component
+                index_tree = index
+            
+            # Call List Item with tree semantics (per-branch selection)
+            # List Item works directly with DataTree - no conversion to nested lists
+            item = func(list_data_tree, index_tree, wrap)
+            
+            # List Item returns DataTree - keep it as tree for downstream components
+            # Only convert if downstream component doesn't handle trees
+            # For now, keep as tree since Move and Area should handle it
+            # if is_tree(item):
+            #     item = from_tree(item)
+            
+            # Debug output for List Item after retrieval (index 0 trace)
+            if is_slats_list_item:
+                # Debug input tree structure (from Polar Array)
+                if is_tree(list_data_tree):
+                    paths = list_data_tree.paths()
+                    print(f"  DEBUG [INDEX-0] Step 4 - List Item input tree: {len(paths)} paths")
+                    # For index 0 branch (path (0,))
+                    if paths:
+                        path_0 = (0,)
+                        if path_0 in paths:
+                            branch_0 = list_data_tree.get_branch(path_0)
+                            print(f"  DEBUG [INDEX-0] Step 4 - List Item input branch {path_0}: {len(branch_0)} items (rotations)")
+                            # Log Y values of all items in branch 0
+                            y_values = []
+                            for i, item in enumerate(branch_0):
+                                if isinstance(item, dict) and 'corners' in item:
+                                    corners = item.get('corners', [])
+                                    if corners:
+                                        y_values.append(corners[0][1] if len(corners[0]) > 1 else 'N/A')
+                            print(f"  DEBUG [INDEX-0] Step 4 - List Item input branch {path_0} Y values: {y_values}")
+                            # Show item at index (should be index 4, the 5th rotation)
+                            idx = int(round(float(index)))
+                            if idx < len(branch_0):
+                                selected_item = branch_0[idx]
+                                if isinstance(selected_item, dict) and 'corners' in selected_item:
+                                    corners = selected_item.get('corners', [])
+                                    if corners:
+                                        print(f"  DEBUG [INDEX-0] Step 4 - List Item will select branch {path_0}[{idx}]: Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}")
+                
+                # Debug output tree structure
+                if is_tree(item):
+                    paths = item.paths()
+                    print(f"  DEBUG [INDEX-0] Step 4 - List Item output tree: {len(paths)} paths")
+                    if paths:
+                        path_0 = (0,)
+                        if path_0 in paths:
+                            branch_0 = item.get_branch(path_0)
+                            if branch_0 and len(branch_0) > 0:
+                                output_item = branch_0[0]
+                                if isinstance(output_item, dict) and 'corners' in output_item:
+                                    corners = output_item.get('corners', [])
+                                    if corners:
+                                        print(f"  DEBUG [INDEX-0] Step 4 - List Item output branch {path_0}: Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
+                elif isinstance(item, dict) and 'corners' in item:
+                    corners = item.get('corners', [])
+                    if corners:
+                        print(f"  DEBUG [INDEX-0] Step 4 - List Item output (scalar): Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
             
             # Debug output for List Item
             if is_slats_list_item:
@@ -1198,7 +1324,12 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                                 item_type += f", first item first corner: {corners[0]}"
                 print(f"  DEBUG List Item Slats (27933633...): output type={item_type}")
             
-            return {'Item': item}
+            result_dict = {'Item': item}
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            is_slats_list_item = (comp_instance_guid == '27933633-dbab-4dc0-a4a2-cfa309c03c45')
+            if is_slats_list_item:
+                debug_tree_structure(comp_id, 'List Item', result_dict, 'Item')
+            return result_dict
         
         elif comp_type == 'Value List':
             # Value List might have values stored in its parameters
@@ -1593,22 +1724,27 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             # Area component returns dict with 'Area' and 'Centroid'
             if isinstance(result, dict):
                 if comp_id == '3bd2c1d3-149d-49fb-952c-8db272035f9e':
+                    # Debug input geometry (index 0)
+                    if isinstance(geometry, list) and len(geometry) > 0:
+                        first_geom = geometry[0]
+                        if isinstance(first_geom, dict) and 'corners' in first_geom:
+                            corners = first_geom.get('corners', [])
+                            if corners:
+                                print(f"  DEBUG [INDEX-0] Step 6 - Area input[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, all corners Y={[c[1] if len(c) > 1 else 'N/A' for c in corners]}")
+                    elif isinstance(geometry, dict) and 'corners' in geometry:
+                        corners = geometry.get('corners', [])
+                        if corners:
+                            print(f"  DEBUG [INDEX-0] Step 6 - Area input: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, all corners Y={[c[1] if len(c) > 1 else 'N/A' for c in corners]}")
+                    
                     centroid = result.get('Centroid', [])
                     if isinstance(centroid, list):
-                        print(f"  DEBUG Area Slats original {comp_id[:8]}...: centroid count={len(centroid)}, first={centroid[0] if len(centroid) > 0 else 'none'}")
-                        if len(centroid) > 0 and isinstance(geometry, list) and len(geometry) > 0:
-                            first_geom = geometry[0]
-                            if isinstance(first_geom, dict) and 'corners' in first_geom:
-                                corners = first_geom.get('corners', [])
-                                print(f"  DEBUG Area Slats original: first rectangle corners: {corners}")
-                                # Manual centroid calculation
-                                if corners:
-                                    manual_centroid = [
-                                        sum(c[0] for c in corners) / len(corners),
-                                        sum(c[1] for c in corners) / len(corners),
-                                        sum(c[2] if len(c) > 2 else 0 for c in corners) / len(corners)
-                                    ]
-                                    print(f"  DEBUG Area Slats original: manual centroid from corners: {manual_centroid}")
+                        # Debug centroid (index 0)
+                        if len(centroid) > 0:
+                            first_centroid = centroid[0] if isinstance(centroid[0], list) else centroid
+                            if isinstance(first_centroid, list) and len(first_centroid) > 1:
+                                print(f"  DEBUG [INDEX-0] Step 6 - Area centroid[0]: Y={first_centroid[1]}, centroid={first_centroid}")
+                                print(f"  DEBUG [INDEX-0] EXPECTED centroid Y: -27.416834")
+                                print(f"  DEBUG [INDEX-0] GAP: {first_centroid[1] - (-27.416834)}")
                 return result
             else:
                 # Fallback for old return format
@@ -1618,10 +1754,27 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             geometry = inputs.get('Geometry')
             motion = inputs.get('Motion')
             
-            # Special handling for second Move "Slats original": make motion Z relative to geometry current Z
+            # Debug for second Move "Slats original" (index 0 trace) - BEFORE move
             comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
             if comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436' or comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
-                # If motion is a list of vectors and geometry is a list of geometries, make motion Z relative
+                # Debug geometry input (index 0)
+                if isinstance(geometry, dict) and 'corners' in geometry:
+                    input_corners = geometry.get('corners', [])
+                    if input_corners:
+                        print(f"  DEBUG [INDEX-0] Step 5 - Second Move input: first corner Y={input_corners[0][1] if len(input_corners[0]) > 1 else 'N/A'}, corner={input_corners[0]}")
+                elif isinstance(geometry, list) and len(geometry) > 0:
+                    first_geom = geometry[0]
+                    if isinstance(first_geom, dict) and 'corners' in first_geom:
+                        input_corners = first_geom.get('corners', [])
+                        if input_corners:
+                            print(f"  DEBUG [INDEX-0] Step 5 - Second Move input[0]: first corner Y={input_corners[0][1] if len(input_corners[0]) > 1 else 'N/A'}, corner={input_corners[0]}")
+                # Debug motion
+                if isinstance(motion, list) and len(motion) == 3:
+                    print(f"  DEBUG [INDEX-0] Step 5 - Second Move motion: Y={motion[1]}, motion={motion}")
+                elif isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list):
+                    print(f"  DEBUG [INDEX-0] Step 5 - Second Move motion[0]: Y={motion[0][1] if len(motion[0]) > 1 else 'N/A'}, motion[0]={motion[0]}")
+                
+                # Special handling: make motion Z relative to geometry current Z
                 if isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list) and \
                    isinstance(geometry, list) and len(geometry) > 0:
                     # Get geometry current Z (from first rectangle's first corner)
@@ -1635,7 +1788,6 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                                 if isinstance(vec, list) and len(vec) >= 3:
                                     # vec[2] is absolute target Z, make it relative
                                     vec[2] = vec[2] - geometry_z
-                print(f"  DEBUG Move Slats original inputs: motion type={type(motion).__name__}, motion={motion}")
                 geom_type = type(geometry).__name__
                 if isinstance(geometry, dict):
                     geom_type = geometry.get('type', 'unknown')
@@ -1741,25 +1893,90 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                     # Pad or truncate to 3 elements
                     motion = list(motion[:3]) + [0.0] * (3 - len(motion))
             
+            # Debug motion before applying
+            if comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
+                print(f"  DEBUG [Y-TRACE] Move Slats original: Motion before func call={motion}")
+                if isinstance(motion, list) and len(motion) > 0:
+                    if isinstance(motion[0], list):
+                        print(f"  DEBUG [Y-TRACE] Move Slats original: Motion is list of vectors, first={motion[0]}")
+                    else:
+                        print(f"  DEBUG [Y-TRACE] Move Slats original: Motion is single vector={motion}")
+            
             moved_geometry, transform = func(geometry, motion)
             
-            # Debug output for "Slats original" Move component
-            if comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
-                moved_type = type(moved_geometry).__name__
+            # Convert Move1 output to tree: list of 10 rectangles → tree with 10 branches
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            is_move1 = (comp_instance_guid == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or 
+                       comp_instance_guid == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' or
+                       comp_id == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or
+                       comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429')
+            if is_move1:
+                print(f"  DEBUG [TREE-STRUCT] Move1 ({comp_id[:8]}...): moved_geometry type={type(moved_geometry).__name__}, is_list={isinstance(moved_geometry, list)}")
                 if isinstance(moved_geometry, list):
-                    moved_type = f"list of {len(moved_geometry)} items"
-                    if len(moved_geometry) > 0 and isinstance(moved_geometry[0], dict):
-                        first_moved = moved_geometry[0]
-                        moved_type += f" (first type: {first_moved.get('type', 'unknown')}"
-                        if 'corners' in first_moved:
-                            corners = first_moved.get('corners', [])
-                            moved_type += f", corners: {len(corners)}"
-                            if corners:
-                                moved_type += f", first corner: {corners[0]}"
-                        moved_type += ")"
-                print(f"  DEBUG Move Slats original {comp_id[:8]}...: output type={moved_type}")
+                    print(f"  DEBUG [TREE-STRUCT] Move1: list length={len(moved_geometry)}")
+                    # Convert list to tree: each rectangle becomes its own branch
+                    try:
+                        from gh_data_tree import DataTree
+                        geometry_tree = DataTree()
+                        for idx, item in enumerate(moved_geometry):
+                            geometry_tree.set_branch((idx,), [item])
+                        moved_geometry = geometry_tree
+                        paths = geometry_tree.paths()
+                        print(f"  DEBUG [TREE-STRUCT] Move1: converted to tree with {len(paths)} branches")
+                    except Exception as e:
+                        print(f"  DEBUG [TREE-STRUCT] Move1: failed to convert to tree: {e}")
+                elif hasattr(moved_geometry, 'paths'):
+                    paths = moved_geometry.paths()
+                    print(f"  DEBUG [TREE-STRUCT] Move1: already a tree with {len(paths)} branches")
             
-            return {'Geometry': moved_geometry, 'Transform': transform}
+            # Debug output for first Move component that receives Vector 2Pt list (index 0 trace)
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            # Check both possible GUIDs: ddb9e6ae (from GHX) and dfbbd4a2 (from graph)
+            is_first_move = (comp_instance_guid == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or comp_id == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or
+                           comp_instance_guid == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' or comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429')
+            if is_first_move:
+                # Check input geometry Y (index 0)
+                if isinstance(geometry, dict) and 'corners' in geometry:
+                    input_corners = geometry.get('corners', [])
+                    if input_corners:
+                        print(f"  DEBUG [INDEX-0] Step 2 - First Move input: first corner Y={input_corners[0][1] if len(input_corners[0]) > 1 else 'N/A'}")
+                # Check motion for index 0
+                motion_is_list = isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list)
+                if motion_is_list and len(motion) > 0:
+                    print(f"  DEBUG [INDEX-0] Step 2 - First Move motion[0]: Y={motion[0][1] if len(motion[0]) > 1 else 'N/A'}")
+                if isinstance(moved_geometry, list) and len(moved_geometry) > 0:
+                    first_moved = moved_geometry[0]
+                    if isinstance(first_moved, dict) and 'corners' in first_moved:
+                        corners = first_moved.get('corners', [])
+                        if corners:
+                            print(f"  DEBUG [INDEX-0] Step 2 - First Move output[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
+            
+            # Debug output for "Slats original" Move component (index 0 trace)
+            if comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
+                # Debug output geometry Y (index 0)
+                if isinstance(moved_geometry, list) and len(moved_geometry) > 0:
+                    first_moved = moved_geometry[0]
+                    if isinstance(first_moved, dict) and 'corners' in first_moved:
+                        corners = first_moved.get('corners', [])
+                        if corners:
+                            print(f"  DEBUG [INDEX-0] Step 5 - Second Move output[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
+                elif isinstance(moved_geometry, dict) and 'corners' in moved_geometry:
+                    corners = moved_geometry.get('corners', [])
+                    if corners:
+                        print(f"  DEBUG [INDEX-0] Step 5 - Second Move output: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
+            
+            result_dict = {'Geometry': moved_geometry, 'Transform': transform}
+            # Debug tree structure for Move components
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            is_move1 = (comp_instance_guid == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or 
+                       comp_instance_guid == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' or
+                       comp_id == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or
+                       comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429')
+            is_move2 = (comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436' or
+                       comp_id == '0532cbdf-875b-4db9-8c88-352e21051436')
+            if is_move1 or is_move2:
+                debug_tree_structure(comp_id, f'Move{"1" if is_move1 else "2"}', result_dict, 'Geometry')
+            return result_dict
         
         elif comp_type == 'Polar Array':
             geometry = inputs.get('Geometry') or inputs.get('Base')
@@ -1813,7 +2030,123 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
                 except (ValueError, TypeError):
                     angle = 0.0
             
-            result = func(geometry, plane, int(count), float(angle))
+            # Debug for Polar Array component 7ad636cc (index 0 trace)
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            is_polar_array_7ad636cc = (comp_instance_guid == '7ad636cc-e506-4f77-bb82-4a86ba2a3fea' or comp_id == '7ad636cc-e506-4f77-bb82-4a86ba2a3fea')
+            if is_polar_array_7ad636cc:
+                if isinstance(geometry, list) and len(geometry) > 0:
+                    input_length = len(geometry)
+                    if count != input_length:
+                        count = input_length
+                    
+                    if len(geometry) > 0:
+                        first_geom = geometry[0]
+                        if isinstance(first_geom, dict) and 'corners' in first_geom:
+                            corners = first_geom.get('corners', [])
+                            if corners:
+                                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array input[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}")
+            
+            # TEMPORARILY: Skip tree conversion to fix Vector 2Pt error first
+            # TODO: Re-enable tree conversion after fixing input resolution
+            # Convert geometry to tree for Polar Array (GH tree semantics)
+            # Input is a list of rectangles from first Move - convert to tree where each rectangle is a branch
+            use_tree_for_polar = True  # Re-enabled - tree structure is ready
+            print(f"  DEBUG [INDEX-0] Step 3 - Polar Array BEFORE conversion: geometry type={type(geometry).__name__}, is_tree={is_tree(geometry)}, use_tree_for_polar={use_tree_for_polar}")
+            if use_tree_for_polar:
+                if is_tree(geometry):
+                    # Already a tree - check if it has the right structure
+                    paths = geometry.paths()
+                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array: input is tree with {len(paths)} paths (is_polar_array_7ad636cc={is_polar_array_7ad636cc})")
+                    if len(paths) == 1:
+                        # Single branch with multiple items - split into separate branches
+                        items = geometry.get_branch(paths[0])
+                        num_items = len(items)
+                        print(f"  DEBUG [TREE-CONV] Polar Array: single branch has {num_items} items, splitting into {num_items} branches...")
+                        geometry_tree = DataTree()
+                        for idx, item in enumerate(items):
+                            geometry_tree.set_branch((idx,), [item])
+                        geometry_for_polar = geometry_tree
+                        new_paths = geometry_tree.paths()
+                        print(f"  DEBUG [TREE-CONV] Polar Array: split complete - {len(new_paths)} branches created")
+                        if num_items > 1 and len(new_paths) == 1:
+                            print(f"  DEBUG [TREE-CONV] Polar Array: ERROR - split failed! {num_items} items still in 1 branch")
+                    else:
+                        # Already has multiple branches - use as-is
+                        geometry_for_polar = geometry
+                        print(f"  DEBUG [INDEX-0] Step 3 - Polar Array: already has {len(paths)} branches, using as-is")
+                elif isinstance(geometry, list):
+                    # Create tree: each input item becomes a branch (GH semantics)
+                    num_items = len(geometry)
+                    print(f"  DEBUG [TREE-CONV] Polar Array: creating tree from list of {num_items} items...")
+                    geometry_tree = DataTree()
+                    for idx, item in enumerate(geometry):
+                        geometry_tree.set_branch((idx,), [item])
+                    geometry_for_polar = geometry_tree
+                    new_paths = geometry_tree.paths()
+                    print(f"  DEBUG [TREE-CONV] Polar Array: created tree with {len(new_paths)} branches from {num_items} items")
+                    if num_items > 1 and len(new_paths) == 1:
+                        print(f"  DEBUG [TREE-CONV] Polar Array: ERROR - {num_items} items created only 1 branch!")
+                else:
+                    geometry_for_polar = to_tree(geometry)
+            else:
+                geometry_for_polar = geometry
+            
+            # Debug: check input to Polar Array
+            if is_polar_array_7ad636cc:
+                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array input: type={type(geometry_for_polar).__name__}, is_tree={is_tree(geometry_for_polar)}")
+                if is_tree(geometry_for_polar):
+                    paths = geometry_for_polar.paths()
+                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array input tree: {len(paths)} paths")
+            
+            result = func(geometry_for_polar, plane, int(count), float(angle))
+            
+            # Debug: check result BEFORE conversion
+            if is_polar_array_7ad636cc:
+                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array result BEFORE conversion: type={type(result).__name__}, is_tree={is_tree(result)}")
+            
+            # Keep tree structure for List Item - don't convert to list
+            # List Item needs the tree to work per-branch
+            if is_tree(result):
+                # Debug: log tree structure
+                if is_polar_array_7ad636cc:
+                    paths = result.paths()
+                    print(f"  DEBUG [TREE-CONV] Polar Array: output tree has {len(paths)} paths (keeping as tree for List Item)")
+                    if paths:
+                        first_path = sorted(paths)[0]
+                        items_in_first = len(result.get_branch(first_path))
+                        print(f"  DEBUG [TREE-CONV] Polar Array: first path {first_path} has {items_in_first} items (rotations)")
+                # Keep as tree - don't convert
+                # result = from_tree(result)
+            
+            # Debug output after Polar Array (index 0 trace)
+            if is_polar_array_7ad636cc:
+                if is_tree(result):
+                    paths = result.paths()
+                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output: tree with {len(paths)} paths")
+                    if paths:
+                        first_path = sorted(paths)[0]
+                        items = result.get_branch(first_path)
+                        print(f"  DEBUG [INDEX-0] Step 3 - Polar Array path {first_path}: {len(items)} items")
+                        if items and isinstance(items[0], dict) and 'corners' in items[0]:
+                            corners = items[0].get('corners', [])
+                            if corners:
+                                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array path {first_path}[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
+                else:
+                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output structure: type={type(result).__name__}, len={len(result) if isinstance(result, list) else 'N/A'}")
+                    if isinstance(result, list) and len(result) > 0:
+                        first_result = result[0]
+                        print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output[0] type: {type(first_result).__name__}, len={len(first_result) if isinstance(first_result, list) else 'N/A'}")
+                        if isinstance(first_result, list) and len(first_result) > 0:
+                            first_inner = first_result[0]
+                            if isinstance(first_inner, dict) and 'corners' in first_inner:
+                                corners = first_inner.get('corners', [])
+                                if corners:
+                                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output[0][0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
+                        elif isinstance(first_result, dict) and 'corners' in first_result:
+                            corners = first_result.get('corners', [])
+                            if corners:
+                                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
+            
             return {'Geometry': result}
         
         elif comp_type == 'MD Slider':
@@ -1898,8 +2231,23 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
             if plane is None:
                 plane = {'origin': [0, 0, 0], 'x_axis': [1, 0, 0], 'y_axis': [0, 1, 0], 'z_axis': [0, 0, 1]}
             
+            # Debug for Rectangle 2Pt that feeds the first Move (index 0 trace)
+            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            if comp_instance_guid == 'a3eb185f-a7cb-4727-aeaf-d5899f934b99' or comp_id == 'a3eb185f-a7cb-4727-aeaf-d5899f934b99':
+                print(f"  DEBUG [INDEX-0] Step 1 - Rectangle 2Pt: first corner Y={pointA[1] if isinstance(pointA, list) and len(pointA) > 1 else 'N/A'}")
+            
             rectangle, length = func(plane, pointA, pointB, radius)
-            return {'Rectangle': rectangle, 'Length': length}
+            
+            # Debug output rectangle first corner
+            if comp_instance_guid == 'a3eb185f-a7cb-4727-aeaf-d5899f934b99' or comp_id == 'a3eb185f-a7cb-4727-aeaf-d5899f934b99':
+                if isinstance(rectangle, dict) and 'corners' in rectangle:
+                    corners = rectangle.get('corners', [])
+                    if corners:
+                        print(f"  DEBUG [INDEX-0] Step 1 - Rectangle 2Pt output: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
+            
+            result_dict = {'Rectangle': rectangle, 'Length': length}
+            debug_tree_structure(comp_id, 'Rectangle 2Pt', result_dict, 'Rectangle')
+            return result_dict
         
         elif comp_type == 'PolyLine':
             points = inputs.get('Points') or inputs.get('Vertices')
