@@ -1,0 +1,2913 @@
+{
+  "f61d32bf-423d-42d9-b9b0-00c9f9c32197": {
+    "guid": "f61d32bf-423d-42d9-b9b0-00c9f9c32197",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a05a518e-50fa-416b-9419-3feb23fd9679": {
+    "guid": "a05a518e-50fa-416b-9419-3feb23fd9679",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "26a0d12f-b392-4dff-9451-1a7a8b70bc91": {
+    "guid": "26a0d12f-b392-4dff-9451-1a7a8b70bc91",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "5dc62917-1a34-4adf-8a1e-d80975f833ff": {
+    "guid": "5dc62917-1a34-4adf-8a1e-d80975f833ff",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "95de1afe-cf49-490a-8c34-0785a379bda3": {
+    "guid": "95de1afe-cf49-490a-8c34-0785a379bda3",
+    "type_name": "Group",
+    "nickname": "Test model",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a830c1ee-f37e-4063-9103-402c4e47e078": {
+    "guid": "a830c1ee-f37e-4063-9103-402c4e47e078",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "c5d53bff-8a41-4573-ad6c-18e8efb0f95f": {
+    "guid": "c5d53bff-8a41-4573-ad6c-18e8efb0f95f",
+    "type_name": "Group",
+    "nickname": "Test points",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "041f73ab-2fff-47e2-838c-4e637a309572": {
+    "guid": "041f73ab-2fff-47e2-838c-4e637a309572",
+    "type_name": "Group",
+    "nickname": "Sun coverage area",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a1c33b95-f4ed-4ee7-aae4-d8da7afda354": {
+    "guid": "a1c33b95-f4ed-4ee7-aae4-d8da7afda354",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a310b28b-ac76-4228-8c67-f796bf6ee11f": {
+    "guid": "a310b28b-ac76-4228-8c67-f796bf6ee11f",
+    "type_name": "Group",
+    "nickname": "Rotatingslats",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "ddb9e6ae-7d3e-41ae-8c75-fc726c984724": {
+    "guid": "ddb9e6ae-7d3e-41ae-8c75-fc726c984724",
+    "type_name": "Move",
+    "nickname": "Slats original",
+    "container": "",
+    "position": {
+      "x": 10797.0,
+      "y": 2767.0
+    },
+    "params": {
+      "Geometry": "47af807c-369d-4bd2-bbbb-d53a4605f8e6",
+      "Motion": "f43c38ad-5987-445b-9abe-6d6f79487522",
+      "Transform": "90f740ef-2068-4c5e-8574-3e35652f75bf"
+    }
+  },
+  "b785e424-ebb1-42fc-ac03-dee2d7d764b4": {
+    "guid": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
+    "type_name": "Series",
+    "nickname": "Series",
+    "container": "",
+    "position": {
+      "x": 10159.0,
+      "y": 2767.0
+    },
+    "params": {
+      "Start": "cc1e7e44-c1aa-4ee7-8dfa-849726cdb7c5",
+      "Step": "ef467247-5327-4364-b897-38a904554a85",
+      "Count": "23cf7783-b37e-42a5-b01e-ff22b04c20f2",
+      "Series": "160dcd76-1555-48ba-a352-8e284348cd05"
+    }
+  },
+  "537142d8-e672-4d12-8254-46dbe1e3c7ef": {
+    "guid": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
+    "type_name": "Number Slider",
+    "nickname": "Number of slats",
+    "container": "",
+    "position": {
+      "x": 9181.045,
+      "y": 2859.7778
+    },
+    "params": {
+      "Value": "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+    }
+  },
+  "507b14ee-692b-41df-973f-6bfef76514c2": {
+    "guid": "507b14ee-692b-41df-973f-6bfef76514c2",
+    "type_name": "Number Slider",
+    "nickname": "Distance from window",
+    "container": "",
+    "position": {
+      "x": 9154.059,
+      "y": 2887.963
+    },
+    "params": {
+      "Value": "507b14ee-692b-41df-973f-6bfef76514c2"
+    }
+  },
+  "3732df33-c378-4227-b549-b5ab541e82c6": {
+    "guid": "3732df33-c378-4227-b549-b5ab541e82c6",
+    "type_name": "Unit Z",
+    "nickname": "Unit Z",
+    "container": "",
+    "position": {
+      "x": 10436.0,
+      "y": 2824.0
+    },
+    "params": {
+      "Factor": "156d24aa-d953-47d9-968a-f53eaf2e97eb",
+      "Unit vector": "4fa54506-86c5-4395-99c0-4fea6344d470"
+    }
+  },
+  "268410b9-4d90-4bb6-b716-3e8df5798c14": {
+    "guid": "268410b9-4d90-4bb6-b716-3e8df5798c14",
+    "type_name": "Unit Y",
+    "nickname": "Unit Y",
+    "container": "",
+    "position": {
+      "x": 10320.0,
+      "y": 2741.0
+    },
+    "params": {
+      "Factor": "d8c566f5-4ee4-45cd-a663-2b3622892b76",
+      "Unit vector": "81565b66-9edb-40aa-af52-a7bb6218de84"
+    }
+  },
+  "ea032caa-ddff-403c-ab58-8ab6e24931ac": {
+    "guid": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
+    "type_name": "Vector 2Pt",
+    "nickname": "Vector 2Pt",
+    "container": "",
+    "position": {
+      "x": 10603.0,
+      "y": 2805.0
+    },
+    "params": {
+      "Point A": "3d26c657-b61d-4e4d-b613-a78cd2851bc9",
+      "Point B": "b2a79070-e04f-4c54-9874-bb876bd116a9",
+      "Unitize": "26a250c4-f6e7-40c3-9064-9576bcf8f704",
+      "Vector": "07dcee6c-9ef1-4893-a77f-18130fa2c9ea",
+      "Length": "a77c669e-1e7b-4515-b005-b1f6347b8c2e"
+    }
+  },
+  "474a94bf-3e89-4a45-8598-c5ccdb21edae": {
+    "guid": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
+    "type_name": "Series",
+    "nickname": "Series",
+    "container": "",
+    "position": {
+      "x": 10159.0,
+      "y": 2835.0
+    },
+    "params": {
+      "Start": "2a1f35c4-2c0e-4f2c-9e3f-01ffb5749aec",
+      "Step": "5555e87c-cbec-4fd7-8f19-91671b29ca4a",
+      "Count": "663e13ce-1b1d-4ab4-a564-8b7261377b65",
+      "Series": "04a32494-760d-465e-85e5-f1a91dd0d1ee"
+    }
+  },
+  "ed4878fc-7b79-46d9-a4b1-7637f35de976": {
+    "guid": "ed4878fc-7b79-46d9-a4b1-7637f35de976",
+    "type_name": "List Item",
+    "nickname": "LI",
+    "container": "",
+    "position": {
+      "x": 12348.0,
+      "y": 2795.0
+    },
+    "params": {
+      "List": "e0d1124c-46be-4d3e-a561-f8abd35d834e",
+      "Index": "8e2f4b9c-577c-4ae3-813c-daac83723f03",
+      "Wrap": "ff1cdf31-d398-4119-bc38-ed98fabf711a",
+      "Item": "e8c7faf9-eba0-471e-8540-a33385281d9a"
+    }
+  },
+  "3f21b46a-6839-4ce7-b107-eb3908e540ac": {
+    "guid": "3f21b46a-6839-4ce7-b107-eb3908e540ac",
+    "type_name": "List Item",
+    "nickname": "LI",
+    "container": "",
+    "position": {
+      "x": 12349.0,
+      "y": 2870.0
+    },
+    "params": {
+      "List": "e59cf958-b0b9-4f27-a703-894d5cdd2ef3",
+      "Index": "2bed9814-75b8-4ed7-b7c7-0a9cdaa5f424",
+      "Wrap": "995af458-be7e-4eaf-bf03-09ba330658ea",
+      "Item": "24f7f310-4f11-4a59-8206-7daadb96a034"
+    }
+  },
+  "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c": {
+    "guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
+    "type_name": "Construct Point",
+    "nickname": "p1",
+    "container": "",
+    "position": {
+      "x": 10672.0,
+      "y": 2894.0
+    },
+    "params": {
+      "X coordinate": "760ab637-afff-4339-9907-16307d9ba82a",
+      "Y coordinate": "75d9495d-5576-4d02-ae6c-acbdc71ec7d6",
+      "Z coordinate": "94f511a2-f54e-45a3-a270-40e694999caa",
+      "Point": "0fb443ce-5a5e-455f-999f-96fcaec0e113"
+    }
+  },
+  "a6b98c27-e4dd-405e-93f5-755c12294748": {
+    "guid": "a6b98c27-e4dd-405e-93f5-755c12294748",
+    "type_name": "Construct Point",
+    "nickname": "p1",
+    "container": "",
+    "position": {
+      "x": 10676.0,
+      "y": 2964.0
+    },
+    "params": {
+      "X coordinate": "4a6b02a6-3501-43c9-b450-fbba3759cd55",
+      "Y coordinate": "c4d9428f-dd29-4a16-bad2-de57930939bf",
+      "Z coordinate": "6c448807-c177-4d0c-9ec7-076f700a48ee",
+      "Point": "2cc32a65-8ddb-4732-a071-9b1903600953"
+    }
+  },
+  "b908d823-e613-4684-9e94-65a0f60f19b7": {
+    "guid": "b908d823-e613-4684-9e94-65a0f60f19b7",
+    "type_name": "Box 2Pt",
+    "nickname": "Box 2Pt",
+    "container": "",
+    "position": {
+      "x": 10827.0,
+      "y": 2898.0
+    },
+    "params": {
+      "Point A": "925631fb-a234-42c2-ac95-b755f16b9c1b",
+      "Point B": "1626f4be-98c5-4b05-8953-e8b7140d4b40",
+      "Plane": "e77e5c98-0dbb-46e3-8263-18620fe06d2f",
+      "Box": "f12438b5-04ca-4ed7-b015-3f5310d7b57f"
+    }
+  },
+  "680b290d-e662-4a76-9b3c-e5e921230589": {
+    "guid": "680b290d-e662-4a76-9b3c-e5e921230589",
+    "type_name": "Series",
+    "nickname": "Series",
+    "container": "",
+    "position": {
+      "x": 10159.0,
+      "y": 2699.0
+    },
+    "params": {
+      "Start": "44c022d2-8866-43b1-ab91-1e88d5e0fa5c",
+      "Step": "eab69ed6-bdcf-4313-9a91-924ee114c1f3",
+      "Count": "b2093866-34f2-47ea-a0b1-19f63ca7dbc7",
+      "Series": "306c324a-3b04-4c46-bd5a-d11cacfe8fdb"
+    }
+  },
+  "08edbcda-c850-40fd-9900-c6ab83acca1b": {
+    "guid": "08edbcda-c850-40fd-9900-c6ab83acca1b",
+    "type_name": "Number Slider",
+    "nickname": "Horizontal shift between slats",
+    "container": "",
+    "position": {
+      "x": 9153.209,
+      "y": 2972.1128
+    },
+    "params": {
+      "Value": "08edbcda-c850-40fd-9900-c6ab83acca1b"
+    }
+  },
+  "2b8f6d1a-e9d8-4afa-838f-5d0f6b1ea06b": {
+    "guid": "2b8f6d1a-e9d8-4afa-838f-5d0f6b1ea06b",
+    "type_name": "Scribble",
+    "nickname": "Scribble",
+    "container": "",
+    "position": {
+      "x": 8869.987,
+      "y": 2993.9746
+    },
+    "params": {}
+  },
+  "a3eb185f-a7cb-4727-aeaf-d5899f934b99": {
+    "guid": "a3eb185f-a7cb-4727-aeaf-d5899f934b99",
+    "type_name": "Rectangle 2Pt",
+    "nickname": "Rectangle 2Pt",
+    "container": "",
+    "position": {
+      "x": 9824.0,
+      "y": 2565.0
+    },
+    "params": {
+      "Plane": "a1ba95f2-763a-4d63-8980-d7c2f4f6e278",
+      "Point A": "3d68795e-4451-4296-bfce-29e87928ae4a",
+      "Point B": "533ed63d-b12a-4953-8ba0-778e34331bc1",
+      "Radius": "20a66bae-abc8-460b-ad96-2f58bb9816cd",
+      "Rectangle": "dbc236d4-a2fe-48a8-a86e-eebfb04b1053",
+      "Length": "cfcd9d65-ab29-4e02-bfc8-1a15e9deb603"
+    }
+  },
+  "be907c11-5a37-4cf5-9736-0f3c61ba7014": {
+    "guid": "be907c11-5a37-4cf5-9736-0f3c61ba7014",
+    "type_name": "Construct Point",
+    "nickname": "CP",
+    "container": "",
+    "position": {
+      "x": 9685.0,
+      "y": 2527.0
+    },
+    "params": {
+      "X coordinate": "e38e57ed-138e-4ab4-9b04-0baa5fe1f9b3",
+      "Y coordinate": "9bb5353c-a836-45ab-9d64-6e98065acfed",
+      "Z coordinate": "1431283b-8898-4475-83ac-341e14077fce",
+      "Point": "902866aa-e5b3-4461-9877-73b22ea3618a"
+    }
+  },
+  "c8dfe19f-4140-41a4-973e-a2acb75038d7": {
+    "guid": "c8dfe19f-4140-41a4-973e-a2acb75038d7",
+    "type_name": "Number Slider",
+    "nickname": "Slat width",
+    "container": "",
+    "position": {
+      "x": 9190.08,
+      "y": 2770.513
+    },
+    "params": {
+      "Value": "c8dfe19f-4140-41a4-973e-a2acb75038d7"
+    }
+  },
+  "67b3eb53-9ea7-4280-bf8b-ae16c080cc23": {
+    "guid": "67b3eb53-9ea7-4280-bf8b-ae16c080cc23",
+    "type_name": "Construct Point",
+    "nickname": "CP",
+    "container": "",
+    "position": {
+      "x": 9685.0,
+      "y": 2596.0
+    },
+    "params": {
+      "X coordinate": "da42102c-3a47-49c0-96a6-7e751afece16",
+      "Y coordinate": "d63c9c76-02a7-4de9-8ce5-48ed56a9cd61",
+      "Z coordinate": "1becdeae-bdc3-4b2a-bc94-70dac471e483",
+      "Point": "ef17623c-d081-46f9-8259-2ad83ec05d94"
+    }
+  },
+  "835d042f-2535-476b-b5ae-1eeb534e57bc": {
+    "guid": "835d042f-2535-476b-b5ae-1eeb534e57bc",
+    "type_name": "Negative",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 9413.0,
+      "y": 2578.0
+    },
+    "params": {
+      "Value": "dda230a3-1ca6-433f-ba74-0bf57a14aa32",
+      "Result": "8a96679d-8f35-4cb4-92a0-6233220f435b"
+    }
+  },
+  "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92": {
+    "guid": "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92",
+    "type_name": "Negative",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 9421.0,
+      "y": 2618.0
+    },
+    "params": {
+      "Value": "c9c63c96-aece-45ad-abe0-c93bbb55daab",
+      "Result": "370f6ae5-1cf9-4488-9eee-2bd34b38725e"
+    }
+  },
+  "32cc502c-07b0-4d58-aef1-8acf8b2f4015": {
+    "guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
+    "type_name": "Division",
+    "nickname": "/",
+    "container": "",
+    "position": {
+      "x": 9229.0,
+      "y": 2554.0
+    },
+    "params": {
+      "A": "95442192-abd8-4ea6-9a3c-304279161204",
+      "B": "bd8dde54-97c0-429c-9185-9b6f3402a042",
+      "Result": "4c2fdd4e-7313-4735-8688-1dbdf5aeaee0"
+    }
+  },
+  "456d176f-14cf-4134-9062-b4623202c00e": {
+    "guid": "456d176f-14cf-4134-9062-b4623202c00e",
+    "type_name": "Number Slider",
+    "nickname": "Slats height (top)",
+    "container": "",
+    "position": {
+      "x": 9183.809,
+      "y": 2944.9128
+    },
+    "params": {
+      "Value": "456d176f-14cf-4134-9062-b4623202c00e"
+    }
+  },
+  "125e7c20-d243-4cdc-927b-568ceb6315b5": {
+    "guid": "125e7c20-d243-4cdc-927b-568ceb6315b5",
+    "type_name": "Number Slider",
+    "nickname": "Last target from slats",
+    "container": "",
+    "position": {
+      "x": 9171.695,
+      "y": 2807.5957
+    },
+    "params": {
+      "Value": "125e7c20-d243-4cdc-927b-568ceb6315b5"
+    }
+  },
+  "b9102ff3-4813-4791-a67d-5654a9f7bae9": {
+    "guid": "b9102ff3-4813-4791-a67d-5654a9f7bae9",
+    "type_name": "Division",
+    "nickname": "/",
+    "container": "",
+    "position": {
+      "x": 9218.0,
+      "y": 2618.0
+    },
+    "params": {
+      "A": "1a2fb415-04b1-4031-aef0-63045c7a0d0b",
+      "B": "a406263e-5b80-4f2f-83a3-af0f868adc68",
+      "Result": "eedce522-16c4-4b3a-8341-c26cc0b6bb91"
+    }
+  },
+  "42b39a5e-e986-4e5b-8e89-731d67b1019b": {
+    "guid": "42b39a5e-e986-4e5b-8e89-731d67b1019b",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "6e403ec2-3d34-4142-a92e-a5bceba31177": {
+    "guid": "6e403ec2-3d34-4142-a92e-a5bceba31177",
+    "type_name": "Scribble",
+    "nickname": "Scribble",
+    "container": "",
+    "position": {
+      "x": 12675.026,
+      "y": 2711.7783
+    },
+    "params": {}
+  },
+  "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b": {
+    "guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
+    "type_name": "Negative",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 10296.0,
+      "y": 2798.0
+    },
+    "params": {
+      "Value": "fe22979a-ae9f-48e8-b1a6-a1a5c6af8575",
+      "Result": "3a96e7fa-3a91-4dd9-a965-18049ca7617e"
+    }
+  },
+  "b3c71890-f270-4efd-b308-60428215f2be": {
+    "guid": "b3c71890-f270-4efd-b308-60428215f2be",
+    "type_name": "Negative",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 9991.0,
+      "y": 2763.0
+    },
+    "params": {
+      "Value": "c66c4f71-fc20-4b9f-a374-f8d2b17dd8a5",
+      "Result": "f8fdffb7-41e7-43c7-93a7-44bdc965ed27"
+    }
+  },
+  "a69d2e4a-b63b-40d0-838f-dff4d90a83ce": {
+    "guid": "a69d2e4a-b63b-40d0-838f-dff4d90a83ce",
+    "type_name": "Negative",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 9990.0,
+      "y": 2699.0
+    },
+    "params": {
+      "Value": "d3b213ea-a00d-4719-a925-f726e9338104",
+      "Result": "bdac63ee-60a4-4873-8860-06e887053c0e"
+    }
+  },
+  "d055df7d-4a48-4ccd-b770-433bbaa60269": {
+    "guid": "d055df7d-4a48-4ccd-b770-433bbaa60269",
+    "type_name": "Subtraction",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 9766.0,
+      "y": 2909.0
+    },
+    "params": {
+      "A": "53898f48-2c78-4a4b-a241-72841349099f",
+      "B": "3fe59f9b-2867-4ecf-a3af-fdfc26e69a5c",
+      "Result": "1c0dfd0d-d43c-4981-8c70-2a01e06e0d43"
+    }
+  },
+  "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7": {
+    "guid": "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7",
+    "type_name": "Number Slider",
+    "nickname": "Slats height (threshold)",
+    "container": "",
+    "position": {
+      "x": 9183.809,
+      "y": 2913.463
+    },
+    "params": {
+      "Value": "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7"
+    }
+  },
+  "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1": {
+    "guid": "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1",
+    "type_name": "Division",
+    "nickname": "/",
+    "container": "",
+    "position": {
+      "x": 9951.0,
+      "y": 2904.0
+    },
+    "params": {
+      "A": "4df43b09-8929-44f0-a426-377f4f659e20",
+      "B": "000f93a0-9f6a-45ea-88dc-13216162e6f6",
+      "Result": "20f5465a-8288-49ad-acd1-2eb24e1f8765"
+    }
+  },
+  "e2671ced-ddeb-4187-8048-66f3d519cefb": {
+    "guid": "e2671ced-ddeb-4187-8048-66f3d519cefb",
+    "type_name": "Subtraction",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 9765.0,
+      "y": 2862.0
+    },
+    "params": {
+      "A": "df2c8bb6-a707-4c7e-bb11-eae4fd258b37",
+      "B": "cce9829a-ed41-4574-81af-33d0d5e3d0ba",
+      "Result": "6c807a4e-25c2-4574-a89d-fa5bcfca769e"
+    }
+  },
+  "e81f2ba2-a9aa-401c-bde6-290d119877dc": {
+    "guid": "e81f2ba2-a9aa-401c-bde6-290d119877dc",
+    "type_name": "Number Slider",
+    "nickname": "1st targets from slats",
+    "container": "",
+    "position": {
+      "x": 9171.47,
+      "y": 2835.0403
+    },
+    "params": {
+      "Value": "e81f2ba2-a9aa-401c-bde6-290d119877dc"
+    }
+  },
+  "6f98674b-29e2-4a73-9632-69dd7083d771": {
+    "guid": "6f98674b-29e2-4a73-9632-69dd7083d771",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "0f529988-b68b-4d48-9a48-cf099af69050": {
+    "guid": "0f529988-b68b-4d48-9a48-cf099af69050",
+    "type_name": "Move",
+    "nickname": "New Sun",
+    "container": "",
+    "position": {
+      "x": 11481.0,
+      "y": 2770.0
+    },
+    "params": {
+      "Geometry": "dd0f4d1f-3f64-487c-8949-41d09cbe51d7",
+      "Motion": "b1398a69-fbda-4447-af1b-e68aa5938736",
+      "Transform": "2b064634-4749-4144-a4c5-725d68397a89"
+    }
+  },
+  "9cd053c9-3dd2-432b-aa46-a29a4b05c339": {
+    "guid": "9cd053c9-3dd2-432b-aa46-a29a4b05c339",
+    "type_name": "Project",
+    "nickname": "Project",
+    "container": "",
+    "position": {
+      "x": 12014.0,
+      "y": 2869.0
+    },
+    "params": {
+      "Curve": "aeedb946-4c19-44d8-8e7d-77f9dd230432",
+      "Brep": "0d54bb3f-f6e7-4c6e-901a-d24451a051a0",
+      "Direction": "0c5c5a39-071f-4a4e-beda-4f564e7eee63"
+    }
+  },
+  "9a33273a-910e-439d-98d5-d225e29faebf": {
+    "guid": "9a33273a-910e-439d-98d5-d225e29faebf",
+    "type_name": "Line",
+    "nickname": "Out Ray",
+    "container": "",
+    "position": {
+      "x": 11734.0,
+      "y": 2770.0
+    },
+    "params": {
+      "Start Point": "2eada1e3-f9eb-4d37-b594-660291d0d149",
+      "End Point": "3d25ff1e-7828-43b2-983a-0a37fa619b8c",
+      "Line": "e898f4cb-46e4-4be2-821d-11e2a96379f4"
+    }
+  },
+  "1e2231f7-0d69-4908-8f56-55f13a5d4237": {
+    "guid": "1e2231f7-0d69-4908-8f56-55f13a5d4237",
+    "type_name": "Divide Length",
+    "nickname": "DL",
+    "container": "",
+    "position": {
+      "x": 12167.0,
+      "y": 2879.0
+    },
+    "params": {
+      "Curve": "6cfc25e6-7e19-47a4-bca2-28389ce82a17",
+      "Length": "1eda2726-09f7-4960-a30d-c4af7c1a1d00",
+      "Points": "ac0efd11-aa24-46cf-8bcc-3ebfa4205ea1",
+      "Tangents": "b260c688-6bad-4e88-abd8-bc33d806ec3e",
+      "Parameters": "2b7a595c-aeb3-4250-851e-e9f04a01e6e8"
+    }
+  },
+  "c7dba531-36f1-4a2d-8e0e-ed94b3873bba": {
+    "guid": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
+    "type_name": "Line",
+    "nickname": "In Ray",
+    "container": "",
+    "position": {
+      "x": 12038.0,
+      "y": 2790.0
+    },
+    "params": {
+      "Start Point": "8a12ed41-13aa-4a75-a70f-ef3e7b37aaff",
+      "End Point": "98d8b1d4-5d32-44bb-b49f-9faa1a14739c",
+      "Line": "9822511c-b2b2-4e5c-8f61-8f6be460cabb"
+    }
+  },
+  "c7b8773d-e1e0-4c31-9b7c-b8b54f9e40e0": {
+    "guid": "c7b8773d-e1e0-4c31-9b7c-b8b54f9e40e0",
+    "type_name": "Divide Length",
+    "nickname": "DL",
+    "container": "",
+    "position": {
+      "x": 12167.0,
+      "y": 2800.0
+    },
+    "params": {
+      "Curve": "2fbbdfe1-e487-4e86-a3b2-fa2582cdb1e1",
+      "Length": "94a6cc2c-ad0b-4cfe-aa68-dbad2c24ba53",
+      "Points": "0460d28c-3b22-467d-b03f-a330e94bd2f4",
+      "Tangents": "9be78673-1065-4fb1-adb7-d9ffae54e553",
+      "Parameters": "06c41045-f92c-4894-a60f-e5dfe84f01de"
+    }
+  },
+  "524ba570-d8ac-4fc6-beee-87eab3265a4f": {
+    "guid": "524ba570-d8ac-4fc6-beee-87eab3265a4f",
+    "type_name": "Division",
+    "nickname": "/",
+    "container": "",
+    "position": {
+      "x": 9951.0,
+      "y": 2954.0
+    },
+    "params": {
+      "A": "04a561eb-5d4c-4282-836d-be0fe4c575f3",
+      "B": "13db12e3-87f5-4ad5-81a5-f8a759ccac00",
+      "Result": "133aa1b3-f899-4543-88d4-cde6da741d95"
+    }
+  },
+  "e11dd9b3-8452-4aa1-a4a1-4201e1de4578": {
+    "guid": "e11dd9b3-8452-4aa1-a4a1-4201e1de4578",
+    "type_name": "Subtraction",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 9766.0,
+      "y": 3004.0
+    },
+    "params": {
+      "A": "2e38fc7f-bcd1-4166-80f7-4147f16d6693",
+      "B": "3548bfc5-1fd1-4cea-8c19-4319dc9b5751",
+      "Result": "a7dd54c8-0ce7-4884-913e-10ac0e1336b4"
+    }
+  },
+  "a7644f3e-b082-4aea-b58d-043d3b6c9a28": {
+    "guid": "a7644f3e-b082-4aea-b58d-043d3b6c9a28",
+    "type_name": "Subtraction",
+    "nickname": "-",
+    "container": "",
+    "position": {
+      "x": 9766.0,
+      "y": 2956.0
+    },
+    "params": {
+      "A": "e0662afd-d2bf-4f83-9fd4-137128f945b4",
+      "B": "59277e95-5cc4-4809-af2f-4982eb841358",
+      "Result": "8cb00f94-7bbb-49d9-8065-df2645a32790"
+    }
+  },
+  "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b": {
+    "guid": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
+    "type_name": "Number Slider",
+    "nickname": "Targets Height",
+    "container": "",
+    "position": {
+      "x": 9231.411,
+      "y": 3024.8127
+    },
+    "params": {
+      "Value": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b"
+    }
+  },
+  "ef588711-b5db-40dd-850c-60ca8bac70e4": {
+    "guid": "ef588711-b5db-40dd-850c-60ca8bac70e4",
+    "type_name": "Sketch",
+    "nickname": "Sketch",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d28a5efc-3676-4a53-9c14-4a9cb63235ad": {
+    "guid": "d28a5efc-3676-4a53-9c14-4a9cb63235ad",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a7d2817a-3182-496e-a453-80e7eeba16fa": {
+    "guid": "a7d2817a-3182-496e-a453-80e7eeba16fa",
+    "type_name": "Number Slider",
+    "nickname": "room width",
+    "container": "",
+    "position": {
+      "x": 9185.056,
+      "y": 2731.7827
+    },
+    "params": {
+      "Value": "a7d2817a-3182-496e-a453-80e7eeba16fa"
+    }
+  },
+  "a12820e6-5bd6-45b0-a732-a1062de56c80": {
+    "guid": "a12820e6-5bd6-45b0-a732-a1062de56c80",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "88fac79d-c564-48e2-9ea7-b5cfc5db3912": {
+    "guid": "88fac79d-c564-48e2-9ea7-b5cfc5db3912",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "65aedbfa-4e3e-4369-941f-7645f2d4cd84": {
+    "guid": "65aedbfa-4e3e-4369-941f-7645f2d4cd84",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "987263fb-876f-41da-9cd0-078d22108a2a": {
+    "guid": "987263fb-876f-41da-9cd0-078d22108a2a",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "81235dd4-a007-43c9-8ba1-b4c96d52e631": {
+    "guid": "81235dd4-a007-43c9-8ba1-b4c96d52e631",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "6ce83da3-1519-46ee-82af-b4d95acaa102": {
+    "guid": "6ce83da3-1519-46ee-82af-b4d95acaa102",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "21ec593c-4bdf-4359-8905-3e02aee35621": {
+    "guid": "21ec593c-4bdf-4359-8905-3e02aee35621",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "fd8851ab-b66b-4b4d-98df-1f96de4dcce7": {
+    "guid": "fd8851ab-b66b-4b4d-98df-1f96de4dcce7",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "12dce798-0ccf-4607-b6d7-572faff89ef1": {
+    "guid": "12dce798-0ccf-4607-b6d7-572faff89ef1",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "98fff776-7787-42db-9136-7385fb8f0bdc": {
+    "guid": "98fff776-7787-42db-9136-7385fb8f0bdc",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "cfebb6a6-21dc-4b53-965b-ada77c11fb58": {
+    "guid": "cfebb6a6-21dc-4b53-965b-ada77c11fb58",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "08799f61-9c1f-4668-aa24-e9547bd6bf10": {
+    "guid": "08799f61-9c1f-4668-aa24-e9547bd6bf10",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "72dd53fc-6a04-4973-8493-fc92a6a73083": {
+    "guid": "72dd53fc-6a04-4973-8493-fc92a6a73083",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "f96e4c65-50ee-460c-b43b-13d215057c16": {
+    "guid": "f96e4c65-50ee-460c-b43b-13d215057c16",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "08abe95c-6a32-4b7e-9d71-a14d80d2625d": {
+    "guid": "08abe95c-6a32-4b7e-9d71-a14d80d2625d",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "0d695e6b-3696-4337-bc80-d14104f8a59e": {
+    "guid": "0d695e6b-3696-4337-bc80-d14104f8a59e",
+    "type_name": "Angle",
+    "nickname": "Angle",
+    "container": "",
+    "position": {
+      "x": 12642.0,
+      "y": 2835.0
+    },
+    "params": {
+      "Vector A": "2c5ac9e7-64aa-47d8-b945-2254ab2b047e",
+      "Vector B": "cd9362aa-9560-4cb4-8245-510bb30319f9",
+      "Plane": "fa4e3a1b-5fdc-4ef6-803d-7ed6633531e3",
+      "Angle": "23900bd5-6845-4b37-a9ba-bc8342e17168",
+      "Reflex": "b8626f03-e70b-4f11-a91f-c4322d1ca406"
+    }
+  },
+  "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58": {
+    "guid": "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58",
+    "type_name": "Degrees",
+    "nickname": "Degrees",
+    "container": "",
+    "position": {
+      "x": 12779.0,
+      "y": 2820.0
+    },
+    "params": {
+      "Radians": "9deef9fb-4aa0-40fa-bee0-a5309dc39533",
+      "Degrees": "4d5670e5-1abc-417e-b9ce-3cf7878b98c2"
+    }
+  },
+  "a518331f-8529-47db-bc2e-58ff8ef78e97": {
+    "guid": "a518331f-8529-47db-bc2e-58ff8ef78e97",
+    "type_name": "Line",
+    "nickname": "Between",
+    "container": "",
+    "position": {
+      "x": 12483.0,
+      "y": 2835.0
+    },
+    "params": {
+      "Start Point": "b317688e-f5e9-4d4c-99dc-614b764fe54d",
+      "End Point": "0f1dbd3e-1237-4f7e-9308-a54bb429fef8",
+      "Line": "73455c39-5152-49b3-87b1-a4c384b4efbb"
+    }
+  },
+  "9ff79870-05d0-483d-87be-b3641d71c6fc": {
+    "guid": "9ff79870-05d0-483d-87be-b3641d71c6fc",
+    "type_name": "List Item",
+    "nickname": "List Item",
+    "container": "",
+    "position": {
+      "x": 11880.0,
+      "y": 3147.0
+    },
+    "params": {
+      "List": "e30b4c91-74dc-4dcd-9724-430f7ae4c72a",
+      "Index": "836435ee-73ce-4f00-ae8c-932cc97f3954",
+      "Wrap": "56900547-971f-4154-a0a1-580b02107067",
+      "Item": "f78fb52e-b019-4ac1-bd55-7bee81f356a4"
+    }
+  },
+  "145ff01f-9c03-4771-ae24-68831f14123c": {
+    "guid": "145ff01f-9c03-4771-ae24-68831f14123c",
+    "type_name": "Sketch",
+    "nickname": "Sketch",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "03d56853-f55f-48cb-b76c-4dfb661b4d1b": {
+    "guid": "03d56853-f55f-48cb-b76c-4dfb661b4d1b",
+    "type_name": "Sketch",
+    "nickname": "Sketch",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "f219f29e-297d-488e-916e-e1a61bf10d47": {
+    "guid": "f219f29e-297d-488e-916e-e1a61bf10d47",
+    "type_name": "Group",
+    "nickname": "There is a change in input or output. Replace manually with the inserted component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "9a782acb-130e-44ac-bbf4-be4c3e6830c0": {
+    "guid": "9a782acb-130e-44ac-bbf4-be4c3e6830c0",
+    "type_name": "Group",
+    "nickname": "No longer needed in LBT as all core functions\nlive outside Grasshopper with your installation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "efcd41c5-1066-4ed8-b366-1300940f32dd": {
+    "guid": "efcd41c5-1066-4ed8-b366-1300940f32dd",
+    "type_name": "Group",
+    "nickname": "No longer needed in LBT as all core functions\nlive outside Grasshopper with your installation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "66c7e347-278e-4c44-bf39-7f4bb3bc1215": {
+    "guid": "66c7e347-278e-4c44-bf39-7f4bb3bc1215",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "9544ab56-5dae-4dcc-9b2f-b2f006febb6b": {
+    "guid": "9544ab56-5dae-4dcc-9b2f-b2f006febb6b",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "e13376cb-98df-4433-b05e-e5390df74ff0": {
+    "guid": "e13376cb-98df-4433-b05e-e5390df74ff0",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "48058878-666c-4c3c-adff-8ee5fc4c0ac7": {
+    "guid": "48058878-666c-4c3c-adff-8ee5fc4c0ac7",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "eb9e6c30-d2f9-4050-ac42-b8934dc617a5": {
+    "guid": "eb9e6c30-d2f9-4050-ac42-b8934dc617a5",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "4c1229b6-3657-4a36-be6f-65b1458c693e": {
+    "guid": "4c1229b6-3657-4a36-be6f-65b1458c693e",
+    "type_name": "Group",
+    "nickname": "GIF is currently the only supported conversion type.\nMore can be added upon request on our forum.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d814c4f8-5b95-4dec-bf91-40e34f6564ed": {
+    "guid": "d814c4f8-5b95-4dec-bf91-40e34f6564ed",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "981046a9-12bf-4981-976a-c069b8bf2b35": {
+    "guid": "981046a9-12bf-4981-976a-c069b8bf2b35",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "9d38fb7d-f460-4744-a162-e9604745aa76": {
+    "guid": "9d38fb7d-f460-4744-a162-e9604745aa76",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d23d1c35-f248-4e4a-8b32-bf12803d91cb": {
+    "guid": "d23d1c35-f248-4e4a-8b32-bf12803d91cb",
+    "type_name": "Group",
+    "nickname": "GIF is currently the only supported conversion type.\nMore can be added upon request on our forum.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a6593287-3460-486b-b14c-f16aac76be57": {
+    "guid": "a6593287-3460-486b-b14c-f16aac76be57",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "f78a8936-da1b-495e-8f76-db2e0d5295cc": {
+    "guid": "f78a8936-da1b-495e-8f76-db2e0d5295cc",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "8bc648b6-7358-4eab-abdd-3edbd3a435b3": {
+    "guid": "8bc648b6-7358-4eab-abdd-3edbd3a435b3",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "72af136c-7f24-428f-a1a0-cd91d1336d75": {
+    "guid": "72af136c-7f24-428f-a1a0-cd91d1336d75",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "028cbed4-cff1-4495-b2d2-7c0bd99e71fc": {
+    "guid": "028cbed4-cff1-4495-b2d2-7c0bd99e71fc",
+    "type_name": "Group",
+    "nickname": "Recreating the original 'Average Sky' behavior is possible by deconstructing\nEPW radiation data and averaging values to feed into the 'HB Custom Sky.'",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "e8b36629-6cfc-4c5c-80cb-fd0b03711f4b": {
+    "guid": "e8b36629-6cfc-4c5c-80cb-fd0b03711f4b",
+    "type_name": "Group",
+    "nickname": "Gridded mesh and point generation is now\nall done with a single Ladybug component.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "3b828a70-0c24-4179-b1ba-887233736145": {
+    "guid": "3b828a70-0c24-4179-b1ba-887233736145",
+    "type_name": "Group",
+    "nickname": "Recipe components now also run the simulation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "cfce2d31-47c8-41ac-9550-1c56ccf1775a": {
+    "guid": "cfce2d31-47c8-41ac-9550-1c56ccf1775a",
+    "type_name": "Group",
+    "nickname": "No longer needed as each of the Radiance recipe\ncomponents also runs the simulation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "5c7175f8-3007-44a4-b2e4-237163751817": {
+    "guid": "5c7175f8-3007-44a4-b2e4-237163751817",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "eb21a37d-9ef1-40b4-9119-ba7d02570655": {
+    "guid": "eb21a37d-9ef1-40b4-9119-ba7d02570655",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "13a98284-1155-4748-8011-57bf6ef3fafb": {
+    "guid": "13a98284-1155-4748-8011-57bf6ef3fafb",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d4f58281-952d-4d3d-a0bc-f5b039b9c86d": {
+    "guid": "d4f58281-952d-4d3d-a0bc-f5b039b9c86d",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "5ea4e084-d021-41de-b083-54734d71a3af": {
+    "guid": "5ea4e084-d021-41de-b083-54734d71a3af",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "fb47ee11-50e8-4b93-a66d-e003055600e6": {
+    "guid": "fb47ee11-50e8-4b93-a66d-e003055600e6",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "7bdac5eb-0988-462d-8bcf-1a88f23f8e56": {
+    "guid": "7bdac5eb-0988-462d-8bcf-1a88f23f8e56",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "ad762e83-3302-46d3-aaed-06bc5424aa6a": {
+    "guid": "ad762e83-3302-46d3-aaed-06bc5424aa6a",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "100eb41c-cbae-45d2-a402-d81f79b09c92": {
+    "guid": "100eb41c-cbae-45d2-a402-d81f79b09c92",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "28b3d7b4-52ef-49eb-ae9e-441018924f0b": {
+    "guid": "28b3d7b4-52ef-49eb-ae9e-441018924f0b",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "3eaabfba-a6fe-426a-91da-703180e4e146": {
+    "guid": "3eaabfba-a6fe-426a-91da-703180e4e146",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "1d76bf3b-0aaf-42ad-8e4a-04f55a1e15fd": {
+    "guid": "1d76bf3b-0aaf-42ad-8e4a-04f55a1e15fd",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d8eadbd3-3cb2-49cf-907a-06c9c7b3f60d": {
+    "guid": "d8eadbd3-3cb2-49cf-907a-06c9c7b3f60d",
+    "type_name": "Group",
+    "nickname": "Coming Soon!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a0a8cff1-5cf7-4a59-95b7-2e7a6081af18": {
+    "guid": "a0a8cff1-5cf7-4a59-95b7-2e7a6081af18",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "460704be-810f-4e71-8e4e-28f70677ca2a": {
+    "guid": "460704be-810f-4e71-8e4e-28f70677ca2a",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "9a729c00-0667-484d-b87b-4a36849e8369": {
+    "guid": "9a729c00-0667-484d-b87b-4a36849e8369",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "dcc231e6-88e4-4247-aa06-80e741f16b3c": {
+    "guid": "dcc231e6-88e4-4247-aa06-80e741f16b3c",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "27b06fd0-a92c-4040-a5ed-ff775b9f8f78": {
+    "guid": "27b06fd0-a92c-4040-a5ed-ff775b9f8f78",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "66e7c440-5b92-4eff-a685-7b4f352da1dc": {
+    "guid": "66e7c440-5b92-4eff-a685-7b4f352da1dc",
+    "type_name": "Group",
+    "nickname": "Coming Soon!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "26089c14-67ca-4e20-887f-3da82426e66d": {
+    "guid": "26089c14-67ca-4e20-887f-3da82426e66d",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "e591b79f-2095-4094-b2a0-b85f7da6e68b": {
+    "guid": "e591b79f-2095-4094-b2a0-b85f7da6e68b",
+    "type_name": "Group",
+    "nickname": "No longer needed in LBT as all core functions\nlive outside Grasshopper with your installation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "e2c4b134-f0fb-43fc-9fef-14e66dcb9ff4": {
+    "guid": "e2c4b134-f0fb-43fc-9fef-14e66dcb9ff4",
+    "type_name": "Group",
+    "nickname": "No longer needed in LBT as all core functions\nlive outside Grasshopper with your installation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "ea145345-122c-4f03-a1e3-f876b34847c8": {
+    "guid": "ea145345-122c-4f03-a1e3-f876b34847c8",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "47e7821f-c315-420e-b400-db72deeb9c20": {
+    "guid": "47e7821f-c315-420e-b400-db72deeb9c20",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "e5faa40b-0463-4971-8da6-8d824a943311": {
+    "guid": "e5faa40b-0463-4971-8da6-8d824a943311",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "f66a7bbf-a8a3-4238-ba4f-85b83035649f": {
+    "guid": "f66a7bbf-a8a3-4238-ba4f-85b83035649f",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "ef00a0bd-81e9-477b-bf9d-86704f7352b1": {
+    "guid": "ef00a0bd-81e9-477b-bf9d-86704f7352b1",
+    "type_name": "Group",
+    "nickname": "GIF is currently the only supported conversion type.\nMore can be added upon request on our forum.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "8d9bb586-9296-4f07-8829-5d5d7313f771": {
+    "guid": "8d9bb586-9296-4f07-8829-5d5d7313f771",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "fff8394d-f26f-467f-a30d-a8716dc4010e": {
+    "guid": "fff8394d-f26f-467f-a30d-a8716dc4010e",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d93f684f-0d00-4772-8849-1f01a4382640": {
+    "guid": "d93f684f-0d00-4772-8849-1f01a4382640",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "03f3583a-b546-4fa9-8937-e861d1d9faf0": {
+    "guid": "03f3583a-b546-4fa9-8937-e861d1d9faf0",
+    "type_name": "Group",
+    "nickname": "GIF is currently the only supported conversion type.\nMore can be added upon request on our forum.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "61005097-9c47-4c83-a083-d1ae28ca6838": {
+    "guid": "61005097-9c47-4c83-a083-d1ae28ca6838",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d16073b7-960b-4b0a-8a8a-bbadfd7ed7f4": {
+    "guid": "d16073b7-960b-4b0a-8a8a-bbadfd7ed7f4",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "4d8f34f2-0e6e-4403-91cc-969f6d3ef9b7": {
+    "guid": "4d8f34f2-0e6e-4403-91cc-969f6d3ef9b7",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "88fb0dff-7248-4861-8ee9-e462cb90f11c": {
+    "guid": "88fb0dff-7248-4861-8ee9-e462cb90f11c",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "2afd62f9-9312-410a-8982-43da9bfe98a7": {
+    "guid": "2afd62f9-9312-410a-8982-43da9bfe98a7",
+    "type_name": "Group",
+    "nickname": "Recreating the original 'Average Sky' behavior is possible by deconstructing\nEPW radiation data and averaging values to feed into the 'HB Custom Sky.'",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d93a29ac-9720-4787-94b0-18efda5f270d": {
+    "guid": "d93a29ac-9720-4787-94b0-18efda5f270d",
+    "type_name": "Group",
+    "nickname": "Gridded mesh and point generation is now\nall done with a single Ladybug component.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "186de052-78fd-42ca-9e0c-cd5c0eb0d49c": {
+    "guid": "186de052-78fd-42ca-9e0c-cd5c0eb0d49c",
+    "type_name": "Group",
+    "nickname": "Recipe components now also run the simulation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "c75779f8-26bf-44de-a485-6237a2daaf4b": {
+    "guid": "c75779f8-26bf-44de-a485-6237a2daaf4b",
+    "type_name": "Group",
+    "nickname": "No longer needed as each of the Radiance recipe\ncomponents also runs the simulation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d81b8068-5f15-433e-b26f-3d6a6c5b0192": {
+    "guid": "d81b8068-5f15-433e-b26f-3d6a6c5b0192",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "9f33a73b-c13e-42bb-9835-05c7658d14d9": {
+    "guid": "9f33a73b-c13e-42bb-9835-05c7658d14d9",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "0233a531-4071-4aeb-9540-97d561c02d20": {
+    "guid": "0233a531-4071-4aeb-9540-97d561c02d20",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "4f3887b1-9ce0-401d-8704-3c752376bf98": {
+    "guid": "4f3887b1-9ce0-401d-8704-3c752376bf98",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "40ded527-f9fb-47f1-9c9e-0b09de19dc31": {
+    "guid": "40ded527-f9fb-47f1-9c9e-0b09de19dc31",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "8f01f17a-9efa-4380-96d9-8b5ba6fb205f": {
+    "guid": "8f01f17a-9efa-4380-96d9-8b5ba6fb205f",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "942944d5-9a6e-4e1f-bd90-8caf3cb3773e": {
+    "guid": "942944d5-9a6e-4e1f-bd90-8caf3cb3773e",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "65bafafd-3cd6-4ec7-8f9c-38d674197dc7": {
+    "guid": "65bafafd-3cd6-4ec7-8f9c-38d674197dc7",
+    "type_name": "Group",
+    "nickname": "Coming Soon!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "229ae2e9-24a7-436d-9d08-97e042065692": {
+    "guid": "229ae2e9-24a7-436d-9d08-97e042065692",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "3318dfa4-13ee-438e-b380-3ca0c0751ab4": {
+    "guid": "3318dfa4-13ee-438e-b380-3ca0c0751ab4",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "822c22ef-ca3b-4304-8128-93fa6fa194bb": {
+    "guid": "822c22ef-ca3b-4304-8128-93fa6fa194bb",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d4077bc5-6652-4b90-a1de-b9faa2136889": {
+    "guid": "d4077bc5-6652-4b90-a1de-b9faa2136889",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "0bd23100-59e0-4c06-b98c-1584cd8cc5a4": {
+    "guid": "0bd23100-59e0-4c06-b98c-1584cd8cc5a4",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a181ad7f-0439-4a85-a950-15696b6d2910": {
+    "guid": "a181ad7f-0439-4a85-a950-15696b6d2910",
+    "type_name": "Group",
+    "nickname": "Coming Soon!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "0486b9f4-bbce-4cab-9168-d07ab93730e9": {
+    "guid": "0486b9f4-bbce-4cab-9168-d07ab93730e9",
+    "type_name": "Group",
+    "nickname": "No longer needed in LBT as all core functions\nlive outside Grasshopper with your installation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "87e61863-2acc-407c-a3d2-9a293e90917f": {
+    "guid": "87e61863-2acc-407c-a3d2-9a293e90917f",
+    "type_name": "Group",
+    "nickname": "No longer needed in LBT as all core functions\nlive outside Grasshopper with your installation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "fb6db271-3fd8-47a7-97cf-f0ddf1e0762e": {
+    "guid": "fb6db271-3fd8-47a7-97cf-f0ddf1e0762e",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "6ed96bea-5152-4878-a188-e2d3644c0728": {
+    "guid": "6ed96bea-5152-4878-a188-e2d3644c0728",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "c5e55980-1644-4362-b408-8bf5ebfe9004": {
+    "guid": "c5e55980-1644-4362-b408-8bf5ebfe9004",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "6768e9f7-81f3-4db4-987c-48aa631c5f55": {
+    "guid": "6768e9f7-81f3-4db4-987c-48aa631c5f55",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "81ff2a94-17e3-4ae9-851a-2a086a289640": {
+    "guid": "81ff2a94-17e3-4ae9-851a-2a086a289640",
+    "type_name": "Group",
+    "nickname": "GIF is currently the only supported conversion type.\nMore can be added upon request on our forum.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "c5ff82b9-1c01-4027-a5b5-215eb1118c62": {
+    "guid": "c5ff82b9-1c01-4027-a5b5-215eb1118c62",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "e82e06f5-eea0-481e-bc74-3657662d63cb": {
+    "guid": "e82e06f5-eea0-481e-bc74-3657662d63cb",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "5c4c003f-725a-4223-af83-3c8a9d8b3400": {
+    "guid": "5c4c003f-725a-4223-af83-3c8a9d8b3400",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "46bad965-4922-412f-bc5f-09fe2a706c47": {
+    "guid": "46bad965-4922-412f-bc5f-09fe2a706c47",
+    "type_name": "Group",
+    "nickname": "GIF is currently the only supported conversion type.\nMore can be added upon request on our forum.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "c5f7afbc-19fa-4ef9-8087-044112471b72": {
+    "guid": "c5f7afbc-19fa-4ef9-8087-044112471b72",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "974ce059-f25a-46b6-b1bc-181802a34e14": {
+    "guid": "974ce059-f25a-46b6-b1bc-181802a34e14",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "2d88ba3d-6a0b-4da3-b720-57d256ea09a1": {
+    "guid": "2d88ba3d-6a0b-4da3-b720-57d256ea09a1",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "3e35c41e-106c-4dcf-b7d7-44cad5e15d4b": {
+    "guid": "3e35c41e-106c-4dcf-b7d7-44cad5e15d4b",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "655567c9-c146-4595-943f-5c4e599ec9ec": {
+    "guid": "655567c9-c146-4595-943f-5c4e599ec9ec",
+    "type_name": "Group",
+    "nickname": "Recreating the original 'Average Sky' behavior is possible by deconstructing\nEPW radiation data and averaging values to feed into the 'HB Custom Sky.'",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "1bfa41b5-68b8-4888-befe-848ea2af377c": {
+    "guid": "1bfa41b5-68b8-4888-befe-848ea2af377c",
+    "type_name": "Group",
+    "nickname": "Gridded mesh and point generation is now\nall done with a single Ladybug component.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "1c17b91f-3620-44e8-93aa-052dc6ee1103": {
+    "guid": "1c17b91f-3620-44e8-93aa-052dc6ee1103",
+    "type_name": "Group",
+    "nickname": "Recipe components now also run the simulation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "15acb031-e7df-4e1b-987f-1f27911e3dab": {
+    "guid": "15acb031-e7df-4e1b-987f-1f27911e3dab",
+    "type_name": "Group",
+    "nickname": "No longer needed as each of the Radiance recipe\ncomponents also runs the simulation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "5662a75c-cacd-40dc-a90c-840b309403fe": {
+    "guid": "5662a75c-cacd-40dc-a90c-840b309403fe",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d6158595-b3b5-4db2-9f46-2ac3b22f8ace": {
+    "guid": "d6158595-b3b5-4db2-9f46-2ac3b22f8ace",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "50c22015-da69-4e38-8673-901bbb5d01de": {
+    "guid": "50c22015-da69-4e38-8673-901bbb5d01de",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "495a0ce0-3434-4f6b-99e3-bc281e984c61": {
+    "guid": "495a0ce0-3434-4f6b-99e3-bc281e984c61",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "2479c008-8120-49b0-b326-6acebb01b046": {
+    "guid": "2479c008-8120-49b0-b326-6acebb01b046",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "f6f894b1-b0d8-40db-b357-2c4fc2497ecf": {
+    "guid": "f6f894b1-b0d8-40db-b357-2c4fc2497ecf",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "3a9fca34-635d-408c-ac01-6b201f2cb7ae": {
+    "guid": "3a9fca34-635d-408c-ac01-6b201f2cb7ae",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "1e4dbab1-8e26-45f7-a517-b757bad33bb7": {
+    "guid": "1e4dbab1-8e26-45f7-a517-b757bad33bb7",
+    "type_name": "Group",
+    "nickname": "Coming Soon!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "70cbf87e-694f-4939-8917-2a97ddee1924": {
+    "guid": "70cbf87e-694f-4939-8917-2a97ddee1924",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "be74e5fb-c5f6-440e-9f7f-3d5594929b5b": {
+    "guid": "be74e5fb-c5f6-440e-9f7f-3d5594929b5b",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "4bb50146-b975-4726-a4db-74e2a2fa54e0": {
+    "guid": "4bb50146-b975-4726-a4db-74e2a2fa54e0",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "f791a7e3-072d-4050-a3dd-310cd2e98622": {
+    "guid": "f791a7e3-072d-4050-a3dd-310cd2e98622",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "f10b5344-2fea-4c7e-b798-f90159765b17": {
+    "guid": "f10b5344-2fea-4c7e-b798-f90159765b17",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d7a2f7a0-eb3b-493f-af67-a6c44464a94f": {
+    "guid": "d7a2f7a0-eb3b-493f-af67-a6c44464a94f",
+    "type_name": "Group",
+    "nickname": "Coming Soon!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "b5a05a67-3a9a-4389-9488-43465225a5f9": {
+    "guid": "b5a05a67-3a9a-4389-9488-43465225a5f9",
+    "type_name": "Group",
+    "nickname": "No longer needed in LBT as all core functions\nlive outside Grasshopper with your installation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d352e6bc-a784-497d-9a2c-adef7272ec55": {
+    "guid": "d352e6bc-a784-497d-9a2c-adef7272ec55",
+    "type_name": "Group",
+    "nickname": "No longer needed in LBT as all core functions\nlive outside Grasshopper with your installation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "5030f617-24ac-4e65-9f7d-169aaca84254": {
+    "guid": "5030f617-24ac-4e65-9f7d-169aaca84254",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "5d6f7cf4-05d5-469e-80c9-fc9d3efbe140": {
+    "guid": "5d6f7cf4-05d5-469e-80c9-fc9d3efbe140",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "0cfa7e2c-9295-4ac5-96c4-126241fe87cd": {
+    "guid": "0cfa7e2c-9295-4ac5-96c4-126241fe87cd",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "75f23f67-79af-41da-927e-4b966ed6aac2": {
+    "guid": "75f23f67-79af-41da-927e-4b966ed6aac2",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "64ea2bd0-a2e1-45bc-bce2-b334779290e3": {
+    "guid": "64ea2bd0-a2e1-45bc-bce2-b334779290e3",
+    "type_name": "Group",
+    "nickname": "GIF is currently the only supported conversion type.\nMore can be added upon request on our forum.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "46d27dd0-51c4-465e-bcd8-bfecd3450166": {
+    "guid": "46d27dd0-51c4-465e-bcd8-bfecd3450166",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "8a0ec0ea-f632-4feb-b363-dc7aca9e6fe4": {
+    "guid": "8a0ec0ea-f632-4feb-b363-dc7aca9e6fe4",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "7a507d87-2fc9-42c6-9a7e-68a3f1ab7e76": {
+    "guid": "7a507d87-2fc9-42c6-9a7e-68a3f1ab7e76",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "76b172a9-f296-4a1a-8e76-7aaf7e41c3f4": {
+    "guid": "76b172a9-f296-4a1a-8e76-7aaf7e41c3f4",
+    "type_name": "Group",
+    "nickname": "GIF is currently the only supported conversion type.\nMore can be added upon request on our forum.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "371eb678-b6f4-48bd-b91f-49babd09b4e4": {
+    "guid": "371eb678-b6f4-48bd-b91f-49babd09b4e4",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "edc1cd81-2b72-4aef-9640-cdb7878273c1": {
+    "guid": "edc1cd81-2b72-4aef-9640-cdb7878273c1",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "f1c42452-981e-4a9d-92ed-f140a3a4a8f4": {
+    "guid": "f1c42452-981e-4a9d-92ed-f140a3a4a8f4",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "c6a2e36b-a8f1-4f5a-86eb-ee4b31222bf0": {
+    "guid": "c6a2e36b-a8f1-4f5a-86eb-ee4b31222bf0",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "07d0fef4-ff11-48d5-b8ee-ff4d4ad95960": {
+    "guid": "07d0fef4-ff11-48d5-b8ee-ff4d4ad95960",
+    "type_name": "Group",
+    "nickname": "Recreating the original 'Average Sky' behavior is possible by deconstructing\nEPW radiation data and averaging values to feed into the 'HB Custom Sky.'",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "dccfea2e-73ae-4264-9437-368c57d7d631": {
+    "guid": "dccfea2e-73ae-4264-9437-368c57d7d631",
+    "type_name": "Group",
+    "nickname": "Gridded mesh and point generation is now\nall done with a single Ladybug component.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "04b73ea7-8d61-419f-b3d7-eae0c6267d8b": {
+    "guid": "04b73ea7-8d61-419f-b3d7-eae0c6267d8b",
+    "type_name": "Group",
+    "nickname": "Recipe components now also run the simulation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "72697980-dbe6-4458-98c9-32ab5e7d19bb": {
+    "guid": "72697980-dbe6-4458-98c9-32ab5e7d19bb",
+    "type_name": "Group",
+    "nickname": "No longer needed as each of the Radiance recipe\ncomponents also runs the simulation.",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "79a7ece7-9941-4486-b3e8-275d187b4ca5": {
+    "guid": "79a7ece7-9941-4486-b3e8-275d187b4ca5",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "7ce5a047-f532-408c-a588-f9384523984e": {
+    "guid": "7ce5a047-f532-408c-a588-f9384523984e",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "be8847d6-2530-487d-9fb0-136a217d6bad": {
+    "guid": "be8847d6-2530-487d-9fb0-136a217d6bad",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "02553878-b5bf-43fd-883e-b70079027758": {
+    "guid": "02553878-b5bf-43fd-883e-b70079027758",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d35c9e12-7732-417d-8520-39fe260944ac": {
+    "guid": "d35c9e12-7732-417d-8520-39fe260944ac",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "a6fd76a9-6a93-4f6c-8a0b-17676cd91c9f": {
+    "guid": "a6fd76a9-6a93-4f6c-8a0b-17676cd91c9f",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "5238da68-fa47-4043-a9a0-fc7bde455225": {
+    "guid": "5238da68-fa47-4043-a9a0-fc7bde455225",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "c0d1f683-d954-4ea3-9b45-9381598b476f": {
+    "guid": "c0d1f683-d954-4ea3-9b45-9381598b476f",
+    "type_name": "Group",
+    "nickname": "Coming Soon!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "6fb92937-f56d-4142-82de-2e34f5b76252": {
+    "guid": "6fb92937-f56d-4142-82de-2e34f5b76252",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "841a00ad-07f1-4efb-8b0c-9253beaf4a4a": {
+    "guid": "841a00ad-07f1-4efb-8b0c-9253beaf4a4a",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "dcac1284-9a01-4870-a0ae-fa0eb72e0a87": {
+    "guid": "dcac1284-9a01-4870-a0ae-fa0eb72e0a87",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "d3e88393-4cb3-4052-a41e-300e2db682e9": {
+    "guid": "d3e88393-4cb3-4052-a41e-300e2db682e9",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "17554c03-bb42-4eb3-a8cb-fe6b7af89d7b": {
+    "guid": "17554c03-bb42-4eb3-a8cb-fe6b7af89d7b",
+    "type_name": "Group",
+    "nickname": "Legacy Component!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "ca435326-fc85-44be-8a35-68f8ff501902": {
+    "guid": "ca435326-fc85-44be-8a35-68f8ff501902",
+    "type_name": "Group",
+    "nickname": "Coming Soon!",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  },
+  "ef803855-36ec-4b48-8d76-89d870a0438f": {
+    "guid": "ef803855-36ec-4b48-8d76-89d870a0438f",
+    "type_name": "PolyLine",
+    "nickname": "PolyLine",
+    "container": "",
+    "position": {
+      "x": 11862.0,
+      "y": 2990.0
+    },
+    "params": {
+      "Vertices": "0213fef5-2d96-4fdb-9136-763b427b23ea",
+      "Closed": "0ceeb194-9053-4ef4-a9ba-542edcbfe9c4",
+      "Polyline": "def742ff-b2bc-4fcd-833f-523d99cca69d"
+    }
+  },
+  "326da981-351e-4794-9d60-77e8e87bd778": {
+    "guid": "326da981-351e-4794-9d60-77e8e87bd778",
+    "type_name": "Plane Normal",
+    "nickname": "Plane Normal",
+    "container": "",
+    "position": {
+      "x": 12043.0,
+      "y": 2991.0
+    },
+    "params": {
+      "Origin": "a1fbb5d7-9969-4b89-b4c2-bb0730dc40f5",
+      "Z-Axis": "8acfd6a4-5549-4ea6-942d-2aefb8174ceb",
+      "Plane": "4b0092c3-9120-4e4b-bdf3-8035944050a7"
+    }
+  },
+  "30f76ec5-d532-4903-aa18-cd18b27442f9": {
+    "guid": "30f76ec5-d532-4903-aa18-cd18b27442f9",
+    "type_name": "Construct Plane",
+    "nickname": "Construct Plane",
+    "container": "",
+    "position": {
+      "x": 12039.0,
+      "y": 3119.0
+    },
+    "params": {
+      "Origin": "fd338f3a-d9dc-4374-8b28-c84a47cddd60",
+      "X-Axis": "5aaceceb-d627-4a70-9c7a-ed252c56af2f",
+      "Y-Axis": "37b55dbc-f3a0-4cd7-b394-4d6325bd3ada",
+      "Plane": "9bf9263c-2d3b-4064-ba62-1053ee020854"
+    }
+  },
+  "910c335c-b5e8-41bf-bfb4-576cb17432c7": {
+    "guid": "910c335c-b5e8-41bf-bfb4-576cb17432c7",
+    "type_name": "PolyLine",
+    "nickname": "PolyLine",
+    "container": "",
+    "position": {
+      "x": 11867.0,
+      "y": 3064.0
+    },
+    "params": {
+      "Vertices": "215615f8-51d8-44fd-8159-279155bc39cb",
+      "Closed": "56e4b79e-55b0-46d1-86d8-8bb807706eee",
+      "Polyline": "65a37667-b44f-435e-8835-aa8185da4670"
+    }
+  },
+  "157c48b5-0aed-49e5-a808-d4c64666062d": {
+    "guid": "157c48b5-0aed-49e5-a808-d4c64666062d",
+    "type_name": "List Item",
+    "nickname": "List Item",
+    "container": "",
+    "position": {
+      "x": 12195.0,
+      "y": 2971.0
+    },
+    "params": {
+      "List": "128cdce4-9043-4e4c-a6d7-ad52c8af0dfd",
+      "Index": "e14c768a-9383-4fee-b9de-b1cdeec1c6a6",
+      "Wrap": "ac280e60-85a6-4d3d-8f01-cca6076701db",
+      "Item": "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a"
+    }
+  },
+  "011398ea-ce1d-412a-afeb-fe91e8fac96c": {
+    "guid": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
+    "type_name": "Plane Normal",
+    "nickname": "Plane Normal",
+    "container": "",
+    "position": {
+      "x": 12184.0,
+      "y": 3075.0
+    },
+    "params": {
+      "Origin": "18115c81-fdea-48a1-a611-c97dfa1d2e20",
+      "Z-Axis": "abf938a3-ce59-4179-89ce-15d5e2b02977",
+      "Plane": "638a56be-4484-4cb8-ba11-233b9e7421eb"
+    }
+  },
+  "3bd2c1d3-149d-49fb-952c-8db272035f9e": {
+    "guid": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
+    "type_name": "Area",
+    "nickname": "Area",
+    "container": "",
+    "position": {
+      "x": 11290.0,
+      "y": 2824.0
+    },
+    "params": {
+      "Geometry": "67ebb9f6-8dfb-4874-b03d-33a0dd9262f7",
+      "Area": "b0b3e64e-f2c8-4881-bfa9-a6026955a0b0",
+      "Centroid": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+    }
+  },
+  "77f7eddb-d54b-4280-aad9-4c4a8400a56b": {
+    "guid": "77f7eddb-d54b-4280-aad9-4c4a8400a56b",
+    "type_name": "Area",
+    "nickname": "Area",
+    "container": "",
+    "position": {
+      "x": 11298.0,
+      "y": 2894.0
+    },
+    "params": {
+      "Geometry": "25113d3e-f6c5-4bf7-8943-cdaa173949a8",
+      "Area": "be0bbae7-3902-48fd-84ca-5cfdf0808b5f",
+      "Centroid": "34529a8c-3dfd-4d96-865b-9e4cbfddad6c"
+    }
+  },
+  "04df4976-98d6-4ee8-b76a-96211120d851": {
+    "guid": "04df4976-98d6-4ee8-b76a-96211120d851",
+    "type_name": "Panel",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 12915.058,
+      "y": 2815.5269
+    },
+    "params": {}
+  },
+  "6991f781-7047-4cdb-b1d9-ffacaca51fdf": {
+    "guid": "6991f781-7047-4cdb-b1d9-ffacaca51fdf",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "container": "",
+    "position": {
+      "x": 11011.0,
+      "y": 2929.0
+    },
+    "params": {
+      "Geometry": "eb26fc4b-25d6-4783-8303-5b7cd757521c",
+      "Angle": "ece8cd28-d6cf-444b-8ec4-bf0cbc8a0f89",
+      "Plane": "9761364d-c468-42ee-846c-dbc00a9f9e1b",
+      "Transform": "1680ee46-88a0-4f73-8d14-561f94d1bdc7"
+    }
+  },
+  "5354f884-8b45-418e-968a-55689cb2e986": {
+    "guid": "5354f884-8b45-418e-968a-55689cb2e986",
+    "type_name": "Number Slider",
+    "nickname": "Orientation",
+    "container": "",
+    "position": {
+      "x": 9232.643,
+      "y": 3071.4187
+    },
+    "params": {
+      "Value": "5354f884-8b45-418e-968a-55689cb2e986"
+    }
+  },
+  "9754db2b-c513-48b6-bbf7-0d06f53b3ce4": {
+    "guid": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
+    "type_name": "Construct Point",
+    "nickname": "Construct Point",
+    "container": "",
+    "position": {
+      "x": 10454.0,
+      "y": 3038.0
+    },
+    "params": {
+      "X coordinate": "c6d99abc-0d60-498c-82b0-565e05e62bcb",
+      "Y coordinate": "2be05eb0-b047-4927-a81a-99da92df51d7",
+      "Z coordinate": "3988aa76-a3cf-48be-bd80-9c4724d37edc",
+      "Point": "3e0431d2-2630-4f1b-9ebd-078d00994cf5"
+    }
+  },
+  "c2ab4791-ae5f-4087-82af-dfd4587ed22e": {
+    "guid": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
+    "type_name": "Move",
+    "nickname": "Move",
+    "container": "",
+    "position": {
+      "x": 10795.0,
+      "y": 3048.0
+    },
+    "params": {
+      "Geometry": "904fae86-dbbe-46a6-ad19-bd7d1c6539bf",
+      "Motion": "d9fc6b37-e624-460f-8425-264eb213fbec",
+      "Transform": "14611b82-7236-4830-8e0a-9a29f3a3f82e"
+    }
+  },
+  "ebcd02a2-ac68-43a5-b02e-701fa8770206": {
+    "guid": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
+    "type_name": "Negative",
+    "nickname": "Negative",
+    "container": "",
+    "position": {
+      "x": 10430.0,
+      "y": 2910.0
+    },
+    "params": {
+      "Value": "9e171c22-f1b3-4ab9-83eb-fdb23144e4af",
+      "Result": "1288cc78-451b-423d-bbc4-2e1a268f1389"
+    }
+  },
+  "af7efbe5-8f3d-4101-ad11-c9efc24d5577": {
+    "guid": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
+    "type_name": "Unit Y",
+    "nickname": "Unit Y",
+    "container": "",
+    "position": {
+      "x": 10608.0,
+      "y": 3058.0
+    },
+    "params": {
+      "Factor": "273178c0-f287-4b37-9638-b35292973455",
+      "Unit vector": "800ae5cf-6f77-4b7e-aec7-5725d272bd84"
+    }
+  },
+  "505e72fd-e7f0-4e7d-ba69-88f047b56bb9": {
+    "guid": "505e72fd-e7f0-4e7d-ba69-88f047b56bb9",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "container": "",
+    "position": {
+      "x": 11013.0,
+      "y": 2820.0
+    },
+    "params": {
+      "Geometry": "042cadab-f52c-4397-a01b-bfcd7b7117f6",
+      "Angle": "0a231406-2561-42b7-997e-30830fd1cb66",
+      "Plane": "8fc5500d-d4f9-48ec-a94a-a0189cb753ac",
+      "Transform": "e199c84e-62fb-42cd-b868-c9ca11f6ddf7"
+    }
+  },
+  "464c66b3-4ac6-4cc0-b283-407f8fe787a3": {
+    "guid": "464c66b3-4ac6-4cc0-b283-407f8fe787a3",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "container": "",
+    "position": {
+      "x": 11016.0,
+      "y": 3058.0
+    },
+    "params": {
+      "Geometry": "0b4bf936-2e3a-417f-aaf0-61220fcefd66",
+      "Angle": "1208af66-55c5-4249-a426-ea85a0456341",
+      "Plane": "26758a87-64f6-4f28-8f33-16ef0bc0fe6b",
+      "Transform": "b6dc892e-17f2-4ce0-a35f-0287efdbbd94"
+    }
+  },
+  "0f6e14e7-bff0-4d57-9f75-cd3f83812578": {
+    "guid": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
+    "type_name": "YZ Plane",
+    "nickname": "YZ Plane",
+    "container": "",
+    "position": {
+      "x": 11526.0,
+      "y": 2899.0
+    },
+    "params": {
+      "Origin": "5cc583d0-5f2a-4b69-8f8b-c40b061d70a5",
+      "Plane": "0add6c90-5b4a-4259-b9a6-cb941d8756b8"
+    }
+  },
+  "1162b56a-787a-4446-8b26-56947cad14f5": {
+    "guid": "1162b56a-787a-4446-8b26-56947cad14f5",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "container": "",
+    "position": {
+      "x": 11814.0,
+      "y": 2866.0
+    },
+    "params": {
+      "Geometry": "2e61e21e-3664-45eb-80a0-6c83498d3158",
+      "Angle": "a1761f27-9d24-4205-b000-5284717acd65",
+      "Plane": "37a46d5c-1e61-4006-b44d-2423aeca87fd",
+      "Transform": "b8a0bc8b-098b-477e-b674-d2950723188f"
+    }
+  },
+  "85286674-9111-419a-9e16-d7f5002f685f": {
+    "guid": "85286674-9111-419a-9e16-d7f5002f685f",
+    "type_name": "Group",
+    "nickname": "",
+    "container": "",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "params": {}
+  }
+}

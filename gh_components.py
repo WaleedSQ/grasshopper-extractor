@@ -2143,6 +2143,10 @@ def rotate_component(geometry: Any, angle: float, plane: Any) -> Any:
         origin = [0, 0, 0]
         z_axis = [0, 0, 1]
     
+    # If geometry is a string, return it unchanged (should not happen, but handle gracefully)
+    if isinstance(geometry, str):
+        return geometry
+    
     # If geometry has vertices, rotate them
     if isinstance(geometry, dict) and 'vertices' in geometry:
         vertices = geometry['vertices']
@@ -2185,6 +2189,10 @@ def mirror_component(geometry: Any, plane: Any) -> Any:
         geometry: mirrored geometry
     """
     # GH <Mirror> <NickName> <GUID>
+    
+    # If geometry is a string, return it unchanged (should not happen, but handle gracefully)
+    if isinstance(geometry, str):
+        return geometry
     
     # Get mirror plane
     if isinstance(plane, dict):

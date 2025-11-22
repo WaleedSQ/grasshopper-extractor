@@ -1,28 +1,395 @@
 # Evaluation Results
 
-## Component 71c9ab9c...
-**Nickname:** Number of orientations
+## Component 2479c008...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a310b28b...
+**Nickname:** Rotatingslats
+**Type:** Group
+
+- Result: None
+
+## Component f6f894b1...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 75f23f67...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component cfce2d31...
+**Nickname:** No longer needed as each of the Radiance recipe
+components also runs the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 974ce059...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component f61d32bf...
+**Type:** Group
+
+- Result: None
+
+## Component 0486b9f4...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component e81f2ba2...
+**Nickname:** 1st targets from slats
 **Type:** Number Slider
 
-- Value: 8.0
+- Value: 1.0
 
-## Component 125e7c20...
-**Nickname:** Last target from slats
+## Component d7a2f7a0...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 7a507d87...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 08799f61...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 12dce798...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component c0d1f683...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 1bfa41b5...
+**Nickname:** Gridded mesh and point generation is now
+all done with a single Ladybug component.
+**Type:** Group
+
+- Result: None
+
+## Component 65aedbfa...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 81235dd4...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component d6158595...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a830c1ee...
+**Type:** Group
+
+- Result: None
+
+## Component ca435326...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component eb21a37d...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 5ea4e084...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component e591b79f...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component d35c9e12...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 81ff2a94...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component 17554c03...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 48058878...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component dccfea2e...
+**Nickname:** Gridded mesh and point generation is now
+all done with a single Ladybug component.
+**Type:** Group
+
+- Result: None
+
+## Component d8eadbd3...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 3e35c41e...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 2afd62f9...
+**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
+EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
+**Type:** Group
+
+- Result: None
+
+## Component 15acb031...
+**Nickname:** No longer needed as each of the Radiance recipe
+components also runs the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 66c7e347...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 5238da68...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 50c22015...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component efcd41c5...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component ad762e83...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 6ce83da3...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 3a9fca34...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 6f98674b...
+**Type:** Group
+
+- Result: None
+
+## Component a6fd76a9...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 5354f884...
+**Nickname:** Orientation
 **Type:** Number Slider
 
-- Value: 4.5
+- Result: None
 
-## Component 507b14ee...
-**Nickname:** Distance from window
+## Component 3b828a70...
+**Nickname:** Recipe components now also run the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 4f3887b1...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a6593287...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 07d0fef4...
+**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
+EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
+**Type:** Group
+
+- Result: None
+
+## Component bd24b9c6...
+**Nickname:** Targets Height
 **Type:** Number Slider
 
-- Value: -0.07
+- Value: 4.0
 
-## Component 537142d8...
-**Nickname:** Number of slats
-**Type:** Number Slider
+## Component 46bad965...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
 
-- Value: 10.0
+- Result: None
+
+## Component 5c4c003f...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 1e4dbab1...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 95de1afe...
+**Nickname:** Test model
+**Type:** Group
+
+- Result: None
+
+## Component 4c1229b6...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component 041f73ab...
+**Nickname:** Sun coverage area
+**Type:** Group
+
+- Result: None
+
+## Component 186de052...
+**Nickname:** Recipe components now also run the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 942944d5...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d3e88393...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 5d6f7cf4...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d28a5efc...
+**Type:** Group
+
+- Result: None
+
+## Component 85286674...
+**Type:** Group
+
+- Result: None
+
+## Component 145ff01f...
+**Nickname:** Sketch
+**Type:** Sketch
+
+- Result: None
+
+## Component edc1cd81...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 5c7175f8...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a181ad7f...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 21ec593c...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
 
 ## Component 08edbcda...
 **Nickname:** Horizontal shift between slats
@@ -30,41 +397,11 @@
 
 - Value: 0.0
 
-## Component a2151ddb...
-**Nickname:** Polygon
-**Type:** Polygon
+## Component 0233a531...
+**Nickname:** Legacy Component!
+**Type:** Group
 
-- polygon: polygon_geometry
-- vertices: [[3.0, 0.0, 0.0], [2.121320343559643, 2.121320343559643, 0.0], [1.8369701987210297e-16, 3.0, 0.0], [-2.1213203435596424, 2.121320343559643, 0.0], [-3.0, 3.6739403974420594e-16, 0.0], [-2.121320343559643, -2.1213203435596424, 0.0], [-5.51091059616309e-16, -3.0, 0.0], [2.121320343559642, -2.121320343559643, 0.0], [3.0, 0.0, 0.0]]
-- radius: 3.0
-- segments: 8
-- plane: {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}
-
-## Component 5a77f108...
-**Nickname:** Rotate
-**Type:** Rotate
-
-- Geometry: {'polygon': 'polygon_geometry', 'vertices': [[1.1480502970952695, 2.77163859753386, 0.0], [-1.1480502970952693, 2.771638597533861, 0.0], [-2.77163859753386, 1.1480502970952697, 0.0], [-2.771638597533861, -1.1480502970952688, 0.0], [-1.14805029709527, -2.77163859753386, 0.0], [1.1480502970952688, -2.771638597533861, 0.0], [2.77163859753386, -1.14805029709527, 0.0], [2.7716385975338604, 1.1480502970952684, 0.0], [1.1480502970952695, 2.77163859753386, 0.0]], 'radius': 3.0, 'segments': 8, 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'rotation_angle': 67.5}
-
-## Component 47650d42...
-**Nickname:** Mirror
-**Type:** Mirror
-
-- Geometry: {'polygon': 'polygon_geometry', 'vertices': [[-1.1480502970952695, 2.77163859753386, 0.0], [1.1480502970952693, 2.771638597533861, 0.0], [2.77163859753386, 1.1480502970952697, 0.0], [2.771638597533861, -1.1480502970952688, 0.0], [1.14805029709527, -2.77163859753386, 0.0], [-1.1480502970952688, -2.771638597533861, 0.0], [-2.77163859753386, -1.14805029709527, 0.0], [-2.7716385975338604, 1.1480502970952684, 0.0], [-1.1480502970952695, 2.77163859753386, 0.0]], 'radius': 3.0, 'segments': 8, 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'rotation_angle': 67.5, 'mirrored': True}
-
-## Component c78ea9c5...
-**Nickname:** DB
-**Type:** Deconstruct Brep
-
-- Faces: []
-- Edges: [{'type': 'edge', 'index': 0, 'placeholder': True}, {'type': 'edge', 'index': 1, 'placeholder': True}, {'type': 'edge', 'index': 2, 'placeholder': True}, {'type': 'edge', 'index': 3, 'placeholder': True}, {'type': 'edge', 'index': 4, 'placeholder': True}, {'type': 'edge', 'index': 5, 'placeholder': True}, {'type': 'edge', 'index': 6, 'placeholder': True}, {'type': 'edge', 'index': 7, 'placeholder': True}, {'type': 'edge', 'index': 8, 'placeholder': True}, {'type': 'edge', 'index': 9, 'placeholder': True}]
-- Vertices: []
-
-## Component d89d47e0...
-**Nickname:** List Item
-**Type:** List Item
-
-- Item: [[{'type': 'edge', 'index': 0, 'placeholder': True}], [{'type': 'edge', 'index': 1, 'placeholder': True}], [{'type': 'edge', 'index': 2, 'placeholder': True}], [{'type': 'edge', 'index': 3, 'placeholder': True}], [{'type': 'edge', 'index': 4, 'placeholder': True}], [{'type': 'edge', 'index': 5, 'placeholder': True}], [{'type': 'edge', 'index': 6, 'placeholder': True}], [{'type': 'edge', 'index': 7, 'placeholder': True}], [{'type': 'edge', 'index': 8, 'placeholder': True}], [{'type': 'edge', 'index': 9, 'placeholder': True}]]
+- Result: None
 
 ## Component c8dfe19f...
 **Nickname:** Slat width
@@ -78,11 +415,308 @@
 
 - Value: 3.1
 
-## Component e81f2ba2...
-**Nickname:** 1st targets from slats
+## Component 8a0ec0ea...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a1c33b95...
+**Type:** Group
+
+- Result: None
+
+## Component 27b06fd0...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 822c22ef...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 40ded527...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component cfebb6a6...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component ea145345...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component c75779f8...
+**Nickname:** No longer needed as each of the Radiance recipe
+components also runs the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component e13376cb...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d352e6bc...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component 76b172a9...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component 9d38fb7d...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 72697980...
+**Nickname:** No longer needed as each of the Radiance recipe
+components also runs the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component d4f58281...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component fff8394d...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 87e61863...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component 0cfa7e2c...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component f1c42452...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component dcc231e6...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 5662a75c...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d814c4f8...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 3eaabfba...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 7bdac5eb...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 9a729c00...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component f66a7bbf...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 4d8f34f2...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 0bd23100...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d4077bc5...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 1c17b91f...
+**Nickname:** Recipe components now also run the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component f96e4c65...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 47e7821f...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 6768e9f7...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 100eb41c...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 507b14ee...
+**Nickname:** Distance from window
 **Type:** Number Slider
 
-- Value: 1.0
+- Value: -0.07
+
+## Component 08abe95c...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component e5faa40b...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component fb6db271...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 371eb678...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 03f3583a...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component dcac1284...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component ef588711...
+**Nickname:** Sketch
+**Type:** Sketch
+
+- Result: None
+
+## Component 5dc62917...
+**Type:** Group
+
+- Result: None
+
+## Component 5030f617...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 2d88ba3d...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 8bc648b6...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a05a518e...
+**Type:** Group
+
+- Result: None
+
+## Component 841a00ad...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component e82e06f5...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component f791a7e3...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component be8847d6...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
 
 ## Component 32cc502c...
 **Nickname:** /
@@ -201,56 +835,24 @@
 - Geometry: DataTree({(0,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.05841792797118109, 0.9998303755784019], [-2.5, 0.05841792797118109, 0.9998303755784019], [-2.5, -0.02158207202881891, 0.9998303755784019], [2.5, -0.02158207202881891, 0.9998303755784019]]}], (1,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.058802645528938366, 0.9998232146340237], [-2.5, 0.058802645528938366, 0.9998232146340237], [-2.5, -0.02119735447106164, 0.9998232146340237], [2.5, -0.02119735447106164, 0.9998232146340237]]}], (2,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.059203775061591614, 0.9998155905082615], [-2.5, 0.059203775061591614, 0.9998155905082615], [-2.5, -0.020796224938408388, 0.9998155905082615], [2.5, -0.020796224938408388, 0.9998155905082615]]}], (3,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.059622389448595076, 0.9998074623807964], [-2.5, 0.059622389448595076, 0.9998074623807964], [-2.5, -0.020377610551404926, 0.9998074623807964], [2.5, -0.020377610551404926, 0.9998074623807964]]}], (4,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06005965714793894, 0.999798784833782], [-2.5, 0.06005965714793894, 0.999798784833782], [-2.5, -0.01994034285206106, 0.999798784833782], [2.5, -0.01994034285206106, 0.999798784833782]]}], (5,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06051685307968195, 0.9997895072162474], [-2.5, 0.06051685307968195, 0.9997895072162474], [-2.5, -0.019483146920318047, 0.9997895072162474], [2.5, -0.019483146920318047, 0.9997895072162474]]}], (6,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06099537103097526, 0.9997795729035834], [-2.5, 0.06099537103097526, 0.9997795729035834], [-2.5, -0.019004628969024745, 0.9997795729035834], [2.5, -0.019004628969024745, 0.9997795729035834]]}], (7,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.0614967378365892, 0.999768918431847], [-2.5, 0.0614967378365892, 0.999768918431847], [-2.5, -0.0185032621634108, 0.999768918431847], [2.5, -0.0185032621634108, 0.999768918431847]]}], (8,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.062022629638591766, 0.9997574724821023], [-2.5, 0.062022629638591766, 0.9997574724821023], [-2.5, -0.017977370361408236, 0.9997574724821023], [2.5, -0.017977370361408236, 0.9997574724821023]]}], (9,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06257489058964696, 0.9997451546843653], [-2.5, 0.06257489058964696, 0.9997451546843653], [-2.5, -0.01742510941035304, 0.9997451546843653], [2.5, -0.01742510941035304, 0.9997451546843653]]}]})
 - Transform: {'type': 'translation', 'motion': [[0.0, 0.01841792797118109, 0.9998303755784019], [0.0, 0.01880264552893836, 0.9998232146340237], [0.0, 0.019203775061591613, 0.9998155905082615], [0.0, 0.019622389448595075, 0.9998074623807964], [0.0, 0.02005965714793894, 0.999798784833782], [0.0, 0.020516853079681954, 0.9997895072162474], [0.0, 0.020995371030975256, 0.9997795729035834], [0.0, 0.021496737836589203, 0.999768918431847], [0.0, 0.022022629638591765, 0.9997574724821023], [0.0, 0.02257489058964696, 0.9997451546843653]], 'translation': [[0.0, 0.01841792797118109, 0.9998303755784019], [0.0, 0.01880264552893836, 0.9998232146340237], [0.0, 0.019203775061591613, 0.9998155905082615], [0.0, 0.019622389448595075, 0.9998074623807964], [0.0, 0.02005965714793894, 0.999798784833782], [0.0, 0.020516853079681954, 0.9997895072162474], [0.0, 0.020995371030975256, 0.9997795729035834], [0.0, 0.021496737836589203, 0.999768918431847], [0.0, 0.022022629638591765, 0.9997574724821023], [0.0, 0.02257489058964696, 0.9997451546843653]]}
 
-## Component 7ad636cc...
-**Nickname:** Polar Array
-**Type:** Polar Array
+## Component 505e72fd...
+**Nickname:** Rotate
+**Type:** Rotate
 
-- Geometry: DataTree({(0,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.05841792797118109, 0.9998303755784019], [-2.5, 0.05841792797118109, 0.9998303755784019], [-2.5, -0.02158207202881891, 0.9998303755784019], [2.5, -0.02158207202881891, 0.9998303755784019]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7264592399550793, 1.8090746659776584, 0.9998303755784019], [-1.8090746659776584, -1.7264592399550793, 0.9998303755784019], [-1.7525061234827346, -1.7830277824500032, 0.9998303755784019], [1.7830277824500032, 1.7525061234827346, 0.9998303755784019]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.058417927971180936, 2.5, 0.9998303755784019], [-0.05841792797118124, -2.5, 0.9998303755784019], [0.021582072028818757, -2.5, 0.9998303755784019], [0.021582072028819062, 2.5, 0.9998303755784019]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8090746659776582, 1.7264592399550795, 0.9998303755784019], [1.726459239955079, -1.8090746659776582, 0.9998303755784019], [1.783027782450003, -1.7525061234827346, 0.9998303755784019], [-1.7525061234827344, 1.7830277824500032, 0.9998303755784019]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05841792797118078, 0.9998303755784019], [2.5, -0.058417927971181394, 0.9998303755784019], [2.5, 0.021582072028818605, 0.9998303755784019], [-2.5, 0.021582072028819215, 0.9998303755784019]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.72645923995508, -1.8090746659776582, 0.9998303755784019], [1.8090746659776586, 1.726459239955079, 0.9998303755784019], [1.752506123482735, 1.783027782450003, 0.9998303755784019], [-1.7830277824500036, -1.7525061234827344, 0.9998303755784019]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.05841792797118063, -2.5, 0.9998303755784019], [0.058417927971181546, 2.5, 0.9998303755784019], [-0.021582072028818452, 2.5, 0.9998303755784019], [-0.021582072028819368, -2.5, 0.9998303755784019]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.809074665977658, -1.72645923995508, 0.9998303755784019], [-1.7264592399550789, 1.8090746659776586, 0.9998303755784019], [-1.7830277824500027, 1.752506123482735, 0.9998303755784019], [1.7525061234827342, -1.7830277824500036, 0.9998303755784019]]}], (1,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.058802645528938366, 0.9998232146340237], [-2.5, 0.058802645528938366, 0.9998232146340237], [-2.5, -0.02119735447106164, 0.9998232146340237], [2.5, -0.02119735447106164, 0.9998232146340237]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7261872035611476, 1.8093467023715901, 0.9998232146340237], [-1.8093467023715901, -1.7261872035611476, 0.9998232146340237], [-1.7527781598766663, -1.7827557460560715, 0.9998232146340237], [1.7827557460560715, 1.7527781598766663, 0.9998232146340237]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.05880264552893821, 2.5, 0.9998232146340237], [-0.05880264552893852, -2.5, 0.9998232146340237], [0.021197354471061487, -2.5, 0.9998232146340237], [0.021197354471061792, 2.5, 0.9998232146340237]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.80934670237159, 1.7261872035611479, 0.9998232146340237], [1.7261872035611474, -1.80934670237159, 0.9998232146340237], [1.7827557460560712, -1.7527781598766663, 0.9998232146340237], [-1.752778159876666, 1.7827557460560715, 0.9998232146340237]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05880264552893806, 0.9998232146340237], [2.5, -0.05880264552893867, 0.9998232146340237], [2.5, 0.021197354471061334, 0.9998232146340237], [-2.5, 0.021197354471061945, 0.9998232146340237]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.7261872035611483, -1.80934670237159, 0.9998232146340237], [1.8093467023715903, 1.7261872035611474, 0.9998232146340237], [1.7527781598766667, 1.7827557460560712, 0.9998232146340237], [-1.782755746056072, -1.752778159876666, 0.9998232146340237]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.05880264552893791, -2.5, 0.9998232146340237], [0.058802645528938824, 2.5, 0.9998232146340237], [-0.02119735447106118, 2.5, 0.9998232146340237], [-0.021197354471062097, -2.5, 0.9998232146340237]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.8093467023715897, -1.7261872035611483, 0.9998232146340237], [-1.7261872035611472, 1.8093467023715903, 0.9998232146340237], [-1.782755746056071, 1.7527781598766667, 0.9998232146340237], [1.7527781598766659, -1.782755746056072, 0.9998232146340237]]}], (2,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.059203775061591614, 0.9998155905082615], [-2.5, 0.059203775061591614, 0.9998155905082615], [-2.5, -0.020796224938408388, 0.9998155905082615], [2.5, -0.020796224938408388, 0.9998155905082615]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7259035621484744, 1.8096303437842634, 0.9998155905082615], [-1.8096303437842634, -1.7259035621484744, 0.9998155905082615], [-1.7530618012893395, -1.7824721046433982, 0.9998155905082615], [1.7824721046433982, 1.7530618012893395, 0.9998155905082615]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.05920377506159146, 2.5, 0.9998155905082615], [-0.05920377506159177, -2.5, 0.9998155905082615], [0.020796224938408235, -2.5, 0.9998155905082615], [0.02079622493840854, 2.5, 0.9998155905082615]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8096303437842631, 1.7259035621484744, 0.9998155905082615], [1.7259035621484742, -1.8096303437842634, 0.9998155905082615], [1.782472104643398, -1.7530618012893395, 0.9998155905082615], [-1.7530618012893393, 1.7824721046433982, 0.9998155905082615]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05920377506159131, 0.9998155905082615], [2.5, -0.05920377506159192, 0.9998155905082615], [2.5, 0.020796224938408082, 0.9998155905082615], [-2.5, 0.020796224938408693, 0.9998155905082615]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.7259035621484748, -1.8096303437842631, 0.9998155905082615], [1.8096303437842638, 1.7259035621484742, 0.9998155905082615], [1.75306180128934, 1.782472104643398, 0.9998155905082615], [-1.7824721046433987, -1.7530618012893393, 0.9998155905082615]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.059203775061591156, -2.5, 0.9998155905082615], [0.05920377506159207, 2.5, 0.9998155905082615], [-0.02079622493840793, 2.5, 0.9998155905082615], [-0.020796224938408846, -2.5, 0.9998155905082615]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.809630343784263, -1.7259035621484748, 0.9998155905082615], [-1.725903562148474, 1.8096303437842638, 0.9998155905082615], [-1.7824721046433978, 1.75306180128934, 0.9998155905082615], [1.753061801289339, -1.7824721046433987, 0.9998155905082615]]}], (3,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.059622389448595076, 0.9998074623807964], [-2.5, 0.059622389448595076, 0.9998074623807964], [-2.5, -0.020377610551404926, 0.9998074623807964], [2.5, -0.020377610551404926, 0.9998074623807964]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.725607557076722, 1.8099263488560158, 0.9998074623807964], [-1.8099263488560158, -1.725607557076722, 0.9998074623807964], [-1.753357806361092, -1.7821760995716458, 0.9998074623807964], [1.7821760995716458, 1.753357806361092, 0.9998074623807964]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.05962238944859492, 2.5, 0.9998074623807964], [-0.05962238944859523, -2.5, 0.9998074623807964], [0.020377610551404773, -2.5, 0.9998074623807964], [0.02037761055140508, 2.5, 0.9998074623807964]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8099263488560156, 1.725607557076722, 0.9998074623807964], [1.7256075570767218, -1.8099263488560158, 0.9998074623807964], [1.7821760995716456, -1.753357806361092, 0.9998074623807964], [-1.7533578063610917, 1.7821760995716458, 0.9998074623807964]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05962238944859477, 0.9998074623807964], [2.5, -0.05962238944859538, 0.9998074623807964], [2.5, 0.02037761055140462, 0.9998074623807964], [-2.5, 0.02037761055140523, 0.9998074623807964]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.7256075570767224, -1.8099263488560156, 0.9998074623807964], [1.8099263488560162, 1.7256075570767218, 0.9998074623807964], [1.7533578063610924, 1.7821760995716456, 0.9998074623807964], [-1.7821760995716462, -1.7533578063610917, 0.9998074623807964]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.05962238944859462, -2.5, 0.9998074623807964], [0.059622389448595534, 2.5, 0.9998074623807964], [-0.020377610551404468, 2.5, 0.9998074623807964], [-0.020377610551405384, -2.5, 0.9998074623807964]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.8099263488560153, -1.7256075570767224, 0.9998074623807964], [-1.7256075570767215, 1.8099263488560162, 0.9998074623807964], [-1.7821760995716454, 1.7533578063610924, 0.9998074623807964], [1.7533578063610915, -1.7821760995716462, 0.9998074623807964]]}], (4,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06005965714793894, 0.999798784833782], [-2.5, 0.06005965714793894, 0.999798784833782], [-2.5, -0.01994034285206106, 0.999798784833782], [2.5, -0.01994034285206106, 0.999798784833782]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7252983621213223, 1.8102355438114155, 0.999798784833782], [-1.8102355438114155, -1.7252983621213223, 0.999798784833782], [-1.753667001316492, -1.7818669046162459, 0.999798784833782], [1.7818669046162459, 1.753667001316492, 0.999798784833782]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.06005965714793879, 2.5, 0.999798784833782], [-0.060059657147939094, -2.5, 0.999798784833782], [0.019940342852060908, -2.5, 0.999798784833782], [0.019940342852061213, 2.5, 0.999798784833782]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8102355438114155, 1.7252983621213223, 0.999798784833782], [1.7252983621213218, -1.8102355438114155, 0.999798784833782], [1.7818669046162456, -1.753667001316492, 0.999798784833782], [-1.7536670013164917, 1.7818669046162459, 0.999798784833782]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.060059657147938636, 0.999798784833782], [2.5, -0.06005965714793925, 0.999798784833782], [2.5, 0.019940342852060755, 0.999798784833782], [-2.5, 0.019940342852061366, 0.999798784833782]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.7252983621213227, -1.8102355438114155, 0.999798784833782], [1.810235543811416, 1.7252983621213218, 0.999798784833782], [1.7536670013164923, 1.7818669046162456, 0.999798784833782], [-1.7818669046162463, -1.7536670013164917, 0.999798784833782]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.06005965714793848, -2.5, 0.999798784833782], [0.0600596571479394, 2.5, 0.999798784833782], [-0.019940342852060602, 2.5, 0.999798784833782], [-0.01994034285206152, -2.5, 0.999798784833782]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.8102355438114153, -1.7252983621213227, 0.999798784833782], [-1.7252983621213216, 1.810235543811416, 0.999798784833782], [-1.7818669046162454, 1.7536670013164923, 0.999798784833782], [1.7536670013164914, -1.7818669046162463, 0.999798784833782]]}], (5,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06051685307968195, 0.9997895072162474], [-2.5, 0.06051685307968195, 0.9997895072162474], [-2.5, -0.019483146920318047, 0.9997895072162474], [2.5, -0.019483146920318047, 0.9997895072162474]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7249750757776559, 1.810558830155082, 0.9997895072162474], [-1.810558830155082, -1.7249750757776559, 0.9997895072162474], [-1.753990287660158, -1.7815436182725797, 0.9997895072162474], [1.7815436182725797, 1.753990287660158, 0.9997895072162474]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.0605168530796818, 2.5, 0.9997895072162474], [-0.060516853079682104, -2.5, 0.9997895072162474], [0.019483146920317895, -2.5, 0.9997895072162474], [0.0194831469203182, 2.5, 0.9997895072162474]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8105588301550817, 1.7249750757776559, 0.9997895072162474], [1.7249750757776556, -1.810558830155082, 0.9997895072162474], [1.7815436182725795, -1.7539902876601583, 0.9997895072162474], [-1.7539902876601579, 1.7815436182725795, 0.9997895072162474]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.060516853079681646, 0.9997895072162474], [2.5, -0.060516853079682256, 0.9997895072162474], [2.5, 0.019483146920317742, 0.9997895072162474], [-2.5, 0.019483146920318353, 0.9997895072162474]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.7249750757776563, -1.8105588301550817, 0.9997895072162474], [1.8105588301550823, 1.7249750757776556, 0.9997895072162474], [1.7539902876601587, 1.7815436182725795, 0.9997895072162474], [-1.78154361827258, -1.7539902876601579, 0.9997895072162474]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.06051685307968149, -2.5, 0.9997895072162474], [0.06051685307968241, 2.5, 0.9997895072162474], [-0.01948314692031759, 2.5, 0.9997895072162474], [-0.019483146920318505, -2.5, 0.9997895072162474]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.8105588301550815, -1.7249750757776563, 0.9997895072162474], [-1.7249750757776554, 1.8105588301550823, 0.9997895072162474], [-1.7815436182725792, 1.7539902876601587, 0.9997895072162474], [1.7539902876601576, -1.78154361827258, 0.9997895072162474]]}], (6,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06099537103097526, 0.9997795729035834], [-2.5, 0.06099537103097526, 0.9997795729035834], [-2.5, -0.019004628969024745, 0.9997795729035834], [2.5, -0.019004628969024745, 0.9997795729035834]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7246367124893767, 1.810897193443361, 0.9997795729035834], [-1.810897193443361, -1.7246367124893767, 0.9997795729035834], [-1.7543286509484373, -1.7812052549843005, 0.9997795729035834], [1.7812052549843005, 1.7543286509484373, 0.9997795729035834]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.060995371030975104, 2.5, 0.9997795729035834], [-0.06099537103097541, -2.5, 0.9997795729035834], [0.019004628969024592, -2.5, 0.9997795729035834], [0.019004628969024898, 2.5, 0.9997795729035834]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8108971934433609, 1.7246367124893767, 0.9997795729035834], [1.7246367124893764, -1.810897193443361, 0.9997795729035834], [1.7812052549843003, -1.7543286509484373, 0.9997795729035834], [-1.754328650948437, 1.7812052549843005, 0.9997795729035834]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06099537103097495, 0.9997795729035834], [2.5, -0.06099537103097556, 0.9997795729035834], [2.5, 0.01900462896902444, 0.9997795729035834], [-2.5, 0.01900462896902505, 0.9997795729035834]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.724636712489377, -1.8108971934433609, 0.9997795729035834], [1.8108971934433615, 1.7246367124893764, 0.9997795729035834], [1.7543286509484377, 1.7812052549843003, 0.9997795729035834], [-1.781205254984301, -1.754328650948437, 0.9997795729035834]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.0609953710309748, -2.5, 0.9997795729035834], [0.060995371030975715, 2.5, 0.9997795729035834], [-0.019004628969024287, 2.5, 0.9997795729035834], [-0.019004628969025203, -2.5, 0.9997795729035834]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.8108971934433606, -1.7246367124893773, 0.9997795729035834], [-1.7246367124893762, 1.8108971934433613, 0.9997795729035834], [-1.7812052549843, 1.7543286509484377, 0.9997795729035834], [1.7543286509484368, -1.781205254984301, 0.9997795729035834]]}], (7,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.0614967378365892, 0.999768918431847], [-2.5, 0.0614967378365892, 0.999768918431847], [-2.5, -0.0185032621634108, 0.999768918431847], [2.5, -0.0185032621634108, 0.999768918431847]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7242821926212653, 1.8112517133114725, 0.999768918431847], [-1.8112517133114725, -1.7242821926212653, 0.999768918431847], [-1.7546831708165487, -1.780850735116189, 0.999768918431847], [1.780850735116189, 1.7546831708165487, 0.999768918431847]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.06149673783658905, 2.5, 0.999768918431847], [-0.061496737836589356, -2.5, 0.999768918431847], [0.018503262163410646, -2.5, 0.999768918431847], [0.01850326216341095, 2.5, 0.999768918431847]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8112517133114723, 1.7242821926212653, 0.999768918431847], [1.724282192621265, -1.8112517133114725, 0.999768918431847], [1.7808507351161889, -1.7546831708165487, 0.999768918431847], [-1.7546831708165485, 1.780850735116189, 0.999768918431847]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.0614967378365889, 0.999768918431847], [2.5, -0.06149673783658951, 0.999768918431847], [2.5, 0.018503262163410493, 0.999768918431847], [-2.5, 0.018503262163411104, 0.999768918431847]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.7242821926212657, -1.8112517133114723, 0.999768918431847], [1.811251713311473, 1.724282192621265, 0.999768918431847], [1.7546831708165491, 1.7808507351161889, 0.999768918431847], [-1.7808507351161895, -1.7546831708165485, 0.999768918431847]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.061496737836588745, -2.5, 0.999768918431847], [0.06149673783658966, 2.5, 0.999768918431847], [-0.01850326216341034, 2.5, 0.999768918431847], [-0.018503262163411256, -2.5, 0.999768918431847]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.811251713311472, -1.7242821926212657, 0.999768918431847], [-1.7242821926212648, 1.811251713311473, 0.999768918431847], [-1.7808507351161886, 1.7546831708165491, 0.999768918431847], [1.7546831708165482, -1.7808507351161895, 0.999768918431847]]}], (8,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.062022629638591766, 0.9997574724821023], [-2.5, 0.062022629638591766, 0.9997574724821023], [-2.5, -0.017977370361408236, 0.9997574724821023], [2.5, -0.017977370361408236, 0.9997574724821023]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7239103309618988, 1.811623574970839, 0.9997574724821023], [-1.811623574970839, -1.7239103309618988, 0.9997574724821023], [-1.755055032475915, -1.7804788734568227, 0.9997574724821023], [1.7804788734568227, 1.755055032475915, 0.9997574724821023]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.06202262963859161, 2.5, 0.9997574724821023], [-0.06202262963859192, -2.5, 0.9997574724821023], [0.017977370361408083, -2.5, 0.9997574724821023], [0.01797737036140839, 2.5, 0.9997574724821023]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8116235749708387, 1.7239103309618988, 0.9997574724821023], [1.7239103309618986, -1.811623574970839, 0.9997574724821023], [1.7804788734568224, -1.755055032475915, 0.9997574724821023], [-1.7550550324759149, 1.7804788734568227, 0.9997574724821023]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06202262963859146, 0.9997574724821023], [2.5, -0.06202262963859207, 0.9997574724821023], [2.5, 0.01797737036140793, 0.9997574724821023], [-2.5, 0.01797737036140854, 0.9997574724821023]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.7239103309618993, -1.8116235749708387, 0.9997574724821023], [1.8116235749708394, 1.7239103309618986, 0.9997574724821023], [1.7550550324759155, 1.7804788734568224, 0.9997574724821023], [-1.780478873456823, -1.7550550324759149, 0.9997574724821023]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.06202262963859131, -2.5, 0.9997574724821023], [0.062022629638592223, 2.5, 0.9997574724821023], [-0.017977370361407778, 2.5, 0.9997574724821023], [-0.017977370361408694, -2.5, 0.9997574724821023]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.8116235749708385, -1.7239103309618993, 0.9997574724821023], [-1.7239103309618984, 1.8116235749708394, 0.9997574724821023], [-1.7804788734568222, 1.7550550324759155, 0.9997574724821023], [1.7550550324759147, -1.780478873456823, 0.9997574724821023]]}], (9,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06257489058964696, 0.9997451546843653], [-2.5, 0.06257489058964696, 0.9997451546843653], [-2.5, -0.01742510941035304, 0.9997451546843653], [2.5, -0.01742510941035304, 0.9997451546843653]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.7235198234984233, 1.8120140824343145, 0.9997451546843653], [-1.8120140824343145, -1.7235198234984233, 0.9997451546843653], [-1.7554455399393907, -1.780088365993347, 0.9997451546843653], [1.780088365993347, 1.7554455399393907, 0.9997451546843653]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-0.06257489058964681, 2.5, 0.9997451546843653], [-0.06257489058964712, -2.5, 0.9997451546843653], [0.017425109410352888, -2.5, 0.9997451546843653], [0.017425109410353194, 2.5, 0.9997451546843653]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.8120140824343143, 1.7235198234984233, 0.9997451546843653], [1.723519823498423, -1.8120140824343145, 0.9997451546843653], [1.7800883659933469, -1.7554455399393907, 0.9997451546843653], [-1.7554455399393905, 1.780088365993347, 0.9997451546843653]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06257489058964666, 0.9997451546843653], [2.5, -0.06257489058964727, 0.9997451546843653], [2.5, 0.017425109410352736, 0.9997451546843653], [-2.5, 0.017425109410353346, 0.9997451546843653]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-1.7235198234984237, -1.8120140824343143, 0.9997451546843653], [1.812014082434315, 1.723519823498423, 0.9997451546843653], [1.7554455399393911, 1.7800883659933469, 0.9997451546843653], [-1.7800883659933475, -1.7554455399393905, 0.9997451546843653]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[0.0625748905896465, -2.5, 0.9997451546843653], [0.06257489058964742, 2.5, 0.9997451546843653], [-0.017425109410352583, 2.5, 0.9997451546843653], [-0.0174251094103535, -2.5, 0.9997451546843653]]}, {'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[1.812014082434314, -1.7235198234984237, 0.9997451546843653], [-1.7235198234984228, 1.812014082434315, 0.9997451546843653], [-1.7800883659933466, 1.7554455399393911, 0.9997451546843653], [1.7554455399393902, -1.7800883659933475, 0.9997451546843653]]}]})
+- Geometry: [[{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.05841792797118109, 0.9998303755784019], [-2.5, 0.05841792797118109, 0.9998303755784019], [-2.5, -0.02158207202881891, 0.9998303755784019], [2.5, -0.02158207202881891, 0.9998303755784019]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.058802645528938366, 0.9998232146340237], [-2.5, 0.058802645528938366, 0.9998232146340237], [-2.5, -0.02119735447106164, 0.9998232146340237], [2.5, -0.02119735447106164, 0.9998232146340237]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.059203775061591614, 0.9998155905082615], [-2.5, 0.059203775061591614, 0.9998155905082615], [-2.5, -0.020796224938408388, 0.9998155905082615], [2.5, -0.020796224938408388, 0.9998155905082615]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.059622389448595076, 0.9998074623807964], [-2.5, 0.059622389448595076, 0.9998074623807964], [-2.5, -0.020377610551404926, 0.9998074623807964], [2.5, -0.020377610551404926, 0.9998074623807964]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06005965714793894, 0.999798784833782], [-2.5, 0.06005965714793894, 0.999798784833782], [-2.5, -0.01994034285206106, 0.999798784833782], [2.5, -0.01994034285206106, 0.999798784833782]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06051685307968195, 0.9997895072162474], [-2.5, 0.06051685307968195, 0.9997895072162474], [-2.5, -0.019483146920318047, 0.9997895072162474], [2.5, -0.019483146920318047, 0.9997895072162474]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06099537103097526, 0.9997795729035834], [-2.5, 0.06099537103097526, 0.9997795729035834], [-2.5, -0.019004628969024745, 0.9997795729035834], [2.5, -0.019004628969024745, 0.9997795729035834]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.0614967378365892, 0.999768918431847], [-2.5, 0.0614967378365892, 0.999768918431847], [-2.5, -0.0185032621634108, 0.999768918431847], [2.5, -0.0185032621634108, 0.999768918431847]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.062022629638591766, 0.9997574724821023], [-2.5, 0.062022629638591766, 0.9997574724821023], [-2.5, -0.017977370361408236, 0.9997574724821023], [2.5, -0.017977370361408236, 0.9997574724821023]]}], [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[2.5, 0.06257489058964696, 0.9997451546843653], [-2.5, 0.06257489058964696, 0.9997451546843653], [-2.5, -0.01742510941035304, 0.9997451546843653], [2.5, -0.01742510941035304, 0.9997451546843653]]}]]
 
-## Component 27933633...
-**Nickname:** LI
-**Type:** List Item
-
-- Item: DataTree({(0,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05841792797118078, 0.9998303755784019], [2.5, -0.058417927971181394, 0.9998303755784019], [2.5, 0.021582072028818605, 0.9998303755784019], [-2.5, 0.021582072028819215, 0.9998303755784019]]}], (1,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05880264552893806, 0.9998232146340237], [2.5, -0.05880264552893867, 0.9998232146340237], [2.5, 0.021197354471061334, 0.9998232146340237], [-2.5, 0.021197354471061945, 0.9998232146340237]]}], (2,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05920377506159131, 0.9998155905082615], [2.5, -0.05920377506159192, 0.9998155905082615], [2.5, 0.020796224938408082, 0.9998155905082615], [-2.5, 0.020796224938408693, 0.9998155905082615]]}], (3,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05962238944859477, 0.9998074623807964], [2.5, -0.05962238944859538, 0.9998074623807964], [2.5, 0.02037761055140462, 0.9998074623807964], [-2.5, 0.02037761055140523, 0.9998074623807964]]}], (4,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.060059657147938636, 0.999798784833782], [2.5, -0.06005965714793925, 0.999798784833782], [2.5, 0.019940342852060755, 0.999798784833782], [-2.5, 0.019940342852061366, 0.999798784833782]]}], (5,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.060516853079681646, 0.9997895072162474], [2.5, -0.060516853079682256, 0.9997895072162474], [2.5, 0.019483146920317742, 0.9997895072162474], [-2.5, 0.019483146920318353, 0.9997895072162474]]}], (6,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06099537103097495, 0.9997795729035834], [2.5, -0.06099537103097556, 0.9997795729035834], [2.5, 0.01900462896902444, 0.9997795729035834], [-2.5, 0.01900462896902505, 0.9997795729035834]]}], (7,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.0614967378365889, 0.999768918431847], [2.5, -0.06149673783658951, 0.999768918431847], [2.5, 0.018503262163410493, 0.999768918431847], [-2.5, 0.018503262163411104, 0.999768918431847]]}], (8,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06202262963859146, 0.9997574724821023], [2.5, -0.06202262963859207, 0.9997574724821023], [2.5, 0.01797737036140793, 0.9997574724821023], [-2.5, 0.01797737036140854, 0.9997574724821023]]}], (9,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06257489058964666, 0.9997451546843653], [2.5, -0.06257489058964727, 0.9997451546843653], [2.5, 0.017425109410352736, 0.9997451546843653], [-2.5, 0.017425109410353346, 0.9997451546843653]]}]})
-
-## Component 16022012...
+## Component 3bd2c1d3...
 **Nickname:** Area
 **Type:** Area
 
 - Area: 0.0
 - Centroid: [0.0, 0.0, 0.0]
 
-## Component f54babb4...
-**Nickname:** Amplitude
-**Type:** Amplitude
-
-- Vector: [0.0, 0.0, 0.0]
-
-## Component 0532cbdf...
-**Nickname:** Slats original
-**Type:** Move
-
-- Geometry: DataTree({(0,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.05841792797118109, 0.9998303755784019], 'corner2': [-2.5, 0.05841792797118109, 0.9998303755784019], 'corner3': [-2.5, -0.02158207202881891, 0.9998303755784019], 'corner4': [2.5, -0.02158207202881891, 0.9998303755784019], 'pointA': [2.5, 0.05841792797118109, 0.9998303755784019], 'pointB': [-2.5, -0.02158207202881891, 0.9998303755784019], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05841792797118078, 0.9998303755784019], [2.5, -0.058417927971181394, 0.9998303755784019], [2.5, 0.021582072028818605, 0.9998303755784019], [-2.5, 0.021582072028819215, 0.9998303755784019]]}], (1,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.058802645528938366, 0.9998232146340237], 'corner2': [-2.5, 0.058802645528938366, 0.9998232146340237], 'corner3': [-2.5, -0.02119735447106164, 0.9998232146340237], 'corner4': [2.5, -0.02119735447106164, 0.9998232146340237], 'pointA': [2.5, 0.058802645528938366, 0.9998232146340237], 'pointB': [-2.5, -0.02119735447106164, 0.9998232146340237], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05880264552893806, 0.9998232146340237], [2.5, -0.05880264552893867, 0.9998232146340237], [2.5, 0.021197354471061334, 0.9998232146340237], [-2.5, 0.021197354471061945, 0.9998232146340237]]}], (2,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059203775061591614, 0.9998155905082615], 'corner2': [-2.5, 0.059203775061591614, 0.9998155905082615], 'corner3': [-2.5, -0.020796224938408388, 0.9998155905082615], 'corner4': [2.5, -0.020796224938408388, 0.9998155905082615], 'pointA': [2.5, 0.059203775061591614, 0.9998155905082615], 'pointB': [-2.5, -0.020796224938408388, 0.9998155905082615], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05920377506159131, 0.9998155905082615], [2.5, -0.05920377506159192, 0.9998155905082615], [2.5, 0.020796224938408082, 0.9998155905082615], [-2.5, 0.020796224938408693, 0.9998155905082615]]}], (3,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.059622389448595076, 0.9998074623807964], 'corner2': [-2.5, 0.059622389448595076, 0.9998074623807964], 'corner3': [-2.5, -0.020377610551404926, 0.9998074623807964], 'corner4': [2.5, -0.020377610551404926, 0.9998074623807964], 'pointA': [2.5, 0.059622389448595076, 0.9998074623807964], 'pointB': [-2.5, -0.020377610551404926, 0.9998074623807964], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.05962238944859477, 0.9998074623807964], [2.5, -0.05962238944859538, 0.9998074623807964], [2.5, 0.02037761055140462, 0.9998074623807964], [-2.5, 0.02037761055140523, 0.9998074623807964]]}], (4,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06005965714793894, 0.999798784833782], 'corner2': [-2.5, 0.06005965714793894, 0.999798784833782], 'corner3': [-2.5, -0.01994034285206106, 0.999798784833782], 'corner4': [2.5, -0.01994034285206106, 0.999798784833782], 'pointA': [2.5, 0.06005965714793894, 0.999798784833782], 'pointB': [-2.5, -0.01994034285206106, 0.999798784833782], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.060059657147938636, 0.999798784833782], [2.5, -0.06005965714793925, 0.999798784833782], [2.5, 0.019940342852060755, 0.999798784833782], [-2.5, 0.019940342852061366, 0.999798784833782]]}], (5,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06051685307968195, 0.9997895072162474], 'corner2': [-2.5, 0.06051685307968195, 0.9997895072162474], 'corner3': [-2.5, -0.019483146920318047, 0.9997895072162474], 'corner4': [2.5, -0.019483146920318047, 0.9997895072162474], 'pointA': [2.5, 0.06051685307968195, 0.9997895072162474], 'pointB': [-2.5, -0.019483146920318047, 0.9997895072162474], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.060516853079681646, 0.9997895072162474], [2.5, -0.060516853079682256, 0.9997895072162474], [2.5, 0.019483146920317742, 0.9997895072162474], [-2.5, 0.019483146920318353, 0.9997895072162474]]}], (6,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06099537103097526, 0.9997795729035834], 'corner2': [-2.5, 0.06099537103097526, 0.9997795729035834], 'corner3': [-2.5, -0.019004628969024745, 0.9997795729035834], 'corner4': [2.5, -0.019004628969024745, 0.9997795729035834], 'pointA': [2.5, 0.06099537103097526, 0.9997795729035834], 'pointB': [-2.5, -0.019004628969024745, 0.9997795729035834], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06099537103097495, 0.9997795729035834], [2.5, -0.06099537103097556, 0.9997795729035834], [2.5, 0.01900462896902444, 0.9997795729035834], [-2.5, 0.01900462896902505, 0.9997795729035834]]}], (7,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.0614967378365892, 0.999768918431847], 'corner2': [-2.5, 0.0614967378365892, 0.999768918431847], 'corner3': [-2.5, -0.0185032621634108, 0.999768918431847], 'corner4': [2.5, -0.0185032621634108, 0.999768918431847], 'pointA': [2.5, 0.0614967378365892, 0.999768918431847], 'pointB': [-2.5, -0.0185032621634108, 0.999768918431847], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.0614967378365889, 0.999768918431847], [2.5, -0.06149673783658951, 0.999768918431847], [2.5, 0.018503262163410493, 0.999768918431847], [-2.5, 0.018503262163411104, 0.999768918431847]]}], (8,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.062022629638591766, 0.9997574724821023], 'corner2': [-2.5, 0.062022629638591766, 0.9997574724821023], 'corner3': [-2.5, -0.017977370361408236, 0.9997574724821023], 'corner4': [2.5, -0.017977370361408236, 0.9997574724821023], 'pointA': [2.5, 0.062022629638591766, 0.9997574724821023], 'pointB': [-2.5, -0.017977370361408236, 0.9997574724821023], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06202262963859146, 0.9997574724821023], [2.5, -0.06202262963859207, 0.9997574724821023], [2.5, 0.01797737036140793, 0.9997574724821023], [-2.5, 0.01797737036140854, 0.9997574724821023]]}], (9,): [{'type': 'rectangle', 'plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}, 'corner1': [2.5, 0.06257489058964696, 0.9997451546843653], 'corner2': [-2.5, 0.06257489058964696, 0.9997451546843653], 'corner3': [-2.5, -0.01742510941035304, 0.9997451546843653], 'corner4': [2.5, -0.01742510941035304, 0.9997451546843653], 'pointA': [2.5, 0.06257489058964696, 0.9997451546843653], 'pointB': [-2.5, -0.01742510941035304, 0.9997451546843653], 'width': 5.0, 'height': 0.08, 'radius': 0, 'area': 0.4, 'corners': [[-2.5, -0.06257489058964666, 0.9997451546843653], [2.5, -0.06257489058964727, 0.9997451546843653], [2.5, 0.017425109410352736, 0.9997451546843653], [-2.5, 0.017425109410353346, 0.9997451546843653]]}]})
-- Transform: {'type': 'translation', 'motion': [0.0, 0.0, 0.0], 'translation': [0.0, 0.0, 0.0]}
-
-## Component 3bd2c1d3...
-**Nickname:** Area
-**Type:** Area
-
-- Area: DataTree({(0,): [0.4], (1,): [0.4], (2,): [0.4], (3,): [0.4], (4,): [0.4], (5,): [0.4], (6,): [0.4], (7,): [0.4], (8,): [0.4], (9,): [0.4]})
-- Centroid: DataTree({(0,): [[0.0, -0.018417927971181088, 0.9998303755784019]], (1,): [[0.0, -0.018802645528938365, 0.9998232146340237]], (2,): [[0.0, -0.019203775061591613, 0.9998155905082615]], (3,): [[0.0, -0.019622389448595075, 0.9998074623807964]], (4,): [[0.0, -0.02005965714793894, 0.999798784833782]], (5,): [[0.0, -0.02051685307968195, 0.9997895072162474]], (6,): [[0.0, -0.020995371030975256, 0.9997795729035834]], (7,): [[0.0, -0.021496737836589203, 0.999768918431847]], (8,): [[0.0, -0.022022629638591765, 0.9997574724821023]], (9,): [[0.0, -0.022574890589646963, 0.9997451546843653]]})
-
-## Component 003162a4...
-**Nickname:** -
-**Type:** Negative
-
-- Result: -4.5
-
-## Component 57648120...
-**Nickname:** Target point
+## Component 9754db2b...
+**Nickname:** Construct Point
 **Type:** Construct Point
 
-- Point: [0.0, -4.5, 4.0]
+- Point: [0.0, 4.5, 4.0]
 
 ## Component a7644f3e...
 **Nickname:** -
@@ -276,43 +878,36 @@
 
 - Result: [0.0, 0.3888888888888889, 0.7777777777777778, 1.1666666666666667, 1.5555555555555556, 1.9444444444444444, 2.3333333333333335, 2.7222222222222223, 3.111111111111111, 3.5]
 
-## Component 0402692e...
+## Component ebcd02a2...
+**Nickname:** Negative
+**Type:** Negative
+
+- Result: [0.0, -0.3888888888888889, -0.7777777777777778, -1.1666666666666667, -1.5555555555555556, -1.9444444444444444, -2.3333333333333335, -2.7222222222222223, -3.111111111111111, -3.5]
+
+## Component af7efbe5...
 **Nickname:** Unit Y
 **Type:** Unit Y
 
-- Vector: [[0.0, 0.0, 0.0], [0.0, 0.3888888888888889, 0.0], [0.0, 0.7777777777777778, 0.0], [0.0, 1.1666666666666667, 0.0], [0.0, 1.5555555555555556, 0.0], [0.0, 1.9444444444444444, 0.0], [0.0, 2.3333333333333335, 0.0], [0.0, 2.7222222222222223, 0.0], [0.0, 3.111111111111111, 0.0], [0.0, 3.5, 0.0]]
+- Vector: [[0.0, 0.0, 0.0], [0.0, -0.3888888888888889, 0.0], [0.0, -0.7777777777777778, 0.0], [0.0, -1.1666666666666667, 0.0], [0.0, -1.5555555555555556, 0.0], [0.0, -1.9444444444444444, 0.0], [0.0, -2.3333333333333335, 0.0], [0.0, -2.7222222222222223, 0.0], [0.0, -3.111111111111111, 0.0], [0.0, -3.5, 0.0]]
 
-## Component 9f3f4672...
-**Nickname:** Targets
+## Component c2ab4791...
+**Nickname:** Move
 **Type:** Move
 
-- Geometry: [[0.0, -4.5, 4.0], [0.0, -4.111111111111111, 4.0], [0.0, -3.7222222222222223, 4.0], [0.0, -3.333333333333333, 4.0], [0.0, -2.9444444444444446, 4.0], [0.0, -2.5555555555555554, 4.0], [0.0, -2.1666666666666665, 4.0], [0.0, -1.7777777777777777, 4.0], [0.0, -1.3888888888888888, 4.0], [0.0, -1.0, 4.0]]
-- Transform: {'type': 'translation', 'motion': [[0.0, 0.0, 0.0], [0.0, 0.3888888888888889, 0.0], [0.0, 0.7777777777777778, 0.0], [0.0, 1.1666666666666667, 0.0], [0.0, 1.5555555555555556, 0.0], [0.0, 1.9444444444444444, 0.0], [0.0, 2.3333333333333335, 0.0], [0.0, 2.7222222222222223, 0.0], [0.0, 3.111111111111111, 0.0], [0.0, 3.5, 0.0]], 'translation': [[0.0, 0.0, 0.0], [0.0, 0.3888888888888889, 0.0], [0.0, 0.7777777777777778, 0.0], [0.0, 1.1666666666666667, 0.0], [0.0, 1.5555555555555556, 0.0], [0.0, 1.9444444444444444, 0.0], [0.0, 2.3333333333333335, 0.0], [0.0, 2.7222222222222223, 0.0], [0.0, 3.111111111111111, 0.0], [0.0, 3.5, 0.0]]}
+- Geometry: [[0.0, 4.5, 4.0], [0.0, 4.111111111111111, 4.0], [0.0, 3.7222222222222223, 4.0], [0.0, 3.333333333333333, 4.0], [0.0, 2.9444444444444446, 4.0], [0.0, 2.5555555555555554, 4.0], [0.0, 2.1666666666666665, 4.0], [0.0, 1.7777777777777777, 4.0], [0.0, 1.3888888888888888, 4.0], [0.0, 1.0, 4.0]]
+- Transform: {'type': 'translation', 'motion': [[0.0, 0.0, 0.0], [0.0, -0.3888888888888889, 0.0], [0.0, -0.7777777777777778, 0.0], [0.0, -1.1666666666666667, 0.0], [0.0, -1.5555555555555556, 0.0], [0.0, -1.9444444444444444, 0.0], [0.0, -2.3333333333333335, 0.0], [0.0, -2.7222222222222223, 0.0], [0.0, -3.111111111111111, 0.0], [0.0, -3.5, 0.0]], 'translation': [[0.0, 0.0, 0.0], [0.0, -0.3888888888888889, 0.0], [0.0, -0.7777777777777778, 0.0], [0.0, -1.1666666666666667, 0.0], [0.0, -1.5555555555555556, 0.0], [0.0, -1.9444444444444444, 0.0], [0.0, -2.3333333333333335, 0.0], [0.0, -2.7222222222222223, 0.0], [0.0, -3.111111111111111, 0.0], [0.0, -3.5, 0.0]]}
 
-## Component b4a4862a...
-**Nickname:** PA
-**Type:** Polar Array
+## Component 464c66b3...
+**Nickname:** Rotate
+**Type:** Rotate
 
-- Geometry: [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0], [4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0]]
-
-## Component f03b9ab7...
-**Nickname:** LI
-**Type:** List Item
-
-- Item: [[0.0], [-1.0], [4.0]]
-
-## Component b38a38f1...
-**Nickname:** Targets
-**Type:** Move
-
-- Geometry: [[0.0], [-1.0], [4.0]]
-- Transform: {'type': 'translation', 'motion': [0.0, 0.0, 0.0], 'translation': [0.0, 0.0, 0.0]}
+- Geometry: [[0.0, 4.5, 4.0], [0.0, 4.111111111111111, 4.0], [0.0, 3.7222222222222223, 4.0], [0.0, 3.333333333333333, 4.0], [0.0, 2.9444444444444446, 4.0], [0.0, 2.5555555555555554, 4.0], [0.0, 2.1666666666666665, 4.0], [0.0, 1.7777777777777777, 4.0], [0.0, 1.3888888888888888, 4.0], [0.0, 1.0, 4.0]]
 
 ## Component ef803855...
 **Nickname:** PolyLine
 **Type:** PolyLine
 
-- points: [[0.0], [-1.0], [4.0]]
+- points: [[0.0, 4.5, 4.0], [0.0, 4.111111111111111, 4.0], [0.0, 3.7222222222222223, 4.0], [0.0, 3.333333333333333, 4.0], [0.0, 2.9444444444444446, 4.0], [0.0, 2.5555555555555554, 4.0], [0.0, 2.1666666666666665, 4.0], [0.0, 1.7777777777777777, 4.0], [0.0, 1.3888888888888888, 4.0], [0.0, 1.0, 4.0]]
 - closed: False
 
 ## Component 326da981...
@@ -325,13 +920,13 @@
 **Nickname:** List Item
 **Type:** List Item
 
-- Item: [[0.0], [0.0], [1.0]]
+- Item: [[0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0]]
 
 ## Component c7dba531...
 **Nickname:** In Ray
 **Type:** Line
 
-- Line: [{'start': [0.0, -0.018417927971181088, 0.9998303755784019], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.018417927971181088, -0.9998303755784019], 'length': 0.9999999999999999}, {'start': [0.0, -0.018802645528938365, 0.9998232146340237], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.018802645528938365, -0.9998232146340237], 'length': 0.9999999999999999}, {'start': [0.0, -0.019203775061591613, 0.9998155905082615], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.019203775061591613, -0.9998155905082615], 'length': 0.9999999999999999}]
+- Line: [{'start': [0.0, 0.0, 0.0], 'end': [0.0, 4.5, 4.0], 'direction': [0.0, 4.5, 4.0], 'length': 6.020797289396148}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 4.111111111111111, 4.0], 'direction': [0.0, 4.111111111111111, 4.0], 'length': 5.735959777395691}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 3.7222222222222223, 4.0], 'direction': [0.0, 3.7222222222222223, 4.0], 'length': 5.46396726487311}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 3.333333333333333, 4.0], 'direction': [0.0, 3.333333333333333, 4.0], 'length': 5.206833117271103}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 2.9444444444444446, 4.0], 'direction': [0.0, 2.9444444444444446, 4.0], 'length': 4.966865519260589}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 2.5555555555555554, 4.0], 'direction': [0.0, 2.5555555555555554, 4.0], 'length': 4.746668747398628}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 2.1666666666666665, 4.0], 'direction': [0.0, 2.1666666666666665, 4.0], 'length': 4.549114687985393}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 1.7777777777777777, 4.0], 'direction': [0.0, 1.7777777777777777, 4.0], 'length': 4.377270134131602}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 1.3888888888888888, 4.0], 'direction': [0.0, 1.3888888888888888, 4.0], 'length': 4.234266447175829}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 1.0, 4.0], 'direction': [0.0, 1.0, 4.0], 'length': 4.123105625617661}]
 
 ## Component c7b8773d...
 **Nickname:** DL
@@ -349,14 +944,14 @@
 **Nickname:** New Sun
 **Type:** Move
 
-- Geometry: DataTree({(0,): [[0.0, -0.018417927971181088, 0.9998303755784019]], (1,): [[0.0, -0.018802645528938365, 0.9998232146340237]], (2,): [[0.0, -0.019203775061591613, 0.9998155905082615]], (3,): [[0.0, -0.019622389448595075, 0.9998074623807964]], (4,): [[0.0, -0.02005965714793894, 0.999798784833782]], (5,): [[0.0, -0.02051685307968195, 0.9997895072162474]], (6,): [[0.0, -0.020995371030975256, 0.9997795729035834]], (7,): [[0.0, -0.021496737836589203, 0.999768918431847]], (8,): [[0.0, -0.022022629638591765, 0.9997574724821023]], (9,): [[0.0, -0.022574890589646963, 0.9997451546843653]]})
+- Geometry: [0.0, 0.0, 10.0]
 - Transform: {'type': 'translation', 'motion': [0.0, 0.0, 10.0], 'translation': [0.0, 0.0, 10.0]}
 
 ## Component 9a33273a...
 **Nickname:** Out Ray
 **Type:** Line
 
-- Line: [{'start': [0.0, -0.018417927971181088, 0.9998303755784019], 'end': [0.0, -0.018417927971181088, 0.9998303755784019], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.018802645528938365, 0.9998232146340237], 'end': [0.0, -0.018802645528938365, 0.9998232146340237], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.019203775061591613, 0.9998155905082615], 'end': [0.0, -0.019203775061591613, 0.9998155905082615], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.019622389448595075, 0.9998074623807964], 'end': [0.0, -0.019622389448595075, 0.9998074623807964], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.02005965714793894, 0.999798784833782], 'end': [0.0, -0.02005965714793894, 0.999798784833782], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.02051685307968195, 0.9997895072162474], 'end': [0.0, -0.02051685307968195, 0.9997895072162474], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.020995371030975256, 0.9997795729035834], 'end': [0.0, -0.020995371030975256, 0.9997795729035834], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.021496737836589203, 0.999768918431847], 'end': [0.0, -0.021496737836589203, 0.999768918431847], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.022022629638591765, 0.9997574724821023], 'end': [0.0, -0.022022629638591765, 0.9997574724821023], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, -0.022574890589646963, 0.9997451546843653], 'end': [0.0, -0.022574890589646963, 0.9997451546843653], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}]
+- Line: [{'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.018417927971181088, 0.9998303755784019], 'direction': [0.0, 0.018417927971181088, 0.9998303755784019], 'length': 0.9999999999999999}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.018802645528938365, 0.9998232146340237], 'direction': [0.0, 0.018802645528938365, 0.9998232146340237], 'length': 0.9999999999999999}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.019203775061591613, 0.9998155905082615], 'direction': [0.0, 0.019203775061591613, 0.9998155905082615], 'length': 0.9999999999999999}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.019622389448595075, 0.9998074623807964], 'direction': [0.0, 0.019622389448595075, 0.9998074623807964], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.02005965714793894, 0.999798784833782], 'direction': [0.0, 0.02005965714793894, 0.999798784833782], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.02051685307968195, 0.9997895072162474], 'direction': [0.0, 0.02051685307968195, 0.9997895072162474], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.020995371030975256, 0.9997795729035834], 'direction': [0.0, 0.020995371030975256, 0.9997795729035834], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.021496737836589203, 0.999768918431847], 'direction': [0.0, 0.021496737836589203, 0.999768918431847], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.022022629638591765, 0.9997574724821023], 'direction': [0.0, 0.022022629638591765, 0.9997574724821023], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.022574890589646963, 0.9997451546843653], 'direction': [0.0, 0.022574890589646963, 0.9997451546843653], 'length': 1.0}]
 
 ## Component 577ce3f3...
 **Nickname:** p1
@@ -382,50 +977,23 @@
 - min: [0.0, -2.0, -3.0]
 - max: [0.0, 3.0, 7.0]
 
-## Component d8f9c0ae...
-**Nickname:** Polar Array
-**Type:** Polar Array
+## Component 6991f781...
+**Nickname:** Rotate
+**Type:** Rotate
 
-- Geometry: [{'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0]}, {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0]}, {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0]}, {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0]}, {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0]}, {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0]}, {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0]}, {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0]}]
+- Geometry: {'type': 'box', 'corner1': [0.0, -2.0, 7.0], 'corner2': [0.0, 3.0, -3.0], 'vertices': [[0.0, -2.0, -3.0], [0.0, -2.0, -3.0], [0.0, 3.0, -3.0], [0.0, 3.0, -3.0], [0.0, -2.0, 7.0], [0.0, -2.0, 7.0], [0.0, 3.0, 7.0], [0.0, 3.0, 7.0]], 'faces': [{'name': 'right', 'vertices': [1, 5, 6, 2], 'normal': [1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'left', 'vertices': [3, 7, 4, 0], 'normal': [-1.0, 0.0, 0.0], 'u_range': [-2.0, 3.0], 'v_range': [-3.0, 7.0]}, {'name': 'front', 'vertices': [2, 6, 7, 3], 'normal': [0.0, 1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'back', 'vertices': [0, 4, 5, 1], 'normal': [0.0, -1.0, 0.0], 'u_range': [0.0, 0.0], 'v_range': [-3.0, 7.0]}, {'name': 'top', 'vertices': [4, 7, 6, 5], 'normal': [0.0, 0.0, 1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}, {'name': 'bottom', 'vertices': [0, 1, 2, 3], 'normal': [0.0, 0.0, -1.0], 'u_range': [0.0, 0.0], 'v_range': [-2.0, 3.0]}], 'min': [0.0, -2.0, -3.0], 'max': [0.0, 3.0, 7.0], 'rotation_angle': 0.0}
 
-## Component e5850abb...
-**Nickname:** LI
-**Type:** List Item
+## Component 1162b56a...
+**Nickname:** Rotate
+**Type:** Rotate
 
-- Item: [['box'], ['box'], ['box'], ['box'], ['box'], ['box'], ['box'], ['box']]
-
-## Component dfbbd4a2...
-**Nickname:** Box to project
-**Type:** Move
-
-- Geometry: DataTree({(0,): [['box']], (1,): [['box']], (2,): [['box']], (3,): [['box']], (4,): [['box']], (5,): [['box']], (6,): [['box']], (7,): [['box']]})
-- Transform: {'type': 'translation', 'motion': [0.0, 0.0, 0.0], 'translation': [0.0, 0.0, 0.0]}
-
-## Component 77f7eddb...
-**Nickname:** Area
-**Type:** Area
-
-- Area: DataTree({(0,): [0.0], (1,): [0.0], (2,): [0.0], (3,): [0.0], (4,): [0.0], (5,): [0.0], (6,): [0.0], (7,): [0.0]})
-- Centroid: DataTree({(0,): [[0.0, 0.0, 0.0]], (1,): [[0.0, 0.0, 0.0]], (2,): [[0.0, 0.0, 0.0]], (3,): [[0.0, 0.0, 0.0]], (4,): [[0.0, 0.0, 0.0]], (5,): [[0.0, 0.0, 0.0]], (6,): [[0.0, 0.0, 0.0]], (7,): [[0.0, 0.0, 0.0]]})
-
-## Component d8de94de...
-**Nickname:** Evaluate Surface
-**Type:** Evaluate Surface
-
-- point: [0.5, 0.5, 0.0]
-- normal: [0.0, 0.0, 1.0]
-
-## Component 09db66ec...
-**Nickname:** PN
-**Type:** Plane Normal
-
-- Normal: [0.5, 0.5, 0.0]
+- Geometry: None
 
 ## Component 9cd053c9...
 **Nickname:** Project
 **Type:** Project
 
-- Curve: [{'start': [0.0, -0.018417927971181088, 0.9998303755784019], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.018417927971181088, -0.9998303755784019], 'length': 0.9999999999999999}, {'start': [0.0, -0.018802645528938365, 0.9998232146340237], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.018802645528938365, -0.9998232146340237], 'length': 0.9999999999999999}, {'start': [0.0, -0.019203775061591613, 0.9998155905082615], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.019203775061591613, -0.9998155905082615], 'length': 0.9999999999999999}, {'start': [0.0, -0.019622389448595075, 0.9998074623807964], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.019622389448595075, -0.9998074623807964], 'length': 1.0}, {'start': [0.0, -0.02005965714793894, 0.999798784833782], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.02005965714793894, -0.999798784833782], 'length': 1.0}, {'start': [0.0, -0.02051685307968195, 0.9997895072162474], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.02051685307968195, -0.9997895072162474], 'length': 1.0}, {'start': [0.0, -0.020995371030975256, 0.9997795729035834], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.020995371030975256, -0.9997795729035834], 'length': 1.0}, {'start': [0.0, -0.021496737836589203, 0.999768918431847], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.021496737836589203, -0.999768918431847], 'length': 1.0}, {'start': [0.0, -0.022022629638591765, 0.9997574724821023], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.022022629638591765, -0.9997574724821023], 'length': 1.0}, {'start': [0.0, -0.022574890589646963, 0.9997451546843653], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, 0.022574890589646963, -0.9997451546843653], 'length': 1.0}]
+- Curve: [{'start': [0.0, 0.018417927971181088, 0.9998303755784019], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.018417927971181088, -0.9998303755784019], 'length': 0.9999999999999999}, {'start': [0.0, 0.018802645528938365, 0.9998232146340237], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.018802645528938365, -0.9998232146340237], 'length': 0.9999999999999999}, {'start': [0.0, 0.019203775061591613, 0.9998155905082615], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.019203775061591613, -0.9998155905082615], 'length': 0.9999999999999999}, {'start': [0.0, 0.019622389448595075, 0.9998074623807964], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.019622389448595075, -0.9998074623807964], 'length': 1.0}, {'start': [0.0, 0.02005965714793894, 0.999798784833782], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.02005965714793894, -0.999798784833782], 'length': 1.0}, {'start': [0.0, 0.02051685307968195, 0.9997895072162474], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.02051685307968195, -0.9997895072162474], 'length': 1.0}, {'start': [0.0, 0.020995371030975256, 0.9997795729035834], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.020995371030975256, -0.9997795729035834], 'length': 1.0}, {'start': [0.0, 0.021496737836589203, 0.999768918431847], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.021496737836589203, -0.999768918431847], 'length': 1.0}, {'start': [0.0, 0.022022629638591765, 0.9997574724821023], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.022022629638591765, -0.9997574724821023], 'length': 1.0}, {'start': [0.0, 0.022574890589646963, 0.9997451546843653], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.022574890589646963, -0.9997451546843653], 'length': 1.0}]
 
 ## Component 1e2231f7...
 **Nickname:** DL
@@ -449,13 +1017,13 @@
 **Nickname:** List Item
 **Type:** List Item
 
-- Item: DataTree({(0,): [[0.0, -0.018417927971181088, 0.9998303755784019]], (1,): [[0.0, -0.018802645528938365, 0.9998232146340237]], (2,): [[0.0, -0.019203775061591613, 0.9998155905082615]], (3,): [[0.0, -0.019622389448595075, 0.9998074623807964]], (4,): [[0.0, -0.02005965714793894, 0.999798784833782]], (5,): [[0.0, -0.02051685307968195, 0.9997895072162474]], (6,): [[0.0, -0.020995371030975256, 0.9997795729035834]], (7,): [[0.0, -0.021496737836589203, 0.999768918431847]], (8,): [[0.0, -0.022022629638591765, 0.9997574724821023]], (9,): [[0.0, -0.022574890589646963, 0.9997451546843653]]})
+- Item: [[0.0], [0.0], [0.0]]
 
 ## Component 910c335c...
 **Nickname:** PolyLine
 **Type:** PolyLine
 
-- points: [[[0.0, -0.018417927971181088, 0.9998303755784019]], [[0.0, -0.018802645528938365, 0.9998232146340237]], [[0.0, -0.019203775061591613, 0.9998155905082615]], [[0.0, -0.019622389448595075, 0.9998074623807964]], [[0.0, -0.02005965714793894, 0.999798784833782]], [[0.0, -0.02051685307968195, 0.9997895072162474]], [[0.0, -0.020995371030975256, 0.9997795729035834]], [[0.0, -0.021496737836589203, 0.999768918431847]], [[0.0, -0.022022629638591765, 0.9997574724821023]], [[0.0, -0.022574890589646963, 0.9997451546843653]]]
+- points: [0.0, 0.0, 0.0]
 - closed: False
 
 ## Component 011398ea...
@@ -477,23 +1045,36 @@
 
 - Degrees: 0.0
 
-## Component e5d1f3af...
-**Nickname:** Orientations
-**Type:** Value List
+## Component 655567c9...
+**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
+EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
+**Type:** Group
 
-- Values: []
+- Result: None
 
-## Component 6ce8bcba...
-**Nickname:** Point On Curve
-**Type:** Point On Curve
+## Component c5f7afbc...
+**Nickname:** Legacy Component!
+**Type:** Group
 
-- Point: [0.0, 0.0, 0.0]
+- Result: None
 
-## Component bd24b9c6...
-**Nickname:** Targets Height
-**Type:** Number Slider
+## Component 88fac79d...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
 
-- Value: 4.0
+- Result: None
+
+## Component 229ae2e9...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 6fb92937...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
 
 ## Component 456d176f...
 **Nickname:** Slats height (top)
@@ -501,11 +1082,133 @@
 
 - Value: 3.8
 
-## Component dac68df4...
-**Nickname:** Room - Distance from origen
-**Type:** Number Slider
+## Component f219f29e...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
 
-- Value: 29.6
+- Result: None
+
+## Component 460704be...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 02553878...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 64ea2bd0...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component 9544ab56...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d81b8068...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 7ce5a047...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 8d9bb586...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component b5a05a67...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component 72dd53fc...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 42b39a5e...
+**Type:** Group
+
+- Result: None
+
+## Component c5e55980...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component f78a8936...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d93f684f...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a0a8cff1...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 61005097...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 987263fb...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 4bb50146...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d93a29ac...
+**Nickname:** Gridded mesh and point generation is now
+all done with a single Ladybug component.
+**Type:** Group
+
+- Result: None
+
+## Component 03d56853...
+**Nickname:** Sketch
+**Type:** Sketch
+
+- Result: None
+
+## Component 13a98284...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
 
 ## Component a7d2817a...
 **Nickname:** room width
@@ -513,22 +1216,249 @@
 
 - Value: 5.0
 
-## Component c4c92669...
-**Nickname:** MD Slider
-**Type:** MD Slider
+## Component e2c4b134...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
 
-- Value: 0.0
+- Result: None
+
+## Component 125e7c20...
+**Nickname:** Last target from slats
+**Type:** Number Slider
+
+- Value: 4.5
+
+## Component 72af136c...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component c5ff82b9...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 537142d8...
+**Nickname:** Number of slats
+**Type:** Number Slider
+
+- Value: 10.0
+
+## Component 9a782acb...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component 65bafafd...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component f10b5344...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component fd8851ab...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component c5d53bff...
+**Nickname:** Test points
+**Type:** Group
+
+- Result: None
+
+## Component 46d27dd0...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component e8b36629...
+**Nickname:** Gridded mesh and point generation is now
+all done with a single Ladybug component.
+**Type:** Group
+
+- Result: None
+
+## Component 88fb0dff...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 6ed96bea...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a12820e6...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component d23d1c35...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component 028cbed4...
+**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
+EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
+**Type:** Group
+
+- Result: None
+
+## Component eb9e6c30...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 28b3d7b4...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d16073b7...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 1d76bf3b...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 8f01f17a...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 9f33a73b...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 04b73ea7...
+**Nickname:** Recipe components now also run the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 26a0d12f...
+**Type:** Group
+
+- Result: None
+
+## Component be74e5fb...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 3318dfa4...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component c6a2e36b...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 981046a9...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 495a0ce0...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 70cbf87e...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 79a7ece7...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 66e7c440...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component ef00a0bd...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component 98fff776...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component fb47ee11...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 26089c14...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 77f7eddb...
+**Nickname:** Area
+**Type:** Area
+
+- Area: 0.0
+- Centroid: [0.0, 0.0, 0.0]
 
 ## Component 30f76ec5...
 **Nickname:** Construct Plane
 **Type:** Construct Plane
 
-- Plane: {'origin': [[[0.0, -0.018417927971181088, 0.9998303755784019]], [[0.0, -0.018802645528938365, 0.9998232146340237]], [[0.0, -0.019203775061591613, 0.9998155905082615]], [[0.0, -0.019622389448595075, 0.9998074623807964]], [[0.0, -0.02005965714793894, 0.999798784833782]], [[0.0, -0.02051685307968195, 0.9997895072162474]], [[0.0, -0.020995371030975256, 0.9997795729035834]], [[0.0, -0.021496737836589203, 0.999768918431847]], [[0.0, -0.022022629638591765, 0.9997574724821023]], [[0.0, -0.022574890589646963, 0.9997451546843653]]], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}
+- Plane: {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}
 
-## Component 1f794702...
-**Nickname:** Vector 2Pt
-**Type:** Vector 2Pt
+## Component 0f6e14e7...
+**Nickname:** YZ Plane
+**Type:** YZ Plane
 
-- Vector: [0.0, 0.0, 0.0]
-- Length: 0.0
+- Result: None
 
