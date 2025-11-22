@@ -1,10 +1,10 @@
 {
-  "08edbcda-c850-40fd-9900-c6ab83acca1b": {
-    "guid": "08edbcda-c850-40fd-9900-c6ab83acca1b",
+  "507b14ee-692b-41df-973f-6bfef76514c2": {
+    "guid": "507b14ee-692b-41df-973f-6bfef76514c2",
     "type": "Number Slider",
-    "nickname": "Horizontal shift between slats",
+    "nickname": "Distance from window",
     "data": [
-      0.0
+      -0.07
     ]
   },
   "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7": {
@@ -23,36 +23,20 @@
       3.8
     ]
   },
-  "e81f2ba2-a9aa-401c-bde6-290d119877dc": {
-    "guid": "e81f2ba2-a9aa-401c-bde6-290d119877dc",
-    "type": "Number Slider",
-    "nickname": "1st targets from slats",
-    "data": [
-      1.0
-    ]
-  },
-  "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b": {
-    "guid": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
-    "type": "Number Slider",
-    "nickname": "Targets Height",
-    "data": [
-      4.0
-    ]
-  },
-  "125e7c20-d243-4cdc-927b-568ceb6315b5": {
-    "guid": "125e7c20-d243-4cdc-927b-568ceb6315b5",
-    "type": "Number Slider",
-    "nickname": "Last target from slats",
-    "data": [
-      4.5
-    ]
-  },
   "a7d2817a-3182-496e-a453-80e7eeba16fa": {
     "guid": "a7d2817a-3182-496e-a453-80e7eeba16fa",
     "type": "Number Slider",
     "nickname": "room width",
     "data": [
       5.0
+    ]
+  },
+  "5354f884-8b45-418e-968a-55689cb2e986": {
+    "guid": "5354f884-8b45-418e-968a-55689cb2e986",
+    "type": "Number Slider",
+    "nickname": "Orientation",
+    "data": [
+      0.0
     ]
   },
   "c8dfe19f-4140-41a4-973e-a2acb75038d7": {
@@ -71,20 +55,36 @@
       10.0
     ]
   },
-  "5354f884-8b45-418e-968a-55689cb2e986": {
-    "guid": "5354f884-8b45-418e-968a-55689cb2e986",
+  "08edbcda-c850-40fd-9900-c6ab83acca1b": {
+    "guid": "08edbcda-c850-40fd-9900-c6ab83acca1b",
     "type": "Number Slider",
-    "nickname": "Orientation",
+    "nickname": "Horizontal shift between slats",
     "data": [
       0.0
     ]
   },
-  "507b14ee-692b-41df-973f-6bfef76514c2": {
-    "guid": "507b14ee-692b-41df-973f-6bfef76514c2",
+  "e81f2ba2-a9aa-401c-bde6-290d119877dc": {
+    "guid": "e81f2ba2-a9aa-401c-bde6-290d119877dc",
     "type": "Number Slider",
-    "nickname": "Distance from window",
+    "nickname": "1st targets from slats",
     "data": [
-      -0.07
+      1.0
+    ]
+  },
+  "125e7c20-d243-4cdc-927b-568ceb6315b5": {
+    "guid": "125e7c20-d243-4cdc-927b-568ceb6315b5",
+    "type": "Number Slider",
+    "nickname": "Last target from slats",
+    "data": [
+      4.5
+    ]
+  },
+  "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b": {
+    "guid": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
+    "type": "Number Slider",
+    "nickname": "Targets Height",
+    "data": [
+      4.0
     ]
   }
 }

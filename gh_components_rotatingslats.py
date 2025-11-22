@@ -150,41 +150,62 @@ def evaluate_angle(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     GH Angle component: angle between two vectors.
     
     Inputs:
-        A: First vector
-        B: Second vector
-        P: Optional plane for oriented angle
+        Vector A: First vector (can be vector, plane, or line)
+        Vector B: Second vector (can be vector, plane, or line)
+        Plane: Optional plane for oriented angle
     
     Outputs:
         Angle: Angle in radians
         Reflex: Reflex angle (2π - angle)
     """
     # GH Angle: compute angle between vectors
-    a_tree = inputs.get('A', DataTree())
-    b_tree = inputs.get('B', DataTree())
+    a_tree = inputs.get('Vector A', DataTree())
+    b_tree = inputs.get('Vector B', DataTree())
+    plane_tree = inputs.get('Plane', DataTree())
     
-    a_matched, b_matched = match_longest(a_tree, b_tree)
+    # Match all three inputs to get the longest list replication
+    a_matched, b_matched, plane_matched = match_longest(a_tree, b_tree, plane_tree)
     
     angle_result = DataTree()
     reflex_result = DataTree()
     
+    def extract_vector(item):
+        """Extract a vector from various geometry types."""
+        if item is None:
+            raise ValueError("GH Angle: input is None")
+        
+        # Direct vector [x, y, z]
+        if isinstance(item, (list, tuple)) and len(item) >= 3:
+            return list(item[:3])
+        
+        # Plane dict - extract Z-axis
+        elif isinstance(item, dict) and 'z_axis' in item:
+            return item['z_axis']
+        
+        # Line dict - extract direction vector
+        elif isinstance(item, dict) and 'start' in item and 'end' in item:
+            start = item['start']
+            end = item['end']
+            return [end[0] - start[0], end[1] - start[1], end[2] - start[2]]
+        
+        else:
+            raise ValueError(f"GH Angle: cannot extract vector from {type(item)}: {item}")
+    
     for path in a_matched.get_paths():
         a_items = a_matched.get_branch(path)
         b_items = b_matched.get_branch(path)
+        plane_items = plane_matched.get_branch(path)
         
         angles = []
         reflexes = []
         
-        for a_vec, b_vec in zip(a_items, b_items):
-            # GH Angle: compute angle using dot product
-            if a_vec is None:
-                raise ValueError("GH Angle: vector A is None")
-            if b_vec is None:
-                raise ValueError("GH Angle: vector B is None")
-            if not isinstance(a_vec, (list, tuple)) or len(a_vec) < 3:
-                raise ValueError(f"GH Angle: invalid vector A format: {a_vec}")
-            if not isinstance(b_vec, (list, tuple)) or len(b_vec) < 3:
-                raise ValueError(f"GH Angle: invalid vector B format: {b_vec}")
+        for a_item, b_item, plane_item in zip(a_items, b_items, plane_items):
+            # Extract vectors from inputs
+            a_vec = extract_vector(a_item)
+            b_vec = extract_vector(b_item)
+            # Note: plane_item is available but not used yet (for future oriented angle implementation)
             
+            # GH Angle: compute angle using dot product
             # angle = arccos(dot(a, b) / (|a| * |b|))
             ax, ay, az = a_vec
             bx, by, bz = b_vec
@@ -643,9 +664,10 @@ def evaluate_plane_normal(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             # GH Plane Normal: extract Z-axis
             # Z-axis can be a vector [x,y,z], a plane dict, or a polyline dict
             if isinstance(z_input, dict):
-                if 'z_axis' in z_input:
-                    # It's a plane, extract its z_axis
-                    z_axis = z_input['z_axis']
+                if 'x_axis' in z_input:
+                    # It's a plane, extract its X-axis as the new Z-axis
+                    # (Grasshopper Plane Normal uses input plane's X-axis as output Z-axis)
+                    z_axis = z_input['x_axis']
                 elif 'vertices' in z_input:
                     # It's a polyline, compute direction from first to last vertex
                     vertices = z_input['vertices']

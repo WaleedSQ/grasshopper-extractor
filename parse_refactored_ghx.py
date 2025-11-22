@@ -210,7 +210,8 @@ def extract_component_from_chunk(chunk):
                         'name': 'Value',
                         'type': 'output',
                         'persistent_data': [slider_value],
-                        'sources': []
+                        'sources': [],
+                        'mapping': 0  # Sliders don't have mapping
                     }
                     params.append(param)
     
@@ -260,12 +261,24 @@ def extract_parameter_from_chunk(param_chunk, param_type):
                 if item_value:
                     sources.append(item_value.strip())
     
+    # Extract expression if present (for parameters with expressions like "x-1")
+    expression = items.get('InternalExpression', None)
+    
+    # Extract Mapping (0=None, 1=Graft, 2=Flatten)
+    mapping = items.get('Mapping', '0')
+    try:
+        mapping = int(mapping)
+    except (ValueError, TypeError):
+        mapping = 0
+    
     param = {
         'param_guid': param_guid,
         'name': name,
         'type': param_type,
         'persistent_data': persistent_data,
-        'sources': sources
+        'sources': sources,
+        'expression': expression,
+        'mapping': mapping
     }
     
     return param

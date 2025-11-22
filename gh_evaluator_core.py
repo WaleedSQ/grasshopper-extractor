@@ -179,12 +179,13 @@ class DataTree:
 
 def match_longest(*trees):
     """
-    Match DataTrees using 'Longest' strategy.
+    Match DataTrees using 'Longest' strategy with automatic replication.
     
     This is Grasshopper's default matching behavior:
     - All trees must have the same structure (same paths)
     - Within each path, iterate through items together
     - If one branch is shorter, repeat its last item
+    - If a tree is missing a grafted branch, look for parent branch and replicate
     
     Args:
         *trees: Variable number of DataTree objects
@@ -200,13 +201,40 @@ def match_longest(*trees):
     for tree in trees:
         all_paths.update(tree.get_paths())
     
-    all_paths = sorted(all_paths)
+    # Remove parent paths if child paths exist (for grafted data)
+    # E.g., if we have both (0,) and (0,0), (0,1), ... remove (0,)
+    paths_to_remove = set()
+    for path in all_paths:
+        # Check if any other path is a child of this path
+        for other_path in all_paths:
+            if other_path != path and len(other_path) > len(path):
+                # Check if other_path starts with path
+                if other_path[:len(path)] == path:
+                    paths_to_remove.add(path)
+                    break
+    
+    all_paths = sorted(all_paths - paths_to_remove)
     
     # Match each path across all trees
     matched_trees = [DataTree() for _ in trees]
     
     for path in all_paths:
-        branches = [tree.get_branch(path) for tree in trees]
+        branches = []
+        
+        for tree in trees:
+            branch = tree.get_branch(path)
+            
+            # If branch is empty, try to find parent branch
+            if len(branch) == 0 and len(path) > 1:
+                # Look for parent path (e.g., {0} is parent of {0;0})
+                parent_path = path[:-1]
+                parent_branch = tree.get_branch(parent_path)
+                if len(parent_branch) > 0:
+                    # Use parent branch data (automatic replication)
+                    branch = parent_branch
+            
+            branches.append(branch)
+        
         max_len = max(len(b) for b in branches) if branches else 0
         
         # Extend each branch to max_len using longest strategy

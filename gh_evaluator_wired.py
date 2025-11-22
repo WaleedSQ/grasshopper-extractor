@@ -17,6 +17,50 @@ from gh_components_rotatingslats import *  # Register all components
 
 
 # ============================================================================
+# DATA TREE MAPPING (Graft/Flatten)
+# ============================================================================
+
+def apply_mapping(data_tree: DataTree, mapping: int) -> DataTree:
+    """
+    Apply Graft/Flatten to a DataTree based on Grasshopper's Mapping parameter.
+    
+    Args:
+        data_tree: Input DataTree
+        mapping: 0=None (no change), 1=Graft (each item in own branch), 2=Flatten (all in one branch)
+    
+    Returns:
+        Transformed DataTree
+    """
+    if mapping == 0:
+        # No mapping, return as-is
+        return data_tree
+    
+    elif mapping == 1:
+        # GRAFT: Each item gets its own branch by appending an index to the path
+        result = DataTree()
+        for path in data_tree.get_paths():
+            items = data_tree.get_branch(path)
+            for i, item in enumerate(items):
+                # Append index to path: {0} becomes {0;0}, {0;1}, etc.
+                new_path = path + (i,)
+                result.set_branch(new_path, [item])
+        return result
+    
+    elif mapping == 2:
+        # FLATTEN: All items merged into a single branch {0}
+        all_items = []
+        for path in data_tree.get_paths():
+            all_items.extend(data_tree.get_branch(path))
+        result = DataTree()
+        result.set_branch((0,), all_items)
+        return result
+    
+    else:
+        # Unknown mapping, return as-is
+        return data_tree
+
+
+# ============================================================================
 # TOPOLOGICAL SORT
 # ============================================================================
 
@@ -101,6 +145,50 @@ def topological_sort(components: List[dict], wires: List[dict]) -> List[str]:
 # INPUT RESOLUTION
 # ============================================================================
 
+def apply_expression(data_tree: DataTree, expression: str) -> DataTree:
+    """
+    Apply a simple expression to all items in a DataTree.
+    
+    Supported expressions:
+    - x-1, x+1, x*2, x/2, etc. (simple arithmetic with x as the value)
+    
+    Args:
+        data_tree: Input DataTree
+        expression: Expression string like "x-1"
+    
+    Returns:
+        DataTree with expression applied to all items
+    """
+    if not expression:
+        return data_tree
+    
+    result = DataTree()
+    
+    for path in data_tree.get_paths():
+        items = data_tree.get_branch(path)
+        transformed_items = []
+        
+        for item in items:
+            # Only apply expressions to numeric values
+            if isinstance(item, (int, float)):
+                x = item
+                try:
+                    # Simple eval - only for basic arithmetic (x-1, x+1, etc.)
+                    # Note: This is UNSAFE for production, but OK for controlled input
+                    transformed_value = eval(expression)
+                    transformed_items.append(transformed_value)
+                except:
+                    # If expression fails, keep original value
+                    transformed_items.append(item)
+            else:
+                # Non-numeric items pass through unchanged
+                transformed_items.append(item)
+        
+        result.set_branch(path, transformed_items)
+    
+    return result
+
+
 def resolve_input(param: dict, context: EvaluationContext, 
                   external_inputs: Dict[str, any]) -> DataTree:
     """
@@ -111,6 +199,7 @@ def resolve_input(param: dict, context: EvaluationContext,
     2. Persistent data (from GHX)
     3. External input (from sliders/panels)
     4. Default value
+    5. Apply expression if present
     
     Args:
         param: Parameter dict
@@ -118,10 +207,11 @@ def resolve_input(param: dict, context: EvaluationContext,
         external_inputs: Dictionary of external input values
     
     Returns:
-        DataTree containing the resolved input
+        DataTree containing the resolved input (with expression applied if present)
     """
     param_guid = param['param_guid']
     param_name = param['name']
+    result_tree = None
     
     # 1. Check for wire connections
     sources = param.get('sources', [])
@@ -133,61 +223,72 @@ def resolve_input(param: dict, context: EvaluationContext,
         if source_param_guid in external_inputs:
             data = external_inputs[source_param_guid]
             if isinstance(data, list):
-                return DataTree.from_list(data)
+                result_tree = DataTree.from_list(data)
             else:
-                return DataTree.from_scalar(data)
+                result_tree = DataTree.from_scalar(data)
         
         # Find which component owns this output parameter
-        for comp_guid, comp in context.components.items():
-            for out_param in comp['params']:
-                if out_param['param_guid'] == source_param_guid:
-                    # Found the source component
-                    if context.is_evaluated(comp_guid):
-                        # Get the output from this component
-                        outputs = context.get_result(comp_guid)
-                        # Match output parameter name
-                        output_name = out_param['name']
-                        if output_name in outputs:
-                            return outputs[output_name]
-                    break
+        if not result_tree:
+            for comp_guid, comp in context.components.items():
+                for out_param in comp['params']:
+                    if out_param['param_guid'] == source_param_guid:
+                        # Found the source component
+                        if context.is_evaluated(comp_guid):
+                            # Get the output from this component
+                            outputs = context.get_result(comp_guid)
+                            # Match output parameter name
+                            output_name = out_param['name']
+                            if output_name in outputs:
+                                result_tree = outputs[output_name]
+                        break
     
     # 2. Check for persistent data in parameter
-    persistent_data = param.get('persistent_data', [])
-    if persistent_data:
-        # Convert persistent data to DataTree
-        if isinstance(persistent_data, list):
-            return DataTree.from_list(persistent_data)
-        else:
-            return DataTree.from_scalar(persistent_data)
+    if not result_tree:
+        persistent_data = param.get('persistent_data', [])
+        if persistent_data:
+            # Convert persistent data to DataTree
+            if isinstance(persistent_data, list):
+                result_tree = DataTree.from_list(persistent_data)
+            else:
+                result_tree = DataTree.from_scalar(persistent_data)
     
     # 3. Check external inputs
-    if param_guid in external_inputs:
-        data = external_inputs[param_guid]
-        if isinstance(data, list):
-            return DataTree.from_list(data)
-        else:
-            return DataTree.from_scalar(data)
+    if not result_tree:
+        if param_guid in external_inputs:
+            data = external_inputs[param_guid]
+            if isinstance(data, list):
+                result_tree = DataTree.from_list(data)
+            else:
+                result_tree = DataTree.from_scalar(data)
     
     # 4. Default value based on parameter name
-    defaults = {
-        'X': 0,
-        'Y': 0,
-        'Z': 0,
-        'A': 0,
-        'B': 1,
-        'Factor': 1,
-        'Start': 0,
-        'Step': 1,
-        'Count': 10,
-        'Index': 0,
-        'Wrap': True,
-        'Closed': False,
-        'Length': 1,
-        'Angle': 0,
-    }
+    if not result_tree:
+        defaults = {
+            'X': 0,
+            'Y': 0,
+            'Z': 0,
+            'A': 0,
+            'B': 1,
+            'Factor': 1,
+            'Start': 0,
+            'Step': 1,
+            'Count': 10,
+            'Index': 0,
+            'Wrap': True,
+            'Closed': False,
+            'Length': 1,
+            'Angle': 0,
+        }
+        
+        default_value = defaults.get(param_name, 0)
+        result_tree = DataTree.from_scalar(default_value)
     
-    default_value = defaults.get(param_name, 0)
-    return DataTree.from_scalar(default_value)
+    # 5. Apply expression if present (e.g., "x-1")
+    expression = param.get('expression', None)
+    if expression:
+        result_tree = apply_expression(result_tree, expression)
+    
+    return result_tree
 
 
 # ============================================================================
@@ -240,10 +341,23 @@ def evaluate_component_wired(comp_guid: str, context: EvaluationContext,
     # Evaluate component
     outputs = COMPONENT_REGISTRY.evaluate(type_name, inputs)
     
-    # Cache result
-    context.set_result(comp_guid, outputs)
+    # Apply mapping (Graft/Flatten) to each output based on parameter settings
+    mapped_outputs = {}
+    for output_name, output_tree in outputs.items():
+        # Find the output parameter definition
+        output_param = next((p for p in comp['params'] 
+                           if p['type'] == 'output' and p['name'] == output_name), None)
+        if output_param:
+            mapping = output_param.get('mapping', 0)
+            mapped_outputs[output_name] = apply_mapping(output_tree, mapping)
+        else:
+            # Parameter not found, no mapping
+            mapped_outputs[output_name] = output_tree
     
-    return outputs
+    # Cache result
+    context.set_result(comp_guid, mapped_outputs)
+    
+    return mapped_outputs
 
 
 # ============================================================================
