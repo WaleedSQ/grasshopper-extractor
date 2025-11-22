@@ -1067,24 +1067,47 @@ def evaluate_area(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         centroids = []
         
         for geom in geometries:
-            if isinstance(geom, dict) and 'corners' in geom:
-                # Rectangle
-                corners = geom['corners']
-                
-                # Compute area as width * height
-                # Assume axis-aligned for simplicity
-                dx = abs(corners[2][0] - corners[0][0])
-                dy = abs(corners[2][1] - corners[0][1])
-                area = dx * dy
-                
-                # Centroid is average of corners
-                cx = sum(c[0] for c in corners) / len(corners)
-                cy = sum(c[1] for c in corners) / len(corners)
-                cz = sum(c[2] for c in corners) / len(corners)
-                centroid = [cx, cy, cz]
-                
-                areas.append(area)
-                centroids.append(centroid)
+            if isinstance(geom, dict):
+                if 'corners' in geom:
+                    # Rectangle
+                    corners = geom['corners']
+                    
+                    # Compute area as width * height
+                    # Assume axis-aligned for simplicity
+                    dx = abs(corners[2][0] - corners[0][0])
+                    dy = abs(corners[2][1] - corners[0][1])
+                    area = dx * dy
+                    
+                    # Centroid is average of corners
+                    cx = sum(c[0] for c in corners) / len(corners)
+                    cy = sum(c[1] for c in corners) / len(corners)
+                    cz = sum(c[2] for c in corners) / len(corners)
+                    centroid = [cx, cy, cz]
+                    
+                    areas.append(area)
+                    centroids.append(centroid)
+                elif 'corner_a' in geom and 'corner_b' in geom:
+                    # Box
+                    corner_a = geom['corner_a']
+                    corner_b = geom['corner_b']
+                    
+                    # Compute surface area (sum of all 6 faces)
+                    dx = abs(corner_b[0] - corner_a[0])
+                    dy = abs(corner_b[1] - corner_a[1])
+                    dz = abs(corner_b[2] - corner_a[2])
+                    area = 2 * (dx * dy + dy * dz + dz * dx)
+                    
+                    # Centroid is midpoint of diagonal
+                    cx = (corner_a[0] + corner_b[0]) / 2
+                    cy = (corner_a[1] + corner_b[1]) / 2
+                    cz = (corner_a[2] + corner_b[2]) / 2
+                    centroid = [cx, cy, cz]
+                    
+                    areas.append(area)
+                    centroids.append(centroid)
+                else:
+                    areas.append(0)
+                    centroids.append([0, 0, 0])
             else:
                 areas.append(0)
                 centroids.append([0, 0, 0])
@@ -1221,23 +1244,23 @@ def evaluate_move(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
 @COMPONENT_REGISTRY.register("Rotate")
 def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     """
-    GH Rotate component: rotate geometry around axis.
+    GH Rotate component: rotate geometry around a plane.
     
     Inputs:
         Geometry: Geometry to rotate
         Angle: Rotation angle in radians
-        Axis: Rotation axis line or plane
+        Plane: Rotation plane (rotates around plane's Z-axis at plane's origin)
     
     Outputs:
         Geometry: Rotated geometry
         Transform: Transformation matrix
     """
-    # GH Rotate: rotate geometry around axis
+    # GH Rotate: rotate geometry around plane's Z-axis
     geom_tree = inputs.get('Geometry', DataTree())
     angle_tree = inputs.get('Angle', DataTree())
-    axis_tree = inputs.get('Axis', DataTree())
+    plane_tree = inputs.get('Plane', DataTree())
     
-    geom_m, angle_m, axis_m = match_longest(geom_tree, angle_tree, axis_tree)
+    geom_m, angle_m, plane_m = match_longest(geom_tree, angle_tree, plane_tree)
     
     geometry_result = DataTree()
     transform_result = DataTree()
@@ -1245,21 +1268,21 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     for path in geom_m.get_paths():
         geometries = geom_m.get_branch(path)
         angles = angle_m.get_branch(path)
-        axes = axis_m.get_branch(path)
+        planes = plane_m.get_branch(path)
         
         rotated_geoms = []
         transforms = []
         
-        for geom, angle, axis in zip(geometries, angles, axes):
-            # GH Rotate: rotate geometry
-            # For simplicity, assume rotation around Z-axis at origin for now
-            # Full implementation would handle arbitrary axis
+        for geom, angle, plane in zip(geometries, angles, planes):
+            # GH Rotate: rotate geometry around plane's Z-axis at plane's origin
+            # For now, assume XY plane at origin (standard case)
+            # Full implementation would extract plane origin and axes
             
             cos_a = math.cos(angle)
             sin_a = math.sin(angle)
             
             def rotate_point(pt):
-                """Rotate point around Z-axis."""
+                """Rotate point around Z-axis at origin."""
                 x, y, z = pt
                 x_rot = x * cos_a - y * sin_a
                 y_rot = x * sin_a + y * cos_a
@@ -1285,13 +1308,21 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                         'plane': geom['plane']
                     }
                     rotated_geoms.append(rotated)
+                elif 'corner_a' in geom and 'corner_b' in geom:
+                    # Box
+                    rotated = {
+                        'corner_a': rotate_point(geom['corner_a']),
+                        'corner_b': rotate_point(geom['corner_b']),
+                        'plane': geom.get('plane')
+                    }
+                    rotated_geoms.append(rotated)
                 else:
                     rotated_geoms.append(geom)
             else:
                 rotated_geoms.append(geom)
             
             # Transformation matrix
-            transform = {'rotation': angle, 'axis': axis}
+            transform = {'rotation': angle, 'axis': plane}
             transforms.append(transform)
         
         geometry_result.set_branch(path, rotated_geoms)

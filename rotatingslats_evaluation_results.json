@@ -460,13 +460,13 @@
           "(0,)": [
             {
               "corner_a": [
-                0,
-                -2,
+                0.0,
+                -2.0,
                 7
               ],
               "corner_b": [
-                0,
-                3,
+                0.0,
+                3.0,
                 -3
               ],
               "plane": null
@@ -481,7 +481,7 @@
           "(0,)": [
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             }
           ]
         },
@@ -663,7 +663,7 @@
       "Area": {
         "branches": {
           "(0,)": [
-            0
+            100.0
           ]
         },
         "branch_count": 1,
@@ -673,9 +673,9 @@
         "branches": {
           "(0,)": [
             [
-              0,
-              0,
-              0
+              0.0,
+              0.5,
+              2.0
             ]
           ]
         },
@@ -826,9 +826,9 @@
           "(0,)": [
             {
               "origin": [
-                0,
-                0,
-                0
+                0.0,
+                0.5,
+                2.0
               ],
               "x_axis": [
                 1,
@@ -1011,9 +1011,9 @@
           "(0,)": [
             {
               "origin": [
-                0,
-                0,
-                0
+                0.0,
+                0.5,
+                2.0
               ],
               "x_axis": [
                 1,
@@ -1041,7 +1041,7 @@
           "(0,)": [
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             }
           ]
         },
@@ -1711,43 +1711,43 @@
           "(0,)": [
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             }
           ]
         },
@@ -2030,43 +2030,43 @@
           "(0,)": [
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             },
             {
               "rotation": 0.0,
-              "axis": null
+              "axis": ""
             }
           ]
         },
