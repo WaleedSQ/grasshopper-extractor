@@ -1,0 +1,27 @@
+================================================================================
+NONE VALUES TRACE
+================================================================================
+
+Found 1 components with None outputs
+
+================================================================================
+1. Component: d89d47e0...
+   Type: List Item
+   Nickname: List Item
+   None output: Result
+   Error: cannot access local variable 'resolved_values' where it is not associated with a value
+
+   Inputs:
+     List:
+       Source GUID: 2ee35645...
+         From: c78ea9c5... (Deconstruct Brep, DB)
+         [EVALUATED] Result: {'Faces': [], 'Edges': [], 'Vertices': []}
+
+     Index:
+       Source GUID: e5d1f3af...
+         [NOT OUTPUT PARAM]
+
+     Wrap:
+       [NO SOURCE]
+
+

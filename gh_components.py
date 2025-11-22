@@ -775,10 +775,13 @@ def list_item_component(list_data: Any, index: Any, wrap: bool = False) -> Any:
         use_tree = True
     except ImportError:
         use_tree = False
+        from_tree = None
     
     # Convert to tree if needed
+    input_was_tree = False
     if use_tree:
-        if is_tree(list_data):
+        input_was_tree = is_tree(list_data)
+        if input_was_tree:
             input_tree = list_data
         else:
             input_tree = to_tree(list_data)
@@ -816,7 +819,33 @@ def list_item_component(list_data: Any, index: Any, wrap: bool = False) -> Any:
             # Preserve path: output uses same path as input, single-item branch
             output_tree.set_branch(path, [item])
         
-        return output_tree
+        # Return same type as input
+        if input_was_tree:
+            return output_tree
+        else:
+            # Input was list - return list or single item
+            if use_tree and from_tree is not None:
+                result = from_tree(output_tree)
+            else:
+                # Fallback: convert tree to list manually
+                result = []
+                for path in sorted(output_tree.paths()):
+                    result.extend(output_tree.get_branch(path))
+            # If single item, unwrap
+            if isinstance(result, list) and len(result) == 1:
+                return result[0]
+            return result
+    else:
+        # Fallback: no tree support - simple list indexing
+        if not isinstance(list_data, list):
+            list_data = [list_data]
+        idx = int(round(float(index)))
+        if wrap:
+            idx = idx % len(list_data) if list_data else 0
+        else:
+            if idx < 0 or idx >= len(list_data):
+                return None
+        return list_data[idx]
     
     # Fallback to old behavior for backward compatibility
     if not isinstance(list_data, list):
@@ -1112,16 +1141,45 @@ def area_component(geometry: Any) -> Dict[str, Any]:
     """
     GH Area component
     Computes area and centroid of geometry.
-    In Grasshopper, if a list of geometries is connected, it processes each one.
+    Handles DataTree semantics: if geometry is a tree, computes per-branch.
     
     Inputs:
-        geometry: geometry object (brep, mesh, or planar closed curve) or list of geometries
+        geometry: geometry object (brep, mesh, or planar closed curve), list of geometries, or DataTree
     
     Outputs:
-        area: area value or list of areas
-        centroid: [x, y, z] centroid point or list of centroids
+        area: area value or list/tree of areas
+        centroid: [x, y, z] centroid point or list/tree of centroids
     """
     # GH <Area> <NickName> <GUID>
+    # Import DataTree utilities
+    try:
+        from gh_data_tree import DataTree, to_tree, is_tree, from_tree
+        use_tree = True
+    except ImportError:
+        use_tree = False
+    
+    # Handle DataTree inputs
+    if use_tree and is_tree(geometry):
+        # Geometry is a tree - compute per-branch
+        geometry_tree = geometry
+        areas_tree = DataTree()
+        centroids_tree = DataTree()
+        
+        for path, branch_items in geometry_tree.items():
+            # Process each item in branch
+            branch_areas = []
+            branch_centroids = []
+            for item in branch_items:
+                result = area_component(item)  # Recursive call for single geometry
+                branch_areas.append(result.get('Area', 0.0))
+                branch_centroids.append(result.get('Centroid', [0.0, 0.0, 0.0]))
+            
+            areas_tree.set_branch(path, branch_areas)
+            centroids_tree.set_branch(path, branch_centroids)
+        
+        # Return as dict with tree values
+        return {'Area': areas_tree, 'Centroid': centroids_tree}
+    
     # If geometry is a list, process each item
     if isinstance(geometry, list) and len(geometry) > 0:
         # Check if it's a list of geometries (not a list of points)
@@ -1235,27 +1293,74 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
     """
     GH Move component
     Moves geometry by motion vector(s).
+    Handles DataTree semantics: if geometry is a tree, applies motion per-branch.
     
     Inputs:
-        geometry: geometry to move (point, list of points, or geometry dict)
-        motion: [x, y, z] motion vector or list of motion vectors
+        geometry: geometry to move (point, list of points, geometry dict, or DataTree)
+        motion: [x, y, z] motion vector or list of motion vectors (or DataTree)
     
     Outputs:
-        moved: moved geometry (or list of moved geometries if motion is a list)
+        moved: moved geometry (or list/tree of moved geometries)
         transform: transformation data (translation matrix/vector)
     """
     # GH <Move> <NickName> <GUID>
+    # Import DataTree utilities
+    try:
+        from gh_data_tree import DataTree, to_tree, is_tree, from_tree
+        use_tree = True
+    except ImportError:
+        use_tree = False
+    
+    # Handle DataTree inputs
+    if use_tree and is_tree(geometry):
+        # Geometry is a tree - apply motion per-branch
+        output_tree = DataTree()
+        geometry_tree = geometry
+        
+        # Check if motion is also a tree
+        motion_is_tree = is_tree(motion)
+        if motion_is_tree:
+            motion_tree = motion
+        else:
+            # Convert motion to tree (broadcast to all branches)
+            motion_tree = to_tree(motion)
+        
+        # Apply motion per-branch
+        for path, branch_items in geometry_tree.items():
+            # Get motion for this branch
+            motion_branch = motion_tree.get_branch(path) if motion_is_tree else motion_tree.flatten()
+            if not motion_branch:
+                # No motion for this branch - use first motion or default
+                motion_branch = motion_tree.flatten() if motion_tree.paths() else [[0.0, 0.0, 0.0]]
+            
+            # Apply motion to each item in branch
+            moved_branch = []
+            for item_idx, item in enumerate(branch_items):
+                # Get motion vector for this item (use first if single, or item_idx if multiple)
+                if len(motion_branch) == 1:
+                    motion_vec = motion_branch[0]
+                elif item_idx < len(motion_branch):
+                    motion_vec = motion_branch[item_idx]
+                else:
+                    motion_vec = motion_branch[-1] if motion_branch else [0.0, 0.0, 0.0]
+                
+                # Ensure motion_vec is a list of 3 floats
+                if not isinstance(motion_vec, list) or len(motion_vec) < 3:
+                    motion_vec = [0.0, 0.0, 0.0]
+                
+                # Move the item
+                moved_item, _ = move_component(item, motion_vec)
+                moved_branch.append(moved_item)
+            
+            output_tree.set_branch(path, moved_branch)
+        
+        transform = {'type': 'translation', 'motion': motion, 'translation': motion}
+        return output_tree, transform
+    
     # Check if motion is a list of vectors (list of lists)
     motion_is_list = isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list)
     
-    # Debug for Slats original Move
-    if isinstance(geometry, list) and len(geometry) > 0 and isinstance(geometry[0], dict) and geometry[0].get('type') == 'rectangle':
-        print(f"  DEBUG move_component START: geometry type=list of {len(geometry)} rectangles, motion_is_list={motion_is_list}, motion type={type(motion).__name__}, motion len={len(motion) if isinstance(motion, list) else 'N/A'}")
-        print(f"  DEBUG move_component: motion value={motion}")
-        if motion_is_list and len(motion) > 0:
-            print(f"  DEBUG move_component: first motion vector={motion[0]}")
-        if len(geometry) > 0 and 'corners' in geometry[0]:
-            print(f"  DEBUG move_component: first rectangle first corner={geometry[0]['corners'][0] if geometry[0].get('corners') else 'none'}")
+    # Debug output removed for performance - only log for specific Rotatingslats chain components if needed
     
     if motion_is_list:
         # Motion is a list of vectors - apply each to geometry
@@ -1351,7 +1456,7 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
             return moved_geometries, transform
         # If geometry is a list, check if it's points or geometry dicts
         elif isinstance(geometry, list) and len(geometry) > 0:
-            print(f"  DEBUG move_component: geometry is list of {len(geometry)} items, first type={type(geometry[0]).__name__}, motion_is_list={motion_is_list}")
+            # Debug output removed
             if isinstance(geometry[0], list) and len(geometry[0]) == 3:
                 # List of points with list of motion vectors - apply pairwise
                 min_len = min(len(geometry), len(motion))
@@ -1379,15 +1484,10 @@ def move_component(geometry: Any, motion: Union[List[float], List[List[float]]])
                     if 'corners' in moved_geom:
                         corners = moved_geom['corners']
                         if corners:
-                            # Debug for first rectangle
-                            if i == 0 and len(corners) > 0:
-                                print(f"  DEBUG move_component: rectangle {i}, vec={vec}, first corner before={corners[0]}")
                             moved_geom['corners'] = [
                                 [c[0] + vec[0], c[1] + vec[1], c[2] + vec[2] if len(c) > 2 else vec[2]]
                                 for c in corners
                             ]
-                            if i == 0 and len(moved_geom['corners']) > 0:
-                                print(f"  DEBUG move_component: rectangle {i}, first corner after={moved_geom['corners'][0]}")
                     
                     # Handle box geometry
                     if moved_geom.get('type') == 'box':
@@ -1592,32 +1692,31 @@ def polar_array_component(geometry: Any, plane: dict, count: int, angle: float, 
     
     # Import DataTree for tree-based output
     try:
-        from gh_data_tree import DataTree, to_tree, is_tree
+        from gh_data_tree import DataTree, to_tree, is_tree, from_tree
         use_tree = True
     except ImportError:
         use_tree = False
+        from_tree = None
     
-    # Check if input is already a tree
+    # Normalize input: accept both list and DataTree
     input_tree = None
+    input_was_tree = False
     if use_tree:
         try:
             if is_tree(geometry):
                 input_tree = geometry
-            else:
+                input_was_tree = True
+            elif isinstance(geometry, list):
+                # Convert list to tree: single branch at (0,)
                 input_tree = to_tree(geometry)
-            # Debug: check if tree conversion worked
-            if input_tree is not None:
-                paths = input_tree.paths()
-                print(f"  DEBUG [TREE-CONV] Polar Array: input_tree has {len(paths)} paths")
-                if paths:
-                    first_path = sorted(paths)[0]
-                    items_in_first = len(input_tree.get_branch(first_path))
-                    print(f"  DEBUG [TREE-CONV] Polar Array: input_tree first path {first_path} has {items_in_first} items")
-                    if len(paths) == 1 and items_in_first > 1:
-                        print(f"  DEBUG [TREE-CONV] Polar Array: WARNING - input has 1 branch with {items_in_first} items (should be {items_in_first} branches)")
+                input_was_tree = False
+            else:
+                # Single item - wrap in tree
+                input_tree = to_tree(geometry)
+                input_was_tree = False
         except Exception as e:
             use_tree = False
-            # print(f"DEBUG Polar Array: tree conversion failed: {e}")
+            input_tree = None
     
     # Create array of geometries with rotation
     # In GH tree semantics: each input item becomes a branch, each rotation becomes an item in that branch
@@ -1653,14 +1752,20 @@ def polar_array_component(geometry: Any, plane: dict, count: int, angle: float, 
                     rotated_items.append(rotated_item)
                 output_tree.set_branch(new_path, rotated_items)
         
-        # Debug: log tree output
-        paths = output_tree.paths()
-        print(f"  DEBUG [TREE-CONV] Polar Array: output_tree has {len(paths)} paths")
-        if paths:
-            first_path = sorted(paths)[0]
-            items_in_first = len(output_tree.get_branch(first_path))
-            print(f"  DEBUG [TREE-CONV] Polar Array: first path {first_path} has {items_in_first} items (rotations)")
-        return output_tree
+        # Debug output removed for performance
+        # Return same type as input
+        if input_was_tree:
+            return output_tree
+        else:
+            # Input was list - return list
+            if use_tree and from_tree is not None:
+                return from_tree(output_tree)
+            else:
+                # Fallback: convert tree to list manually
+                result = []
+                for path in sorted(output_tree.paths()):
+                    result.extend(output_tree.get_branch(path))
+                return result
     
     # Fallback to list-based output for backward compatibility
     # print(f"DEBUG Polar Array: Using fallback list-based output (use_tree={use_tree}, input_tree={input_tree is not None})")

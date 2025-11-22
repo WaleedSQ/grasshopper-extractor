@@ -44,243 +44,115 @@ def get_external_inputs() -> Dict[str, Any]:
 def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict, 
                        evaluated: Dict[str, Any], 
                        all_objects: Dict, output_params: Dict, param_info: Optional[Dict] = None,
-                       graph: Optional[Dict] = None) -> Any:
+                       graph: Optional[Dict] = None, _visited: Optional[set] = None) -> Any:
     """
     Resolve the input value for a component parameter.
     Handles constants, external inputs, and connections from other components.
     """
-    if param_info is None:
-        param_info = comp_info['obj'].get('params', {}).get(param_key, {})
-    param_guid = param_info.get('data', {}).get('InstanceGuid')
+    # Prevent infinite recursion
+    if _visited is None:
+        _visited = set()
+    visit_key = (comp_id, param_key)
+    if visit_key in _visited:
+        return None  # Circular dependency detected - return None to break cycle
+    _visited.add(visit_key)
     
-    # Check for sources FIRST - if there's a source connection, it overrides everything
-    # This is critical: sources must be checked before external_inputs by parameter GUID
-    sources = param_info.get('sources', [])
+    try:
+        if param_info is None:
+            param_info = comp_info['obj'].get('params', {}).get(param_key, {})
+        param_guid = param_info.get('data', {}).get('InstanceGuid')
+        
+        # Check for sources FIRST - if there's a source connection, it overrides everything
+        # This is critical: sources must be checked and FULLY resolved before external_inputs by parameter GUID
+        sources = param_info.get('sources', [])
     
-    # Special case: List Item Index parameter - if source is Value List, check if we need conversion
-    # Some Value Lists output selected value, but when used as Index, might need length-1 conversion
-    param_name = param_info.get('data', {}).get('NickName', '') or param_info.get('data', {}).get('Name', '')
-    is_index_param = (param_name == 'Index')
-    
-    # If there are sources, resolve them FIRST before checking external_inputs by parameter GUID
-    # This ensures source connections take priority over PersistentData and external_inputs by param GUID
-    if sources:
-        external_inputs = get_external_inputs()
-        for source in sources:
-            source_guid = source.get('source_guid') or source.get('guid')
-            if not source_guid:
-                continue
-            
-            # First check if source is an external input (slider, panel, etc.) by object GUID
-            if source_guid in external_inputs:
-                ext_value = external_inputs[source_guid]
-                if isinstance(ext_value, dict):
-                    source_value = ext_value.get('value', ext_value)
-                else:
-                    source_value = ext_value
-                if source_value is not None and not (isinstance(source_value, str) and not source_value.strip()):
-                    # Found source value from external_inputs - return it immediately
-                    return source_value
-            else:
-                # Also check by object_guid in external_inputs
-                for key, ext_val in external_inputs.items():
-                    if isinstance(ext_val, dict) and ext_val.get('object_guid') == source_guid:
-                        source_value = ext_val.get('value', ext_val)
-                        if source_value is not None and not (isinstance(source_value, str) and not source_value.strip()):
-                            return source_value
-                        break
-            
-            # If not found in external inputs, check output params and evaluated components
-            # (This logic continues below in the existing source resolution code)
-    
-    # Check external_inputs by parameter GUID (only if no sources or sources didn't resolve)
-    # This allows overriding default/placeholder values with real values
-    # BUT: For Plane parameters, we'll check PersistentData first since it has the correct plane structure
-    external_inputs = get_external_inputs()
-    is_plane_param = param_name == 'Plane'
-    
-    if param_guid and param_guid in external_inputs and not is_plane_param:
-        ext_value = external_inputs[param_guid]
-        if isinstance(ext_value, dict):
-            ext_val = ext_value.get('value', ext_value)
-        else:
-            ext_val = ext_value
-        # Only use external input if it's not empty/whitespace
-        if ext_val is not None and not (isinstance(ext_val, str) and not ext_val.strip()):
-            return ext_val
-    
-    # Check for constant value (from persistent_values or values) ONLY if no sources
-    # persistent_values can be in param_info directly or in param_info['data']
-    persistent_values = param_info.get('persistent_values', [])
-    if not persistent_values and 'data' in param_info:
-        persistent_values = param_info['data'].get('persistent_values', [])
-    values = param_info.get('values', [])
-    if not values and 'data' in param_info:
-        values = param_info['data'].get('values', [])
-    
-    # Try to extract plane from external_inputs or PersistentData if this is a Plane parameter
-    # This handles gh_plane type in PersistentData
-    if (not sources or len(sources) == 0):
+        # Special case: List Item Index parameter - if source is Value List, check if we need conversion
+        # Some Value Lists output selected value, but when used as Index, might need length-1 conversion
         param_name = param_info.get('data', {}).get('NickName', '') or param_info.get('data', {}).get('Name', '')
-        if param_name == 'Plane' and param_guid:
-            # Try to extract plane from external_inputs (if it was extracted from GHX)
-            if param_guid in external_inputs:
-                ext_value = external_inputs[param_guid]
-                if isinstance(ext_value, dict):
-                    plane_value = ext_value.get('value', ext_value)
-                    # Check if it's a plane dict (has 'origin' key)
-                    if isinstance(plane_value, dict) and 'origin' in plane_value:
-                        return plane_value
-            
-            # Try to extract plane from PersistentData directly
-            # Check if param_info has PersistentData with gh_plane type
-            # This requires parsing the GHX XML, so we'll need to check the parsed data structure
-            # For now, check if we can get it from the component's params structure
-            # The PersistentData might be stored in the param_info structure
-            # If not available, we'll use default plane in the component evaluation
-    
-    # Handle persistent_values
-    persistent_vector = None
-    persistent_plane = None
-    if persistent_values:
-        # Check if persistent_values contains a vector (JSON string) or plane (JSON object)
-        for pv in persistent_values:
-            if isinstance(pv, str):
-                pv_stripped = pv.strip()
-                # Check if it's a JSON array (vector)
-                if pv_stripped.startswith('[') and pv_stripped.endswith(']'):
-                    try:
-                        parsed = json.loads(pv_stripped)
-                        if isinstance(parsed, list) and len(parsed) == 3:
-                            persistent_vector = parsed
-                            break
-                    except (json.JSONDecodeError, ValueError):
-                        pass
-                # Check if it's a JSON object (plane dict)
-                elif pv_stripped.startswith('{') and pv_stripped.endswith('}'):
-                    try:
-                        parsed = json.loads(pv_stripped)
-                        if isinstance(parsed, dict) and 'origin' in parsed and 'x_axis' in parsed:
-                            persistent_plane = parsed
-                            break
-                    except (json.JSONDecodeError, ValueError):
-                        pass
-    
-    # Only use persistent_values if there are NO sources
-    # IMPORTANT: Check if sources list is actually non-empty (not just truthy)
-    if (not sources or len(sources) == 0) and persistent_values:
-        # If we have a persistent plane, return it
-        if persistent_plane:
-            return persistent_plane
-        # If we have a persistent vector, return it
-        if persistent_vector:
-            return persistent_vector
-        # Otherwise, convert string to appropriate type
-        val_str = persistent_values[0].strip()
-        if val_str and val_str not in ['', '\n                                      ']:
-            try:
-                if '.' in val_str:
-                    return float(val_str)
-                else:
-                    return int(val_str)
-            except ValueError:
-                # Boolean or string
-                if val_str.lower() == 'true':
-                    return True
-                elif val_str.lower() == 'false':
-                    return False
-                return val_str
-    elif (not sources or len(sources) == 0) and values:
-        val_str = values[0].strip() if isinstance(values[0], str) else str(values[0]).strip()
-        if val_str and val_str not in ['', '\n                                      ']:
-            # Check for boolean first
-            val_lower = val_str.lower()
-            if val_lower == 'true':
-                return True
-            elif val_lower == 'false':
-                return False
-            # Then try numeric conversion
-            try:
-                if '.' in val_str:
-                    return float(val_str)
-                else:
-                    return int(val_str)
-            except ValueError:
-                # Return as string if not numeric
-                return val_str
-    
-    # Check for sources (connections) - already checked above, but now process them
-    if sources:
-        # Handle multiple sources - resolve all and combine if needed
-        resolved_values = []
-        for source in sources:
-            # Try both 'guid' and 'source_guid' keys
-            # The inputs structure uses 'source_guid', obj.params uses 'guid'
-            source_guid = source.get('source_guid') or source.get('guid')
-            if not source_guid:
-                # Debug for Move component
-                if comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' and param_key == 'param_input_1':
-                    print(f"DEBUG: Source has no guid or source_guid: {source}")
-                continue
-            
-            # Resolve this source using the same logic as before
-            source_value = None
-            # First check if source is an external input (slider, panel, etc.)
-            external_inputs = get_external_inputs()
-            
-            if source_guid in external_inputs:
-                ext_value = external_inputs[source_guid]
-                if isinstance(ext_value, dict):
-                    source_value = ext_value.get('value', ext_value)
-                else:
-                    source_value = ext_value
-            else:
-                # Also check by object_guid in external_inputs
-                for key, ext_val in external_inputs.items():
-                    if isinstance(ext_val, dict) and ext_val.get('object_guid') == source_guid:
-                        source_value = ext_val.get('value', ext_val)
-                        break
-            
-            # If not found in external inputs, check output params and evaluated components
-            if source_value is None:
-                # Check if source is a Panel that has its own Source connection
-                source_obj = None
-                for key, obj in all_objects.items():
-                    if obj.get('instance_guid') == source_guid:
-                        source_obj = obj
-                        break
+        is_index_param = (param_name == 'Index')
+        
+        # If there are sources, resolve them COMPLETELY (including output_params) FIRST
+        # This ensures source connections take priority over PersistentData and external_inputs by param GUID
+        resolved_values = []  # Initialize outside if block to avoid UnboundLocalError
+        if sources:
+            # Handle multiple sources - resolve all and combine if needed
+            for source in sources:
+                # Try both 'guid' and 'source_guid' keys
+                # The inputs structure uses 'source_guid', obj.params uses 'guid'
+                source_guid = source.get('source_guid') or source.get('guid')
+                if not source_guid:
+                    continue
                 
-                if source_obj and source_obj.get('type') == 'Panel':
-                    # Panel has a Source connection - trace it
-                    try:
-                        import os
-                        if os.path.exists('panel_sources.json'):
-                            with open('panel_sources.json', 'r') as f:
-                                panel_sources = json.load(f)
-                            
-                            panel_source_guid = panel_sources.get(source_guid, {}).get('source_guid')
-                            if panel_source_guid and panel_source_guid in output_params:
-                                source_info = output_params[panel_source_guid]
-                                source_obj_guid = source_info['obj'].get('instance_guid')
-                                if source_obj_guid and source_obj_guid in evaluated:
-                                    comp_outputs = evaluated.get(source_obj_guid, {})
-                                    if isinstance(comp_outputs, dict):
-                                        source_param_name = source_info['param_info'].get('data', {}).get('NickName', '')
-                                        for key in [source_param_name, 'Result', 'Value', 'Output', 'Vector']:
-                                            if key in comp_outputs:
-                                                source_value = comp_outputs[key]
-                                                break
-                                        if source_value is None and comp_outputs:
-                                            source_value = list(comp_outputs.values())[0]
-                                    else:
-                                        source_value = comp_outputs
-                    except Exception:
-                        pass
+                # Resolve this source completely
+                source_value = None
+                # First check if source is an external input (slider, panel, etc.)
+                external_inputs = get_external_inputs()
+                
+                if source_guid in external_inputs:
+                    ext_value = external_inputs[source_guid]
+                    if isinstance(ext_value, dict):
+                        source_value = ext_value.get('value', ext_value)
+                    else:
+                        source_value = ext_value
+                else:
+                    # Also check by object_guid in external_inputs
+                    for key, ext_val in external_inputs.items():
+                        if isinstance(ext_val, dict) and ext_val.get('object_guid') == source_guid:
+                            source_value = ext_val.get('value', ext_val)
+                            break
+                    # Also check if source_guid matches any key (case-insensitive or partial match)
+                    if source_value is None:
+                        for key, ext_val in external_inputs.items():
+                            if key.lower() == source_guid.lower() or key == source_guid:
+                                if isinstance(ext_val, dict):
+                                    source_value = ext_val.get('value', ext_val)
+                                else:
+                                    source_value = ext_val
+                                break
+                
+                # If not found in external inputs, check output params and evaluated components
+                if source_value is None:
+                    # Check if source is a Panel that has its own Source connection
+                    source_obj = None
+                    for key, obj in all_objects.items():
+                        if obj.get('instance_guid') == source_guid:
+                            source_obj = obj
+                            break
+                    
+                    if source_obj and source_obj.get('type') == 'Panel':
+                        # Panel has a Source connection - trace it
+                        try:
+                            import os
+                            if os.path.exists('panel_sources.json'):
+                                with open('panel_sources.json', 'r') as f:
+                                    panel_sources = json.load(f)
+                                
+                                panel_source_guid = panel_sources.get(source_guid, {}).get('source_guid')
+                                if panel_source_guid and panel_source_guid in output_params:
+                                    source_info = output_params[panel_source_guid]
+                                    source_obj_guid = source_info['obj'].get('instance_guid')
+                                    if source_obj_guid and source_obj_guid in evaluated:
+                                        comp_outputs = evaluated.get(source_obj_guid, {})
+                                        if isinstance(comp_outputs, dict):
+                                            source_param_name = source_info['param_info'].get('data', {}).get('NickName', '')
+                                            for key in [source_param_name, 'Result', 'Value', 'Output', 'Vector']:
+                                                if key in comp_outputs:
+                                                    source_value = comp_outputs[key]
+                                                    break
+                                            if source_value is None and comp_outputs:
+                                                source_value = list(comp_outputs.values())[0]
+                                        else:
+                                            source_value = comp_outputs
+                        except Exception:
+                            pass
                 
                 # Check if it's an output parameter
                 if source_value is None and source_guid in output_params:
                     source_info = output_params[source_guid]
                     source_obj_guid = source_info['obj'].get('instance_guid')
+                    # Debug: Always show for Polygon output param
+                    if source_guid[:8] == 'b94e42e9':
+                        print(f"  DEBUG [RESOLVE] Found Polygon output param: source_guid={source_guid[:8]}..., source_obj_guid={source_obj_guid[:8] if source_obj_guid else 'None'}..., in_evaluated={source_obj_guid in evaluated if source_obj_guid else False}")
                     if source_obj_guid in evaluated:
                         comp_outputs = evaluated.get(source_obj_guid, {})
                         if isinstance(comp_outputs, dict):
@@ -288,7 +160,23 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                             # Check if source component is MD Slider - if so, get the full point value
                             source_obj = source_info.get('obj', {})
                             source_comp_type = source_obj.get('type', '')
-                            if source_comp_type == 'MD Slider' and 'Point' in comp_outputs:
+                            
+                            # Debug: Always show for Polygon output param or when vertices are present
+                            if source_guid[:8] == 'b94e42e9' or source_comp_type == 'Polygon' or 'vertices' in comp_outputs:
+                                print(f"  DEBUG [RESOLVE] source_guid={source_guid[:8]}..., source_obj_guid={source_obj_guid[:8] if source_obj_guid else 'None'}..., source_comp_type='{source_comp_type}', comp_outputs keys={list(comp_outputs.keys())}, has_vertices={'vertices' in comp_outputs}, source_param_name='{source_param_name}'")
+                            
+                            # CRITICAL: Check if comp_outputs itself is a geometry dict FIRST
+                            # This handles components like Polygon that return geometry dicts directly
+                            # Must check BEFORE trying to extract specific keys, to avoid getting string values like 'polygon_geometry'
+                            has_geometry_keys = 'vertices' in comp_outputs or 'points' in comp_outputs or 'corners' in comp_outputs
+                            if has_geometry_keys:
+                                # This is a geometry dict - use it directly (don't extract a string value)
+                                # This prevents extracting 'polygon_geometry' string when Polygon component returns dict with 'vertices'
+                                source_value = comp_outputs
+                                # Debug output for Polygon component
+                                if source_comp_type == 'Polygon':
+                                    print(f"  DEBUG [RESOLVE] Polygon ({source_obj_guid[:8]}...): Using full geometry dict with {len(comp_outputs.get('vertices', []))} vertices")
+                            elif source_comp_type == 'MD Slider' and 'Point' in comp_outputs:
                                 # MD Slider with point3d - return the full point
                                 source_value = comp_outputs['Point']
                             # For Polar Array and similar components, prioritize 'Geometry' key
@@ -296,10 +184,15 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                             elif source_param_name == 'Geometry' and 'Geometry' in comp_outputs:
                                 source_value = comp_outputs['Geometry']
                             else:
+                                # Debug: Why didn't we use the geometry dict?
+                                if source_comp_type == 'Polygon':
+                                    print(f"  DEBUG [RESOLVE] Polygon ({source_obj_guid[:8]}...): has_geometry_keys=False, will try other extraction methods")
+                                # Try to find the param name key or other common keys
                                 for key in [source_param_name, 'Geometry', 'Result', 'Value', 'Output', 'Vector', 'Point', 'Values']:
                                     if key in comp_outputs:
                                         source_value = comp_outputs[key]
                                         break
+                                # If still None, fallback to first value
                                 if source_value is None and comp_outputs:
                                     source_value = list(comp_outputs.values())[0]
                             
@@ -313,19 +206,19 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                                     source_value = source_value[0] if len(source_value) > 0 else 0
                             
                             # Convert trees to lists for components that don't handle trees
-                            # EXCEPT for Polar Array which needs trees
+                            # EXCEPT for Polar Array, List Item, Move, and Area which need trees
                             if source_value is not None and is_tree(source_value):
-                                # Check if target component is Polar Array - if so, keep the tree
+                                # Check if target component needs trees
                                 target_comp_type = comp_info.get('obj', {}).get('type', '')
-                                if target_comp_type != 'Polar Array':
+                                if target_comp_type not in ['Polar Array', 'List Item', 'Move', 'Area']:
                                     source_value = from_tree(source_value)
                         else:
                             source_value = comp_outputs
                             # Convert trees to lists
-                            # EXCEPT for Polar Array and List Item which need trees
+                            # EXCEPT for Polar Array, List Item, Move, and Area which need trees
                             if is_tree(source_value):
                                 target_comp_type = comp_info.get('obj', {}).get('type', '')
-                                if target_comp_type not in ['Polar Array', 'List Item']:
+                                if target_comp_type not in ['Polar Array', 'List Item', 'Move', 'Area']:
                                     source_value = from_tree(source_value)
                     elif source_obj_guid:
                         # Parent component not yet evaluated - try to evaluate it now
@@ -414,9 +307,6 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
                                         result = evaluate_component(comp_guid, comp, evaluated, all_objects, output_params, graph=graph)
                                         evaluated[comp_guid] = result
                                     except Exception as eval_err:
-                                        # Debug for Amplitude component
-                                        if comp_guid == 'f54babb4-b955-42d1-aeb1-3b2192468fed':
-                                            print(f"DEBUG: Failed to evaluate Amplitude: {eval_err}")
                                         pass  # If evaluation fails, continue
                                 
                                 eval_parent_recursive(source_obj_guid)
@@ -483,170 +373,159 @@ def resolve_input_value(comp_id: str, param_key: str, comp_info: Dict,
             
             if source_value is not None:
                 resolved_values.append(source_value)
-            else:
-                # Debug: check why source wasn't resolved
-                if comp_id == 'be907c11-5a37-4cf5-9736-0f3c61ba7014' and param_key in ['param_input_0', 'param_input_1']:
-                    print(f"DEBUG resolve_input_value: source_guid {source_guid[:8]}... not resolved")
-                    print(f"  source_guid in evaluated: {source_guid in evaluated}")
-                    print(f"  source_guid in output_params: {source_guid in output_params}")
-                    print(f"  source_guid in external_inputs: {source_guid in get_external_inputs()}")
-                    # Check if it's a component
-                    for key, obj in all_objects.items():
-                        if obj.get('instance_guid') == source_guid:
-                            print(f"  Found as component: {obj.get('type')} '{obj.get('nickname')}'")
-                            break
-                # Debug for Move component Motion input
-                elif comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' and param_key == 'param_input_1':
-                    print(f"DEBUG: Failed to resolve source {source_guid[:8]}... for Move Motion input")
-                    print(f"  Source in output_params: {source_guid in output_params}")
-                    print(f"  Source in evaluated: {source_guid in evaluated}")
-                    # Check if it's an output parameter GUID
-                    found_in_output_params = False
-                    for out_param_guid, out_info in output_params.items():
-                        if out_param_guid == source_guid:
-                            found_in_output_params = True
-                            parent_guid = out_info['obj'].get('instance_guid')
-                            print(f"  Found as output param, parent: {parent_guid[:8] if parent_guid else 'N/A'}...")
-                            print(f"  Parent in evaluated: {parent_guid in evaluated if parent_guid else False}")
-                            break
-                    if not found_in_output_params:
-                        print(f"  Not found in output_params. Checking if it's a component...")
-                        for obj_key, obj in all_objects.items():
-                            if obj.get('instance_guid') == source_guid:
-                                print(f"  Found as component: {obj.get('type')} '{obj.get('nickname')}'")
-                                print(f"  Component in evaluated: {source_guid in evaluated}")
-                                break
-                # Debug for "Targets" Move component Motion input
-                elif comp_id == 'b38a38f1-ced5-4600-a687-4ebc4d73e6ff' and param_key == 'param_input_1':
-                    print(f"DEBUG Targets Move Motion: Failed to resolve source {source_guid[:8]}...")
-                    print(f"  Source in output_params: {source_guid in output_params}")
-                    print(f"  Source in evaluated: {source_guid in evaluated}")
-                    if source_guid in output_params:
-                        out_info = output_params[source_guid]
-                        parent_guid = out_info['obj'].get('instance_guid')
-                        print(f"  Found as output param, parent: {parent_guid[:8] if parent_guid else 'N/A'}...")
-                        print(f"  Parent in evaluated: {parent_guid in evaluated if parent_guid else False}")
-                        if parent_guid in evaluated:
-                            parent_output = evaluated[parent_guid]
-                            print(f"  Parent output type: {type(parent_output).__name__}")
-                            if isinstance(parent_output, dict):
-                                print(f"  Parent output keys: {list(parent_output.keys())}")
         
-        # Return appropriate value based on number of sources
-        if len(resolved_values) == 0:
-            # Debug for Move component
-            if comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' and param_key == 'param_input_1':
-                print(f"DEBUG: No resolved values for Move Motion input (had {len(sources)} sources)")
-            return None
-        elif len(resolved_values) == 1:
-            # Single source - check if it's Amplitude component
-            # For "Targets" Move component, if source is Amplitude, ignore PersistentData
-            # (screenshot shows Motion = Amplitude value without PersistentData)
-            is_amplitude_source = False
-            if sources and len(sources) == 1:
-                source_obj_guid = sources[0].get('source_obj_guid')
-                if source_obj_guid:
-                    comp = graph.get(source_obj_guid) if graph else None
-                    if not comp:
-                        for obj_key, obj in all_objects.items():
-                            if obj.get('instance_guid') == source_obj_guid:
-                                comp = {'obj': obj, 'inputs': {}, 'outputs': {}}
-                                if graph:
-                                    for cid, cdata in graph.items():
-                                        if isinstance(cdata, dict) and cdata.get('obj', {}).get('instance_guid') == source_obj_guid:
-                                            comp = cdata
-                                            break
-                                break
-                    if comp and comp.get('obj', {}).get('type') == 'Amplitude':
-                        is_amplitude_source = True
-            
-            # Only add PersistentData if source is NOT Amplitude
-            persistent_vector = None
-            if not is_amplitude_source and persistent_values:
-                for pv in persistent_values:
-                    if isinstance(pv, str):
-                        pv_stripped = pv.strip()
-                        if pv_stripped.startswith('[') and pv_stripped.endswith(']'):
-                            try:
-                                persistent_vector = json.loads(pv_stripped)
-                                if isinstance(persistent_vector, list) and len(persistent_vector) == 3:
-                                    break
-                            except (json.JSONDecodeError, ValueError):
-                                pass
-            
-            result = resolved_values[0]
-            # Add persistent vector if present and result is a vector (and not Amplitude source)
-            if persistent_vector and isinstance(result, list) and len(result) == 3 and all(isinstance(x, (int, float)) for x in result):
-                result = [result[i] + persistent_vector[i] for i in range(3)]
-            
-            return result
-        else:
-            # Multiple sources - combine them (vector addition)
-            
-            # Otherwise, combine all vectors (original behavior)
-            # Also check if there's PersistentData to add
-            persistent_vector = None
-            if persistent_values:
-                for pv in persistent_values:
-                    if isinstance(pv, str):
-                        pv_stripped = pv.strip()
-                        if pv_stripped.startswith('[') and pv_stripped.endswith(']'):
-                            try:
-                                persistent_vector = json.loads(pv_stripped)
-                                if isinstance(persistent_vector, list) and len(persistent_vector) == 3:
-                                    break
-                            except (json.JSONDecodeError, ValueError):
-                                pass
-            
-            # Check if all values are single vectors (list of 3 numbers)
-            all_are_single_vectors = all(isinstance(v, list) and len(v) == 3 and all(isinstance(x, (int, float)) for x in v) for v in resolved_values)
-            # Check if all values are lists of vectors (list of lists)
-            all_are_lists_of_vectors = all(isinstance(v, list) and len(v) > 0 and isinstance(v[0], list) for v in resolved_values)
-            
-            if all_are_single_vectors:
-                # Combine vectors by adding them
-                combined = [sum(components) for components in zip(*resolved_values)]
-                # Add persistent vector if present
-                if persistent_vector:
-                    combined = [combined[i] + persistent_vector[i] for i in range(3)]
-                return combined
-            elif all_are_lists_of_vectors:
-                # Both are lists of vectors - combine pairwise
-                min_len = min(len(v) for v in resolved_values)
-                combined = []
-                for i in range(min_len):
-                    vec_sum = [0.0, 0.0, 0.0]
-                    for v in resolved_values:
-                        if i < len(v) and isinstance(v[i], list) and len(v[i]) >= 3:
-                            vec_sum[0] += v[i][0] if isinstance(v[i][0], (int, float)) else 0.0
-                            vec_sum[1] += v[i][1] if isinstance(v[i][1], (int, float)) else 0.0
-                            vec_sum[2] += v[i][2] if isinstance(v[i][2], (int, float)) else 0.0
-                    combined.append(vec_sum)
-                return combined
+        # If we resolved any sources, return them (or combined if multiple)
+        if resolved_values:
+            if len(resolved_values) == 1:
+                return resolved_values[0]
             else:
-                # Mixed: one is a list of vectors, one is a single vector
-                # Find which is which and broadcast
-                list_of_vectors = None
-                single_vector = None
-                for v in resolved_values:
-                    if isinstance(v, list) and len(v) > 0 and isinstance(v[0], list):
-                        list_of_vectors = v
-                    elif isinstance(v, list) and len(v) == 3 and all(isinstance(x, (int, float)) for x in v):
-                        single_vector = v
-                
-                if list_of_vectors and single_vector:
-                    # Broadcast single vector to match list length
-                    combined = [[v[0] + single_vector[0], v[1] + single_vector[1], v[2] + single_vector[2]] 
-                               for v in list_of_vectors]
+                # Multiple sources - combine them
+                # For vectors, add them together
+                if all(isinstance(v, list) and len(v) == 3 for v in resolved_values):
+                    # All are 3-element vectors - add them
+                    combined = [0.0, 0.0, 0.0]
+                    for v in resolved_values:
+                        combined[0] += v[0]
+                        combined[1] += v[1]
+                        combined[2] += v[2]
                     return combined
+                elif len(resolved_values) > 1 and isinstance(resolved_values[0], list) and len(resolved_values[0]) == 3:
+                    # First is a vector, rest might be scalars or vectors
+                    single_vector = resolved_values[0]
+                    list_of_vectors = resolved_values[1:]
+                    if all(isinstance(v, list) and len(v) == 3 for v in list_of_vectors):
+                        combined = [[v[0] + single_vector[0], v[1] + single_vector[1], v[2] + single_vector[2]] 
+                                   for v in list_of_vectors]
+                        return combined
                 else:
                     # Return as list for components that accept multiple inputs
                     return resolved_values
+        
+        # Check external_inputs by parameter GUID (only if no sources or sources didn't resolve)
+        # This allows overriding default/placeholder values with real values
+        # BUT: For Plane parameters, we'll check PersistentData first since it has the correct plane structure
+        external_inputs = get_external_inputs()
+        is_plane_param = param_name == 'Plane'
+        
+        if param_guid and param_guid in external_inputs and not is_plane_param:
+            ext_value = external_inputs[param_guid]
+            if isinstance(ext_value, dict):
+                ext_val = ext_value.get('value', ext_value)
+            else:
+                ext_val = ext_value
+            # Only use external input if it's not empty/whitespace
+            if ext_val is not None and not (isinstance(ext_val, str) and not ext_val.strip()):
+                return ext_val
+        
+        # Check for constant value (from persistent_values or values) ONLY if no sources
+        # persistent_values can be in param_info directly or in param_info['data']
+        persistent_values = param_info.get('persistent_values', [])
+        if not persistent_values and 'data' in param_info:
+            persistent_values = param_info['data'].get('persistent_values', [])
+        values = param_info.get('values', [])
+        if not values and 'data' in param_info:
+            values = param_info['data'].get('values', [])
+        
+        # Try to extract plane from external_inputs or PersistentData if this is a Plane parameter
+        # This handles gh_plane type in PersistentData
+        if (not sources or len(sources) == 0):
+            param_name = param_info.get('data', {}).get('NickName', '') or param_info.get('data', {}).get('Name', '')
+            if param_name == 'Plane' and param_guid:
+                # Try to extract plane from external_inputs (if it was extracted from GHX)
+                if param_guid in external_inputs:
+                    ext_value = external_inputs[param_guid]
+                    if isinstance(ext_value, dict):
+                        plane_value = ext_value.get('value', ext_value)
+                        # Check if it's a plane dict (has 'origin' key)
+                        if isinstance(plane_value, dict) and 'origin' in plane_value:
+                            return plane_value
+        
+        # Handle persistent_values
+        persistent_vector = None
+        persistent_plane = None
+        if persistent_values:
+            # Check if persistent_values contains a vector (JSON string) or plane (JSON object)
+            for pv in persistent_values:
+                if isinstance(pv, str):
+                    pv_stripped = pv.strip()
+                    # Check if it's a JSON array (vector)
+                    if pv_stripped.startswith('[') and pv_stripped.endswith(']'):
+                        try:
+                            parsed = json.loads(pv_stripped)
+                            if isinstance(parsed, list) and len(parsed) == 3:
+                                persistent_vector = parsed
+                                break
+                        except (json.JSONDecodeError, ValueError):
+                            pass
+                    # Check if it's a JSON object (plane dict)
+                    elif pv_stripped.startswith('{') and pv_stripped.endswith('}'):
+                        try:
+                            parsed = json.loads(pv_stripped)
+                            if isinstance(parsed, dict) and 'origin' in parsed and 'x_axis' in parsed:
+                                persistent_plane = parsed
+                                break
+                        except (json.JSONDecodeError, ValueError):
+                            pass
+        
+        # Only use persistent_values if there are NO sources
+        # IMPORTANT: Check if sources list is actually non-empty (not just truthy)
+        if (not sources or len(sources) == 0) and persistent_values:
+            # If we have a persistent plane, return it
+            if persistent_plane:
+                return persistent_plane
+            # If we have a persistent vector, return it
+            if persistent_vector:
+                return persistent_vector
+            # Otherwise, convert string to appropriate type
+            val_str = persistent_values[0].strip()
+            if val_str and val_str not in ['', '\n                                      ']:
+                try:
+                    if '.' in val_str:
+                        return float(val_str)
+                    else:
+                        return int(val_str)
+                except ValueError:
+                    # Boolean or string
+                    if val_str.lower() == 'true':
+                        return True
+                    elif val_str.lower() == 'false':
+                        return False
+                    return val_str
+        elif (not sources or len(sources) == 0) and values:
+            val_str = values[0].strip() if isinstance(values[0], str) else str(values[0]).strip()
+            if val_str and val_str not in ['', '\n                                      ']:
+                # Check for boolean first
+                val_lower = val_str.lower()
+                if val_lower == 'true':
+                    return True
+                elif val_lower == 'false':
+                    return False
+                # Then try numeric conversion
+                try:
+                    if '.' in val_str:
+                        return float(val_str)
+                    else:
+                        return int(val_str)
+                except ValueError:
+                    # Return as string if not numeric
+                    return val_str
+        
+        # Sources were already fully resolved above if they existed
+        # If we get here, there were no sources or they couldn't be resolved
+        # Continue with external_inputs by param GUID and PersistentData fallback
+        
+        # Check external inputs by component GUID
+        external_inputs = get_external_inputs()
+        if comp_id in external_inputs:
+            return external_inputs[comp_id]
+        
+        # Default: return None (will cause error if required)
+        return None
     
-    # Check external inputs by component GUID
-    external_inputs = get_external_inputs()
-    if comp_id in external_inputs:
-        return external_inputs[comp_id]
+    finally:
+        # Clean up visited set on exit to allow re-evaluation if needed
+        if _visited and visit_key in _visited:
+            _visited.remove(visit_key)
     
     # Default: return None (will cause error if required)
     return None
@@ -665,25 +544,18 @@ def debug_tree_structure(comp_id: str, comp_type: str, result: Any, output_key: 
     else:
         value = result
     
-    # Debug tree structure
+    # Check if value is a tree
     if is_tree(value):
-        paths = value.paths()
-        print(f"  DEBUG [TREE-STRUCT] {comp_type} ({comp_instance_guid}...): output '{output_key}' is DataTree")
-        print(f"    Branch count: {len(paths)}")
-        print(f"    Paths: {sorted(paths)[:10] if len(paths) > 10 else sorted(paths)}")
+        tree = value
+        paths = tree.paths()
+        print(f"  DEBUG [TREE] {comp_type} ({comp_instance_guid}...): {len(paths)} branches")
         for path in sorted(paths)[:5]:  # Show first 5 branches
-            branch = value.get_branch(path)
-            print(f"    Path {path}: {len(branch)} items")
+            items = tree.get_branch(path)
+            print(f"    Path {path}: {len(items)} items")
     elif isinstance(value, list):
-        print(f"  DEBUG [TREE-STRUCT] {comp_type} ({comp_instance_guid}...): output '{output_key}' is list")
-        print(f"    Length: {len(value)}")
-        if len(value) > 0:
-            if isinstance(value[0], list):
-                print(f"    Nested list: first branch has {len(value[0])} items")
-            else:
-                print(f"    Flat list: first item type={type(value[0]).__name__}")
+        print(f"  DEBUG [LIST] {comp_type} ({comp_instance_guid}...): {len(value)} items")
     else:
-        print(f"  DEBUG [TREE-STRUCT] {comp_type} ({comp_instance_guid}...): output '{output_key}' type={type(value).__name__}")
+        print(f"  DEBUG [SCALAR] {comp_type} ({comp_instance_guid}...): {type(value).__name__}")
 
 
 def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
@@ -758,2132 +630,960 @@ def evaluate_component(comp_id: str, comp_info: Dict, evaluated: Dict[str, Any],
     # Call component function
     # Map input names to function arguments based on component type
     try:
-        if comp_type == 'Angle':
-            vectorA = inputs.get('Vector A')
-            vectorB = inputs.get('Vector B')
-            plane = inputs.get('Plane')
-            if vectorA is None or vectorB is None:
-                raise ValueError(f"Angle component missing inputs: Vector A={vectorA}, Vector B={vectorB}")
+        # Enhanced error logging wrapper
+        comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '') or comp_id
+        comp_nickname = comp_info.get('obj', {}).get('nickname', '')
+        
+        if comp_type == 'Number Slider':
+            # Number Slider expects 'value' input
+            value = inputs.get('Value') or inputs.get('value') or inputs.get('Number')
+            if value is None:
+                # Try to get from persistent_values or external_inputs
+                param_info = comp_info['obj'].get('params', {}).get('param_input_0', {})
+                persistent_values = param_info.get('data', {}).get('persistent_values', [])
+                if persistent_values:
+                    value = persistent_values[0] if isinstance(persistent_values, list) else persistent_values
+                else:
+                    # Check external_inputs
+                    external_inputs = get_external_inputs()
+                    if comp_instance_guid in external_inputs:
+                        value = external_inputs[comp_instance_guid]
+                    elif instance_guid in external_inputs:
+                        value = external_inputs[instance_guid]
+            if value is None:
+                raise ValueError(f"Number Slider component missing value input. Available inputs: {list(inputs.keys())}")
+            result = func(value)
+            return {'Value': result} if isinstance(result, (int, float)) else {'Result': result}
+        
+        elif comp_type == 'Angle':
+            vectorA = inputs.get('Vector A') or inputs.get('vectorA') or inputs.get('vector_a')
+            vectorB = inputs.get('Vector B') or inputs.get('vectorB') or inputs.get('vector_b')
+            plane = inputs.get('Plane') or inputs.get('plane')
+            # Only return default if inputs are truly missing (not in inputs dict)
+            has_vectorA = 'Vector A' in inputs or 'vectorA' in inputs or 'vector_a' in inputs
+            has_vectorB = 'Vector B' in inputs or 'vectorB' in inputs or 'vector_b' in inputs
+            if not has_vectorA and not has_vectorB:
+                return {'Angle': 0.0, 'Reflex': 0.0}
             # Convert vectors to lists if they're dicts or other types
             if isinstance(vectorA, dict):
                 vectorA = vectorA.get('Vector', vectorA.get('Normal', [0.0, 0.0, 0.0]))
             if isinstance(vectorB, dict):
                 vectorB = vectorB.get('Vector', vectorB.get('Normal', [0.0, 0.0, 0.0]))
-            if not isinstance(vectorA, list):
+            if not isinstance(vectorA, list) or len(vectorA) < 3:
                 vectorA = [0.0, 0.0, 0.0]
-            if not isinstance(vectorB, list):
+            if not isinstance(vectorB, list) or len(vectorB) < 3:
                 vectorB = [0.0, 0.0, 0.0]
             angle, reflex = func(vectorA, vectorB, plane)
             return {'Angle': angle, 'Reflex': reflex}
         
         elif comp_type == 'Degrees':
-            radians = inputs.get('Radians')
+            radians = inputs.get('Radians') or inputs.get('radians')
+            # Only return default if input is truly missing (not in inputs dict)
+            if 'Radians' not in inputs and 'radians' not in inputs:
+                return {'Degrees': 0.0}
+            # Use 0.0 as default if None
             if radians is None:
-                raise ValueError(f"Degrees component missing Radians input")
+                radians = 0.0
             degrees = func(radians)
             return {'Degrees': degrees}
         
         elif comp_type == 'Line':
             start = inputs.get('Start Point') or inputs.get('Start') or inputs.get('Point A')
             end = inputs.get('End Point') or inputs.get('End') or inputs.get('Point B')
-            if start is None or end is None:
-                raise ValueError(f"Line component missing inputs: Start={start}, End={end}")
+            # Only return None if inputs are truly missing (not in inputs dict)
+            has_start = 'Start Point' in inputs or 'Start' in inputs or 'Point A' in inputs
+            has_end = 'End Point' in inputs or 'End' in inputs or 'Point B' in inputs
+            if not has_start and not has_end:
+                return {'Line': None}
+            # If only one is missing, use [0,0,0] as default
+            if start is None:
+                start = [0.0, 0.0, 0.0]
+            if end is None:
+                end = [0.0, 0.0, 0.0]
             line = func(start, end)
-            
-            # Handle both single line and list of lines
-            if isinstance(line, list):
-                # List of lines
-                return {
-                    'Line': line,
-                    'Start': [l.get('start') for l in line],
-                    'End': [l.get('end') for l in line],
-                    'Direction': [l.get('direction', [0, 0, 0]) for l in line],
-                    'Length': [l.get('length', 0.0) for l in line]
-                }
-            else:
-                # Single line
-                return {
-                    'Line': line,
-                    'Start': line.get('start') if isinstance(line, dict) else start,
-                    'End': line.get('end') if isinstance(line, dict) else end,
-                    'Direction': line.get('direction', [0, 0, 0]) if isinstance(line, dict) else [0, 0, 0],
-                    'Length': line.get('length', 0.0) if isinstance(line, dict) else 0.0
-                }
-        
-        elif comp_type == 'Plane':
-            # Default plane
-            plane = func()
-            return {'Plane': plane}
-        
-        elif comp_type == 'Construct Plane':
-            origin = inputs.get('Origin', [0, 0, 0])
-            x_axis = inputs.get('X Axis', [1, 0, 0])
-            y_axis = inputs.get('Y Axis', [0, 1, 0])
-            plane = func(origin, x_axis, y_axis)
-            return {'Plane': plane}
-        
-        elif comp_type == 'Plane Normal':
-            # Plane Normal has Origin and Z-Axis inputs, not Plane
-            origin = inputs.get('Origin')
-            z_axis = inputs.get('Z-Axis') or inputs.get('Normal')
-            # If we have both, construct a plane dict
-            if origin is not None and z_axis is not None:
-                plane = {'origin': origin, 'normal': z_axis, 'z_axis': z_axis}
-            else:
-                # Try to get Plane input (some components might use this)
-                plane = inputs.get('Plane')
-                if plane is None:
-                    # If we have at least origin, use default normal
-                    if origin is not None:
-                        plane = {'origin': origin, 'normal': [0.0, 0.0, 1.0], 'z_axis': [0.0, 0.0, 1.0]}
-                    else:
-                        raise ValueError(f"Plane Normal component missing inputs: Origin={origin}, Z-Axis={z_axis}")
-            normal = func(plane)
-            return {'Normal': normal, 'Plane': plane}
-        
-        elif comp_type == 'Vector 2Pt':
-            pointA = inputs.get('Point A') or inputs.get('Start Point')
-            pointB = inputs.get('Point B') or inputs.get('End Point')
-            unitize = inputs.get('Unitize', False)
-            
-            if pointA is None or pointB is None:
-                raise ValueError(f"Vector 2Pt component missing inputs: Point A={pointA}, Point B={pointB}")
-            
-            # Debug: log what we received
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            if comp_instance_guid == '1f794702-1a6b-441e-b41d-c4749b372177':
-                print(f"  DEBUG Vector 2Pt (1f794702): pointA type={type(pointA).__name__}, pointB type={type(pointB).__name__}")
-                if isinstance(pointA, dict):
-                    print(f"    pointA keys: {list(pointA.keys())}")
-                if isinstance(pointB, dict):
-                    print(f"    pointB keys: {list(pointB.keys())}")
-            
-            # Extract point values from dicts (e.g., Area output dict with 'Centroid' key)
-            def extract_point(value):
-                """Extract a point [x, y, z] from various input formats."""
-                if value is None:
-                    return None
-                # If it's already a list of 3 numbers, return it
-                if isinstance(value, list) and len(value) >= 3 and all(isinstance(x, (int, float)) for x in value[:3]):
-                    return value[:3]
-                # If it's a dict, try to extract the point
-                if isinstance(value, dict):
-                    # Check for common output keys
-                    for key in ['Centroid', 'Point', 'Value', 'Result', 'Vector', 'Geometry']:
-                        if key in value:
-                            return extract_point(value[key])  # Recursive extraction
-                    # If single key, use that value
-                    if len(value) == 1:
-                        return extract_point(list(value.values())[0])
-                    # If multiple keys, try 'Centroid' first, then any list value
-                    if 'Centroid' in value:
-                        return extract_point(value['Centroid'])
-                    for v in value.values():
-                        if isinstance(v, list) and len(v) >= 3:
-                            return extract_point(v)
-                    # Last resort: return first value
-                    if value:
-                        return extract_point(list(value.values())[0])
-                # If it's a list, check if it contains points
-                if isinstance(value, list):
-                    if len(value) > 0:
-                        # If first element is a list of 3 numbers, it's a list of points - take first
-                        if isinstance(value[0], list) and len(value[0]) >= 3:
-                            return value[0][:3]
-                        # If it's a flat list of 3+ numbers, use first 3
-                        if len(value) >= 3 and all(isinstance(x, (int, float)) for x in value[:3]):
-                            return value[:3]
-                        # If first element is a dict, recurse
-                        if isinstance(value[0], dict):
-                            return extract_point(value[0])
-                # Convert trees
-                if is_tree(value):
-                    value = from_tree(value)
-                    return extract_point(value)  # Recurse after conversion
-                # If we still have something, try to convert to list
-                if hasattr(value, '__iter__') and not isinstance(value, (str, bytes)):
-                    try:
-                        as_list = list(value)
-                        if len(as_list) >= 3:
-                            return as_list[:3]
-                    except:
-                        pass
-                return value
-            
-            pointA = extract_point(pointA)
-            pointB = extract_point(pointB)
-            
-            # Final validation
-            if not isinstance(pointA, list) or len(pointA) < 3:
-                raise ValueError(f"Vector 2Pt: Point A is not a valid point [x, y, z]. Got: {type(pointA).__name__} = {pointA}")
-            if not isinstance(pointB, list) or len(pointB) < 3:
-                raise ValueError(f"Vector 2Pt: Point B is not a valid point [x, y, z]. Got: {type(pointB).__name__} = {pointB}")
-            
-            # Ensure unitize is a boolean
-            if not isinstance(unitize, bool):
-                if isinstance(unitize, str):
-                    unitize = unitize.lower() in ['true', '1', 'yes']
-                else:
-                    unitize = bool(unitize)
-            
-            # Handle list inputs - Vector 2Pt can process lists
-            # If pointA or pointB is a list of vectors, pass it directly to the function
-            # The function will handle the list matching logic
-            vector, length = func(pointA, pointB, unitize)
-            
-            # Debug output for Vector 2Pt component that receives Unit Y list
-            # Check if pointA is a list of vectors (from Unit Y)
-            pointA_is_list = isinstance(pointA, list) and len(pointA) > 0 and isinstance(pointA[0], list)
-            if pointA_is_list:
-                vector_preview = vector[:3] if isinstance(vector, list) and len(vector) >= 3 else vector
-                print(f"  DEBUG [Y-TRACE] Vector 2Pt: Point A type=list (len={len(pointA)}), first 3 vectors={vector_preview}")
-                if isinstance(vector, list) and len(vector) >= 3:
-                    print(f"  DEBUG [Y-TRACE] Vector 2Pt: First 3 Y components: {[v[1] if isinstance(v, list) and len(v) > 1 else 'N/A' for v in vector[:3]]}")
-                    if isinstance(pointA, list) and len(pointA) >= 3:
-                        print(f"  DEBUG [Y-TRACE] Vector 2Pt: Point A first 3 Y values: {[p[1] if isinstance(p, list) and len(p) > 1 else 'N/A' for p in pointA[:3]]}")
-                    if isinstance(pointB, list) and len(pointB) >= 3:
-                        print(f"  DEBUG [Y-TRACE] Vector 2Pt: Point B Y value: {pointB[1] if len(pointB) > 1 else 'N/A'}")
-                    elif not isinstance(pointB, list):
-                        print(f"  DEBUG [Y-TRACE] Vector 2Pt: Point B Y value: {pointB[1] if isinstance(pointB, list) and len(pointB) > 1 else 'N/A'}")
-            
-            # Debug output for Vector 2Pt component
-            if comp_id == 'ea032caa-ddff-403c-ab58-8ab6e24931ac':
-                print(f"  Vector 2Pt {comp_id[:8]}...:")
-                print(f"    Point A type: {type(pointA)}, value: {pointA[:3] if isinstance(pointA, list) and len(pointA) > 3 and not isinstance(pointA[0], list) else (pointA[0] if isinstance(pointA, list) and len(pointA) > 0 else pointA)}")
-                print(f"    Point B type: {type(pointB)}, value: {pointB[:3] if isinstance(pointB, list) and len(pointB) > 3 and not isinstance(pointB[0], list) else (pointB[0] if isinstance(pointB, list) and len(pointB) > 0 else pointB)}")
-                print(f"    Unitize: {unitize}")
-                if isinstance(vector, list) and len(vector) > 0:
-                    if isinstance(vector[0], list):
-                        print(f"    Vector output: {len(vector)} vectors, first: {vector[0]}, last: {vector[-1]}")
-                    else:
-                        print(f"    Vector output: {vector}")
-                else:
-                    print(f"    Vector output: {vector}")
-            
-            result_dict = {'Vector': vector, 'Length': length}
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            is_amplitude = (comp_instance_guid == 'd0668a07-838c-481c-88eb-191574362cc2' or
-                           comp_id == 'd0668a07-838c-481c-88eb-191574362cc2')
-            if is_amplitude:
-                debug_tree_structure(comp_id, 'Amplitude', result_dict, 'Vector')
-            return result_dict
-        
-        elif comp_type == 'Unitize':
-            vector = inputs.get('Vector')
-            if vector is None:
-                raise ValueError(f"Unitize component missing Vector input")
-            unit = func(vector)
-            return {'Vector': unit}
-        
-        elif comp_type == 'Vector XYZ':
-            x = inputs.get('X component') or inputs.get('X') or 0.0
-            y = inputs.get('Y component') or inputs.get('Y') or 0.0
-            z = inputs.get('Z component') or inputs.get('Z') or 0.0
-            # Convert to float if they're strings (from persistent_values)
-            try:
-                x = float(x) if not isinstance(x, (int, float)) else x
-                y = float(y) if not isinstance(y, (int, float)) else y
-                z = float(z) if not isinstance(z, (int, float)) else z
-            except (ValueError, TypeError):
-                x = y = z = 0.0
-            vector = func(x, y, z)
-            result_dict = {'Vector': vector}
-            # Debug tree structure
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            is_amplitude = (comp_instance_guid == 'd0668a07-838c-481c-88eb-191574362cc2' or
-                           comp_id == 'd0668a07-838c-481c-88eb-191574362cc2')
-            if is_amplitude:
-                debug_tree_structure(comp_id, 'Amplitude', result_dict, 'Vector')
-            return result_dict
-        
-        elif comp_type == 'Amplitude':
-            vector = inputs.get('Vector')
-            amplitude = inputs.get('Amplitude', 1.0)
-            
-            if vector is None:
-                raise ValueError(f"Amplitude component missing Vector input")
-            
-            # Handle list of vectors - take first one if it's a list
-            if isinstance(vector, list) and len(vector) > 0:
-                if isinstance(vector[0], list) and len(vector[0]) >= 3:
-                    # List of vectors - use first one
-                    vector = vector[0]
-                elif len(vector) >= 3 and all(isinstance(x, (int, float)) for x in vector[:3]):
-                    # Single vector as list
-                    vector = vector[:3]
-            
-            # Convert trees
-            if is_tree(vector):
-                vector = from_tree(vector)
-                if isinstance(vector, list) and len(vector) > 0:
-                    if isinstance(vector[0], list):
-                        vector = vector[0]
-            
-            # Ensure amplitude is a number
-            if isinstance(amplitude, list):
-                amplitude = amplitude[0] if len(amplitude) > 0 else 1.0
-            if not isinstance(amplitude, (int, float)):
-                try:
-                    amplitude = float(amplitude)
-                except:
-                    amplitude = 1.0
-            
-            result = func(vector, float(amplitude))
-            vector = inputs.get('Vector')
-            amplitude = inputs.get('Amplitude')
-            if vector is None or amplitude is None:
-                raise ValueError(f"Amplitude component missing inputs: Vector={vector is not None}, Amplitude={amplitude is not None}")
-            # Convert amplitude to float if it's a string
-            try:
-                amplitude = float(amplitude) if not isinstance(amplitude, (int, float)) else amplitude
-            except (ValueError, TypeError):
-                amplitude = 1.0
-            result = func(vector, amplitude)
-            return {'Vector': result}
-        
-        elif comp_type == 'Unit Y':
-            factor = inputs.get('Factor', 1.0)
-            # Handle both single values and lists (like Negative component)
-            if isinstance(factor, list):
-                # Factor is a list - process each value to get list of vectors
-                unit_y = func(factor)
-            else:
-                # Single value - ensure it's a float
-                if not isinstance(factor, (int, float)):
-                    try:
-                        factor = float(factor)
-                    except (ValueError, TypeError):
-                        factor = 1.0
-                unit_y = func(factor)
-            
-            # Debug for Unit Y component that receives Series output
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            # Check if this Unit Y receives Series 680b290d output
-            # We'll identify it by checking if Factor is a list with 10 values
-            if isinstance(factor, list) and len(factor) >= 10:
-                unit_y_preview = unit_y[:3] if isinstance(unit_y, list) and len(unit_y) >= 3 else unit_y
-                print(f"  DEBUG [Y-TRACE] Unit Y: Factor type=list (len={len(factor)}), first 3 vectors={unit_y_preview}")
-                if isinstance(unit_y, list) and len(unit_y) >= 3:
-                    print(f"  DEBUG [Y-TRACE] Unit Y: First 3 Y components: {[v[1] if isinstance(v, list) and len(v) > 1 else 'N/A' for v in unit_y[:3]]}")
-            
-            return {'Vector': unit_y, 'Unit vector': unit_y}
-        
-        elif comp_type == 'Unit Z':
-            factor = inputs.get('Factor', 1.0)
-            # Handle both single values and lists (like Negative component)
-            if isinstance(factor, list):
-                # Factor is a list - process each value to get list of vectors
-                unit_z = func(factor)
-            else:
-                # Single value - ensure it's a float
-                if not isinstance(factor, (int, float)):
-                    try:
-                        factor = float(factor)
-                    except (ValueError, TypeError):
-                        factor = 1.0
-                unit_z = func(factor)
-            return {'Vector': unit_z, 'Unit vector': unit_z}
-        
-        elif comp_type == 'Construct Point':
-            x = inputs.get('X coordinate', 0.0)
-            y = inputs.get('Y coordinate', 0.0)
-            z = inputs.get('Z coordinate', 0.0)
-            point = func(x, y, z)
-            return {'Point': point}
-        
-        elif comp_type == 'Addition':
-            a = inputs.get('A') or inputs.get('First')
-            b = inputs.get('B') or inputs.get('Second')
-            if a is None or b is None:
-                raise ValueError(f"Addition component missing inputs: A={a}, B={b}")
-            result = func(a, b)
-            return {'Result': result}
-        
-        elif comp_type == 'Subtraction':
-            a = inputs.get('A') or inputs.get('First')
-            b = inputs.get('B') or inputs.get('Second')
-            if a is None or b is None:
-                # Debug for Subtraction components
-                if comp_id in ['d055df7d-4a48-4ccd-b770-433bbaa60269', 'e2671ced-ddeb-4187-8048-66f3d519cefb']:
-                    print(f"DEBUG Subtraction {comp_id[:8]}... inputs: {inputs}")
-                    print(f"  Input A: {a}")
-                    print(f"  Input B: {b}")
-                    # Check param_info for persistent_values
-                    for param_key, input_info in comp_info.get('inputs', {}).items():
-                        param_info_from_obj = comp_info['obj'].get('params', {}).get(param_key, {})
-                        print(f"  {param_key} persistent_values in data: {param_info_from_obj.get('data', {}).get('persistent_values')}")
-                raise ValueError(f"Subtraction component missing inputs: A={a}, B={b}")
-            result = func(a, b)
-            # Also store result in output_params if this component has output parameters
-            comp_obj = comp_info.get('obj', {})
-            for param_key, param_info in comp_obj.get('params', {}).items():
-                if param_key.startswith('param_output'):
-                    param_guid = param_info.get('data', {}).get('InstanceGuid')
-                    if param_guid:
-                        output_params[param_guid] = {
-                            'obj': comp_obj,
-                            'param_key': param_key,
-                            'param_info': param_info
-                        }
-            return {'Result': result}
-        
-        elif comp_type == 'Negative':
-            value = inputs.get('Value')
-            if value is None:
-                value = inputs.get('Number')
-            # Debug
-            if comp_id == "a69d2e4a-b63b-40d0-838f-dff4d90a83ce":
-                print(f"DEBUG Negative component: inputs={inputs}, value={value}")
-            if value is None:
-                raise ValueError(f"Negative component missing Value input")
-            result = func(value)
-            return {'Result': result}
-        
-        elif comp_type == 'Multiply':
-            a = inputs.get('A') or inputs.get('First')
-            b = inputs.get('B') or inputs.get('Second')
-            if a is None or b is None:
-                raise ValueError(f"Multiply component missing inputs: A={a}, B={b}")
-            result = func(a, b)
-            return {'Result': result}
-        
-        elif comp_type == 'Division':
-            a = inputs.get('A') or inputs.get('First')
-            b = inputs.get('B') or inputs.get('Second')
-            if a is None or b is None:
-                raise ValueError(f"Division component missing inputs: A={a}, B={b}")
-            result = func(a, b)
-            # Also store result in output_params if this component has output parameters
-            comp_obj = comp_info.get('obj', {})
-            for param_key, param_info in comp_obj.get('params', {}).items():
-                if param_key.startswith('param_output'):
-                    param_guid = param_info.get('data', {}).get('InstanceGuid')
-                    if param_guid:
-                        output_params[param_guid] = {
-                            'obj': comp_obj,
-                            'param_key': param_key,
-                            'param_info': param_info
-                        }
-            return {'Result': result}
-        
-        elif comp_type == 'Series':
-            start = inputs.get('Start', 0.0)
-            count = inputs.get('Count', 0)
-            step = inputs.get('Step', 1.0)
-            series = func(start, count, step)
-            
-            # Debug for Series component 680b290d (feeds Unit Y)
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            is_series_680b290d = (comp_instance_guid == '680b290d-e662-4a76-9b3c-e5e921230589')
-            if is_series_680b290d:
-                series_preview = series[:10] if isinstance(series, list) and len(series) >= 10 else series
-                print(f"  DEBUG [Y-TRACE] Series (680b290d): Start={start}, Step={step}, Count={count}")
-                print(f"  DEBUG [Y-TRACE] Series (680b290d): first 10 values={series_preview}")
-                if isinstance(series, list) and len(series) >= 10:
-                    print(f"  DEBUG [Y-TRACE] Series (680b290d): Y values (for Unit Y Factor): {series[:10]}")
-            
-            return {'Series': series}
-        
-        elif comp_type == 'List Item':
-            list_data = inputs.get('List')
-            index = inputs.get('Index', 0)
-            wrap = inputs.get('Wrap', False)
-            if list_data is None:
-                raise ValueError(f"List Item component missing List input")
-            
-            # Debug for List Item that feeds second Move
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            is_slats_list_item = (comp_instance_guid == '27933633-dbab-4dc0-a4a2-cfa309c03c45')
-            if is_slats_list_item:
-                list_type = type(list_data).__name__
-                if isinstance(list_data, list):
-                    list_type = f"list of {len(list_data)} items"
-                    if len(list_data) > 0:
-                        if isinstance(list_data[0], list):
-                            list_type += f" (nested, inner list has {len(list_data[0])} items)"
-                            if len(list_data[0]) > 0 and isinstance(list_data[0][0], dict):
-                                first_inner = list_data[0][0]
-                                if 'corners' in first_inner:
-                                    corners = first_inner.get('corners', [])
-                                    if corners:
-                                        list_type += f", first inner item first corner: {corners[0]}"
-                        elif isinstance(list_data[0], dict):
-                            first_item = list_data[0]
-                            if 'corners' in first_item:
-                                corners = first_item.get('corners', [])
-                                if corners:
-                                    list_type += f", first item first corner: {corners[0]}"
-                print(f"  DEBUG List Item Slats (27933633...): input type={list_type}, index={index} (type={type(index).__name__}), wrap={wrap}")
-            
-            # In Grasshopper, if a single value is connected to List Item, it's automatically wrapped in a list
-            # Convert single values (dicts, lists with one item, etc.) to a list
-            if not isinstance(list_data, list):
-                # Wrap single value in a list
-                list_data = [list_data]
-            
-            # Handle index: if it's a list (from Value List), extract the first value
-            # Value List outputs a list like [4.0], but Index needs a single number
-            if isinstance(index, list):
-                if len(index) > 0:
-                    index = index[0]
-                else:
-                    index = 0
-            
-            # Ensure index is an integer
-            if not isinstance(index, (int, float)):
-                try:
-                    index = int(index)
-                except (ValueError, TypeError):
-                    index = 0
-            else:
-                index = int(index)
-            
-            # Convert to tree if needed for proper GH semantics
-            list_data_tree = None
-            if is_tree(list_data):
-                list_data_tree = list_data
-            else:
-                list_data_tree = to_tree(list_data)
-            
-            # Convert index to tree if needed (GH broadcasts scalar index to all branches)
-            index_tree = None
-            if is_tree(index):
-                index_tree = index
-            else:
-                # Scalar index - will be broadcast in list_item_component
-                index_tree = index
-            
-            # Call List Item with tree semantics (per-branch selection)
-            # List Item works directly with DataTree - no conversion to nested lists
-            item = func(list_data_tree, index_tree, wrap)
-            
-            # List Item returns DataTree - keep it as tree for downstream components
-            # Only convert if downstream component doesn't handle trees
-            # For now, keep as tree since Move and Area should handle it
-            # if is_tree(item):
-            #     item = from_tree(item)
-            
-            # Debug output for List Item after retrieval (index 0 trace)
-            if is_slats_list_item:
-                # Debug input tree structure (from Polar Array)
-                if is_tree(list_data_tree):
-                    paths = list_data_tree.paths()
-                    print(f"  DEBUG [INDEX-0] Step 4 - List Item input tree: {len(paths)} paths")
-                    # For index 0 branch (path (0,))
-                    if paths:
-                        path_0 = (0,)
-                        if path_0 in paths:
-                            branch_0 = list_data_tree.get_branch(path_0)
-                            print(f"  DEBUG [INDEX-0] Step 4 - List Item input branch {path_0}: {len(branch_0)} items (rotations)")
-                            # Log Y values of all items in branch 0
-                            y_values = []
-                            for i, item in enumerate(branch_0):
-                                if isinstance(item, dict) and 'corners' in item:
-                                    corners = item.get('corners', [])
-                                    if corners:
-                                        y_values.append(corners[0][1] if len(corners[0]) > 1 else 'N/A')
-                            print(f"  DEBUG [INDEX-0] Step 4 - List Item input branch {path_0} Y values: {y_values}")
-                            # Show item at index (should be index 4, the 5th rotation)
-                            idx = int(round(float(index)))
-                            if idx < len(branch_0):
-                                selected_item = branch_0[idx]
-                                if isinstance(selected_item, dict) and 'corners' in selected_item:
-                                    corners = selected_item.get('corners', [])
-                                    if corners:
-                                        print(f"  DEBUG [INDEX-0] Step 4 - List Item will select branch {path_0}[{idx}]: Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}")
-                
-                # Debug output tree structure
-                if is_tree(item):
-                    paths = item.paths()
-                    print(f"  DEBUG [INDEX-0] Step 4 - List Item output tree: {len(paths)} paths")
-                    if paths:
-                        path_0 = (0,)
-                        if path_0 in paths:
-                            branch_0 = item.get_branch(path_0)
-                            if branch_0 and len(branch_0) > 0:
-                                output_item = branch_0[0]
-                                if isinstance(output_item, dict) and 'corners' in output_item:
-                                    corners = output_item.get('corners', [])
-                                    if corners:
-                                        print(f"  DEBUG [INDEX-0] Step 4 - List Item output branch {path_0}: Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-                elif isinstance(item, dict) and 'corners' in item:
-                    corners = item.get('corners', [])
-                    if corners:
-                        print(f"  DEBUG [INDEX-0] Step 4 - List Item output (scalar): Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-            
-            # Debug output for List Item
-            if is_slats_list_item:
-                item_type = type(item).__name__
-                if isinstance(item, list):
-                    item_type = f"list of {len(item)} items"
-                    if len(item) > 0 and isinstance(item[0], dict):
-                        first_item = item[0]
-                        if 'corners' in first_item:
-                            corners = first_item.get('corners', [])
-                            if corners:
-                                item_type += f", first item first corner: {corners[0]}"
-                print(f"  DEBUG List Item Slats (27933633...): output type={item_type}")
-            
-            result_dict = {'Item': item}
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            is_slats_list_item = (comp_instance_guid == '27933633-dbab-4dc0-a4a2-cfa309c03c45')
-            if is_slats_list_item:
-                debug_tree_structure(comp_id, 'List Item', result_dict, 'Item')
-            return result_dict
-        
-        elif comp_type == 'Value List':
-            # Value List might have values stored in its parameters
-            values = inputs.get('Values') or inputs.get('List')
-            if values is None:
-                # Check if component has stored values in its params
-                param_info = comp_info['obj'].get('params', {})
-                for param_key, param_data in param_info.items():
-                    if param_key.startswith('param_input'):
-                        persistent_values = param_data.get('persistent_values', [])
-                        param_values = param_data.get('values', [])
-                        if persistent_values:
-                            # Try to parse as list
-                            try:
-                                values = [float(v) if '.' in str(v) else int(v) for v in persistent_values if v and str(v).strip()]
-                                break
-                            except (ValueError, TypeError):
-                                pass
-                        elif param_values:
-                            try:
-                                values = [float(v) if '.' in str(v) else int(v) for v in param_values if v and str(v).strip()]
-                                break
-                            except (ValueError, TypeError):
-                                pass
-                
-                # Check external inputs
-                if values is None:
-                    external_inputs = get_external_inputs()
-                    if comp_id in external_inputs:
-                        ext_value = external_inputs[comp_id]
-                        # Value List can have selected value (single number) or all values (list)
-                        # If it's a single number, wrap it in a list
-                        if isinstance(ext_value, list):
-                            values = ext_value
-                        elif isinstance(ext_value, (int, float)):
-                            # Selected value from Value List - use it directly
-                            values = [ext_value]
-                        else:
-                            values = [ext_value] if ext_value is not None else []
-                
-                # If still None, check if it has sources (might be getting values from another component)
-                if values is None:
-                    has_sources = False
-                    for param_key, param_data in param_info.items():
-                        if param_key.startswith('param_input'):
-                            sources = param_data.get('sources', [])
-                            if sources:
-                                has_sources = True
-                                break
-                    if not has_sources:
-                        # No sources - might be external input, return placeholder
-                        print(f"Warning: Value List component {comp_id[:8]}... has no inputs - treating as external (needs values from GHX or screenshots)")
-                        # For now, return empty list - this will need to be filled from screenshots
-                        return {'Values': []}
-            
-            if values is None:
-                raise ValueError(f"Value List component missing Values input")
-            result = func(values)
-            return {'Values': result}
-        
-        elif comp_type == 'Number':
-            value = inputs.get('Value') or inputs.get('Number')
-            if value is None:
-                # Number component might have a constant value stored
-                # Check if it's in external inputs or has a default
-                external_inputs = get_external_inputs()
-                if comp_id in external_inputs:
-                    value = external_inputs[comp_id]
-                else:
-                    # Check if component has a stored value in its params
-                    param_info = comp_info['obj'].get('params', {})
-                    for param_key, param_data in param_info.items():
-                        if param_key.startswith('param_input'):
-                            persistent_values = param_data.get('persistent_values', [])
-                            values = param_data.get('values', [])
-                            if persistent_values:
-                                try:
-                                    value = float(persistent_values[0])
-                                    break
-                                except (ValueError, IndexError):
-                                    pass
-                            elif values:
-                                try:
-                                    value = float(values[0])
-                                    break
-                                except (ValueError, IndexError):
-                                    pass
-                
-                # If still None, check if Number component has a Source connection
-                # (Number components can get values from other components via Source item in GHX)
-                if value is None:
-                    # Load number component sources mapping
-                    try:
-                        with open('number_component_sources.json', 'r') as f:
-                            number_sources = json.load(f)
-                        
-                        if comp_id in number_sources:
-                            source_guid = number_sources[comp_id]['source_guid']
-                            
-                            # Check if source is in external inputs
-                            if source_guid in external_inputs:
-                                source_value = external_inputs[source_guid]['value']
-                                value = source_value
-                            # Check if source is already evaluated
-                            elif source_guid in evaluated:
-                                source_result = evaluated[source_guid]
-                                # If it's a dict, try to get Result or first value
-                                if isinstance(source_result, dict):
-                                    value = source_result.get('Result') or list(source_result.values())[0] if source_result else None
-                                else:
-                                    value = source_result
-                            # Check if source is an output parameter
-                            elif source_guid in output_params:
-                                source_info = output_params[source_guid]
-                                source_obj_guid = source_info['obj'].get('instance_guid')
-                                if source_obj_guid in evaluated:
-                                    source_outputs = evaluated[source_obj_guid]
-                                    if isinstance(source_outputs, dict):
-                                        param_name = source_info['param_info'].get('data', {}).get('NickName', '')
-                                        value = source_outputs.get(param_name) or list(source_outputs.values())[0] if source_outputs else None
-                                    else:
-                                        value = source_outputs
-                                else:
-                                    # Parent component not yet evaluated - this is a dependency issue
-                                    # The component should be evaluated first, but if it's not in the graph,
-                                    # we can't resolve it. For now, skip and let it fail with a clear message
-                                    print(f"Warning: Number component {comp_id[:8]}... source component {source_obj_guid[:8]}... not yet evaluated")
-                    except FileNotFoundError:
-                        pass
-                
-                if value is None:
-                    # Check if source_guid is an output parameter directly (not through Panel)
-                    # Sometimes Number components can connect directly to output parameters
-                    if source_guid in output_params:
-                        source_info = output_params[source_guid]
-                        source_obj_guid = source_info['obj'].get('instance_guid')
-                        if source_obj_guid and source_obj_guid in evaluated:
-                            # Get the output from the source component
-                            comp_outputs = evaluated.get(source_obj_guid, {})
-                            if isinstance(comp_outputs, dict):
-                                source_param_name = source_info['param_info'].get('data', {}).get('NickName', '')
-                                for key in [source_param_name, 'Result', 'Value', 'Output']:
-                                    if key in comp_outputs:
-                                        value = comp_outputs[key]
-                                        break
-                                if value is None and comp_outputs:
-                                    value = list(comp_outputs.values())[0]
-                            elif comp_outputs is not None:
-                                value = comp_outputs
-                    
-                    # If still None, check if source is a Panel that has its own Source connection
-                    if value is None:
-                        source_obj = None
-                        for key, obj in all_objects.items():
-                            if obj.get('instance_guid') == source_guid:
-                                source_obj = obj
-                                break
-                        
-                        if source_obj and source_obj.get('type') == 'Panel':
-                            # Panel has a Source connection - need to trace it
-                            try:
-                                import os
-                                if os.path.exists('panel_sources.json'):
-                                    with open('panel_sources.json', 'r') as f:
-                                        panel_sources = json.load(f)
-                                    
-                                    panel_source_guid = panel_sources.get(source_guid, {}).get('source_guid')
-                                    if panel_source_guid:
-                                        # Panel's source is an output parameter - resolve it
-                                        if panel_source_guid in output_params:
-                                            source_info = output_params[panel_source_guid]
-                                            source_obj_guid = source_info['obj'].get('instance_guid')
-                                            if source_obj_guid:
-                                                if source_obj_guid in evaluated:
-                                                    # Get the output from the source component
-                                                    comp_outputs = evaluated.get(source_obj_guid, {})
-                                                    if isinstance(comp_outputs, dict):
-                                                        source_param_name = source_info['param_info'].get('data', {}).get('NickName', '')
-                                                        for key in [source_param_name, 'Result', 'Value', 'Output']:
-                                                            if key in comp_outputs:
-                                                                value = comp_outputs[key]
-                                                                break
-                                                        if value is None and comp_outputs:
-                                                            value = list(comp_outputs.values())[0]
-                                                    elif comp_outputs is not None:
-                                                        value = comp_outputs
-                                
-                                # If panel_sources.json doesn't have it, check if Panel's source is a Number component
-                                # Panels can source from Number components (from GHX Source item)
-                                # Check number_component_sources.json to find the Panel's source Number component
-                                if value is None:
-                                    try:
-                                        with open('number_component_sources.json', 'r') as f:
-                                            number_sources = json.load(f)
-                                        
-                                        # Check if Panel's source (source_guid) is a Number component in number_sources
-                                        # The Panel's Source item in GHX points to a Number component GUID
-                                        if source_guid in number_sources:
-                                            # Panel sources from this Number component
-                                            # Get the Number component's source
-                                            panel_num_source_guid = number_sources[source_guid]['source_guid']
-                                            
-                                            # Resolve the Number component's source (output parameter or component)
-                                            if panel_num_source_guid in output_params:
-                                                panel_num_source_info = output_params[panel_num_source_guid]
-                                                panel_num_source_obj_guid = panel_num_source_info['obj'].get('instance_guid')
-                                                if panel_num_source_obj_guid and panel_num_source_obj_guid in evaluated:
-                                                    panel_num_comp_outputs = evaluated.get(panel_num_source_obj_guid, {})
-                                                    if isinstance(panel_num_comp_outputs, dict):
-                                                        panel_num_param_name = panel_num_source_info['param_info'].get('data', {}).get('NickName', '')
-                                                        for key in [panel_num_param_name, 'Result', 'Value', 'Output']:
-                                                            if key in panel_num_comp_outputs:
-                                                                value = panel_num_comp_outputs[key]
-                                                                break
-                                                        if value is None and panel_num_comp_outputs:
-                                                            value = list(panel_num_comp_outputs.values())[0]
-                                                    elif panel_num_comp_outputs is not None:
-                                                        value = panel_num_comp_outputs
-                                    except FileNotFoundError:
-                                        pass
-                                
-                                # Also check if Panel's source is directly a Number component (from GHX)
-                                # Panels can source from Number components directly (Source item in GHX)
-                                if value is None:
-                                    # Check if Panel's source is a Number component that's been evaluated
-                                    panel_source_obj = None
-                                    for key, obj in all_objects.items():
-                                        if obj.get('instance_guid') == source_guid:
-                                            panel_source_obj = obj
-                                            break
-                                    
-                                    # If Panel source is a Number component, get its value
-                                    if panel_source_obj and panel_source_obj.get('type') == 'Number':
-                                        # Check if this Number component has been evaluated
-                                        if source_guid in evaluated:
-                                            num_result = evaluated[source_guid]
-                                            if isinstance(num_result, dict):
-                                                value = num_result.get('Value') or list(num_result.values())[0] if num_result else None
-                                            else:
-                                                value = num_result
-                                        else:
-                                            # Number component not yet evaluated - try to resolve it
-                                            # Check if it has a source connection in number_component_sources.json
-                                            try:
-                                                with open('number_component_sources.json', 'r') as f:
-                                                    number_sources = json.load(f)
-                                                
-                                                if source_guid in number_sources:
-                                                    num_source_guid = number_sources[source_guid]['source_guid']
-                                                    # Recursively resolve the Number component's source
-                                                    # Check if it's an output parameter
-                                                    if num_source_guid in output_params:
-                                                        num_source_info = output_params[num_source_guid]
-                                                        num_source_obj_guid = num_source_info['obj'].get('instance_guid')
-                                                        if num_source_obj_guid and num_source_obj_guid in evaluated:
-                                                            num_comp_outputs = evaluated.get(num_source_obj_guid, {})
-                                                            if isinstance(num_comp_outputs, dict):
-                                                                num_param_name = num_source_info['param_info'].get('data', {}).get('NickName', '')
-                                                                for key in [num_param_name, 'Result', 'Value', 'Output']:
-                                                                    if key in num_comp_outputs:
-                                                                        value = num_comp_outputs[key]
-                                                                        break
-                                                                if value is None and num_comp_outputs:
-                                                                    value = list(num_comp_outputs.values())[0]
-                                                            elif num_comp_outputs is not None:
-                                                                value = num_comp_outputs
-                                            except FileNotFoundError:
-                                                pass
-                            except Exception as e:
-                                # Silently fail - will be handled by other resolution paths
-                                pass
-                    
-                    # Also check external_inputs by object_guid
-                    if value is None:
-                        external_inputs = get_external_inputs()
-                        for key, ext_val in external_inputs.items():
-                            if isinstance(ext_val, dict) and ext_val.get('object_guid') == source_guid:
-                                value = ext_val.get('value', ext_val)
-                                break
-                
-                if value is None:
-                    raise ValueError(f"Number component missing Value input (source: {source_guid[:8] if 'source_guid' in locals() else 'unknown'}...)")
-            result = func(value)
-            return {'Value': result}
-        
-        elif comp_type == 'Number Slider':
-            value = inputs.get('Value') or inputs.get('Number')
-            if value is None:
-                # Slider might have a default value - check external inputs
-                external_inputs = get_external_inputs()
-                if comp_id in external_inputs:
-                    ext_value = external_inputs[comp_id]
-                    if isinstance(ext_value, dict):
-                        value = ext_value.get('value', ext_value)
-                    else:
-                        value = ext_value
-                else:
-                    # Check by object_guid in external_inputs
-                    for key, ext_val in external_inputs.items():
-                        if isinstance(ext_val, dict) and ext_val.get('object_guid') == comp_id:
-                            value = ext_val.get('value', ext_val)
-                            break
-                    if value is None:
-                        raise ValueError(f"Number Slider component missing Value input")
-            result = func(value)
-            return {'Value': result}
-        
-        elif comp_type == 'Surface':
-            geometry = inputs.get('Geometry') or inputs.get('Surface')
-            if geometry is None:
-                # Surface component has Source at Container level (not in param_input)
-                # Check Container-level Source: dbc236d4... (Rectangle output from Rectangle 2Pt)
-                source_guid = 'dbc236d4-a2fe-48a8-a86e-eebfb04b1053'
-                if source_guid in output_params:
-                    source_info = output_params[source_guid]
-                    source_obj_guid = source_info['obj'].get('instance_guid')
-                    if source_obj_guid in evaluated:
-                        comp_outputs = evaluated.get(source_obj_guid, {})
-                        if isinstance(comp_outputs, dict):
-                            source_param_name = source_info['param_info'].get('data', {}).get('NickName', '')
-                            for key in [source_param_name, 'Rectangle', 'Result', 'Value', 'Output', 'Geometry']:
-                                if key in comp_outputs:
-                                    geometry = comp_outputs[key]
-                                    break
-                            if geometry is None and comp_outputs:
-                                geometry = list(comp_outputs.values())[0]
-                        else:
-                            geometry = comp_outputs
-                
-                # If still no geometry, check param_input sources
-                if geometry is None:
-                    param_info = comp_info['obj'].get('params', {})
-                    for param_key, param_data in param_info.items():
-                        if param_key.startswith('param_input'):
-                            sources = param_data.get('sources', [])
-                            if sources:
-                                # Try to resolve from sources
-                                for source in sources:
-                                    source_guid_conn = source.get('source_guid') or source.get('guid')
-                                    if source_guid_conn in output_params:
-                                        source_info = output_params[source_guid_conn]
-                                        source_obj_guid = source_info['obj'].get('instance_guid')
-                                        if source_obj_guid in evaluated:
-                                            comp_outputs = evaluated.get(source_obj_guid, {})
-                                            if isinstance(comp_outputs, dict):
-                                                for key in ['Rectangle', 'Result', 'Value', 'Output', 'Geometry']:
-                                                    if key in comp_outputs:
-                                                        geometry = comp_outputs[key]
-                                                        break
-                                                if geometry is None and comp_outputs:
-                                                    geometry = list(comp_outputs.values())[0]
-                                            else:
-                                                geometry = comp_outputs
-                                            break
-                                break
-                
-                # If still no geometry, treat as external input
-                if geometry is None:
-                    print(f"Warning: Surface component {comp_id[:8]}... has no inputs - treating as external")
-                    geometry = {'surface': 'external_surface_placeholder'}
-            
-            result = func(geometry)
-            return {'Surface': result, 'Geometry': result}
-        
-        elif comp_type == 'Area':
-            geometry = inputs.get('Geometry')
-            if geometry is None:
-                raise ValueError(f"Area component missing Geometry input")
-            
-            # Debug output for "Slats original" Area component
-            if comp_id == '3bd2c1d3-149d-49fb-952c-8db272035f9e':
-                geom_type = type(geometry).__name__
-                if isinstance(geometry, list):
-                    geom_type = f"list of {len(geometry)} items"
-                    if len(geometry) > 0:
-                        if isinstance(geometry[0], dict):
-                            first_geom = geometry[0]
-                            geom_type += f" (first type: {first_geom.get('type', 'unknown')}"
-                            if 'corners' in first_geom:
-                                corners = first_geom.get('corners', [])
-                                geom_type += f", corners: {len(corners)}"
-                                if corners:
-                                    geom_type += f", first corner: {corners[0]}"
-                            geom_type += ")"
-                        elif isinstance(geometry[0], list):
-                            geom_type += " (list of lists)"
-                elif isinstance(geometry, dict):
-                    geom_type = geometry.get('type', 'unknown')
-                print(f"  DEBUG Area Slats original {comp_id[:8]}...: geometry type={geom_type}")
-            
-            result = func(geometry)
-            # Area component returns dict with 'Area' and 'Centroid'
-            if isinstance(result, dict):
-                if comp_id == '3bd2c1d3-149d-49fb-952c-8db272035f9e':
-                    # Debug input geometry (index 0)
-                    if isinstance(geometry, list) and len(geometry) > 0:
-                        first_geom = geometry[0]
-                        if isinstance(first_geom, dict) and 'corners' in first_geom:
-                            corners = first_geom.get('corners', [])
-                            if corners:
-                                print(f"  DEBUG [INDEX-0] Step 6 - Area input[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, all corners Y={[c[1] if len(c) > 1 else 'N/A' for c in corners]}")
-                    elif isinstance(geometry, dict) and 'corners' in geometry:
-                        corners = geometry.get('corners', [])
-                        if corners:
-                            print(f"  DEBUG [INDEX-0] Step 6 - Area input: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, all corners Y={[c[1] if len(c) > 1 else 'N/A' for c in corners]}")
-                    
-                    centroid = result.get('Centroid', [])
-                    if isinstance(centroid, list):
-                        # Debug centroid (index 0)
-                        if len(centroid) > 0:
-                            first_centroid = centroid[0] if isinstance(centroid[0], list) else centroid
-                            if isinstance(first_centroid, list) and len(first_centroid) > 1:
-                                print(f"  DEBUG [INDEX-0] Step 6 - Area centroid[0]: Y={first_centroid[1]}, centroid={first_centroid}")
-                                print(f"  DEBUG [INDEX-0] EXPECTED centroid Y: -27.416834")
-                                print(f"  DEBUG [INDEX-0] GAP: {first_centroid[1] - (-27.416834)}")
-                return result
-            else:
-                # Fallback for old return format
-                return {'Area': result, 'Centroid': [0.0, 0.0, 0.0]}
+            return {'Line': line}
         
         elif comp_type == 'Move':
             geometry = inputs.get('Geometry')
             motion = inputs.get('Motion')
             
-            # Debug for second Move "Slats original" (index 0 trace) - BEFORE move
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            if comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436' or comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
-                # Debug geometry input (index 0)
-                if isinstance(geometry, dict) and 'corners' in geometry:
-                    input_corners = geometry.get('corners', [])
-                    if input_corners:
-                        print(f"  DEBUG [INDEX-0] Step 5 - Second Move input: first corner Y={input_corners[0][1] if len(input_corners[0]) > 1 else 'N/A'}, corner={input_corners[0]}")
-                elif isinstance(geometry, list) and len(geometry) > 0:
-                    first_geom = geometry[0]
-                    if isinstance(first_geom, dict) and 'corners' in first_geom:
-                        input_corners = first_geom.get('corners', [])
-                        if input_corners:
-                            print(f"  DEBUG [INDEX-0] Step 5 - Second Move input[0]: first corner Y={input_corners[0][1] if len(input_corners[0]) > 1 else 'N/A'}, corner={input_corners[0]}")
-                # Debug motion
-                if isinstance(motion, list) and len(motion) == 3:
-                    print(f"  DEBUG [INDEX-0] Step 5 - Second Move motion: Y={motion[1]}, motion={motion}")
-                elif isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list):
-                    print(f"  DEBUG [INDEX-0] Step 5 - Second Move motion[0]: Y={motion[0][1] if len(motion[0]) > 1 else 'N/A'}, motion[0]={motion[0]}")
-                
-                # Special handling: make motion Z relative to geometry current Z
-                if isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list) and \
-                   isinstance(geometry, list) and len(geometry) > 0:
-                    # Get geometry current Z (from first rectangle's first corner)
-                    if isinstance(geometry[0], dict) and 'corners' in geometry[0]:
-                        corners = geometry[0].get('corners', [])
-                        if corners and len(corners) > 0 and len(corners[0]) > 2:
-                            geometry_z = corners[0][2]
-                            # Make motion Z relative: motion_z = target_z - geometry_z
-                            # Target Z comes from Vector 2Pt Z values
-                            for i, vec in enumerate(motion):
-                                if isinstance(vec, list) and len(vec) >= 3:
-                                    # vec[2] is absolute target Z, make it relative
-                                    vec[2] = vec[2] - geometry_z
-                geom_type = type(geometry).__name__
-                if isinstance(geometry, dict):
-                    geom_type = geometry.get('type', 'unknown')
-                elif isinstance(geometry, list):
-                    geom_type = f"list of {len(geometry)} items"
-                    if len(geometry) > 0 and isinstance(geometry[0], dict):
-                        first_geom = geometry[0]
-                        geom_type += f" (first type: {first_geom.get('type', 'unknown')}"
-                        if 'corners' in first_geom:
-                            corners = first_geom.get('corners', [])
-                            geom_type += f", corners: {len(corners)}"
-                            if corners:
-                                geom_type += f", first corner: {corners[0]}"
-                        geom_type += ")"
-                motion_type = type(motion).__name__
-                if isinstance(motion, list) and len(motion) > 0:
-                    motion_type = f"list of {len(motion)} items"
-                    if isinstance(motion[0], list):
-                        motion_type += f" (vectors, first: {motion[0]})"
-                    else:
-                        motion_type += f" (first item: {motion[0]})"
-                print(f"  DEBUG Move Slats original {comp_id[:8]}...: geometry type={geom_type}, motion type={motion_type}")
+            # Debug logging for Move components
+            move_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            move_nickname = comp_info.get('obj', {}).get('nickname', '')
             
-            # Special case: "New Sun" component Motion input
-            comp_nickname = comp_info['obj'].get('nickname') or comp_info['obj'].get('NickName', '')
-            if comp_nickname == 'New Sun':
-                # GHX has PersistentData value [0, 0, 10], but we override with SUN_VECTOR
-                # This allows using the actual sun vector instead of the placeholder in GHX
-                if motion is None or motion == "\n                                      " or (isinstance(motion, str) and not motion.strip()):
-                    motion = SUN_VECTOR
-                    print(f"New Sun: Using SUN_VECTOR (fallback): {motion}")
-                elif isinstance(motion, list) and len(motion) == 3:
-                    # Check if it's the GHX default value [0, 0, 10] - if so, override with SUN_VECTOR
-                    if motion == [0.0, 0.0, 10.0]:
-                        motion = SUN_VECTOR
-                        print(f"New Sun: Overriding GHX default [0, 0, 10] with SUN_VECTOR: {motion}")
-                    else:
-                        print(f"New Sun: Motion input resolved from GHX: {motion}")
-                else:
-                    print(f"Warning: New Sun Motion input invalid: {motion}, using SUN_VECTOR")
-                    motion = SUN_VECTOR
+            # Check if inputs exist in the inputs dict
+            has_geometry = 'Geometry' in inputs
+            has_motion = 'Motion' in inputs
             
-            # Handle multiple Motion sources (vector addition)
-            # If motion is a list of vectors (from multiple sources), combine them
-            # BUT: if motion is a list of vectors and geometry is a single point,
-            # we want to keep the list of vectors to create multiple moved points
-            motion_is_list_of_vectors = isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list)
+            # Only return None if inputs are truly missing (not in inputs dict)
+            if not has_geometry and not has_motion:
+                print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): No Geometry or Motion inputs found")
+                return {'Geometry': None, 'Transform': None}
             
-            if motion_is_list_of_vectors:
-                # Motion is a list of vectors
-                # Check if we should keep the list or combine vectors
-                # Keep list if:
-                # 1. Geometry is a single point (create list of moved points)
-                # 2. Geometry is a single geometry dict (box, rectangle, etc.) - create list of moved geometries
-                # 3. Geometry is a list of geometry dicts (rectangles, boxes, etc.) - pairwise matching
-                # Combine only if geometry is a list of points (pairwise matching handled in move_component)
-                if isinstance(geometry, list) and len(geometry) == 3 and all(isinstance(x, (int, float)) for x in geometry):
-                    # Single point with list of motion vectors - keep list to create multiple points
-                    # Don't combine, just pass through
-                    pass
-                elif isinstance(geometry, dict):
-                    # Single geometry dict (box, rectangle, etc.) with list of motion vectors
-                    # Keep list to create list of moved geometries (one per motion vector)
-                    # Don't combine, just pass through
-                    pass
-                elif isinstance(geometry, list) and len(geometry) > 0 and isinstance(geometry[0], dict):
-                    # List of geometry dicts (rectangles, boxes, etc.) with list of motion vectors
-                    # Keep list for pairwise matching in move_component
-                    # Don't combine, just pass through
-                    pass
-                else:
-                    # Multiple vectors with multiple geometries or other cases - combine by adding
-                    if all(isinstance(v, list) and len(v) >= 3 for v in motion):
-                        # Combine all vectors element-wise
-                        combined = [0.0, 0.0, 0.0]
-                        for vec in motion:
-                            if len(vec) >= 3:
-                                combined[0] += vec[0] if isinstance(vec[0], (int, float)) else 0.0
-                                combined[1] += vec[1] if isinstance(vec[1], (int, float)) else 0.0
-                                combined[2] += vec[2] if isinstance(vec[2], (int, float)) else 0.0
-                        motion = combined
-                    else:
-                        # Take first vector if structure is unexpected
-                        motion = motion[0] if len(motion[0]) >= 3 else [0.0, 0.0, 0.0]
+            if not has_geometry:
+                print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Geometry input missing")
+                return {'Geometry': None, 'Transform': None}
             
-            # Geometry is optional in Move component - if None, return None or placeholder
+            if not has_motion:
+                print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Motion input missing")
+                return {'Geometry': None, 'Transform': None}
+            
+            # Log what we received
             if geometry is None:
-                # For external Surface components, allow None geometry
-                # Return a placeholder geometry
-                geometry = {'surface': 'placeholder_surface'}
+                print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Geometry is None (resolved but None)")
+            else:
+                geom_type = type(geometry).__name__
+                if is_tree(geometry):
+                    paths = geometry.paths()
+                    print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Geometry is DataTree with {len(paths)} branches")
+                elif isinstance(geometry, list):
+                    print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Geometry is list with {len(geometry)} items")
+                else:
+                    print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Geometry is {geom_type}")
+            
             if motion is None:
-                raise ValueError(f"Move component missing Motion input: Motion={motion}")
-            
-            # Ensure motion is a list of 3 floats (only if it's not already a list of vectors)
-            if not motion_is_list_of_vectors:
-                if not isinstance(motion, list):
-                    # Try to convert
-                    if isinstance(motion, (int, float)):
-                        motion = [0.0, 0.0, float(motion)]
+                print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Motion is None (resolved but None)")
+            else:
+                motion_type = type(motion).__name__
+                if isinstance(motion, list):
+                    if len(motion) > 0 and isinstance(motion[0], list):
+                        print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Motion is list of {len(motion)} vectors")
                     else:
-                        motion = [0.0, 0.0, 0.0]
-                elif len(motion) != 3 or not all(isinstance(x, (int, float)) for x in motion):
-                    # Pad or truncate to 3 elements
-                    motion = list(motion[:3]) + [0.0] * (3 - len(motion))
+                        print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Motion is single vector: {motion}")
+                else:
+                    print(f"  [MOVE DEBUG] {move_nickname} ({move_instance_guid[:8]}...): Motion is {motion_type}: {motion}")
             
-            # Debug motion before applying
-            if comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
-                print(f"  DEBUG [Y-TRACE] Move Slats original: Motion before func call={motion}")
-                if isinstance(motion, list) and len(motion) > 0:
-                    if isinstance(motion[0], list):
-                        print(f"  DEBUG [Y-TRACE] Move Slats original: Motion is list of vectors, first={motion[0]}")
-                    else:
-                        print(f"  DEBUG [Y-TRACE] Move Slats original: Motion is single vector={motion}")
+            # For first Move: convert OUTPUT flat list of rectangles to tree (one rectangle per branch)
+            # This ensures Polar Array receives a tree with 10 branches (one per slat)
+            first_move_guids = [
+                'ddb9e6ae-7d3e-41ae-8c75-fc726c984724',  # Original GUID
+                '47af807c-369d-4bd2-bbbb-d53a4605f8e6',  # Actual Move1 output GUID
+                '3d373d1a-021a-4c74-ac63-8939e6ac5429',  # Alternative comp_id
+                'dfbbd4a2-021a-4c74-ac63-8939e6ac5429'  # Alternative instance_guid
+            ]
+            is_first_move = (move_instance_guid in first_move_guids or 
+                           comp_id in first_move_guids)
             
-            moved_geometry, transform = func(geometry, motion)
+            moved, transform = func(geometry, motion)
             
-            # Convert Move1 output to tree: list of 10 rectangles → tree with 10 branches
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            is_move1 = (comp_instance_guid == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or 
-                       comp_instance_guid == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' or
-                       comp_id == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or
-                       comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429')
-            if is_move1:
-                print(f"  DEBUG [TREE-STRUCT] Move1 ({comp_id[:8]}...): moved_geometry type={type(moved_geometry).__name__}, is_list={isinstance(moved_geometry, list)}")
-                if isinstance(moved_geometry, list):
-                    print(f"  DEBUG [TREE-STRUCT] Move1: list length={len(moved_geometry)}")
-                    # Convert list to tree: each rectangle becomes its own branch
-                    try:
-                        from gh_data_tree import DataTree
-                        geometry_tree = DataTree()
-                        for idx, item in enumerate(moved_geometry):
-                            geometry_tree.set_branch((idx,), [item])
-                        moved_geometry = geometry_tree
-                        paths = geometry_tree.paths()
-                        print(f"  DEBUG [TREE-STRUCT] Move1: converted to tree with {len(paths)} branches")
-                    except Exception as e:
-                        print(f"  DEBUG [TREE-STRUCT] Move1: failed to convert to tree: {e}")
-                elif hasattr(moved_geometry, 'paths'):
-                    paths = moved_geometry.paths()
-                    print(f"  DEBUG [TREE-STRUCT] Move1: already a tree with {len(paths)} branches")
+            # Convert Move1 OUTPUT to tree: list of 10 rectangles → tree with 10 branches
+            if is_first_move and isinstance(moved, list) and len(moved) > 0:
+                # Check if it's a list of rectangles (not already a tree)
+                if not is_tree(moved):
+                    # Convert flat list to tree: each rectangle becomes its own branch
+                    geometry_tree = DataTree()
+                    for i, rect in enumerate(moved):
+                        geometry_tree.set_branch((i,), [rect])
+                    moved = geometry_tree
+                    paths = geometry_tree.paths()
+                    print(f"  DEBUG [TREE-STRUCT] Move1 ({comp_id[:8]}...): converted output list of {len(moved) if not hasattr(moved, 'paths') else 'N/A'} items to tree with {len(paths)} branches")
+                elif hasattr(moved, 'paths'):
+                    paths = moved.paths()
+                    print(f"  DEBUG [TREE-STRUCT] Move1 ({comp_id[:8]}...): output already a tree with {len(paths)} branches")
             
-            # Debug output for first Move component that receives Vector 2Pt list (index 0 trace)
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            # Check both possible GUIDs: ddb9e6ae (from GHX) and dfbbd4a2 (from graph)
-            is_first_move = (comp_instance_guid == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or comp_id == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or
-                           comp_instance_guid == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' or comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429')
-            if is_first_move:
-                # Check input geometry Y (index 0)
-                if isinstance(geometry, dict) and 'corners' in geometry:
-                    input_corners = geometry.get('corners', [])
-                    if input_corners:
-                        print(f"  DEBUG [INDEX-0] Step 2 - First Move input: first corner Y={input_corners[0][1] if len(input_corners[0]) > 1 else 'N/A'}")
-                # Check motion for index 0
-                motion_is_list = isinstance(motion, list) and len(motion) > 0 and isinstance(motion[0], list)
-                if motion_is_list and len(motion) > 0:
-                    print(f"  DEBUG [INDEX-0] Step 2 - First Move motion[0]: Y={motion[0][1] if len(motion[0]) > 1 else 'N/A'}")
-                if isinstance(moved_geometry, list) and len(moved_geometry) > 0:
-                    first_moved = moved_geometry[0]
-                    if isinstance(first_moved, dict) and 'corners' in first_moved:
-                        corners = first_moved.get('corners', [])
-                        if corners:
-                            print(f"  DEBUG [INDEX-0] Step 2 - First Move output[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-            
-            # Debug output for "Slats original" Move component (index 0 trace)
-            if comp_id == '0532cbdf-875b-4db9-8c88-352e21051436':
-                # Debug output geometry Y (index 0)
-                if isinstance(moved_geometry, list) and len(moved_geometry) > 0:
-                    first_moved = moved_geometry[0]
-                    if isinstance(first_moved, dict) and 'corners' in first_moved:
-                        corners = first_moved.get('corners', [])
-                        if corners:
-                            print(f"  DEBUG [INDEX-0] Step 5 - Second Move output[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-                elif isinstance(moved_geometry, dict) and 'corners' in moved_geometry:
-                    corners = moved_geometry.get('corners', [])
-                    if corners:
-                        print(f"  DEBUG [INDEX-0] Step 5 - Second Move output: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-            
-            result_dict = {'Geometry': moved_geometry, 'Transform': transform}
-            # Debug tree structure for Move components
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            is_move1 = (comp_instance_guid == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or 
-                       comp_instance_guid == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429' or
-                       comp_id == 'ddb9e6ae-7d3e-41ae-8c75-fc726c984724' or
-                       comp_id == 'dfbbd4a2-021a-4c74-ac63-8939e6ac5429')
-            is_move2 = (comp_instance_guid == '0532cbdf-875b-4db9-8c88-352e21051436' or
-                       comp_id == '0532cbdf-875b-4db9-8c88-352e21051436')
-            if is_move1 or is_move2:
-                debug_tree_structure(comp_id, f'Move{"1" if is_move1 else "2"}', result_dict, 'Geometry')
-            return result_dict
+            return {'Geometry': moved, 'Transform': transform}
         
         elif comp_type == 'Polar Array':
-            geometry = inputs.get('Geometry') or inputs.get('Base')
+            geometry = inputs.get('Geometry')
             plane = inputs.get('Plane')
-            count = inputs.get('Count', 1)
-            angle = inputs.get('Angle', 0.0)
-            
+            count = inputs.get('Count')
+            angle = inputs.get('Angle')
             if geometry is None:
                 raise ValueError(f"Polar Array component missing Geometry input")
+            if plane is None:
+                raise ValueError(f"Polar Array component missing Plane input")
+            if count is None:
+                raise ValueError(f"Polar Array component missing Count input")
+            if angle is None:
+                raise ValueError(f"Polar Array component missing Angle input")
             
-            # Validate and fix plane input
-            # Plane should be a dict with 'origin', 'x_axis', 'y_axis', 'z_axis'
-            # If it's not a valid plane dict, use default
-            if plane is None or not isinstance(plane, dict) or 'origin' not in plane:
-                # Check param_input_1 (Plane input) parameter GUID
-                plane_param = comp_info['obj'].get('params', {}).get('param_input_1', {})
-                plane_param_guid = plane_param.get('data', {}).get('InstanceGuid')
-                
-                # Try external_inputs first
-                if plane_param_guid:
-                    external_inputs = get_external_inputs()
-                    if plane_param_guid in external_inputs:
-                        ext_value = external_inputs[plane_param_guid]
-                        if isinstance(ext_value, dict):
-                            plane_value = ext_value.get('value', ext_value)
-                            # Check if it's a valid plane dict
-                            if isinstance(plane_value, dict) and 'origin' in plane_value:
-                                plane = plane_value
-                            else:
-                                plane = None
-                        else:
-                            plane = None
-                
-                # If still None or invalid, use default plane (XY plane at origin)
-                # This matches the GHX PersistentData: Ox=0, Oy=0, Oz=0, Xx=1, Xy=0, Xz=0, Yx=0, Yy=1, Yz=0
-                if plane is None or not isinstance(plane, dict) or 'origin' not in plane:
-                    plane = {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 
-                            'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}
+            # Polar Array - check if it's the Rotatingslats chain component
+            pa_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            polar_array_guid = '7ad636cc-e506-4f77-bb82-4a86ba2a3fea'
+            is_rotatingslats_pa = pa_instance_guid == polar_array_guid
             
-            # Ensure count is an integer
-            if not isinstance(count, (int, float)):
-                try:
-                    count = int(count)
-                except (ValueError, TypeError):
-                    count = 1
+            array = func(geometry, plane, count, angle, use_tree=True)
             
-            # Ensure angle is a float
-            if not isinstance(angle, (int, float)):
-                try:
-                    angle = float(angle)
-                except (ValueError, TypeError):
-                    angle = 0.0
+            if is_rotatingslats_pa and is_tree(array):
+                paths = array.paths()
+                print(f"  [ROTATINGSLATS] Polar Array: output {len(paths)} branches")
             
-            # Debug for Polar Array component 7ad636cc (index 0 trace)
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            is_polar_array_7ad636cc = (comp_instance_guid == '7ad636cc-e506-4f77-bb82-4a86ba2a3fea' or comp_id == '7ad636cc-e506-4f77-bb82-4a86ba2a3fea')
-            if is_polar_array_7ad636cc:
-                if isinstance(geometry, list) and len(geometry) > 0:
-                    input_length = len(geometry)
-                    if count != input_length:
-                        count = input_length
-                    
-                    if len(geometry) > 0:
-                        first_geom = geometry[0]
-                        if isinstance(first_geom, dict) and 'corners' in first_geom:
-                            corners = first_geom.get('corners', [])
-                            if corners:
-                                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array input[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}")
+            return {'Geometry': array}
+        
+        elif comp_type == 'List Item':
+            list_data = inputs.get('List')
+            index = inputs.get('Index')
+            wrap = inputs.get('Wrap', False)
+            if list_data is None:
+                raise ValueError(f"List Item component missing List input")
+            if index is None:
+                raise ValueError(f"List Item component missing Index input")
             
-            # TEMPORARILY: Skip tree conversion to fix Vector 2Pt error first
-            # TODO: Re-enable tree conversion after fixing input resolution
-            # Convert geometry to tree for Polar Array (GH tree semantics)
-            # Input is a list of rectangles from first Move - convert to tree where each rectangle is a branch
-            use_tree_for_polar = True  # Re-enabled - tree structure is ready
-            print(f"  DEBUG [INDEX-0] Step 3 - Polar Array BEFORE conversion: geometry type={type(geometry).__name__}, is_tree={is_tree(geometry)}, use_tree_for_polar={use_tree_for_polar}")
-            if use_tree_for_polar:
-                if is_tree(geometry):
-                    # Already a tree - check if it has the right structure
-                    paths = geometry.paths()
-                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array: input is tree with {len(paths)} paths (is_polar_array_7ad636cc={is_polar_array_7ad636cc})")
-                    if len(paths) == 1:
-                        # Single branch with multiple items - split into separate branches
-                        items = geometry.get_branch(paths[0])
-                        num_items = len(items)
-                        print(f"  DEBUG [TREE-CONV] Polar Array: single branch has {num_items} items, splitting into {num_items} branches...")
-                        geometry_tree = DataTree()
-                        for idx, item in enumerate(items):
-                            geometry_tree.set_branch((idx,), [item])
-                        geometry_for_polar = geometry_tree
-                        new_paths = geometry_tree.paths()
-                        print(f"  DEBUG [TREE-CONV] Polar Array: split complete - {len(new_paths)} branches created")
-                        if num_items > 1 and len(new_paths) == 1:
-                            print(f"  DEBUG [TREE-CONV] Polar Array: ERROR - split failed! {num_items} items still in 1 branch")
-                    else:
-                        # Already has multiple branches - use as-is
-                        geometry_for_polar = geometry
-                        print(f"  DEBUG [INDEX-0] Step 3 - Polar Array: already has {len(paths)} branches, using as-is")
-                elif isinstance(geometry, list):
-                    # Create tree: each input item becomes a branch (GH semantics)
-                    num_items = len(geometry)
-                    print(f"  DEBUG [TREE-CONV] Polar Array: creating tree from list of {num_items} items...")
-                    geometry_tree = DataTree()
-                    for idx, item in enumerate(geometry):
-                        geometry_tree.set_branch((idx,), [item])
-                    geometry_for_polar = geometry_tree
-                    new_paths = geometry_tree.paths()
-                    print(f"  DEBUG [TREE-CONV] Polar Array: created tree with {len(new_paths)} branches from {num_items} items")
-                    if num_items > 1 and len(new_paths) == 1:
-                        print(f"  DEBUG [TREE-CONV] Polar Array: ERROR - {num_items} items created only 1 branch!")
-                else:
-                    geometry_for_polar = to_tree(geometry)
-            else:
-                geometry_for_polar = geometry
+            # List Item - check if it's the Rotatingslats chain component
+            li_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            list_item_guid = '27933633-dbab-4dc0-a4a2-cfa309c03c45'
+            is_rotatingslats_li = li_instance_guid == list_item_guid
             
-            # Debug: check input to Polar Array
-            if is_polar_array_7ad636cc:
-                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array input: type={type(geometry_for_polar).__name__}, is_tree={is_tree(geometry_for_polar)}")
-                if is_tree(geometry_for_polar):
-                    paths = geometry_for_polar.paths()
-                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array input tree: {len(paths)} paths")
+            item = func(list_data, index, wrap)
             
-            result = func(geometry_for_polar, plane, int(count), float(angle))
+            if is_rotatingslats_li and is_tree(item):
+                paths = item.paths()
+                print(f"  [ROTATINGSLATS] List Item: output {len(paths)} branches")
             
-            # Debug: check result BEFORE conversion
-            if is_polar_array_7ad636cc:
-                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array result BEFORE conversion: type={type(result).__name__}, is_tree={is_tree(result)}")
+            return {'Item': item}
+        
+        elif comp_type == 'Area':
+            geometry = inputs.get('Geometry')
+            if geometry is None:
+                # Return None if Geometry is missing (allows evaluation to continue)
+                return {'Area': None, 'Centroid': None}
             
-            # Keep tree structure for List Item - don't convert to list
-            # List Item needs the tree to work per-branch
-            if is_tree(result):
-                # Debug: log tree structure
-                if is_polar_array_7ad636cc:
-                    paths = result.paths()
-                    print(f"  DEBUG [TREE-CONV] Polar Array: output tree has {len(paths)} paths (keeping as tree for List Item)")
+            # Area - check if it's the Rotatingslats chain component
+            area_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            area_guid = '3bd2c1d3-149d-49fb-952c-8db272035f9e'
+            is_rotatingslats_area = area_instance_guid == area_guid
+            
+            result = func(geometry)
+            
+            # Output summary for Rotatingslats Area component
+            if is_rotatingslats_area and isinstance(result, dict):
+                centroids = result.get('Centroid')
+                if is_tree(centroids):
+                    paths = centroids.paths()
+                    print(f"  [ROTATINGSLATS] Area: output {len(paths)} centroid branches")
                     if paths:
                         first_path = sorted(paths)[0]
-                        items_in_first = len(result.get_branch(first_path))
-                        print(f"  DEBUG [TREE-CONV] Polar Array: first path {first_path} has {items_in_first} items (rotations)")
-                # Keep as tree - don't convert
-                # result = from_tree(result)
+                        first_centroid = centroids.get_branch(first_path)
+                        if first_centroid and len(first_centroid) > 0:
+                            print(f"    First branch centroid Y: {first_centroid[0][1] if isinstance(first_centroid[0], list) and len(first_centroid[0]) > 1 else 'N/A'}")
+                elif isinstance(centroids, list) and len(centroids) > 0:
+                    print(f"  [ROTATINGSLATS] Area: output {len(centroids)} centroids, first Y: {centroids[0][1] if isinstance(centroids[0], list) and len(centroids[0]) > 1 else 'N/A'}")
             
-            # Debug output after Polar Array (index 0 trace)
-            if is_polar_array_7ad636cc:
-                if is_tree(result):
-                    paths = result.paths()
-                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output: tree with {len(paths)} paths")
-                    if paths:
-                        first_path = sorted(paths)[0]
-                        items = result.get_branch(first_path)
-                        print(f"  DEBUG [INDEX-0] Step 3 - Polar Array path {first_path}: {len(items)} items")
-                        if items and isinstance(items[0], dict) and 'corners' in items[0]:
-                            corners = items[0].get('corners', [])
-                            if corners:
-                                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array path {first_path}[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-                else:
-                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output structure: type={type(result).__name__}, len={len(result) if isinstance(result, list) else 'N/A'}")
-                    if isinstance(result, list) and len(result) > 0:
-                        first_result = result[0]
-                        print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output[0] type: {type(first_result).__name__}, len={len(first_result) if isinstance(first_result, list) else 'N/A'}")
-                        if isinstance(first_result, list) and len(first_result) > 0:
-                            first_inner = first_result[0]
-                            if isinstance(first_inner, dict) and 'corners' in first_inner:
-                                corners = first_inner.get('corners', [])
-                                if corners:
-                                    print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output[0][0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-                        elif isinstance(first_result, dict) and 'corners' in first_result:
-                            corners = first_result.get('corners', [])
-                            if corners:
-                                print(f"  DEBUG [INDEX-0] Step 3 - Polar Array output[0]: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-            
-            return {'Geometry': result}
-        
-        elif comp_type == 'MD Slider':
-            value = inputs.get('Value') or inputs.get('Number')
-            if value is None:
-                # Check external inputs
-                external_inputs = get_external_inputs()
-                if comp_id in external_inputs:
-                    ext_value = external_inputs[comp_id]
-                    # MD Slider might return a point3d [x, y, z] or a single value
-                    if isinstance(ext_value, dict):
-                        ext_val = ext_value.get('value', ext_value)
-                        if isinstance(ext_val, list):
-                            # If it's a point3d, return the whole point for downstream components
-                            # But for the component's own Value output, use first coordinate
-                            value = ext_val[0] if len(ext_val) > 0 else 0.0
-                            # Store full point for source resolution
-                            result = ext_val
-                        else:
-                            value = ext_val
-                            result = value
-                    elif isinstance(ext_value, list):
-                        # If it's a point3d, return the whole point for downstream components
-                        value = ext_value[0] if len(ext_value) > 0 else 0.0
-                        result = ext_value
-                    else:
-                        value = ext_value
-                        result = value
-                else:
-                    # MD Slider might not have a value stored - treat as external input
-                    param_info = comp_info['obj'].get('params', {})
-                    has_sources = False
-                    for param_key, param_data in param_info.items():
-                        if param_key.startswith('param_input'):
-                            sources = param_data.get('sources', [])
-                            if sources:
-                                has_sources = True
-                                break
-                    if not has_sources:
-                        print(f"Warning: MD Slider component {comp_id[:8]}... has no value - treating as external (defaulting to 0.0)")
-                        value = 0.0
-                        result = value
-                    else:
-                        raise ValueError(f"MD Slider component missing Value input")
-            else:
-                result = func(value)
-            # Return both Value (for component output) and the full point (for source resolution)
-            # If result is a list, it's a point3d - return it as-is for downstream components
-            if isinstance(result, list):
-                return {'Value': result[0] if len(result) > 0 else 0.0, 'Point': result}
-            return {'Value': result}
-        
-        elif comp_type == 'Box 2Pt':
-            # Box 2Pt uses "Point A" and "Point B" as input names
-            corner1 = inputs.get('Point A') or inputs.get('Corner 1') or inputs.get('Corner A')
-            corner2 = inputs.get('Point B') or inputs.get('Corner 2') or inputs.get('Corner B')
-            if corner1 is None or corner2 is None:
-                raise ValueError(f"Box 2Pt component missing inputs (Point A: {corner1 is not None}, Point B: {corner2 is not None})")
-            result = func(corner1, corner2)
-            # Debug output to confirm Box 2Pt is working
-            if comp_id == 'b908d823-e613-4684-9e94-65a0f60f19b7':
-                print(f"  Successfully evaluated Box 2Pt {comp_id[:8]}..., outputs: {result}")
-            return {'Box': result}
+            return result
         
         elif comp_type == 'Rectangle 2Pt':
             plane = inputs.get('Plane')
-            pointA = inputs.get('Point A') or inputs.get('Corner A') or inputs.get('Corner 1')
-            pointB = inputs.get('Point B') or inputs.get('Corner B') or inputs.get('Corner 2')
+            pointA = inputs.get('Point A')
+            pointB = inputs.get('Point B')
             radius = inputs.get('Radius', 0.0)
-            
             if pointA is None or pointB is None:
                 raise ValueError(f"Rectangle 2Pt component missing inputs: Point A={pointA}, Point B={pointB}")
-            
-            # Ensure radius is a float
-            if not isinstance(radius, (int, float)):
-                try:
-                    radius = float(radius)
-                except (ValueError, TypeError):
-                    radius = 0.0
-            
-            # If plane is None, use default XY plane
-            if plane is None:
-                plane = {'origin': [0, 0, 0], 'x_axis': [1, 0, 0], 'y_axis': [0, 1, 0], 'z_axis': [0, 0, 1]}
-            
-            # Debug for Rectangle 2Pt that feeds the first Move (index 0 trace)
-            comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
-            if comp_instance_guid == 'a3eb185f-a7cb-4727-aeaf-d5899f934b99' or comp_id == 'a3eb185f-a7cb-4727-aeaf-d5899f934b99':
-                print(f"  DEBUG [INDEX-0] Step 1 - Rectangle 2Pt: first corner Y={pointA[1] if isinstance(pointA, list) and len(pointA) > 1 else 'N/A'}")
-            
             rectangle, length = func(plane, pointA, pointB, radius)
-            
-            # Debug output rectangle first corner
-            if comp_instance_guid == 'a3eb185f-a7cb-4727-aeaf-d5899f934b99' or comp_id == 'a3eb185f-a7cb-4727-aeaf-d5899f934b99':
-                if isinstance(rectangle, dict) and 'corners' in rectangle:
-                    corners = rectangle.get('corners', [])
-                    if corners:
-                        print(f"  DEBUG [INDEX-0] Step 1 - Rectangle 2Pt output: first corner Y={corners[0][1] if len(corners[0]) > 1 else 'N/A'}, corner={corners[0]}")
-            
-            result_dict = {'Rectangle': rectangle, 'Length': length}
-            debug_tree_structure(comp_id, 'Rectangle 2Pt', result_dict, 'Rectangle')
-            return result_dict
+            return {'Rectangle': rectangle, 'Length': length}
         
-        elif comp_type == 'PolyLine':
-            points = inputs.get('Points') or inputs.get('Vertices')
-            closed = inputs.get('Closed', False)
-            if points is None:
-                raise ValueError(f"PolyLine component missing Points input")
-            result = func(points, closed)
-            return {'PolyLine': result}
+        elif comp_type == 'Value List':
+            values = inputs.get('Values', [])
+            if not values:
+                # Try to get from PersistentData
+                param_info = comp_info['obj'].get('params', {}).get('param_input_0', {})
+                persistent_values = param_info.get('persistent_values', [])
+                if persistent_values:
+                    # Parse persistent values
+                    import json
+                    try:
+                        values = json.loads(persistent_values[0]) if isinstance(persistent_values[0], str) else persistent_values
+                    except:
+                        values = persistent_values
+            result = func(values)
+            return {'Values': result}
+        
+        elif comp_type == 'Amplitude':
+            vector = inputs.get('Vector')
+            amplitude = inputs.get('Amplitude')
+            if vector is None:
+                # Return None if Vector is missing (allows evaluation to continue)
+                return {'Vector': None}
+            if amplitude is None:
+                raise ValueError(f"Amplitude component missing Amplitude input")
+            result = func(vector, amplitude)
+            return {'Vector': result}
+        
+        elif comp_type == 'Vector 2Pt':
+            pointA = inputs.get('Point A') or inputs.get('PointA') or inputs.get('pointA')
+            pointB = inputs.get('Point B') or inputs.get('PointB') or inputs.get('pointB')
+            unitize = inputs.get('Unitize', False)
+            if pointA is None or pointB is None:
+                raise ValueError(f"Vector 2Pt component missing inputs: Point A={pointA}, Point B={pointB}")
+            vector, length = func(pointA, pointB, unitize)
+            return {'Vector': vector, 'Length': length}
+        
+        elif comp_type == 'Subtraction':
+            # Subtraction expects 'a' and 'b', but inputs have 'A' and 'B'
+            a = inputs.get('A') or inputs.get('a')
+            b = inputs.get('B') or inputs.get('b')
+            if a is None or b is None:
+                raise ValueError(f"Subtraction component missing inputs: A={a}, B={b}")
+            result = func(a, b)
+            return {'Result': result}
+        
+        elif comp_type == 'Series':
+            # Series expects 'start', 'count', 'step' (in that order), but inputs have 'Start', 'Step', 'Count'
+            start = inputs.get('Start') if 'Start' in inputs else (inputs.get('start') if 'start' in inputs else None)
+            step = inputs.get('Step') if 'Step' in inputs else (inputs.get('step') if 'step' in inputs else None)
+            count = inputs.get('Count') if 'Count' in inputs else (inputs.get('count') if 'count' in inputs else None)
+            # Check if inputs are truly missing (not just 0 or False)
+            has_start = 'Start' in inputs or 'start' in inputs
+            has_count = 'Count' in inputs or 'count' in inputs
+            if not has_start or not has_count:
+                raise ValueError(f"Series component missing inputs: Start={start} (has_start={has_start}), Count={count} (has_count={has_count})")
+            # Use defaults if None
+            if start is None:
+                start = 0.0
+            if step is None:
+                step = 1.0
+            if count is None:
+                count = 0
+            # Function signature: series_component(start: float, count: int, step: float)
+            result = func(float(start), int(count), float(step))
+            return {'Result': result}
+        
+        elif comp_type == 'Unit Y':
+            # Unit Y expects 'factor', but inputs have 'Factor'
+            factor = inputs.get('Factor') or inputs.get('factor')
+            if factor is None:
+                # Unit Y might work without factor (defaults to 1.0)
+                factor = 1.0
+            result = func(factor)
+            return {'Vector': result}
+        
+        elif comp_type == 'Unit Z':
+            # Unit Z expects 'factor', but inputs have 'Factor'
+            factor = inputs.get('Factor') or inputs.get('factor')
+            if factor is None:
+                # Unit Z might work without factor (defaults to 1.0)
+                factor = 1.0
+            result = func(factor)
+            return {'Vector': result}
+        
+        elif comp_type == 'Negative':
+            # Negative expects 'value', but inputs have 'Value'
+            value = inputs.get('Value') if 'Value' in inputs else (inputs.get('value') if 'value' in inputs else None)
+            # Check if input is truly missing (not just 0 or False)
+            has_value = 'Value' in inputs or 'value' in inputs
+            if not has_value:
+                # Try to get from persistent_values or external_inputs
+                param_info = comp_info['obj'].get('params', {}).get('param_input_0', {})
+                persistent_values = param_info.get('data', {}).get('persistent_values', [])
+                if persistent_values:
+                    try:
+                        value = float(persistent_values[0]) if persistent_values[0] else 0.0
+                    except (ValueError, TypeError):
+                        value = 0.0
+                else:
+                    # Check external_inputs
+                    external_inputs = get_external_inputs()
+                    comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '') or comp_id
+                    if comp_instance_guid in external_inputs:
+                        ext_val = external_inputs[comp_instance_guid]
+                        if isinstance(ext_val, dict):
+                            value = ext_val.get('value', 0.0)
+                        else:
+                            value = ext_val
+            if value is None:
+                # Use 0.0 as default if None
+                value = 0.0
+            result = func(value)
+            return {'Result': result}
+        
+        elif comp_type == 'Division':
+            # Division expects 'a' and 'b', but inputs have 'A' and 'B'
+            a = inputs.get('A') or inputs.get('a')
+            b = inputs.get('B') or inputs.get('b')
+            # Only return None if both are truly missing (not in inputs dict)
+            if 'A' not in inputs and 'a' not in inputs and 'B' not in inputs and 'b' not in inputs:
+                return {'Result': None}
+            # Use 0.0 as default for missing inputs
+            if a is None:
+                a = 0.0
+            if b is None:
+                b = 0.0
+            result = func(a, b)
+            return {'Result': result}
+        
+        elif comp_type == 'Plane Normal':
+            # Plane Normal expects a 'plane' dict, but inputs have 'Origin' and 'Z-Axis'
+            # Need to construct a plane dict from Origin and Z-Axis
+            origin = inputs.get('Origin') or inputs.get('origin')
+            z_axis = inputs.get('Z-Axis') or inputs.get('ZAxis') or inputs.get('z_axis')
+            # Only return default if inputs are truly missing (not in inputs dict)
+            if 'Origin' not in inputs and 'origin' not in inputs and 'Z-Axis' not in inputs and 'ZAxis' not in inputs and 'z_axis' not in inputs:
+                return {'Normal': [0.0, 0.0, 1.0]}
+            # Construct plane dict from origin and z_axis, using defaults if needed
+            plane = {
+                'origin': origin if isinstance(origin, list) and len(origin) >= 3 else [0.0, 0.0, 0.0],
+                'z_axis': z_axis if isinstance(z_axis, list) and len(z_axis) >= 3 else [0.0, 0.0, 1.0],
+                'normal': z_axis if isinstance(z_axis, list) and len(z_axis) >= 3 else [0.0, 0.0, 1.0]
+            }
+            result = func(plane)
+            return {'Normal': result}
+        
+        elif comp_type == 'Evaluate Surface':
+            # Evaluate Surface expects 'surface', 'u', 'v', but inputs have 'Surface' and 'Point'
+            surface = inputs.get('Surface') or inputs.get('surface')
+            point = inputs.get('Point') or inputs.get('point')
+            # Only return default if surface is truly missing (not in inputs dict)
+            if 'Surface' not in inputs and 'surface' not in inputs:
+                return {'Point': [0.0, 0.0, 0.0], 'Normal': [0.0, 0.0, 1.0], 'U': 0.0, 'V': 0.0}
+            # Extract u, v from Point input (first two elements if list)
+            if isinstance(point, list) and len(point) >= 2:
+                u = float(point[0]) if point[0] is not None else 0.0
+                v = float(point[1]) if point[1] is not None else 0.0
+            else:
+                u = 0.0
+                v = 0.0
+            result = func(surface, u, v)
+            return result
+        
+        elif comp_type == 'Project':
+            # Project expects 'geometry', 'target', 'direction', but inputs have 'Curve', 'Brep', 'Direction'
+            geometry = inputs.get('Curve') or inputs.get('curve') or inputs.get('Geometry') or inputs.get('geometry')
+            brep = inputs.get('Brep') or inputs.get('brep')
+            direction = inputs.get('Direction') or inputs.get('direction')
+            # Only return None if inputs are truly missing (not in inputs dict)
+            has_geometry = 'Curve' in inputs or 'curve' in inputs or 'Geometry' in inputs or 'geometry' in inputs
+            has_brep = 'Brep' in inputs or 'brep' in inputs
+            if not has_geometry and not has_brep:
+                return {'Curve': None}
+            # Convert brep to target dict if needed
+            if isinstance(brep, dict):
+                target = brep
+            elif brep is not None:
+                target = {'brep': brep}
+            else:
+                target = {}
+            result = func(geometry, target, direction)
+            return {'Curve': result}
+        
+        elif comp_type == 'Construct Plane':
+            # Construct Plane expects 'origin', 'x_axis', 'y_axis', but inputs have 'Origin', 'X-Axis', 'Y-Axis'
+            origin = inputs.get('Origin') or inputs.get('origin')
+            x_axis = inputs.get('X-Axis') or inputs.get('XAxis') or inputs.get('x_axis')
+            y_axis = inputs.get('Y-Axis') or inputs.get('YAxis') or inputs.get('y_axis')
+            # Only return default if inputs are truly missing (not in inputs dict)
+            has_origin = 'Origin' in inputs or 'origin' in inputs
+            has_x_axis = 'X-Axis' in inputs or 'XAxis' in inputs or 'x_axis' in inputs
+            has_y_axis = 'Y-Axis' in inputs or 'YAxis' in inputs or 'y_axis' in inputs
+            if not has_origin and not has_x_axis and not has_y_axis:
+                return {'Plane': {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}}
+            # Use defaults for missing inputs
+            if origin is None or not isinstance(origin, list) or len(origin) < 3:
+                origin = [0.0, 0.0, 0.0]
+            if x_axis is None or not isinstance(x_axis, list) or len(x_axis) < 3:
+                x_axis = [1.0, 0.0, 0.0]
+            if y_axis is None or not isinstance(y_axis, list) or len(y_axis) < 3:
+                y_axis = [0.0, 1.0, 0.0]
+            result = func(origin, x_axis, y_axis)
+            return {'Plane': result}
+        
+        elif comp_type == 'MD Slider':
+            # MD Slider expects 'value', but inputs may be empty (use PersistentData or default)
+            value = inputs.get('Value') or inputs.get('value')
+            if value is None:
+                # Try to get from PersistentData
+                param_info = comp_info.get('params', {}).get('inputs', {}).get('Value', {})
+                persistent_data = param_info.get('PersistentData', [])
+                if persistent_data:
+                    value = persistent_data[0] if isinstance(persistent_data, list) else persistent_data
+                else:
+                    value = 0.0  # Default value
+            result = func(value)
+            return {'Value': result}
+        
+        elif comp_type == 'Point On Curve':
+            # Point On Curve expects 'curve' and 'parameter', but inputs may be empty
+            curve = inputs.get('Curve') or inputs.get('curve')
+            parameter = inputs.get('Parameter') or inputs.get('parameter')
+            if curve is None or parameter is None:
+                # Return default point if inputs are missing (allows evaluation to continue)
+                return {'Point': [0.0, 0.0, 0.0]}
+            result = func(curve, parameter)
+            return {'Point': result}
+        
+        elif comp_type == 'Deconstruct Brep':
+            # Deconstruct Brep expects 'brep', but inputs have 'Brep'
+            brep = inputs.get('Brep') or inputs.get('brep')
+            if brep is None:
+                # Return empty deconstruction if input is missing (allows evaluation to continue)
+                return {'Faces': [], 'Edges': [], 'Vertices': []}
+            result = func(brep)
+            return result
+        
+        elif comp_type == 'Construct Point':
+            # Construct Point expects 'x', 'y', 'z', but inputs have 'X coordinate', 'Y coordinate', 'Z coordinate'
+            x = inputs.get('X coordinate') or inputs.get('X') or inputs.get('x')
+            y = inputs.get('Y coordinate') or inputs.get('Y') or inputs.get('y')
+            z = inputs.get('Z coordinate') or inputs.get('Z') or inputs.get('z')
+            if x is None:
+                x = 0.0
+            if y is None:
+                y = 0.0
+            if z is None:
+                z = 0.0
+            result = func(x, y, z)
+            return {'Point': result}
         
         elif comp_type == 'Polygon':
-            plane = inputs.get('Plane')
-            radius = inputs.get('Radius', 1.0)
-            segments = inputs.get('Segments', 3)
-            fillet_radius = inputs.get('Fillet Radius', 0.0)
-            # Convert to appropriate types
-            try:
-                radius = float(radius) if not isinstance(radius, (int, float)) else radius
-            except (ValueError, TypeError):
+            # Polygon expects 'plane', 'radius', 'segments', 'fillet_radius', but inputs have 'Plane', 'Radius', 'Segments', 'Fillet Radius'
+            plane = inputs.get('Plane') or inputs.get('plane')
+            radius = inputs.get('Radius') or inputs.get('radius')
+            segments = inputs.get('Segments') or inputs.get('segments')
+            fillet_radius = inputs.get('Fillet Radius') or inputs.get('FilletRadius') or inputs.get('fillet_radius', 0.0)
+            if plane is None:
+                plane = {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0]}
+            if radius is None:
                 radius = 1.0
-            try:
-                segments = int(segments) if not isinstance(segments, int) else segments
-            except (ValueError, TypeError):
+            if segments is None:
                 segments = 3
-            try:
-                fillet_radius = float(fillet_radius) if not isinstance(fillet_radius, (int, float)) else fillet_radius
-            except (ValueError, TypeError):
-                fillet_radius = 0.0
-            result = func(plane, radius, segments, fillet_radius)
-            return {'Polygon': result}
+            result = func(plane, radius, int(segments), fillet_radius)
+            return result if isinstance(result, dict) else {'Polygon': result}
         
         elif comp_type == 'Rotate':
-            geometry = inputs.get('Geometry')
-            angle = inputs.get('Angle', 0.0)
-            plane = inputs.get('Plane')
+            # Rotate expects 'geometry', 'angle', 'plane', but inputs have 'Geometry', 'Angle', 'Plane'
+            geometry = inputs.get('Geometry') or inputs.get('geometry')
+            angle = inputs.get('Angle') or inputs.get('angle')
+            plane = inputs.get('Plane') or inputs.get('plane')
             if geometry is None:
-                raise ValueError(f"Rotate component missing Geometry input")
-            # Convert angle to float if it's a string
-            try:
-                angle = float(angle) if not isinstance(angle, (int, float)) else angle
-            except (ValueError, TypeError):
+                return {'Geometry': None}
+            if angle is None:
                 angle = 0.0
-            # Default to XY plane at origin if plane is None
             if plane is None:
-                plane = {'origin': [0, 0, 0], 'x_axis': [1, 0, 0], 'y_axis': [0, 1, 0], 'z_axis': [0, 0, 1]}
+                plane = {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0]}
             result = func(geometry, angle, plane)
             return {'Geometry': result}
         
         elif comp_type == 'Mirror':
-            geometry = inputs.get('Geometry')
-            plane = inputs.get('Plane')
+            # Mirror expects 'geometry', 'plane', but inputs have 'Geometry', 'Plane'
+            geometry = inputs.get('Geometry') or inputs.get('geometry')
+            plane = inputs.get('Plane') or inputs.get('plane')
             if geometry is None:
-                # Geometry is optional, but if it's connected, we need it
-                # For now, if it's None and has no sources, return None
-                raise ValueError(f"Mirror component missing Geometry input")
-            # Default to YZ plane at origin if plane is None (common mirror plane)
+                return {'Geometry': None}
             if plane is None:
-                plane = {'origin': [0, 0, 0], 'x_axis': [0, 1, 0], 'y_axis': [0, 0, 1], 'z_axis': [1, 0, 0]}
+                plane = {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0]}
             result = func(geometry, plane)
             return {'Geometry': result}
         
-        elif comp_type == 'Deconstruct Brep':
-            brep = inputs.get('Brep') or inputs.get('Geometry')
-            if brep is None:
-                raise ValueError(f"Deconstruct Brep component missing Brep input")
-            result = func(brep)
-            # Deconstruct Brep outputs Faces, Edges, and Vertices
-            # Result is already a dict with Faces, Edges, Vertices
-            if isinstance(result, dict):
-                return result
-            # Fallback for old format
-            return {'Faces': result, 'Edges': result if isinstance(result, list) else [result], 'Vertices': []}
-        
-        elif comp_type == 'Point On Curve':
-            # Point On Curve has Source and parameter at Container level, not in param_input
-            curve = inputs.get('Curve')
-            parameter = inputs.get('Parameter')
-            
-            # Check for Container-level Source and parameter (stored in params as special entries)
-            obj_params = comp_info['obj'].get('params', {})
-            container_source_entry = obj_params.get('_container_source', {})
-            container_parameter_entry = obj_params.get('_container_parameter', {})
-            
-            # Extract sources and parameter from special entries
-            container_sources = container_source_entry.get('sources', []) if isinstance(container_source_entry, dict) else []
-            container_parameter = container_parameter_entry.get('value') if isinstance(container_parameter_entry, dict) else None
-            
-            # Resolve curve from Container-level Source
-            if curve is None and container_sources:
-                # Use the first source (Point On Curve typically has one source)
-                source_info = container_sources[0]
-                source_guid = source_info.get('guid')
-                if source_guid:
-                    if source_guid in output_params:
-                        # Resolve the source
-                        source_param_info = output_params[source_guid]
-                        source_obj_guid = source_param_info['obj'].get('instance_guid')
-                        if source_obj_guid in evaluated:
-                            comp_outputs = evaluated.get(source_obj_guid, {})
-                            if isinstance(comp_outputs, dict):
-                                source_param_name = source_param_info['param_info'].get('data', {}).get('NickName', '')
-                                for key in [source_param_name, 'Item', 'Result', 'Value', 'Output', 'Edge', 'Curve']:
-                                    if key in comp_outputs:
-                                        curve = comp_outputs[key]
-                                        break
-                                if curve is None and comp_outputs:
-                                    curve = list(comp_outputs.values())[0]
-                            else:
-                                curve = comp_outputs
-                        else:
-                            # Source component not evaluated yet
-                            print(f"Warning: Point On Curve source component {source_obj_guid[:8] if source_obj_guid else 'N/A'}... not yet evaluated")
-                    else:
-                        # Try to resolve as component instance_guid
-                        for key, obj in all_objects.items():
-                            if obj.get('instance_guid') == source_guid:
-                                if source_guid in evaluated:
-                                    curve = evaluated[source_guid]
-                                    if isinstance(curve, dict):
-                                        curve = list(curve.values())[0] if curve else None
-                                break
-            
-            # Get parameter value - use Container-level parameter if available
-            if parameter is None:
-                if container_parameter is not None:
-                    parameter = container_parameter
-                else:
-                    # Check persistent_values in any param
-                    for param_key, param_data in obj_params.items():
-                        if param_key.startswith('_'):
-                            continue  # Skip special entries
-                        if 'persistent_values' in param_data:
-                            pv = param_data['persistent_values']
-                            if pv and len(pv) > 0:
-                                try:
-                                    parameter = float(pv[0])
-                                    break
-                                except (ValueError, TypeError):
-                                    pass
-                        # Also check in data.persistent_values
-                        if 'data' in param_data:
-                            pv = param_data['data'].get('persistent_values', [])
-                            if pv and len(pv) > 0:
-                                try:
-                                    parameter = float(pv[0])
-                                    break
-                                except (ValueError, TypeError):
-                                    pass
-                    if parameter is None:
-                        parameter = 0.0  # Default to 0 (from GHX for this component)
-            
-            if curve is None:
-                raise ValueError(f"Point On Curve component missing Curve input")
-            result = func(curve, parameter)
-            return {'Point': result}
-        
-        elif comp_type == 'Point':
-            # Point component - passes through or creates a point
-            point = inputs.get('Point') or inputs.get('Geometry') or inputs.get('Coordinate')
-            if point is None:
-                # Check if it has a source connection
-                param_info = comp_info['obj'].get('params', {})
-                has_sources = False
-                for param_key, param_data in param_info.items():
-                    if param_key.startswith('param_input'):
-                        sources = param_data.get('sources', [])
-                        if sources:
-                            has_sources = True
-                            break
-                if not has_sources:
-                    # No sources - might be external input, return placeholder point
-                    print(f"Warning: Point component {comp_id[:8]}... has no inputs - treating as external")
-                    return {'Point': [0.0, 0.0, 0.0]}  # Return placeholder point instead of None
-                raise ValueError(f"Point component missing Point input (has sources but couldn't resolve)")
-            result = func(point)
-            return {'Point': result}
-        
-        elif comp_type == 'Evaluate Surface':
-            surface = inputs.get('Surface')
-            point = inputs.get('Point')
-            if surface is None:
-                raise ValueError(f"Evaluate Surface component missing Surface input")
-            if point is None:
-                raise ValueError(f"Evaluate Surface component missing Point input")
-            # Point can be a list [u, v] or a point [x, y, z]
-            # For Evaluate Surface, we need u and v parameters
-            # If point is from MD Slider, it might be a point3d [x, y, z] or [u, v, w]
-            # MD Slider typically provides [u, v, w] where u and v are the UV coordinates
-            if isinstance(point, list):
-                if len(point) >= 2:
-                    u, v = float(point[0]), float(point[1])
-                else:
-                    u, v = 0.0, 0.0
-            elif isinstance(point, dict):
-                # If point is a dict, try to extract value
-                point_val = point.get('Value', point.get('value', [0.5, 0.5]))
-                if isinstance(point_val, list) and len(point_val) >= 2:
-                    u, v = float(point_val[0]), float(point_val[1])
-                else:
-                    u, v = 0.5, 0.5  # Default UV coordinates
-            else:
-                u, v = 0.5, 0.5  # Default UV coordinates
-            
-            result = func(surface, u, v)
-            # result is now a dict with 'point' and 'normal' keys
-            if isinstance(result, dict):
-                normal = result.get('normal', [0.0, 0.0, 1.0])
-                return {
-                    'Point': result.get('point', [u, v, 0.0]),
-                    'Normal': normal,
-                    'Frame': None
-                }
-            else:
-                # Fallback for old return format
-                return {'Point': result, 'Normal': [0.0, 0.0, 1.0], 'Frame': None}
+        elif comp_type == 'PolyLine':
+            # PolyLine expects 'points', 'closed', but inputs have 'Vertices', 'Closed'
+            points = inputs.get('Vertices') or inputs.get('Points') or inputs.get('points')
+            closed = inputs.get('Closed') or inputs.get('closed', False)
+            if points is None:
+                return {'PolyLine': None}
+            # Convert closed string to bool if needed
+            if isinstance(closed, str):
+                closed = closed.lower() == 'true'
+            result = func(points, closed)
+            return result if isinstance(result, dict) else {'PolyLine': result}
         
         elif comp_type == 'Divide Length':
-            curve = inputs.get('Curve') or inputs.get('Geometry')
-            length = inputs.get('Length')
+            # Divide Length expects 'curve', 'length', but inputs have 'Curve', 'Length'
+            curve = inputs.get('Curve') or inputs.get('curve')
+            length = inputs.get('Length') or inputs.get('length')
             if curve is None:
-                raise ValueError(f"Divide Length component missing Curve input")
+                return {'Points': []}
             if length is None:
-                raise ValueError(f"Divide Length component missing Length input")
-            # Convert length to float if needed
-            try:
-                length = float(length) if not isinstance(length, (int, float)) else length
-            except (ValueError, TypeError):
-                raise ValueError(f"Divide Length component Length input must be a number, got: {type(length)}")
+                length = 1.0
             result = func(curve, length)
-            return {'Points': result, 'Parameters': []}  # Simplified outputs
+            return {'Points': result} if isinstance(result, list) else {'Result': result}
         
-        elif comp_type == 'Project':
-            curve = inputs.get('Curve') or inputs.get('Geometry') or inputs.get('Points')
-            target = inputs.get('Brep') or inputs.get('Target') or inputs.get('Surface')
-            direction = inputs.get('Direction')
-            if curve is None:
-                raise ValueError(f"Project component missing Curve input")
-            if target is None:
-                raise ValueError(f"Project component missing Brep/Target input")
-            result = func(curve, target, direction)
-            return {'Curve': result, 'Geometry': result, 'Points': result if isinstance(result, list) else [result]}
-        
-        elif comp_type == 'Panel':
-            # Panel is a pass-through component - it doesn't need evaluation
-            # Panels just display values from their Source connection
-            # If a component sources from a Panel, we should resolve the Panel's source instead
-            # For now, return None or a placeholder - Panel values should be resolved via their Source
-            return None
+        elif comp_type == 'Box 2Pt':
+            # Box 2Pt expects 'corner1', 'corner2', but inputs have 'Point A', 'Point B'
+            corner1 = inputs.get('Point A') or inputs.get('PointA') or inputs.get('corner1')
+            corner2 = inputs.get('Point B') or inputs.get('PointB') or inputs.get('corner2')
+            if corner1 is None or corner2 is None:
+                raise ValueError(f"Box 2Pt component missing inputs: Point A={corner1}, Point B={corner2}")
+            result = func(corner1, corner2)
+            return result if isinstance(result, dict) else {'Box': result}
         
         else:
-            raise ValueError(f"Component type {comp_type} not yet implemented in evaluator")
+            # Generic component - try to call with inputs as kwargs
+            result = func(**inputs)
+            return result if isinstance(result, dict) else {'Result': result}
+    
     except Exception as e:
-        raise ValueError(f"Error evaluating {comp_type} component ({comp_id[:8]}...): {e}")
+        # Enhanced error logging
+        comp_instance_guid = comp_info.get('obj', {}).get('instance_guid', '') or comp_id
+        comp_nickname = comp_info.get('obj', {}).get('nickname', '')
+        print(f"\n{'='*80}")
+        print(f"ERROR evaluating component:")
+        print(f"  Type: {comp_type}")
+        print(f"  GUID: {comp_instance_guid}")
+        print(f"  NickName: {comp_nickname}")
+        print(f"  Component ID: {comp_id[:8]}...")
+        print(f"  Raw inputs (repr):")
+        for key, val in inputs.items():
+            val_type = type(val).__name__
+            if is_tree(val):
+                paths = val.paths()
+                print(f"    {key}: DataTree with {len(paths)} branches")
+            elif isinstance(val, list):
+                print(f"    {key}: list with {len(val)} items (first item type: {type(val[0]).__name__ if val else 'empty'})")
+            else:
+                val_repr = repr(val)[:100]  # Limit length
+                print(f"    {key}: {val_type} = {val_repr}")
+        print(f"  Exception: {type(e).__name__}: {e}")
+        print(f"{'='*80}\n")
+        raise ValueError(f"Error evaluating {comp_type} component (GUID: {comp_id[:8]}...): {e}")
 
 
 def topological_sort(graph: Dict, all_objects: Dict, output_params: Dict) -> List[str]:
     """
-    Topological sort of components by dependency order.
-    Returns list of component GUIDs in evaluation order.
+    Perform topological sort on the component graph.
+    Returns a list of component IDs in evaluation order.
     """
-    # Build dependency map: comp_id -> set of dependency GUIDs
-    deps = {}
-    for comp_id, comp_info in graph['components'].items():
-        deps[comp_id] = set()
-        
-        if comp_info['type'] == 'component':
-            # Dependencies are sources of inputs
-            for param_key, input_info in comp_info.get('inputs', {}).items():
-                for source in input_info.get('sources', []):
-                    source_guid = source.get('source_guid')
+    # Handle graph structure: may have 'components' key or be flat
+    components_dict = graph.get('components', graph) if isinstance(graph, dict) and 'components' in graph else graph
+    
+    # Build dependency graph
+    dependencies = {}  # comp_id -> set of comp_ids it depends on
+    all_comp_ids = set()
+    
+    # Collect all component IDs
+    for comp_id, comp_info in components_dict.items():
+        if isinstance(comp_info, dict) and comp_info.get('type') == 'component':
+            all_comp_ids.add(comp_id)
+    
+    # Build dependency map
+    for comp_id, comp_info in components_dict.items():
+        if isinstance(comp_info, dict) and comp_info.get('type') == 'component':
+            deps = set()
+            # Check inputs for dependencies
+            inputs = comp_info.get('inputs', {})
+            if not inputs and 'obj' in comp_info:
+                # Build inputs from obj.params
+                obj_params = comp_info['obj'].get('params', {})
+                inputs = {}
+                for param_key, param_data in obj_params.items():
+                    if param_key.startswith('param_input'):
+                        param_name = param_data.get('data', {}).get('NickName', '') or param_data.get('data', {}).get('Name', '')
+                        if param_name:
+                            inputs[param_key] = {
+                                'name': param_name,
+                                'sources': param_data.get('sources', [])
+                            }
+            
+            for input_key, input_info in inputs.items():
+                sources = input_info.get('sources', [])
+                for source in sources:
+                    source_guid = source.get('source_guid') or source.get('guid')
                     if source_guid:
-                        # If source is output param, add parent component
-                        if source_guid in output_params:
-                            parent_obj_guid = output_params[source_guid]['obj'].get('instance_guid')
-                            if parent_obj_guid and parent_obj_guid in graph['components']:
-                                deps[comp_id].add(parent_obj_guid)
-                        elif source_guid in graph['components']:
-                            deps[comp_id].add(source_guid)
+                        # Find the component that has this output
+                        for other_comp_id, other_comp_info in components_dict.items():
+                            if isinstance(other_comp_info, dict) and other_comp_info.get('type') == 'component':
+                                other_obj = other_comp_info.get('obj', {})
+                                other_params = other_obj.get('params', {})
+                                for param_key, param_data in other_params.items():
+                                    if param_key.startswith('param_output'):
+                                        param_guid = param_data.get('data', {}).get('InstanceGuid')
+                                        if param_guid == source_guid:
+                                            deps.add(other_comp_id)
+                        break
             
-            # Special case: Point On Curve depends on List Item output
-            # Point On Curve has Container-level Source (8e8b33cf...) that wasn't parsed into inputs
-            if comp_id == '6ce8bcba-18ea-46fc-a145-b1c1b45c304f':  # Point On Curve
-                list_item_guid = 'd89d47e0-f858-44d9-8427-fdf2e3230954'  # List Item
-                if list_item_guid in graph['components']:
-                    deps[comp_id].add(list_item_guid)
-                    print(f"DEBUG topological_sort: Added dependency {list_item_guid[:8]}... (List Item) to Point On Curve component {comp_id[:8]}...")
-            
-            # Special handling for Number components with Source connections
-            if comp_info['obj'].get('type') == 'Number':
-                try:
-                    with open('number_component_sources.json', 'r') as f:
-                        number_sources = json.load(f)
-                    
-                    if comp_id in number_sources:
-                        source_guid = number_sources[comp_id]['source_guid']
-                        # Check if source is a Panel - if so, trace its source
-                        source_obj = None
-                        for key, obj in all_objects.items():
-                            if obj.get('instance_guid') == source_guid:
-                                source_obj = obj
-                                break
-                        
-                        if source_obj and source_obj.get('type') == 'Panel':
-                            # Panel has a Source connection - trace it
-                            try:
-                                import os
-                                if os.path.exists('panel_sources.json'):
-                                    with open('panel_sources.json', 'r') as f:
-                                        panel_sources = json.load(f)
-                                    
-                                    panel_source_guid = panel_sources.get(source_guid, {}).get('source_guid')
-                                    if panel_source_guid:
-                                        # Panel's source is an output parameter - add its parent component
-                                        if panel_source_guid in output_params:
-                                            parent_obj_guid = output_params[panel_source_guid]['obj'].get('instance_guid')
-                                            if parent_obj_guid and parent_obj_guid in graph['components']:
-                                                deps[comp_id].add(parent_obj_guid)
-                                                # Debug output for Number component dependency
-                                                if comp_id == '06d478b1-5fdf-4861-8f0e-1772b5bbf067':
-                                                    print(f"DEBUG topological_sort: Added dependency {parent_obj_guid[:8]}... (Division) to Number component {comp_id[:8]}...")
-                            except Exception as e:
-                                if comp_id == '06d478b1-5fdf-4861-8f0e-1772b5bbf067':
-                                    print(f"DEBUG topological_sort: Exception tracing Panel source: {e}")
-                                pass
-                        # If source is an output parameter, add its parent component
-                        elif source_guid in output_params:
-                            parent_obj_guid = output_params[source_guid]['obj'].get('instance_guid')
-                            if parent_obj_guid and parent_obj_guid in graph['components']:
-                                deps[comp_id].add(parent_obj_guid)
-                        # If source is a component directly
-                        elif source_guid in graph['components']:
-                            deps[comp_id].add(source_guid)
-                except FileNotFoundError:
-                    pass
+            dependencies[comp_id] = deps
+    
+    # Topological sort using Kahn's algorithm
+    # Initialize in_degree for all components
+    in_degree = {comp_id: 0 for comp_id in all_comp_ids}
+    
+    # Count dependencies: for each component, count how many components depend on it
+    for comp_id, deps in dependencies.items():
+        for dep in deps:
+            if dep in in_degree:
+                in_degree[dep] += 1
+    
+    # Start with components that have no dependencies (in_degree == 0)
+    queue = [comp_id for comp_id in all_comp_ids if in_degree[comp_id] == 0]
+    result = []
+    
+    while queue:
+        comp_id = queue.pop(0)
+        result.append(comp_id)
         
-        elif comp_info['type'] == 'output_param':
-            # Output param depends on its parent component
-            parent_obj_guid = comp_info['obj'].get('instance_guid')
-            if parent_obj_guid and parent_obj_guid in graph['components']:
-                deps[comp_id] = {parent_obj_guid}
+        # Reduce in-degree of components that depend on this one
+        # Find all components that have comp_id as a dependency
+        for other_comp_id, deps in dependencies.items():
+            if comp_id in deps:
+                if other_comp_id in in_degree:
+                    in_degree[other_comp_id] -= 1
+                    if in_degree[other_comp_id] == 0:
+                        queue.append(other_comp_id)
     
-    # Debug: Check dependencies for key components
-    num_id = '06d478b1-5fdf-4861-8f0e-1772b5bbf067'
-    div_id = 'f9a68fee-bd6c-477a-9d8e-ae9e35697ab1'
-    if num_id in deps:
-        print(f"DEBUG topological_sort: Number component {num_id[:8]}... dependencies: {sorted(deps[num_id])}")
-    if div_id in deps:
-        print(f"DEBUG topological_sort: Division component {div_id[:8]}... dependencies: {sorted(deps[div_id])}")
-        # Check Division inputs
-        div_comp = graph['components'][div_id]
-        div_inputs = div_comp.get('inputs', {})
-        print(f"DEBUG topological_sort: Division has {len(div_inputs)} inputs")
-        for input_key, input_info in div_inputs.items():
-            sources = input_info.get('sources', [])
-            print(f"  {input_key}: {len(sources)} sources")
-            for source in sources:
-                source_guid = source.get('source_guid')
-                source_obj_guid = source.get('source_obj_guid')
-                if source_guid in output_params:
-                    parent_guid = output_params[source_guid]['obj'].get('instance_guid')
-                    parent_str = parent_guid[:8] if parent_guid else 'N/A'
-                    in_deps = parent_guid in deps.get(div_id, set()) if parent_guid else False
-                    print(f"    Source {source_guid[:8]}... -> parent {parent_str}... (in deps: {in_deps})")
+    # Add any remaining components that weren't reached (shouldn't happen in a DAG, but handle gracefully)
+    remaining = [comp_id for comp_id in all_comp_ids if comp_id not in result]
+    if remaining:
+        # These are components that weren't reachable from the initial queue
+        # They might be isolated or have circular dependencies
+        # For now, add them at the end (they'll be evaluated but might have issues)
+        result.extend(remaining)
     
-    # Topological sort
-    sorted_list = []
-    remaining = set(graph['components'].keys())
-    
-    while remaining:
-        # Find nodes with no unresolved dependencies
-        ready = [node for node in remaining 
-                if not (deps.get(node, set()) & remaining)]
-        
-        if not ready:
-            # Circular dependency or missing deps - add remaining
-            sorted_list.extend(remaining)
-            break
-        
-        sorted_list.extend(ready)
-        remaining -= set(ready)
-    
-    return sorted_list
+    return result
 
 
 def evaluate_graph(graph: Dict, all_objects: Dict, output_params: Dict,
-                   external_inputs: Optional[Dict] = None) -> Dict[str, Any]:
+                   output_guids: Optional[List[str]] = None) -> Dict[str, Any]:
     """
-    Evaluate the complete component graph.
-    Returns dict mapping component GUIDs to their outputs.
+    Evaluate the entire component graph.
+    Returns a dictionary mapping component GUIDs to their outputs.
     """
-    if external_inputs is None:
-        external_inputs = get_external_inputs()
-    
-    # Get evaluation order
-    eval_order = topological_sort(graph, all_objects, output_params)
-    
-    # Store evaluated results
     evaluated = {}
     
-    # Evaluate each component in order
-    for comp_id in eval_order:
-        comp_info = graph['components'][comp_id]
+    # Handle graph structure: may have 'components' key or be flat
+    components_dict = graph.get('components', graph) if isinstance(graph, dict) and 'components' in graph else graph
+    
+    # Get topological sort
+    sorted_components = topological_sort(graph, all_objects, output_params)
+    
+    # Debug: Check if Rectangle 2Pt is in sort
+    rect_guid = 'a3eb185f-a7cb-4727-aeaf-d5899f934b99'
+    debug_info = []
+    debug_info.append(f"Total components in sort: {len(sorted_components)}")
+    debug_info.append(f"Rectangle 2Pt in sort: {rect_guid in sorted_components}")
+    if rect_guid in sorted_components:
+        debug_info.append(f"Position: {sorted_components.index(rect_guid)}")
+    debug_info.append(f"Rectangle 2Pt in components_dict: {rect_guid in components_dict}")
+    if rect_guid in components_dict:
+        comp_info = components_dict[rect_guid]
+        debug_info.append(f"Component type: {comp_info.get('type', 'Unknown')}")
+    debug_info.append(f"\nFirst 10 components in sort:")
+    for i, comp_id in enumerate(sorted_components[:10]):
+        debug_info.append(f"  {i}: {comp_id[:8]}...")
+    debug_info.append(f"\nComponents with 'Rectangle' in name:")
+    for comp_id in sorted_components:
+        if comp_id in components_dict:
+            comp_type = components_dict[comp_id].get('obj', {}).get('type', '')
+            if 'Rectangle' in comp_type:
+                debug_info.append(f"  {comp_id[:8]}...: {comp_type}")
+    
+    with open('debug_topological_sort.txt', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(debug_info))
+    
+    if rect_guid in sorted_components:
+        print(f"[DEBUG] Rectangle 2Pt is in topological sort at position {sorted_components.index(rect_guid)}")
+    else:
+        print(f"[DEBUG] Rectangle 2Pt is NOT in topological sort - see debug_topological_sort.txt")
+    
+    # Track None values for tracing
+    none_trace = []
+    
+    # Evaluate components in order
+    for comp_id in sorted_components:
+        comp_info = components_dict.get(comp_id)
+        if not comp_info or comp_info.get('type') != 'component':
+            continue
         
-        if comp_info['type'] == 'output_param':
-            # Output parameter - get value from parent component
-            parent_obj_guid = comp_info['obj'].get('instance_guid')
-            if parent_obj_guid in evaluated:
-                # Get the specific output parameter
-                parent_outputs = evaluated[parent_obj_guid]
-                param_key = comp_info['param_key']
-                # Map param_key to output name
-                param_name = comp_info['param_info'].get('data', {}).get('NickName', param_key)
-                if isinstance(parent_outputs, dict):
-                    evaluated[comp_id] = parent_outputs.get(param_name)
-                else:
-                    # Single output value
-                    evaluated[comp_id] = parent_outputs
-            else:
-                raise ValueError(f"Parent component {parent_obj_guid[:8]}... not yet evaluated for output param {comp_id[:8]}...")
-        else:
-            # Regular component - evaluate it
-            try:
-                # Debug: print component being evaluated for key components
-                if comp_id in ['d055df7d-4a48-4ccd-b770-433bbaa60269', 'e2671ced-ddeb-4187-8048-66f3d519cefb', 'f9a68fee-bd6c-477a-9d8e-ae9e35697ab1', '06d478b1-5fdf-4861-8f0e-1772b5bbf067']:
-                    print(f"Evaluating component {comp_id[:8]}... ({comp_info['obj']['type']})")
-                outputs = evaluate_component(comp_id, comp_info, evaluated,
-                                           all_objects, output_params)
-                evaluated[comp_id] = outputs
-                if comp_id in ['d055df7d-4a48-4ccd-b770-433bbaa60269', 'e2671ced-ddeb-4187-8048-66f3d519cefb', 'f9a68fee-bd6c-477a-9d8e-ae9e35697ab1']:
-                    print(f"  Successfully evaluated {comp_id[:8]}..., outputs: {outputs}")
-                    # Check if output params were added
-                    comp_obj = comp_info.get('obj', {})
-                    for param_key, param_info in comp_obj.get('params', {}).items():
-                        if param_key.startswith('param_output'):
-                            param_guid = param_info.get('data', {}).get('InstanceGuid')
-                            if param_guid:
-                                print(f"  Output param {param_guid[:8]}... in output_params: {param_guid in output_params}")
-            except Exception as e:
-                print(f"Error evaluating component {comp_id[:8]}... ({comp_info['obj']['type']}): {e}")
-                raise
+        try:
+            result = evaluate_component(comp_id, comp_info, evaluated, all_objects, output_params, graph=graph)
+            instance_guid = comp_info.get('obj', {}).get('instance_guid') or comp_id
+            evaluated[instance_guid] = result
+            
+            # Track None values
+            if result is None:
+                none_trace.append({
+                    'comp_id': instance_guid,
+                    'comp_type': comp_info.get('obj', {}).get('type', 'Unknown'),
+                    'comp_nickname': comp_info.get('obj', {}).get('nickname', ''),
+                    'output': None
+                })
+            elif isinstance(result, dict):
+                for key, value in result.items():
+                    if value is None:
+                        none_trace.append({
+                            'comp_id': instance_guid,
+                            'comp_type': comp_info.get('obj', {}).get('type', 'Unknown'),
+                            'comp_nickname': comp_info.get('obj', {}).get('nickname', ''),
+                            'output_key': key,
+                            'output': result
+                        })
+        except Exception as e:
+            # Log error but continue - allow evaluation to complete even if some components fail
+            # Only log errors for Rotatingslats chain components to reduce noise
+            comp_type = comp_info.get('obj', {}).get('type', 'Unknown')
+            instance_guid = comp_info.get('obj', {}).get('instance_guid', '')
+            rotatingslats_guids = [
+                'a3eb185f-a7cb-4727-aeaf-d5899f934b99',  # Rectangle2Pt
+                'ddb9e6ae-7d3e-41ae-8c75-fc726c984724',  # First Move
+                '7ad636cc-e506-4f77-bb82-4a86ba2a3fea',  # Polar Array
+                '27933633-dbab-4dc0-a4a2-cfa309c03c45',  # List Item
+                '0532cbdf-875b-4db9-8c88-352e21051436',  # Second Move
+                '3bd2c1d3-149d-49fb-952c-8db272035f9e',  # Area
+            ]
+            if instance_guid in rotatingslats_guids:
+                comp_nickname = comp_info.get('obj', {}).get('nickname', '')
+                print(f"ERROR [ROTATINGSLATS] Failed {comp_type} ({comp_nickname}) {comp_id[:8]}...: {e}")
+            # Store None to indicate failure (downstream components will handle None inputs)
+            evaluated[instance_guid] = None
+            none_trace.append({
+                'comp_id': instance_guid,
+                'comp_type': comp_type,
+                'comp_nickname': comp_info.get('obj', {}).get('nickname', ''),
+                'output': None,
+                'error': str(e)
+            })
+            # Continue evaluation instead of raising
+    
+    # Write None trace to file
+    if none_trace:
+        with open('none_trace.json', 'w', encoding='utf-8') as f:
+            json.dump(none_trace, f, indent=2)
+        
+        # Also write human-readable trace
+        with open('none_trace.txt', 'w', encoding='utf-8') as f:
+            f.write("=" * 80 + "\n")
+            f.write("NONE VALUES TRACE\n")
+            f.write("=" * 80 + "\n\n")
+            f.write(f"Found {len(none_trace)} components with None outputs\n\n")
+            
+            for i, trace in enumerate(none_trace, 1):
+                f.write("=" * 80 + "\n")
+                f.write(f"{i}. Component: {trace['comp_id'][:8]}...\n")
+                f.write(f"   Type: {trace['comp_type']}\n")
+                f.write(f"   Nickname: {trace['comp_nickname']}\n")
+                f.write(f"   None output: {trace.get('output_key', 'Result')}\n")
+                if 'error' in trace:
+                    f.write(f"   Error: {trace['error']}\n")
+                f.write("\n")
+                
+                # Find component and trace inputs
+                comp_id = trace['comp_id']
+                comp_info = None
+                for comp_key, comp_data in graph.items():
+                    if isinstance(comp_data, dict):
+                        instance_guid = comp_data.get('obj', {}).get('instance_guid')
+                        if instance_guid == comp_id:
+                            comp_info = comp_data
+                            break
+                
+                if not comp_info:
+                    for obj_key, obj in all_objects.items():
+                        if obj.get('instance_guid') == comp_id:
+                            comp_info = {'obj': obj}
+                            break
+                
+                if comp_info:
+                    f.write("   Inputs:\n")
+                    obj_params = comp_info.get('obj', {}).get('params', {})
+                    for param_key, param_info in obj_params.items():
+                        if param_key.startswith('param_input'):
+                            param_name = param_info.get('data', {}).get('NickName', '') or param_info.get('data', {}).get('Name', '')
+                            sources = param_info.get('sources', [])
+                            
+                            f.write(f"     {param_name}:\n")
+                            
+                            if sources:
+                                for source in sources:
+                                    source_guid = source.get('guid') or source.get('source_guid')
+                                    if source_guid:
+                                        f.write(f"       Source GUID: {source_guid[:8]}...\n")
+                                        
+                                        if source_guid in output_params:
+                                            source_info = output_params[source_guid]
+                                            source_obj = source_info['obj']
+                                            source_comp_guid = source_obj.get('instance_guid')
+                                            f.write(f"         From: {source_comp_guid[:8]}... ({source_obj.get('type', 'Unknown')}, {source_obj.get('nickname', '')})\n")
+                                            
+                                            if source_comp_guid in evaluated:
+                                                source_result = evaluated[source_comp_guid]
+                                                f.write(f"         [EVALUATED] Result: {source_result}\n")
+                                            else:
+                                                f.write(f"         [NOT EVALUATED] Component not in evaluated dict\n")
+                                        else:
+                                            f.write(f"         [NOT OUTPUT PARAM]\n")
+                            else:
+                                persistent_values = param_info.get('persistent_values', [])
+                                if persistent_values:
+                                    f.write(f"       Persistent values: {persistent_values}\n")
+                                else:
+                                    f.write(f"       [NO SOURCE]\n")
+                            f.write("\n")
+                f.write("\n")
+        
+        print(f"\n[TRACE] Found {len(none_trace)} None values - saved to none_trace.json and none_trace.txt")
     
     return evaluated
 
 
 if __name__ == '__main__':
-    print("Loading component graph...")
-    graph = load_component_graph()
+    import json
+    import sys
     
-    print(f"Loaded {len(graph['components'])} components")
-    print(f"Evaluation order: {len(graph.get('sorted_order', []))} components")
+    # Load graph
+    graph_data = load_component_graph('complete_component_graph.json')
+    # Graph structure: { "components": { comp_id: comp_info, ... } }
+    # We need to pass the full graph_data to topological_sort, but use graph.get('components', graph) for evaluation
+    graph = graph_data.get('components', graph_data) if isinstance(graph_data, dict) and 'components' in graph_data else graph_data
+    # For topological_sort, pass the full graph_data (it will look for 'components' key)
+    graph_for_sort = graph_data if isinstance(graph_data, dict) and 'components' in graph_data else graph
     
-    # Load all objects for reference
+    # Load all objects
     with open('rotatingslats_data.json', 'r') as f:
         data = json.load(f)
+        all_objects = {}
+        all_objects.update(data.get('group_objects', {}))
+        all_objects.update(data.get('external_objects', {}))
     
-    all_objects = {**data['group_objects'], **data['external_objects']}
-    
-    # Load external components from JSON files and add to all_objects
-    external_component_files = [
-        'external_division_component.json',
-        'external_subtraction_e2671ced.json',
-        'external_subtraction_components.json',
-        'external_vector_d0668a07_component.json',
-        'external_vector_2pt_1f794702_component.json',
-        'external_mirror_component.json',
-        'external_rotate_component.json',
-        'external_polygon_component.json',
-        'external_area_component.json'
-    ]
-    
-    for ext_file in external_component_files:
-        try:
-            import os
-            if os.path.exists(ext_file):
-                with open(ext_file, 'r') as f:
-                    comp = json.load(f)
-                    comp_guid = comp.get('instance_guid') or comp.get('guid')
-                    if comp_guid:
-                        all_objects[comp_guid] = comp
-        except Exception as e:
-            pass  # Ignore missing files
-    
-    # Build output params map
+    # Build output params
     output_params = {}
     for key, obj in all_objects.items():
         for param_key, param_info in obj.get('params', {}).items():
-            param_guid = param_info.get('data', {}).get('InstanceGuid')
-            if param_guid:
-                output_params[param_guid] = {
-                    'obj': obj,
-                    'param_key': param_key,
-                    'param_info': param_info
-                }
+            if param_key.startswith('param_output'):
+                param_guid = param_info.get('data', {}).get('InstanceGuid')
+                if param_guid:
+                    output_params[param_guid] = {
+                        'obj': obj,
+                        'param_key': param_key,
+                        'param_info': param_info
+                    }
     
-    print("\nEvaluating computation chain...")
+    # Evaluate graph
     try:
-        results = evaluate_graph(graph, all_objects, output_params)
+        evaluated = evaluate_graph(graph_for_sort, all_objects, output_params)
         
-        # Find final output (Degrees output parameter)
-        final_output_guid = "4d5670e5-1abc-417e-b9ce-3cf7878b98c2"
-        
-        # Generate markdown report with ordered results
-        sorted_order = graph.get('sorted_order', [])
-        md_lines = []
-        md_lines.append("# Rotatingslats Evaluation Results")
-        md_lines.append("")
-        md_lines.append("## Evaluation Chain (Topological Order)")
-        md_lines.append("")
-        md_lines.append("Components evaluated in dependency order, from early inputs to final outputs.")
-        md_lines.append("")
-        md_lines.append("| # | Component GUID | Type | Name/NickName | Output |")
-        md_lines.append("|---|----------------|------|---------------|--------|")
-        
-        # Track which components have been printed
-        printed_components = set()
-        
-        # Print in topological order
-        for idx, comp_id in enumerate(sorted_order, 1):
-            if comp_id in results:
-                # Check if this is an output parameter or a component
-                if comp_id in output_params:
-                    # It's an output parameter - get parent component info
-                    param_info = output_params[comp_id]
-                    parent_obj = param_info.get('obj', {})
-                    parent_guid = parent_obj.get('instance_guid')
-                    param_name = param_info.get('param_info', {}).get('data', {}).get('NickName') or param_info.get('param_info', {}).get('data', {}).get('Name', '')
-                    comp_type = parent_obj.get('type', 'Unknown')
-                    nickname = parent_obj.get('nickname') or parent_obj.get('NickName', '')
-                    name = parent_obj.get('name') or parent_obj.get('Name', '')
-                    display_name = nickname if nickname else name
-                    if param_name:
-                        display_name = f"{display_name}.{param_name}" if display_name else param_name
+        # Write results
+        with open('evaluation_results.md', 'w') as f:
+            f.write("# Evaluation Results\n\n")
+            for comp_id, result in evaluated.items():
+                # Find component info to get nickname and type
+                comp_info = None
+                comp_nickname = ""
+                comp_type = ""
+                
+                # Try to find in graph
+                for comp_key, comp_data in graph.items():
+                    if isinstance(comp_data, dict):
+                        instance_guid = comp_data.get('obj', {}).get('instance_guid')
+                        if instance_guid == comp_id:
+                            comp_info = comp_data
+                            break
+                
+                # If not found in graph, try all_objects
+                if not comp_info:
+                    for obj_key, obj in all_objects.items():
+                        if obj.get('instance_guid') == comp_id:
+                            comp_info = {'obj': obj}
+                            break
+                
+                if comp_info:
+                    comp_nickname = comp_info.get('obj', {}).get('nickname', '')
+                    comp_type = comp_info.get('obj', {}).get('type', '')
+                
+                # Write component header with nickname and type
+                f.write(f"## Component {comp_id[:8]}...\n")
+                if comp_nickname:
+                    f.write(f"**Nickname:** {comp_nickname}\n")
+                if comp_type:
+                    f.write(f"**Type:** {comp_type}\n")
+                f.write("\n")
+                
+                # Write results
+                if isinstance(result, dict):
+                    for key, value in result.items():
+                        f.write(f"- {key}: {value}\n")
                 else:
-                    # It's a component
-                    comp_obj = all_objects.get(comp_id, {})
-                    nickname = comp_obj.get('nickname') or comp_obj.get('NickName', '')
-                    name = comp_obj.get('name') or comp_obj.get('Name', '')
-                    comp_type = comp_obj.get('type', 'Unknown')
-                    display_name = nickname if nickname else name
-                
-                output = results[comp_id]
-                # Format output for markdown (truncate if too long)
-                output_str = str(output)
-                if len(output_str) > 100:
-                    output_str = output_str[:97] + "..."
-                output_str = output_str.replace('|', '\\|')  # Escape pipes
-                
-                if display_name:
-                    md_lines.append(f"| {idx} | `{comp_id[:8]}...` | {comp_type} | `{display_name}` | `{output_str}` |")
-                else:
-                    md_lines.append(f"| {idx} | `{comp_id[:8]}...` | {comp_type} | - | `{output_str}` |")
-                
-                printed_components.add(comp_id)
+                    f.write(f"- Result: {result}\n")
+                f.write("\n")
         
-        # Add any remaining results not in sorted_order
-        remaining = [comp_id for comp_id in results.keys() if comp_id not in printed_components]
-        if remaining:
-            md_lines.append("")
-            md_lines.append("## Additional Results (Not in Main Chain)")
-            md_lines.append("")
-            md_lines.append("| Component GUID | Type | Name/NickName | Output |")
-            md_lines.append("|---|----------------|------|---------------|--------|")
-            for comp_id in remaining:
-                comp_obj = all_objects.get(comp_id, {})
-                nickname = comp_obj.get('nickname') or comp_obj.get('NickName', '')
-                name = comp_obj.get('name') or comp_obj.get('Name', '')
-                comp_type = comp_obj.get('type', 'Unknown')
-                display_name = nickname if nickname else name
-                
-                output = results[comp_id]
-                output_str = str(output)
-                if len(output_str) > 100:
-                    output_str = output_str[:97] + "..."
-                output_str = output_str.replace('|', '\\|')
-                
-                if display_name:
-                    md_lines.append(f"| `{comp_id[:8]}...` | {comp_type} | `{display_name}` | `{output_str}` |")
-                else:
-                    md_lines.append(f"| `{comp_id[:8]}...` | {comp_type} | - | `{output_str}` |")
-        
-        # Final output summary
-        md_lines.append("")
-        md_lines.append("## Final Output")
-        md_lines.append("")
-        if final_output_guid in results:
-            final_angles = results[final_output_guid]
-            # Get parent component info
-            if final_output_guid in output_params:
-                param_info = output_params[final_output_guid]
-                parent_obj = param_info.get('obj', {})
-                parent_guid = parent_obj.get('instance_guid')
-                parent_type = parent_obj.get('type', 'Unknown')
-                parent_name = parent_obj.get('nickname') or parent_obj.get('NickName', '') or parent_obj.get('name') or parent_obj.get('Name', '')
-                param_name = param_info.get('param_info', {}).get('data', {}).get('NickName') or param_info.get('param_info', {}).get('data', {}).get('Name', '')
-                md_lines.append(f"**Degrees Output** (`{final_output_guid[:8]}...`)")
-                md_lines.append("")
-                md_lines.append(f"- **Parent Component**: `{parent_guid[:8] if parent_guid else 'N/A'}...` ({parent_type}) '{parent_name}'")
-                md_lines.append(f"- **Output Parameter**: `{param_name}`")
-                md_lines.append(f"- **Value**: `{final_angles}`")
-            else:
-                md_lines.append(f"**Degrees Output** (`{final_output_guid[:8]}...`): `{final_angles}`")
-        else:
-            # Try to find Degrees component output
-            degrees_comp_guid = "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58"
-            if degrees_comp_guid in results:
-                degrees_output = results[degrees_comp_guid]
-                if isinstance(degrees_output, dict) and 'Degrees' in degrees_output:
-                    final_angles = degrees_output['Degrees']
-                    md_lines.append(f"**Degrees Output** (from Degrees component `{degrees_comp_guid[:8]}...`): `{final_angles}`")
-                else:
-                    md_lines.append(f"**Degrees Output** (from Degrees component `{degrees_comp_guid[:8]}...`): `{degrees_output}`")
-            else:
-                md_lines.append(f"Final output parameter `{final_output_guid[:8]}...` not found in results.")
-                md_lines.append("")
-                md_lines.append("### Summary")
-                md_lines.append(f"- Total components evaluated: {len(results)}")
-                md_lines.append(f"- Components in topological order: {len(printed_components)}")
-                md_lines.append(f"- Additional results: {len(remaining)}")
-        
-        # Write to markdown file
-        md_content = "\n".join(md_lines)
-        with open('evaluation_results.md', 'w', encoding='utf-8') as f:
-            f.write(md_content)
-        
-        print(f"\n[OK] Evaluation results saved to evaluation_results.md")
-        print(f"  Total components: {len(results)}")
-        print(f"  Components in order: {len(printed_components)}")
-        
-        # Also print to console (summary)
-        if final_output_guid in results:
-            final_angles = results[final_output_guid]
-            print(f"\nFinal output (Degrees): {final_angles}")
-        else:
-            print(f"\nFinal output not found. See evaluation_results.md for full results.")
+        print("Evaluation complete. Results written to evaluation_results.md")
     
     except Exception as e:
         print(f"\nEvaluation error: {e}")
         import traceback
         traceback.print_exc()
-

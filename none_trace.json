@@ -1,0 +1,9 @@
+[
+  {
+    "comp_id": "d89d47e0-f858-44d9-8427-fdf2e3230954",
+    "comp_type": "List Item",
+    "comp_nickname": "List Item",
+    "output": null,
+    "error": "cannot access local variable 'resolved_values' where it is not associated with a value"
+  }
+]
