@@ -1,80 +1,14 @@
 # Evaluation Results
 
-## Component 2479c008...
+## Component 76b172a9...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component f1c42452...
 **Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component a310b28b...
-**Nickname:** Rotatingslats
-**Type:** Group
-
-- Result: None
-
-## Component f6f894b1...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 75f23f67...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component cfce2d31...
-**Nickname:** No longer needed as each of the Radiance recipe
-components also runs the simulation.
-**Type:** Group
-
-- Result: None
-
-## Component 974ce059...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component f61d32bf...
-**Type:** Group
-
-- Result: None
-
-## Component 0486b9f4...
-**Nickname:** No longer needed in LBT as all core functions
-live outside Grasshopper with your installation.
-**Type:** Group
-
-- Result: None
-
-## Component e81f2ba2...
-**Nickname:** 1st targets from slats
-**Type:** Number Slider
-
-- Value: 1.0
-
-## Component d7a2f7a0...
-**Nickname:** Coming Soon!
-**Type:** Group
-
-- Result: None
-
-## Component 7a507d87...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 08799f61...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component 12dce798...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
 **Type:** Group
 
 - Result: None
@@ -85,62 +19,135 @@ live outside Grasshopper with your installation.
 
 - Result: None
 
-## Component 1bfa41b5...
+## Component 229ae2e9...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 6768e9f7...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 5238da68...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 66e7c440...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 100eb41c...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component f6f894b1...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 0233a531...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 88fac79d...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component e81f2ba2...
+**Nickname:** 1st targets from slats
+**Type:** Number Slider
+
+- Value: 1.0
+
+## Component 145ff01f...
+**Nickname:** Sketch
+**Type:** Sketch
+
+- Result: None
+
+## Component 4bb50146...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 03d56853...
+**Nickname:** Sketch
+**Type:** Sketch
+
+- Result: None
+
+## Component 48058878...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 028cbed4...
+**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
+EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
+**Type:** Group
+
+- Result: None
+
+## Component 8bc648b6...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 460704be...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component ef588711...
+**Nickname:** Sketch
+**Type:** Sketch
+
+- Result: None
+
+## Component f96e4c65...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component d4f58281...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component fb47ee11...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d93a29ac...
 **Nickname:** Gridded mesh and point generation is now
 all done with a single Ladybug component.
 **Type:** Group
 
 - Result: None
 
-## Component 65aedbfa...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component 81235dd4...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component d6158595...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component a830c1ee...
-**Type:** Group
-
-- Result: None
-
-## Component ca435326...
-**Nickname:** Coming Soon!
-**Type:** Group
-
-- Result: None
-
-## Component eb21a37d...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 5ea4e084...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component e591b79f...
-**Nickname:** No longer needed in LBT as all core functions
-live outside Grasshopper with your installation.
-**Type:** Group
-
-- Result: None
-
-## Component d35c9e12...
+## Component 7ce5a047...
 **Nickname:** Legacy Component!
 **Type:** Group
 
@@ -153,13 +160,37 @@ More can be added upon request on our forum.
 
 - Result: None
 
-## Component 17554c03...
+## Component 5c7175f8...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 48058878...
+## Component f66a7bbf...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 1c17b91f...
+**Nickname:** Recipe components now also run the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 9d38fb7d...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 88fb0dff...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 7a507d87...
 **Nickname:** Legacy Component!
 **Type:** Group
 
@@ -172,53 +203,51 @@ all done with a single Ladybug component.
 
 - Result: None
 
-## Component d8eadbd3...
-**Nickname:** Coming Soon!
+## Component bd24b9c6...
+**Nickname:** Targets Height
+**Type:** Number Slider
+
+- Value: 4.0
+
+## Component f219f29e...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
 **Type:** Group
 
 - Result: None
 
-## Component 3e35c41e...
-**Nickname:** Legacy Component!
-**Type:** Group
+## Component 456d176f...
+**Nickname:** Slats height (top)
+**Type:** Number Slider
 
-- Result: None
+- Value: 3.8
 
-## Component 2afd62f9...
+## Component 655567c9...
 **Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
 EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
 **Type:** Group
 
 - Result: None
 
-## Component 15acb031...
-**Nickname:** No longer needed as each of the Radiance recipe
-components also runs the simulation.
-**Type:** Group
-
-- Result: None
-
-## Component 66c7e347...
+## Component 841a00ad...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 5238da68...
+## Component 46d27dd0...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 50c22015...
+## Component d16073b7...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component efcd41c5...
-**Nickname:** No longer needed in LBT as all core functions
-live outside Grasshopper with your installation.
+## Component fb6db271...
+**Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
@@ -229,241 +258,12 @@ live outside Grasshopper with your installation.
 
 - Result: None
 
-## Component 6ce83da3...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component 3a9fca34...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
 ## Component 6f98674b...
 **Type:** Group
 
 - Result: None
 
-## Component a6fd76a9...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 5354f884...
-**Nickname:** Orientation
-**Type:** Number Slider
-
-- Result: None
-
-## Component 3b828a70...
-**Nickname:** Recipe components now also run the simulation.
-**Type:** Group
-
-- Result: None
-
-## Component 4f3887b1...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component a6593287...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 07d0fef4...
-**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
-EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
-**Type:** Group
-
-- Result: None
-
-## Component bd24b9c6...
-**Nickname:** Targets Height
-**Type:** Number Slider
-
-- Value: 4.0
-
-## Component 46bad965...
-**Nickname:** GIF is currently the only supported conversion type.
-More can be added upon request on our forum.
-**Type:** Group
-
-- Result: None
-
-## Component 5c4c003f...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 1e4dbab1...
-**Nickname:** Coming Soon!
-**Type:** Group
-
-- Result: None
-
-## Component 95de1afe...
-**Nickname:** Test model
-**Type:** Group
-
-- Result: None
-
-## Component 4c1229b6...
-**Nickname:** GIF is currently the only supported conversion type.
-More can be added upon request on our forum.
-**Type:** Group
-
-- Result: None
-
-## Component 041f73ab...
-**Nickname:** Sun coverage area
-**Type:** Group
-
-- Result: None
-
-## Component 186de052...
-**Nickname:** Recipe components now also run the simulation.
-**Type:** Group
-
-- Result: None
-
-## Component 942944d5...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component d3e88393...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 5d6f7cf4...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component d28a5efc...
-**Type:** Group
-
-- Result: None
-
-## Component 85286674...
-**Type:** Group
-
-- Result: None
-
-## Component 145ff01f...
-**Nickname:** Sketch
-**Type:** Sketch
-
-- Result: None
-
-## Component edc1cd81...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 5c7175f8...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component a181ad7f...
-**Nickname:** Coming Soon!
-**Type:** Group
-
-- Result: None
-
-## Component 21ec593c...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component 08edbcda...
-**Nickname:** Horizontal shift between slats
-**Type:** Number Slider
-
-- Value: 0.0
-
-## Component 0233a531...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component c8dfe19f...
-**Nickname:** Slat width
-**Type:** Number Slider
-
-- Value: 0.08
-
-## Component ea2c7d7f...
-**Nickname:** Slats height (threshold)
-**Type:** Number Slider
-
-- Value: 3.1
-
-## Component 8a0ec0ea...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component a1c33b95...
-**Type:** Group
-
-- Result: None
-
-## Component 27b06fd0...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 822c22ef...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 40ded527...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component cfebb6a6...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component ea145345...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component c75779f8...
-**Nickname:** No longer needed as each of the Radiance recipe
-components also runs the simulation.
-**Type:** Group
-
-- Result: None
-
-## Component e13376cb...
+## Component 6fb92937...
 **Nickname:** Legacy Component!
 **Type:** Group
 
@@ -476,33 +276,226 @@ live outside Grasshopper with your installation.
 
 - Result: None
 
-## Component 76b172a9...
+## Component 3eaabfba...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component eb21a37d...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 65bafafd...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component a05a518e...
+**Type:** Group
+
+- Result: None
+
+## Component 822c22ef...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 1e4dbab1...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component d93f684f...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component dcc231e6...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 47e7821f...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component be8847d6...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 987263fb...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 9f33a73b...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 537142d8...
+**Nickname:** Number of slats
+**Type:** Number Slider
+
+- Value: 10.0
+
+## Component a181ad7f...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 9a782acb...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component f78a8936...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component e591b79f...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component 3e35c41e...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component c5d53bff...
+**Nickname:** Test points
+**Type:** Group
+
+- Result: None
+
+## Component 942944d5...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 12dce798...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component d7a2f7a0...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 125e7c20...
+**Nickname:** Last target from slats
+**Type:** Number Slider
+
+- Value: 4.5
+
+## Component e8b36629...
+**Nickname:** Gridded mesh and point generation is now
+all done with a single Ladybug component.
+**Type:** Group
+
+- Result: None
+
+## Component 4d8f34f2...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component ea145345...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component be74e5fb...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 28b3d7b4...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 974ce059...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 981046a9...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 3b828a70...
+**Nickname:** Recipe components now also run the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 03f3583a...
 **Nickname:** GIF is currently the only supported conversion type.
 More can be added upon request on our forum.
 **Type:** Group
 
 - Result: None
 
-## Component 9d38fb7d...
+## Component 6ed96bea...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 72697980...
-**Nickname:** No longer needed as each of the Radiance recipe
-components also runs the simulation.
+## Component 98fff776...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
 **Type:** Group
 
 - Result: None
 
-## Component d4f58281...
+## Component 9544ab56...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component fff8394d...
+## Component 1d76bf3b...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 0cfa7e2c...
 **Nickname:** Legacy Component!
 **Type:** Group
 
@@ -515,103 +508,61 @@ live outside Grasshopper with your installation.
 
 - Result: None
 
-## Component 0cfa7e2c...
+## Component eb9e6c30...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component f1c42452...
+## Component a830c1ee...
+**Type:** Group
+
+- Result: None
+
+## Component 08edbcda...
+**Nickname:** Horizontal shift between slats
+**Type:** Number Slider
+
+- Value: 0.0
+
+## Component 75f23f67...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component dcc231e6...
+## Component dcac1284...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 5662a75c...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component d814c4f8...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 3eaabfba...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 7bdac5eb...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 9a729c00...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component f66a7bbf...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 4d8f34f2...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 0bd23100...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component d4077bc5...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 1c17b91f...
-**Nickname:** Recipe components now also run the simulation.
-**Type:** Group
-
-- Result: None
-
-## Component f96e4c65...
+## Component 21ec593c...
 **Nickname:** There is a change in input or output. Replace manually with the inserted component!
 **Type:** Group
 
 - Result: None
 
-## Component 47e7821f...
+## Component b5a05a67...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component fd8851ab...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component fff8394d...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 6768e9f7...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 100eb41c...
+## Component 40ded527...
 **Nickname:** Legacy Component!
 **Type:** Group
 
@@ -623,50 +574,47 @@ live outside Grasshopper with your installation.
 
 - Value: -0.07
 
-## Component 08abe95c...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+## Component a1c33b95...
 **Type:** Group
 
 - Result: None
 
-## Component e5faa40b...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component fb6db271...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 371eb678...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 03f3583a...
+## Component ef00a0bd...
 **Nickname:** GIF is currently the only supported conversion type.
 More can be added upon request on our forum.
 **Type:** Group
 
 - Result: None
 
-## Component dcac1284...
+## Component 1bfa41b5...
+**Nickname:** Gridded mesh and point generation is now
+all done with a single Ladybug component.
+**Type:** Group
+
+- Result: None
+
+## Component 4c1229b6...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component 5354f884...
+**Nickname:** Orientation
+**Type:** Number Slider
+
+- Result: None
+
+## Component d3e88393...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component ef588711...
-**Nickname:** Sketch
-**Type:** Sketch
-
-- Result: None
-
-## Component 5dc62917...
+## Component cfce2d31...
+**Nickname:** No longer needed as each of the Radiance recipe
+components also runs the simulation.
 **Type:** Group
 
 - Result: None
@@ -677,42 +625,42 @@ More can be added upon request on our forum.
 
 - Result: None
 
-## Component 2d88ba3d...
+## Component 5c4c003f...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 8bc648b6...
+## Component 5662a75c...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component a05a518e...
+## Component ca435326...
+**Nickname:** Coming Soon!
 **Type:** Group
 
 - Result: None
 
-## Component 841a00ad...
+## Component a7d2817a...
+**Nickname:** room width
+**Type:** Number Slider
+
+- Value: 5.0
+
+## Component a6593287...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component e82e06f5...
-**Nickname:** Legacy Component!
+## Component 85286674...
 **Type:** Group
 
 - Result: None
 
-## Component f791a7e3...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component be8847d6...
+## Component 2479c008...
 **Nickname:** Legacy Component!
 **Type:** Group
 
@@ -845,8 +793,8 @@ More can be added upon request on our forum.
 **Nickname:** Area
 **Type:** Area
 
-- Area: 0.0
-- Centroid: [0.0, 0.0, 0.0]
+- Area: DataTree({(0,): [0.4], (1,): [0.4], (2,): [0.4], (3,): [0.4], (4,): [0.4], (5,): [0.4], (6,): [0.4], (7,): [0.4], (8,): [0.4], (9,): [0.4]})
+- Centroid: DataTree({(0,): [[0.0, 0.018417927971181088, 0.9998303755784019]], (1,): [[0.0, 0.018802645528938365, 0.9998232146340237]], (2,): [[0.0, 0.019203775061591613, 0.9998155905082615]], (3,): [[0.0, 0.019622389448595075, 0.9998074623807964]], (4,): [[0.0, 0.02005965714793894, 0.999798784833782]], (5,): [[0.0, 0.02051685307968195, 0.9997895072162474]], (6,): [[0.0, 0.020995371030975256, 0.9997795729035834]], (7,): [[0.0, 0.021496737836589203, 0.999768918431847]], (8,): [[0.0, 0.022022629638591765, 0.9997574724821023]], (9,): [[0.0, 0.022574890589646963, 0.9997451546843653]]})
 
 ## Component 9754db2b...
 **Nickname:** Construct Point
@@ -914,19 +862,19 @@ More can be added upon request on our forum.
 **Nickname:** Plane Normal
 **Type:** Plane Normal
 
-- Normal: [0.0, 0.0, 1.0]
+- Plane: DataTree({(0,): [{'origin': [0.0, 0.018417927971181088, 0.9998303755784019], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}]})
 
 ## Component 157c48b5...
 **Nickname:** List Item
 **Type:** List Item
 
-- Item: [[0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0], [0.0]]
+- Item: DataTree({(2,): [{'origin': [0.0, 0.019203775061591613, 0.9998155905082615], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (5,): [{'origin': [0.0, 0.02051685307968195, 0.9997895072162474], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (8,): [{'origin': [0.0, 0.022022629638591765, 0.9997574724821023], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (0,): [{'origin': [0.0, 0.018417927971181088, 0.9998303755784019], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (3,): [{'origin': [0.0, 0.019622389448595075, 0.9998074623807964], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (9,): [{'origin': [0.0, 0.022574890589646963, 0.9997451546843653], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (6,): [{'origin': [0.0, 0.020995371030975256, 0.9997795729035834], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (4,): [{'origin': [0.0, 0.02005965714793894, 0.999798784833782], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (1,): [{'origin': [0.0, 0.018802645528938365, 0.9998232146340237], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}], (7,): [{'origin': [0.0, 0.021496737836589203, 0.999768918431847], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}]})
 
 ## Component c7dba531...
 **Nickname:** In Ray
 **Type:** Line
 
-- Line: [{'start': [0.0, 0.0, 0.0], 'end': [0.0, 4.5, 4.0], 'direction': [0.0, 4.5, 4.0], 'length': 6.020797289396148}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 4.111111111111111, 4.0], 'direction': [0.0, 4.111111111111111, 4.0], 'length': 5.735959777395691}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 3.7222222222222223, 4.0], 'direction': [0.0, 3.7222222222222223, 4.0], 'length': 5.46396726487311}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 3.333333333333333, 4.0], 'direction': [0.0, 3.333333333333333, 4.0], 'length': 5.206833117271103}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 2.9444444444444446, 4.0], 'direction': [0.0, 2.9444444444444446, 4.0], 'length': 4.966865519260589}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 2.5555555555555554, 4.0], 'direction': [0.0, 2.5555555555555554, 4.0], 'length': 4.746668747398628}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 2.1666666666666665, 4.0], 'direction': [0.0, 2.1666666666666665, 4.0], 'length': 4.549114687985393}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 1.7777777777777777, 4.0], 'direction': [0.0, 1.7777777777777777, 4.0], 'length': 4.377270134131602}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 1.3888888888888888, 4.0], 'direction': [0.0, 1.3888888888888888, 4.0], 'length': 4.234266447175829}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 1.0, 4.0], 'direction': [0.0, 1.0, 4.0], 'length': 4.123105625617661}]
+- Line: [{'start': [0.0, 0.018417927971181088, 0.9998303755784019], 'end': [0.0, 4.5, 4.0], 'direction': [0.0, 4.481582072028819, 3.000169624421598], 'length': 5.393106307466241}, {'start': [0.0, 0.018802645528938365, 0.9998232146340237], 'end': [0.0, 4.111111111111111, 4.0], 'direction': [0.0, 4.092308465582172, 3.0001767853659764], 'length': 5.074253572785305}, {'start': [0.0, 0.019203775061591613, 0.9998155905082615], 'end': [0.0, 3.7222222222222223, 4.0], 'direction': [0.0, 3.703018447160631, 3.0001844094917383], 'length': 4.765863207328681}, {'start': [0.0, 0.019622389448595075, 0.9998074623807964], 'end': [0.0, 3.333333333333333, 4.0], 'direction': [0.0, 3.313710943884738, 3.0001925376192036], 'length': 4.470104638865564}, {'start': [0.0, 0.02005965714793894, 0.999798784833782], 'end': [0.0, 2.9444444444444446, 4.0], 'direction': [0.0, 2.9243847872965056, 3.000201215166218], 'length': 4.189657947333657}, {'start': [0.0, 0.02051685307968195, 0.9997895072162474], 'end': [0.0, 2.5555555555555554, 4.0], 'direction': [0.0, 2.5350387024758736, 3.0002104927837525], 'length': 3.927809087017887}, {'start': [0.0, 0.020995371030975256, 0.9997795729035834], 'end': [0.0, 2.1666666666666665, 4.0], 'direction': [0.0, 2.145671295635691, 3.0002204270964166], 'length': 3.6885265242480703}, {'start': [0.0, 0.021496737836589203, 0.999768918431847], 'end': [0.0, 1.7777777777777777, 4.0], 'direction': [0.0, 1.7562810399411886, 3.000231081568153], 'length': 3.4764794885148556}, {'start': [0.0, 0.022022629638591765, 0.9997574724821023], 'end': [0.0, 1.3888888888888888, 4.0], 'direction': [0.0, 1.3668662592502971, 3.000242527517898], 'length': 3.2969347270766347}, {'start': [0.0, 0.022574890589646963, 0.9997451546843653], 'end': [0.0, 1.0, 4.0], 'direction': [0.0, 0.977425109410353, 3.000254845315635], 'length': 3.155453847126556}]
 
 ## Component c7b8773d...
 **Nickname:** DL
@@ -944,14 +892,14 @@ More can be added upon request on our forum.
 **Nickname:** New Sun
 **Type:** Move
 
-- Geometry: [0.0, 0.0, 10.0]
+- Geometry: DataTree({(0,): [[0.0, 0.018417927971181088, 0.9998303755784019]], (1,): [[0.0, 0.018802645528938365, 0.9998232146340237]], (2,): [[0.0, 0.019203775061591613, 0.9998155905082615]], (3,): [[0.0, 0.019622389448595075, 0.9998074623807964]], (4,): [[0.0, 0.02005965714793894, 0.999798784833782]], (5,): [[0.0, 0.02051685307968195, 0.9997895072162474]], (6,): [[0.0, 0.020995371030975256, 0.9997795729035834]], (7,): [[0.0, 0.021496737836589203, 0.999768918431847]], (8,): [[0.0, 0.022022629638591765, 0.9997574724821023]], (9,): [[0.0, 0.022574890589646963, 0.9997451546843653]]})
 - Transform: {'type': 'translation', 'motion': [0.0, 0.0, 10.0], 'translation': [0.0, 0.0, 10.0]}
 
 ## Component 9a33273a...
 **Nickname:** Out Ray
 **Type:** Line
 
-- Line: [{'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.018417927971181088, 0.9998303755784019], 'direction': [0.0, 0.018417927971181088, 0.9998303755784019], 'length': 0.9999999999999999}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.018802645528938365, 0.9998232146340237], 'direction': [0.0, 0.018802645528938365, 0.9998232146340237], 'length': 0.9999999999999999}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.019203775061591613, 0.9998155905082615], 'direction': [0.0, 0.019203775061591613, 0.9998155905082615], 'length': 0.9999999999999999}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.019622389448595075, 0.9998074623807964], 'direction': [0.0, 0.019622389448595075, 0.9998074623807964], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.02005965714793894, 0.999798784833782], 'direction': [0.0, 0.02005965714793894, 0.999798784833782], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.02051685307968195, 0.9997895072162474], 'direction': [0.0, 0.02051685307968195, 0.9997895072162474], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.020995371030975256, 0.9997795729035834], 'direction': [0.0, 0.020995371030975256, 0.9997795729035834], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.021496737836589203, 0.999768918431847], 'direction': [0.0, 0.021496737836589203, 0.999768918431847], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.022022629638591765, 0.9997574724821023], 'direction': [0.0, 0.022022629638591765, 0.9997574724821023], 'length': 1.0}, {'start': [0.0, 0.0, 0.0], 'end': [0.0, 0.022574890589646963, 0.9997451546843653], 'direction': [0.0, 0.022574890589646963, 0.9997451546843653], 'length': 1.0}]
+- Line: [{'start': [0.0, 0.018417927971181088, 0.9998303755784019], 'end': [0.0, 0.018417927971181088, 0.9998303755784019], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.018802645528938365, 0.9998232146340237], 'end': [0.0, 0.018802645528938365, 0.9998232146340237], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.019203775061591613, 0.9998155905082615], 'end': [0.0, 0.019203775061591613, 0.9998155905082615], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.019622389448595075, 0.9998074623807964], 'end': [0.0, 0.019622389448595075, 0.9998074623807964], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.02005965714793894, 0.999798784833782], 'end': [0.0, 0.02005965714793894, 0.999798784833782], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.02051685307968195, 0.9997895072162474], 'end': [0.0, 0.02051685307968195, 0.9997895072162474], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.020995371030975256, 0.9997795729035834], 'end': [0.0, 0.020995371030975256, 0.9997795729035834], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.021496737836589203, 0.999768918431847], 'end': [0.0, 0.021496737836589203, 0.999768918431847], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.022022629638591765, 0.9997574724821023], 'end': [0.0, 0.022022629638591765, 0.9997574724821023], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.022574890589646963, 0.9997451546843653], 'end': [0.0, 0.022574890589646963, 0.9997451546843653], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}]
 
 ## Component 577ce3f3...
 **Nickname:** p1
@@ -993,7 +941,7 @@ More can be added upon request on our forum.
 **Nickname:** Project
 **Type:** Project
 
-- Curve: [{'start': [0.0, 0.018417927971181088, 0.9998303755784019], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.018417927971181088, -0.9998303755784019], 'length': 0.9999999999999999}, {'start': [0.0, 0.018802645528938365, 0.9998232146340237], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.018802645528938365, -0.9998232146340237], 'length': 0.9999999999999999}, {'start': [0.0, 0.019203775061591613, 0.9998155905082615], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.019203775061591613, -0.9998155905082615], 'length': 0.9999999999999999}, {'start': [0.0, 0.019622389448595075, 0.9998074623807964], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.019622389448595075, -0.9998074623807964], 'length': 1.0}, {'start': [0.0, 0.02005965714793894, 0.999798784833782], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.02005965714793894, -0.999798784833782], 'length': 1.0}, {'start': [0.0, 0.02051685307968195, 0.9997895072162474], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.02051685307968195, -0.9997895072162474], 'length': 1.0}, {'start': [0.0, 0.020995371030975256, 0.9997795729035834], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.020995371030975256, -0.9997795729035834], 'length': 1.0}, {'start': [0.0, 0.021496737836589203, 0.999768918431847], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.021496737836589203, -0.999768918431847], 'length': 1.0}, {'start': [0.0, 0.022022629638591765, 0.9997574724821023], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.022022629638591765, -0.9997574724821023], 'length': 1.0}, {'start': [0.0, 0.022574890589646963, 0.9997451546843653], 'end': [0.0, 0.0, 0.0], 'direction': [0.0, -0.022574890589646963, -0.9997451546843653], 'length': 1.0}]
+- Curve: [{'start': [0.0, 0.018417927971181088, 0.9998303755784019], 'end': [0.0, 0.018417927971181088, 0.9998303755784019], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.018802645528938365, 0.9998232146340237], 'end': [0.0, 0.018802645528938365, 0.9998232146340237], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.019203775061591613, 0.9998155905082615], 'end': [0.0, 0.019203775061591613, 0.9998155905082615], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.019622389448595075, 0.9998074623807964], 'end': [0.0, 0.019622389448595075, 0.9998074623807964], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.02005965714793894, 0.999798784833782], 'end': [0.0, 0.02005965714793894, 0.999798784833782], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.02051685307968195, 0.9997895072162474], 'end': [0.0, 0.02051685307968195, 0.9997895072162474], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.020995371030975256, 0.9997795729035834], 'end': [0.0, 0.020995371030975256, 0.9997795729035834], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.021496737836589203, 0.999768918431847], 'end': [0.0, 0.021496737836589203, 0.999768918431847], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.022022629638591765, 0.9997574724821023], 'end': [0.0, 0.022022629638591765, 0.9997574724821023], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}, {'start': [0.0, 0.022574890589646963, 0.9997451546843653], 'end': [0.0, 0.022574890589646963, 0.9997451546843653], 'direction': [0.0, 0.0, 0.0], 'length': 0.0}]
 
 ## Component 1e2231f7...
 **Nickname:** DL
@@ -1017,20 +965,26 @@ More can be added upon request on our forum.
 **Nickname:** List Item
 **Type:** List Item
 
-- Item: [[0.0], [0.0], [0.0]]
+- Item: DataTree({(0,): [[0.0, 0.018417927971181088, 0.9998303755784019]], (1,): [[0.0, 0.018802645528938365, 0.9998232146340237]], (2,): [[0.0, 0.019203775061591613, 0.9998155905082615]], (3,): [[0.0, 0.019622389448595075, 0.9998074623807964]], (4,): [[0.0, 0.02005965714793894, 0.999798784833782]], (5,): [[0.0, 0.02051685307968195, 0.9997895072162474]], (6,): [[0.0, 0.020995371030975256, 0.9997795729035834]], (7,): [[0.0, 0.021496737836589203, 0.999768918431847]], (8,): [[0.0, 0.022022629638591765, 0.9997574724821023]], (9,): [[0.0, 0.022574890589646963, 0.9997451546843653]]})
 
 ## Component 910c335c...
 **Nickname:** PolyLine
 **Type:** PolyLine
 
-- points: [0.0, 0.0, 0.0]
+- points: [[[0.0, 0.018417927971181088, 0.9998303755784019]], [[0.0, 0.018802645528938365, 0.9998232146340237]], [[0.0, 0.019203775061591613, 0.9998155905082615]], [[0.0, 0.019622389448595075, 0.9998074623807964]], [[0.0, 0.02005965714793894, 0.999798784833782]], [[0.0, 0.02051685307968195, 0.9997895072162474]], [[0.0, 0.020995371030975256, 0.9997795729035834]], [[0.0, 0.021496737836589203, 0.999768918431847]], [[0.0, 0.022022629638591765, 0.9997574724821023]], [[0.0, 0.022574890589646963, 0.9997451546843653]]]
 - closed: False
+
+## Component 30f76ec5...
+**Nickname:** Construct Plane
+**Type:** Construct Plane
+
+- Plane: {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}
 
 ## Component 011398ea...
 **Nickname:** Plane Normal
 **Type:** Plane Normal
 
-- Normal: [0.0, 0.0, 1.0]
+- Plane: DataTree({(0,): [{'origin': [0.0, 0.018417927971181088, 0.9998303755784019], 'x_axis': [0.0, -1.0, 0.0], 'y_axis': [1.0, 0.0, -0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}]})
 
 ## Component 0d695e6b...
 **Nickname:** Angle
@@ -1045,9 +999,86 @@ More can be added upon request on our forum.
 
 - Degrees: 0.0
 
-## Component 655567c9...
-**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
-EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
+## Component 04b73ea7...
+**Nickname:** Recipe components now also run the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component e5faa40b...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 495a0ce0...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d81b8068...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 371eb678...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 65aedbfa...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 66c7e347...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d8eadbd3...
+**Nickname:** Coming Soon!
+**Type:** Group
+
+- Result: None
+
+## Component 0bd23100...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 79a7ece7...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component ea2c7d7f...
+**Nickname:** Slats height (threshold)
+**Type:** Number Slider
+
+- Value: 3.1
+
+## Component 041f73ab...
+**Nickname:** Sun coverage area
+**Type:** Group
+
+- Result: None
+
+## Component cfebb6a6...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component c5e55980...
+**Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
@@ -1058,43 +1089,298 @@ EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
 
 - Result: None
 
-## Component 88fac79d...
+## Component 42b39a5e...
+**Type:** Group
+
+- Result: None
+
+## Component a12820e6...
 **Nickname:** There is a change in input or output. Replace manually with the inserted component!
 **Type:** Group
 
 - Result: None
 
-## Component 229ae2e9...
+## Component 8a0ec0ea...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 6fb92937...
+## Component f791a7e3...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 456d176f...
-**Nickname:** Slats height (top)
-**Type:** Number Slider
+## Component 2afd62f9...
+**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
+EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
+**Type:** Group
 
-- Value: 3.8
+- Result: None
 
-## Component f219f29e...
+## Component f61d32bf...
+**Type:** Group
+
+- Result: None
+
+## Component 8f01f17a...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 8d9bb586...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 5d6f7cf4...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 72af136c...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component e2c4b134...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component c6a2e36b...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a6fd76a9...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 4f3887b1...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 08abe95c...
 **Nickname:** There is a change in input or output. Replace manually with the inserted component!
 **Type:** Group
 
 - Result: None
 
-## Component 460704be...
+## Component e82e06f5...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d4077bc5...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component edc1cd81...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 9a729c00...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 72697980...
+**Nickname:** No longer needed as each of the Radiance recipe
+components also runs the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 07d0fef4...
+**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
+EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
+**Type:** Group
+
+- Result: None
+
+## Component c5ff82b9...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component a310b28b...
+**Nickname:** Rotatingslats
+**Type:** Group
+
+- Result: None
+
+## Component f10b5344...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
 ## Component 02553878...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d6158595...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 72dd53fc...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component 5ea4e084...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d23d1c35...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component e13376cb...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 26089c14...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 95de1afe...
+**Nickname:** Test model
+**Type:** Group
+
+- Result: None
+
+## Component 50c22015...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component efcd41c5...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component 186de052...
+**Nickname:** Recipe components now also run the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 26a0d12f...
+**Type:** Group
+
+- Result: None
+
+## Component 5dc62917...
+**Type:** Group
+
+- Result: None
+
+## Component 2d88ba3d...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 3a9fca34...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 15acb031...
+**Nickname:** No longer needed as each of the Radiance recipe
+components also runs the simulation.
+**Type:** Group
+
+- Result: None
+
+## Component 08799f61...
+**Nickname:** There is a change in input or output. Replace manually with the inserted component!
+**Type:** Group
+
+- Result: None
+
+## Component a0a8cff1...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 0486b9f4...
+**Nickname:** No longer needed in LBT as all core functions
+live outside Grasshopper with your installation.
+**Type:** Group
+
+- Result: None
+
+## Component 70cbf87e...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component 17554c03...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component d28a5efc...
+**Type:** Group
+
+- Result: None
+
+## Component d35c9e12...
+**Nickname:** Legacy Component!
+**Type:** Group
+
+- Result: None
+
+## Component c8dfe19f...
+**Nickname:** Slat width
+**Type:** Number Slider
+
+- Value: 0.08
+
+## Component d814c4f8...
 **Nickname:** Legacy Component!
 **Type:** Group
 
@@ -1107,68 +1393,34 @@ More can be added upon request on our forum.
 
 - Result: None
 
-## Component 9544ab56...
+## Component 3318dfa4...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component d81b8068...
+## Component 46bad965...
+**Nickname:** GIF is currently the only supported conversion type.
+More can be added upon request on our forum.
+**Type:** Group
+
+- Result: None
+
+## Component 13a98284...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component 7ce5a047...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 8d9bb586...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component b5a05a67...
-**Nickname:** No longer needed in LBT as all core functions
-live outside Grasshopper with your installation.
-**Type:** Group
-
-- Result: None
-
-## Component 72dd53fc...
+## Component 81235dd4...
 **Nickname:** There is a change in input or output. Replace manually with the inserted component!
 **Type:** Group
 
 - Result: None
 
-## Component 42b39a5e...
-**Type:** Group
-
-- Result: None
-
-## Component c5e55980...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component f78a8936...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component d93f684f...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component a0a8cff1...
-**Nickname:** Legacy Component!
+## Component c75779f8...
+**Nickname:** No longer needed as each of the Radiance recipe
+components also runs the simulation.
 **Type:** Group
 
 - Result: None
@@ -1179,265 +1431,19 @@ live outside Grasshopper with your installation.
 
 - Result: None
 
-## Component 987263fb...
+## Component 6ce83da3...
 **Nickname:** There is a change in input or output. Replace manually with the inserted component!
 **Type:** Group
 
 - Result: None
 
-## Component 4bb50146...
+## Component 7bdac5eb...
 **Nickname:** Legacy Component!
 **Type:** Group
 
 - Result: None
 
-## Component d93a29ac...
-**Nickname:** Gridded mesh and point generation is now
-all done with a single Ladybug component.
-**Type:** Group
-
-- Result: None
-
-## Component 03d56853...
-**Nickname:** Sketch
-**Type:** Sketch
-
-- Result: None
-
-## Component 13a98284...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component a7d2817a...
-**Nickname:** room width
-**Type:** Number Slider
-
-- Value: 5.0
-
-## Component e2c4b134...
-**Nickname:** No longer needed in LBT as all core functions
-live outside Grasshopper with your installation.
-**Type:** Group
-
-- Result: None
-
-## Component 125e7c20...
-**Nickname:** Last target from slats
-**Type:** Number Slider
-
-- Value: 4.5
-
-## Component 72af136c...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component c5ff82b9...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 537142d8...
-**Nickname:** Number of slats
-**Type:** Number Slider
-
-- Value: 10.0
-
-## Component 9a782acb...
-**Nickname:** No longer needed in LBT as all core functions
-live outside Grasshopper with your installation.
-**Type:** Group
-
-- Result: None
-
-## Component 65bafafd...
-**Nickname:** Coming Soon!
-**Type:** Group
-
-- Result: None
-
-## Component f10b5344...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component fd8851ab...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component c5d53bff...
-**Nickname:** Test points
-**Type:** Group
-
-- Result: None
-
-## Component 46d27dd0...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component e8b36629...
-**Nickname:** Gridded mesh and point generation is now
-all done with a single Ladybug component.
-**Type:** Group
-
-- Result: None
-
-## Component 88fb0dff...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 6ed96bea...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component a12820e6...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component d23d1c35...
-**Nickname:** GIF is currently the only supported conversion type.
-More can be added upon request on our forum.
-**Type:** Group
-
-- Result: None
-
-## Component 028cbed4...
-**Nickname:** Recreating the original 'Average Sky' behavior is possible by deconstructing
-EPW radiation data and averaging values to feed into the 'HB Custom Sky.'
-**Type:** Group
-
-- Result: None
-
-## Component eb9e6c30...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 28b3d7b4...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component d16073b7...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 1d76bf3b...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 8f01f17a...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 9f33a73b...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 04b73ea7...
-**Nickname:** Recipe components now also run the simulation.
-**Type:** Group
-
-- Result: None
-
-## Component 26a0d12f...
-**Type:** Group
-
-- Result: None
-
-## Component be74e5fb...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 3318dfa4...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component c6a2e36b...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 981046a9...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 495a0ce0...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 70cbf87e...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 79a7ece7...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 66e7c440...
-**Nickname:** Coming Soon!
-**Type:** Group
-
-- Result: None
-
-## Component ef00a0bd...
-**Nickname:** GIF is currently the only supported conversion type.
-More can be added upon request on our forum.
-**Type:** Group
-
-- Result: None
-
-## Component 98fff776...
-**Nickname:** There is a change in input or output. Replace manually with the inserted component!
-**Type:** Group
-
-- Result: None
-
-## Component fb47ee11...
-**Nickname:** Legacy Component!
-**Type:** Group
-
-- Result: None
-
-## Component 26089c14...
+## Component 27b06fd0...
 **Nickname:** Legacy Component!
 **Type:** Group
 
@@ -1449,12 +1455,6 @@ More can be added upon request on our forum.
 
 - Area: 0.0
 - Centroid: [0.0, 0.0, 0.0]
-
-## Component 30f76ec5...
-**Nickname:** Construct Plane
-**Type:** Construct Plane
-
-- Plane: {'origin': [0.0, 0.0, 0.0], 'x_axis': [1.0, 0.0, 0.0], 'y_axis': [0.0, 1.0, 0.0], 'z_axis': [0.0, 0.0, 1.0], 'normal': [0.0, 0.0, 1.0]}
 
 ## Component 0f6e14e7...
 **Nickname:** YZ Plane

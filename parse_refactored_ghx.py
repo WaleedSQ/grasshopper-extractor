@@ -211,7 +211,8 @@ def extract_component_from_chunk(chunk):
                         'type': 'output',
                         'persistent_data': [slider_value],
                         'sources': [],
-                        'mapping': 0  # Sliders don't have mapping
+                        'mapping': 0,  # Sliders don't have mapping
+                        'reverse_data': False  # Sliders don't have reverse
                     }
                     params.append(param)
     
@@ -271,6 +272,13 @@ def extract_parameter_from_chunk(param_chunk, param_type):
     except (ValueError, TypeError):
         mapping = 0
     
+    # Extract ReverseData flag (reverses input data order)
+    reverse_data = items.get('ReverseData', 'false')
+    try:
+        reverse_data = reverse_data.lower() == 'true'
+    except:
+        reverse_data = False
+    
     param = {
         'param_guid': param_guid,
         'name': name,
@@ -278,7 +286,8 @@ def extract_parameter_from_chunk(param_chunk, param_type):
         'persistent_data': persistent_data,
         'sources': sources,
         'expression': expression,
-        'mapping': mapping
+        'mapping': mapping,
+        'reverse_data': reverse_data
     }
     
     return param
@@ -325,8 +334,44 @@ def extract_persistent_data_from_chunk(param_chunk):
                                     if item_name == 'TypeName':
                                         continue
                                     
+                                    # Check for plane type (gh_plane)
+                                    if item_name == 'plane':
+                                        # Plane type: extract Ox, Oy, Oz, Xx, Xy, Xz, Yx, Yy, Yz
+                                        try:
+                                            ox = float(item.find('./Ox').text) if item.find('./Ox') is not None else 0.0
+                                            oy = float(item.find('./Oy').text) if item.find('./Oy') is not None else 0.0
+                                            oz = float(item.find('./Oz').text) if item.find('./Oz') is not None else 0.0
+                                            xx = float(item.find('./Xx').text) if item.find('./Xx') is not None else 1.0
+                                            xy = float(item.find('./Xy').text) if item.find('./Xy') is not None else 0.0
+                                            xz = float(item.find('./Xz').text) if item.find('./Xz') is not None else 0.0
+                                            yx = float(item.find('./Yx').text) if item.find('./Yx') is not None else 0.0
+                                            yy = float(item.find('./Yy').text) if item.find('./Yy') is not None else 1.0
+                                            yz = float(item.find('./Yz').text) if item.find('./Yz') is not None else 0.0
+                                            
+                                            origin = [ox, oy, oz]
+                                            x_axis = [xx, xy, xz]
+                                            y_axis = [yx, yy, yz]
+                                            
+                                            # Calculate Z-axis (normal) as cross product of X and Y
+                                            z_axis = [
+                                                x_axis[1] * y_axis[2] - x_axis[2] * y_axis[1],
+                                                x_axis[2] * y_axis[0] - x_axis[0] * y_axis[2],
+                                                x_axis[0] * y_axis[1] - x_axis[1] * y_axis[0]
+                                            ]
+                                            
+                                            plane_dict = {
+                                                'origin': origin,
+                                                'x_axis': x_axis,
+                                                'y_axis': y_axis,
+                                                'z_axis': z_axis,
+                                                'normal': z_axis
+                                            }
+                                            branch_data.append(plane_dict)
+                                        except (ValueError, TypeError, AttributeError):
+                                            # If plane parsing fails, skip it
+                                            pass
                                     # Check for structured types (point/vector)
-                                    if item.find('./X') is not None:
+                                    elif item.find('./X') is not None:
                                         # Point or vector
                                         x = float(item.find('./X').text)
                                         y = float(item.find('./Y').text)

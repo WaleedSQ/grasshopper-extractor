@@ -1,50 +1,10 @@
 {
-  "507b14ee-692b-41df-973f-6bfef76514c2": {
-    "guid": "507b14ee-692b-41df-973f-6bfef76514c2",
+  "125e7c20-d243-4cdc-927b-568ceb6315b5": {
+    "guid": "125e7c20-d243-4cdc-927b-568ceb6315b5",
     "type": "Number Slider",
-    "nickname": "Distance from window",
+    "nickname": "Last target from slats",
     "data": [
-      -0.07
-    ]
-  },
-  "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7": {
-    "guid": "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7",
-    "type": "Number Slider",
-    "nickname": "Slats height (threshold)",
-    "data": [
-      3.1
-    ]
-  },
-  "456d176f-14cf-4134-9062-b4623202c00e": {
-    "guid": "456d176f-14cf-4134-9062-b4623202c00e",
-    "type": "Number Slider",
-    "nickname": "Slats height (top)",
-    "data": [
-      3.8
-    ]
-  },
-  "a7d2817a-3182-496e-a453-80e7eeba16fa": {
-    "guid": "a7d2817a-3182-496e-a453-80e7eeba16fa",
-    "type": "Number Slider",
-    "nickname": "room width",
-    "data": [
-      5.0
-    ]
-  },
-  "5354f884-8b45-418e-968a-55689cb2e986": {
-    "guid": "5354f884-8b45-418e-968a-55689cb2e986",
-    "type": "Number Slider",
-    "nickname": "Orientation",
-    "data": [
-      0.0
-    ]
-  },
-  "c8dfe19f-4140-41a4-973e-a2acb75038d7": {
-    "guid": "c8dfe19f-4140-41a4-973e-a2acb75038d7",
-    "type": "Number Slider",
-    "nickname": "Slat width",
-    "data": [
-      0.08
+      4.5
     ]
   },
   "537142d8-e672-4d12-8254-46dbe1e3c7ef": {
@@ -55,12 +15,60 @@
       10.0
     ]
   },
+  "c8dfe19f-4140-41a4-973e-a2acb75038d7": {
+    "guid": "c8dfe19f-4140-41a4-973e-a2acb75038d7",
+    "type": "Number Slider",
+    "nickname": "Slat width",
+    "data": [
+      0.08
+    ]
+  },
+  "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7": {
+    "guid": "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7",
+    "type": "Number Slider",
+    "nickname": "Slats height (threshold)",
+    "data": [
+      3.1
+    ]
+  },
+  "5354f884-8b45-418e-968a-55689cb2e986": {
+    "guid": "5354f884-8b45-418e-968a-55689cb2e986",
+    "type": "Number Slider",
+    "nickname": "Orientation",
+    "data": [
+      0.0
+    ]
+  },
+  "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b": {
+    "guid": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
+    "type": "Number Slider",
+    "nickname": "Targets Height",
+    "data": [
+      4.0
+    ]
+  },
+  "a7d2817a-3182-496e-a453-80e7eeba16fa": {
+    "guid": "a7d2817a-3182-496e-a453-80e7eeba16fa",
+    "type": "Number Slider",
+    "nickname": "room width",
+    "data": [
+      5.0
+    ]
+  },
   "08edbcda-c850-40fd-9900-c6ab83acca1b": {
     "guid": "08edbcda-c850-40fd-9900-c6ab83acca1b",
     "type": "Number Slider",
     "nickname": "Horizontal shift between slats",
     "data": [
       0.0
+    ]
+  },
+  "507b14ee-692b-41df-973f-6bfef76514c2": {
+    "guid": "507b14ee-692b-41df-973f-6bfef76514c2",
+    "type": "Number Slider",
+    "nickname": "Distance from window",
+    "data": [
+      -0.07
     ]
   },
   "e81f2ba2-a9aa-401c-bde6-290d119877dc": {
@@ -71,20 +79,12 @@
       1.0
     ]
   },
-  "125e7c20-d243-4cdc-927b-568ceb6315b5": {
-    "guid": "125e7c20-d243-4cdc-927b-568ceb6315b5",
+  "456d176f-14cf-4134-9062-b4623202c00e": {
+    "guid": "456d176f-14cf-4134-9062-b4623202c00e",
     "type": "Number Slider",
-    "nickname": "Last target from slats",
+    "nickname": "Slats height (top)",
     "data": [
-      4.5
-    ]
-  },
-  "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b": {
-    "guid": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
-    "type": "Number Slider",
-    "nickname": "Targets Height",
-    "data": [
-      4.0
+      3.8
     ]
   }
 }

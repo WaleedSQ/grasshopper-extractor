@@ -21,7 +21,8 @@
             "dbc236d4-a2fe-48a8-a86e-eebfb04b1053"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "f43c38ad-5987-445b-9abe-6d6f79487522",
@@ -38,7 +39,8 @@
             "07dcee6c-9ef1-4893-a77f-18130fa2c9ea"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "47af807c-369d-4bd2-bbbb-d53a4605f8e6",
@@ -47,7 +49,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "90f740ef-2068-4c5e-8574-3e35652f75bf",
@@ -56,7 +59,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -82,7 +86,8 @@
             "f8fdffb7-41e7-43c7-93a7-44bdc965ed27"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "ef467247-5327-4364-b897-38a904554a85",
@@ -95,7 +100,8 @@
             "20f5465a-8288-49ad-acd1-2eb24e1f8765"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "23cf7783-b37e-42a5-b01e-ff22b04c20f2",
@@ -108,7 +114,8 @@
             "537142d8-e672-4d12-8254-46dbe1e3c7ef"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "160dcd76-1555-48ba-a352-8e284348cd05",
@@ -117,7 +124,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -143,7 +151,8 @@
             "3a96e7fa-3a91-4dd9-a965-18049ca7617e"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "4fa54506-86c5-4395-99c0-4fea6344d470",
@@ -152,7 +161,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -178,7 +188,8 @@
             "306c324a-3b04-4c46-bd5a-d11cacfe8fdb"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "81565b66-9edb-40aa-af52-a7bb6218de84",
@@ -187,7 +198,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -211,7 +223,8 @@
             "81565b66-9edb-40aa-af52-a7bb6218de84"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "b2a79070-e04f-4c54-9874-bb876bd116a9",
@@ -222,7 +235,8 @@
             "4fa54506-86c5-4395-99c0-4fea6344d470"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "26a250c4-f6e7-40c3-9064-9576bcf8f704",
@@ -233,7 +247,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "07dcee6c-9ef1-4893-a77f-18130fa2c9ea",
@@ -242,7 +257,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "a77c669e-1e7b-4515-b005-b1f6347b8c2e",
@@ -251,7 +267,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -275,7 +292,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "5555e87c-cbec-4fd7-8f19-91671b29ca4a",
@@ -288,7 +306,8 @@
             "133aa1b3-f899-4543-88d4-cde6da741d95"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "663e13ce-1b1d-4ab4-a564-8b7261377b65",
@@ -301,7 +320,8 @@
             "537142d8-e672-4d12-8254-46dbe1e3c7ef"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "04a32494-760d-465e-85e5-f1a91dd0d1ee",
@@ -310,7 +330,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -334,7 +355,8 @@
             "0460d28c-3b22-467d-b03f-a330e94bd2f4"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "8e2f4b9c-577c-4ae3-813c-daac83723f03",
@@ -345,7 +367,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "ff1cdf31-d398-4119-bc38-ed98fabf711a",
@@ -356,7 +379,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "e8c7faf9-eba0-471e-8540-a33385281d9a",
@@ -365,7 +389,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -389,7 +414,8 @@
             "ac0efd11-aa24-46cf-8bcc-3ebfa4205ea1"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "2bed9814-75b8-4ed7-b7c7-0a9cdaa5f424",
@@ -400,7 +426,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "995af458-be7e-4eaf-bf03-09ba330658ea",
@@ -411,7 +438,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "24f7f310-4f11-4a59-8206-7daadb96a034",
@@ -420,7 +448,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -444,7 +473,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "75d9495d-5576-4d02-ae6c-acbdc71ec7d6",
@@ -455,7 +485,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "94f511a2-f54e-45a3-a270-40e694999caa",
@@ -466,7 +497,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "0fb443ce-5a5e-455f-999f-96fcaec0e113",
@@ -475,7 +507,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -499,7 +532,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "c4d9428f-dd29-4a16-bad2-de57930939bf",
@@ -510,7 +544,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "6c448807-c177-4d0c-9ec7-076f700a48ee",
@@ -521,7 +556,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "2cc32a65-8ddb-4732-a071-9b1903600953",
@@ -530,7 +566,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -554,7 +591,8 @@
             "0fb443ce-5a5e-455f-999f-96fcaec0e113"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "1626f4be-98c5-4b05-8953-e8b7140d4b40",
@@ -565,18 +603,46 @@
             "2cc32a65-8ddb-4732-a071-9b1903600953"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "e77e5c98-0dbb-46e3-8263-18620fe06d2f",
           "name": "Plane",
           "type": "input",
           "persistent_data": [
-            ""
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "f12438b5-04ca-4ed7-b015-3f5310d7b57f",
@@ -585,7 +651,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -611,7 +678,8 @@
             "507b14ee-692b-41df-973f-6bfef76514c2"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "eab69ed6-bdcf-4313-9a91-924ee114c1f3",
@@ -624,7 +692,8 @@
             "bdac63ee-60a4-4873-8860-06e887053c0e"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "b2093866-34f2-47ea-a0b1-19f63ca7dbc7",
@@ -637,7 +706,8 @@
             "537142d8-e672-4d12-8254-46dbe1e3c7ef"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "306c324a-3b04-4c46-bd5a-d11cacfe8fdb",
@@ -646,7 +716,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -666,11 +737,38 @@
           "name": "Plane",
           "type": "input",
           "persistent_data": [
-            ""
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "3d68795e-4451-4296-bfce-29e87928ae4a",
@@ -687,7 +785,8 @@
             "902866aa-e5b3-4461-9877-73b22ea3618a"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "533ed63d-b12a-4953-8ba0-778e34331bc1",
@@ -704,7 +803,8 @@
             "ef17623c-d081-46f9-8259-2ad83ec05d94"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "20a66bae-abc8-460b-ad96-2f58bb9816cd",
@@ -715,7 +815,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "dbc236d4-a2fe-48a8-a86e-eebfb04b1053",
@@ -724,7 +825,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "cfcd9d65-ab29-4e02-bfc8-1a15e9deb603",
@@ -733,7 +835,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -759,7 +862,8 @@
             "4c2fdd4e-7313-4735-8688-1dbdf5aeaee0"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "9bb5353c-a836-45ab-9d64-6e98065acfed",
@@ -772,7 +876,8 @@
             "eedce522-16c4-4b3a-8341-c26cc0b6bb91"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "1431283b-8898-4475-83ac-341e14077fce",
@@ -783,7 +888,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "902866aa-e5b3-4461-9877-73b22ea3618a",
@@ -792,7 +898,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -818,7 +925,8 @@
             "8a96679d-8f35-4cb4-92a0-6233220f435b"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "d63c9c76-02a7-4de9-8ce5-48ed56a9cd61",
@@ -831,7 +939,8 @@
             "370f6ae5-1cf9-4488-9eee-2bd34b38725e"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "1becdeae-bdc3-4b2a-bc94-70dac471e483",
@@ -842,7 +951,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "ef17623c-d081-46f9-8259-2ad83ec05d94",
@@ -851,7 +961,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -875,7 +986,8 @@
             "4c2fdd4e-7313-4735-8688-1dbdf5aeaee0"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "8a96679d-8f35-4cb4-92a0-6233220f435b",
@@ -884,7 +996,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -908,7 +1021,8 @@
             "eedce522-16c4-4b3a-8341-c26cc0b6bb91"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "370f6ae5-1cf9-4488-9eee-2bd34b38725e",
@@ -917,7 +1031,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -941,7 +1056,8 @@
             "a7d2817a-3182-496e-a453-80e7eeba16fa"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "bd8dde54-97c0-429c-9185-9b6f3402a042",
@@ -952,7 +1068,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "4c2fdd4e-7313-4735-8688-1dbdf5aeaee0",
@@ -961,7 +1078,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -985,7 +1103,8 @@
             "c8dfe19f-4140-41a4-973e-a2acb75038d7"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "a406263e-5b80-4f2f-83a3-af0f868adc68",
@@ -996,7 +1115,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "eedce522-16c4-4b3a-8341-c26cc0b6bb91",
@@ -1005,7 +1125,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1041,7 +1162,8 @@
             "160dcd76-1555-48ba-a352-8e284348cd05"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "3a96e7fa-3a91-4dd9-a965-18049ca7617e",
@@ -1050,7 +1172,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1074,7 +1197,8 @@
             "456d176f-14cf-4134-9062-b4623202c00e"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "f8fdffb7-41e7-43c7-93a7-44bdc965ed27",
@@ -1083,7 +1207,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1107,7 +1232,8 @@
             "08edbcda-c850-40fd-9900-c6ab83acca1b"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "bdac63ee-60a4-4873-8860-06e887053c0e",
@@ -1116,7 +1242,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1140,7 +1267,8 @@
             "456d176f-14cf-4134-9062-b4623202c00e"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "3fe59f9b-2867-4ecf-a3af-fdfc26e69a5c",
@@ -1151,7 +1279,8 @@
             "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "1c0dfd0d-d43c-4981-8c70-2a01e06e0d43",
@@ -1160,7 +1289,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1184,7 +1314,8 @@
             "1c0dfd0d-d43c-4981-8c70-2a01e06e0d43"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "000f93a0-9f6a-45ea-88dc-13216162e6f6",
@@ -1195,7 +1326,8 @@
             "6c807a4e-25c2-4574-a89d-fa5bcfca769e"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "20f5465a-8288-49ad-acd1-2eb24e1f8765",
@@ -1204,7 +1336,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1228,7 +1361,8 @@
             "537142d8-e672-4d12-8254-46dbe1e3c7ef"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "cce9829a-ed41-4574-81af-33d0d5e3d0ba",
@@ -1239,7 +1373,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "6c807a4e-25c2-4574-a89d-fa5bcfca769e",
@@ -1248,7 +1383,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1272,7 +1408,8 @@
             "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "b1398a69-fbda-4447-af1b-e68aa5938736",
@@ -1287,7 +1424,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "dd0f4d1f-3f64-487c-8949-41d09cbe51d7",
@@ -1296,7 +1434,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "2b064634-4749-4144-a4c5-725d68397a89",
@@ -1305,7 +1444,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1329,7 +1469,8 @@
             "e898f4cb-46e4-4be2-821d-11e2a96379f4"
           ],
           "expression": null,
-          "mapping": 2
+          "mapping": 2,
+          "reverse_data": false
         },
         {
           "param_guid": "0d54bb3f-f6e7-4c6e-901a-d24451a051a0",
@@ -1340,7 +1481,8 @@
             "eb26fc4b-25d6-4783-8303-5b7cd757521c"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "0c5c5a39-071f-4a4e-beda-4f564e7eee63",
@@ -1357,7 +1499,8 @@
             "2e61e21e-3664-45eb-80a0-6c83498d3158"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "aeedb946-4c19-44d8-8e7d-77f9dd230432",
@@ -1366,7 +1509,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 1
+          "mapping": 1,
+          "reverse_data": false
         }
       ]
     },
@@ -1390,7 +1534,8 @@
             "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "3d25ff1e-7828-43b2-983a-0a37fa619b8c",
@@ -1401,7 +1546,8 @@
             "dd0f4d1f-3f64-487c-8949-41d09cbe51d7"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "e898f4cb-46e4-4be2-821d-11e2a96379f4",
@@ -1410,7 +1556,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1434,7 +1581,8 @@
             "aeedb946-4c19-44d8-8e7d-77f9dd230432"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "1eda2726-09f7-4960-a30d-c4af7c1a1d00",
@@ -1445,7 +1593,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "ac0efd11-aa24-46cf-8bcc-3ebfa4205ea1",
@@ -1454,7 +1603,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "b260c688-6bad-4e88-abd8-bc33d806ec3e",
@@ -1463,7 +1613,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "2b7a595c-aeb3-4250-851e-e9f04a01e6e8",
@@ -1472,7 +1623,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1496,7 +1648,8 @@
             "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
           ],
           "expression": null,
-          "mapping": 1
+          "mapping": 1,
+          "reverse_data": false
         },
         {
           "param_guid": "98d8b1d4-5d32-44bb-b49f-9faa1a14739c",
@@ -1507,7 +1660,8 @@
             "0b4bf936-2e3a-417f-aaf0-61220fcefd66"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "9822511c-b2b2-4e5c-8f61-8f6be460cabb",
@@ -1516,7 +1670,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1540,7 +1695,8 @@
             "9822511c-b2b2-4e5c-8f61-8f6be460cabb"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "94a6cc2c-ad0b-4cfe-aa68-dbad2c24ba53",
@@ -1551,7 +1707,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "0460d28c-3b22-467d-b03f-a330e94bd2f4",
@@ -1560,7 +1717,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "9be78673-1065-4fb1-adb7-d9ffae54e553",
@@ -1569,7 +1727,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "06c41045-f92c-4894-a60f-e5dfe84f01de",
@@ -1578,7 +1737,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1602,7 +1762,8 @@
             "8cb00f94-7bbb-49d9-8065-df2645a32790"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "13db12e3-87f5-4ad5-81a5-f8a759ccac00",
@@ -1613,7 +1774,8 @@
             "a7dd54c8-0ce7-4884-913e-10ac0e1336b4"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "133aa1b3-f899-4543-88d4-cde6da741d95",
@@ -1622,7 +1784,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1646,7 +1809,8 @@
             "537142d8-e672-4d12-8254-46dbe1e3c7ef"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "3548bfc5-1fd1-4cea-8c19-4319dc9b5751",
@@ -1657,7 +1821,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "a7dd54c8-0ce7-4884-913e-10ac0e1336b4",
@@ -1666,7 +1831,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1690,7 +1856,8 @@
             "125e7c20-d243-4cdc-927b-568ceb6315b5"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "59277e95-5cc4-4809-af2f-4982eb841358",
@@ -1701,7 +1868,8 @@
             "e81f2ba2-a9aa-401c-bde6-290d119877dc"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "8cb00f94-7bbb-49d9-8065-df2645a32790",
@@ -1710,7 +1878,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1734,7 +1903,8 @@
             "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a"
           ],
           "expression": null,
-          "mapping": 1
+          "mapping": 1,
+          "reverse_data": false
         },
         {
           "param_guid": "cd9362aa-9560-4cb4-8245-510bb30319f9",
@@ -1745,7 +1915,8 @@
             "73455c39-5152-49b3-87b1-a4c384b4efbb"
           ],
           "expression": null,
-          "mapping": 1
+          "mapping": 1,
+          "reverse_data": false
         },
         {
           "param_guid": "fa4e3a1b-5fdc-4ef6-803d-7ed6633531e3",
@@ -1756,7 +1927,8 @@
             "638a56be-4484-4cb8-ba11-233b9e7421eb"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "23900bd5-6845-4b37-a9ba-bc8342e17168",
@@ -1765,7 +1937,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "b8626f03-e70b-4f11-a91f-c4322d1ca406",
@@ -1774,7 +1947,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1798,7 +1972,8 @@
             "23900bd5-6845-4b37-a9ba-bc8342e17168"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "4d5670e5-1abc-417e-b9ce-3cf7878b98c2",
@@ -1807,7 +1982,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1831,7 +2007,8 @@
             "e8c7faf9-eba0-471e-8540-a33385281d9a"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "0f1dbd3e-1237-4f7e-9308-a54bb429fef8",
@@ -1842,7 +2019,8 @@
             "24f7f310-4f11-4a59-8206-7daadb96a034"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "73455c39-5152-49b3-87b1-a4c384b4efbb",
@@ -1851,7 +2029,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1875,7 +2054,8 @@
             "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "836435ee-73ce-4f00-ae8c-932cc97f3954",
@@ -1888,7 +2068,8 @@
             "537142d8-e672-4d12-8254-46dbe1e3c7ef"
           ],
           "expression": "x-1",
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "56900547-971f-4154-a0a1-580b02107067",
@@ -1899,7 +2080,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "f78fb52e-b019-4ac1-bd55-7bee81f356a4",
@@ -1908,7 +2090,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1932,7 +2115,8 @@
             "0b4bf936-2e3a-417f-aaf0-61220fcefd66"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "0ceeb194-9053-4ef4-a9ba-542edcbfe9c4",
@@ -1943,7 +2127,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "def742ff-b2bc-4fcd-833f-523d99cca69d",
@@ -1952,7 +2137,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -1982,7 +2168,8 @@
             "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "8acfd6a4-5549-4ea6-942d-2aefb8174ceb",
@@ -1999,7 +2186,8 @@
             "def742ff-b2bc-4fcd-833f-523d99cca69d"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "4b0092c3-9120-4e4b-bdf3-8035944050a7",
@@ -2008,7 +2196,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2038,7 +2227,8 @@
             "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "5aaceceb-d627-4a70-9c7a-ed252c56af2f",
@@ -2055,7 +2245,8 @@
             "def742ff-b2bc-4fcd-833f-523d99cca69d"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "37b55dbc-f3a0-4cd7-b394-4d6325bd3ada",
@@ -2072,7 +2263,8 @@
             "65a37667-b44f-435e-8835-aa8185da4670"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "9bf9263c-2d3b-4064-ba62-1053ee020854",
@@ -2081,7 +2273,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2105,7 +2298,8 @@
             "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": true
         },
         {
           "param_guid": "56e4b79e-55b0-46d1-86d8-8bb807706eee",
@@ -2116,7 +2310,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "65a37667-b44f-435e-8835-aa8185da4670",
@@ -2125,7 +2320,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2149,7 +2345,8 @@
             "4b0092c3-9120-4e4b-bdf3-8035944050a7"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "e14c768a-9383-4fee-b9de-b1cdeec1c6a6",
@@ -2160,7 +2357,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "ac280e60-85a6-4d3d-8f01-cca6076701db",
@@ -2171,7 +2369,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a",
@@ -2180,7 +2379,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2210,7 +2410,8 @@
             "f78fb52e-b019-4ac1-bd55-7bee81f356a4"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "abf938a3-ce59-4179-89ce-15d5e2b02977",
@@ -2227,7 +2428,8 @@
             "9bf9263c-2d3b-4064-ba62-1053ee020854"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "638a56be-4484-4cb8-ba11-233b9e7421eb",
@@ -2236,7 +2438,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2260,7 +2463,8 @@
             "042cadab-f52c-4397-a01b-bfcd7b7117f6"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "b0b3e64e-f2c8-4881-bfa9-a6026955a0b0",
@@ -2269,7 +2473,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
@@ -2278,7 +2483,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2302,7 +2508,8 @@
             "eb26fc4b-25d6-4783-8303-5b7cd757521c"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "be0bbae7-3902-48fd-84ca-5cfdf0808b5f",
@@ -2311,7 +2518,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "34529a8c-3dfd-4d96-865b-9e4cbfddad6c",
@@ -2320,7 +2528,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2344,7 +2553,8 @@
             "f12438b5-04ca-4ed7-b015-3f5310d7b57f"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "ece8cd28-d6cf-444b-8ec4-bf0cbc8a0f89",
@@ -2357,18 +2567,46 @@
             "5354f884-8b45-418e-968a-55689cb2e986"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "9761364d-c468-42ee-846c-dbc00a9f9e1b",
           "name": "Plane",
           "type": "input",
           "persistent_data": [
-            ""
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "eb26fc4b-25d6-4783-8303-5b7cd757521c",
@@ -2377,7 +2615,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "1680ee46-88a0-4f73-8d14-561f94d1bdc7",
@@ -2386,7 +2625,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2410,7 +2650,8 @@
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "2be05eb0-b047-4927-a81a-99da92df51d7",
@@ -2423,7 +2664,8 @@
             "125e7c20-d243-4cdc-927b-568ceb6315b5"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "3988aa76-a3cf-48be-bd80-9c4724d37edc",
@@ -2436,7 +2678,8 @@
             "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "3e0431d2-2630-4f1b-9ebd-078d00994cf5",
@@ -2445,7 +2688,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2469,7 +2713,8 @@
             "3e0431d2-2630-4f1b-9ebd-078d00994cf5"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "d9fc6b37-e624-460f-8425-264eb213fbec",
@@ -2486,7 +2731,8 @@
             "800ae5cf-6f77-4b7e-aec7-5725d272bd84"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "904fae86-dbbe-46a6-ad19-bd7d1c6539bf",
@@ -2495,7 +2741,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "14611b82-7236-4830-8e0a-9a29f3a3f82e",
@@ -2504,7 +2751,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2528,7 +2776,8 @@
             "04a32494-760d-465e-85e5-f1a91dd0d1ee"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "1288cc78-451b-423d-bbc4-2e1a268f1389",
@@ -2537,7 +2786,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2563,7 +2813,8 @@
             "1288cc78-451b-423d-bbc4-2e1a268f1389"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "800ae5cf-6f77-4b7e-aec7-5725d272bd84",
@@ -2572,7 +2823,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2596,7 +2848,8 @@
             "47af807c-369d-4bd2-bbbb-d53a4605f8e6"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "0a231406-2561-42b7-997e-30830fd1cb66",
@@ -2609,18 +2862,46 @@
             "5354f884-8b45-418e-968a-55689cb2e986"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "8fc5500d-d4f9-48ec-a94a-a0189cb753ac",
           "name": "Plane",
           "type": "input",
           "persistent_data": [
-            ""
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "042cadab-f52c-4397-a01b-bfcd7b7117f6",
@@ -2629,7 +2910,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "e199c84e-62fb-42cd-b868-c9ca11f6ddf7",
@@ -2638,7 +2920,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2662,7 +2945,8 @@
             "904fae86-dbbe-46a6-ad19-bd7d1c6539bf"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "1208af66-55c5-4249-a426-ea85a0456341",
@@ -2675,18 +2959,46 @@
             "5354f884-8b45-418e-968a-55689cb2e986"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "26758a87-64f6-4f28-8f33-16ef0bc0fe6b",
           "name": "Plane",
           "type": "input",
           "persistent_data": [
-            ""
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "0b4bf936-2e3a-417f-aaf0-61220fcefd66",
@@ -2695,7 +3007,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "b6dc892e-17f2-4ce0-a35f-0287efdbbd94",
@@ -2704,7 +3017,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2734,7 +3048,8 @@
             "34529a8c-3dfd-4d96-865b-9e4cbfddad6c"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "0add6c90-5b4a-4259-b9a6-cb941d8756b8",
@@ -2743,7 +3058,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     },
@@ -2767,7 +3083,8 @@
             "0add6c90-5b4a-4259-b9a6-cb941d8756b8"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "a1761f27-9d24-4205-b000-5284717acd65",
@@ -2780,18 +3097,46 @@
             "5354f884-8b45-418e-968a-55689cb2e986"
           ],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "37a46d5c-1e61-4006-b44d-2423aeca87fd",
           "name": "Plane",
           "type": "input",
           "persistent_data": [
-            ""
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
           ],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "2e61e21e-3664-45eb-80a0-6c83498d3158",
@@ -2800,7 +3145,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         },
         {
           "param_guid": "b8a0bc8b-098b-477e-b674-d2950723188f",
@@ -2809,7 +3155,8 @@
           "persistent_data": [],
           "sources": [],
           "expression": null,
-          "mapping": 0
+          "mapping": 0,
+          "reverse_data": false
         }
       ]
     }

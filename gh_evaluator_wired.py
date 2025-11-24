@@ -288,6 +288,15 @@ def resolve_input(param: dict, context: EvaluationContext,
     if expression:
         result_tree = apply_expression(result_tree, expression)
     
+    # 6. Apply ReverseData if flagged (reverses item order in each branch)
+    reverse_data = param.get('reverse_data', False)
+    if reverse_data:
+        reversed_tree = DataTree()
+        for path in result_tree.get_paths():
+            items = result_tree.get_branch(path)
+            reversed_tree.set_branch(path, list(reversed(items)))
+        result_tree = reversed_tree
+    
     return result_tree
 
 

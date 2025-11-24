@@ -547,73 +547,108 @@ def evaluate_yz_plane(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
 @COMPONENT_REGISTRY.register("Construct Plane")
 def evaluate_construct_plane(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     """
-    GH Construct Plane component: create plane from origin and normal.
+    GH Construct Plane component: create plane from origin, X-axis, and Y-axis.
     
     Inputs:
         Origin: Origin point
-        Z-Axis: Normal vector
-        X-Axis: Optional X direction
+        X-Axis: X-axis direction
+        Y-Axis: Y-axis direction
     
     Outputs:
-        Plane: Constructed plane
+        Plane: Constructed plane (Z = X cross Y)
     """
-    # GH Construct Plane: create plane from origin and axes
+    # GH Construct Plane: create plane from origin and X, Y axes
     origin_tree = inputs.get('Origin', DataTree.from_list([[0, 0, 0]]))
-    z_axis_tree = inputs.get('Z-Axis', DataTree.from_list([[0, 0, 1]]))
-    x_axis_tree = inputs.get('X-Axis', DataTree())
+    x_axis_tree = inputs.get('X-Axis', DataTree.from_list([[1, 0, 0]]))
+    y_axis_tree = inputs.get('Y-Axis', DataTree.from_list([[0, 1, 0]]))
     
-    origin_m, z_axis_m = match_longest(origin_tree, z_axis_tree)
+    # Match all three inputs
+    origin_m, x_axis_m, y_axis_m = match_longest(origin_tree, x_axis_tree, y_axis_tree)
     
     result = DataTree()
     
     for path in origin_m.get_paths():
         origins = origin_m.get_branch(path)
-        z_axes = z_axis_m.get_branch(path)
+        x_axes = x_axis_m.get_branch(path)
+        y_axes = y_axis_m.get_branch(path)
         
         planes = []
         
-        for origin, z_axis in zip(origins, z_axes):
-            # GH Construct Plane: normalize Z axis and compute X, Y axes
-            zx, zy, zz = z_axis
-            z_len = math.sqrt(zx**2 + zy**2 + zz**2)
-            
-            if z_len == 0:
-                z_norm = [0, 0, 1]
-            else:
-                z_norm = [zx / z_len, zy / z_len, zz / z_len]
-            
-            # Compute X and Y axes perpendicular to Z
-            # Use world X or Y as reference
-            if abs(z_norm[2]) < 0.9:
-                # Z is not vertical, use world Z as reference
-                ref = [0, 0, 1]
-            else:
-                # Z is vertical, use world Y as reference
-                ref = [0, 1, 0]
-            
-            # X = Z cross ref
-            x_axis = [
-                z_norm[1] * ref[2] - z_norm[2] * ref[1],
-                z_norm[2] * ref[0] - z_norm[0] * ref[2],
-                z_norm[0] * ref[1] - z_norm[1] * ref[0]
-            ]
-            x_len = math.sqrt(x_axis[0]**2 + x_axis[1]**2 + x_axis[2]**2)
-            if x_len > 0:
-                x_axis = [x_axis[0] / x_len, x_axis[1] / x_len, x_axis[2] / x_len]
+        for origin, x_axis_input, y_axis_input in zip(origins, x_axes, y_axes):
+            # GH Construct Plane: extract X-axis
+            # X-axis can be a vector [x,y,z], a polyline dict, or a plane dict
+            if isinstance(x_axis_input, dict):
+                if 'vertices' in x_axis_input:
+                    # It's a polyline, compute direction from first to last vertex
+                    vertices = x_axis_input['vertices']
+                    if len(vertices) < 2:
+                        x_axis = [1, 0, 0]
+                    else:
+                        first = vertices[0]
+                        last = vertices[-1]
+                        x_axis = [last[0] - first[0], last[1] - first[1], last[2] - first[2]]
+                elif 'x_axis' in x_axis_input or 'z_axis' in x_axis_input:
+                    # It's a plane, extract its x_axis or z_axis
+                    x_axis = x_axis_input.get('x_axis', x_axis_input.get('z_axis', [1, 0, 0]))
+                else:
+                    x_axis = [1, 0, 0]
+            elif isinstance(x_axis_input, (list, tuple)) and len(x_axis_input) == 3:
+                x_axis = list(x_axis_input)
             else:
                 x_axis = [1, 0, 0]
             
-            # Y = Z cross X
-            y_axis = [
-                z_norm[1] * x_axis[2] - z_norm[2] * x_axis[1],
-                z_norm[2] * x_axis[0] - z_norm[0] * x_axis[2],
-                z_norm[0] * x_axis[1] - z_norm[1] * x_axis[0]
+            # GH Construct Plane: extract Y-axis
+            # Y-axis can be a vector [x,y,z], a polyline dict, or a plane dict
+            if isinstance(y_axis_input, dict):
+                if 'vertices' in y_axis_input:
+                    # It's a polyline, compute direction from first to last vertex
+                    vertices = y_axis_input['vertices']
+                    if len(vertices) < 2:
+                        y_axis = [0, 1, 0]
+                    else:
+                        first = vertices[0]
+                        last = vertices[-1]
+                        y_axis = [last[0] - first[0], last[1] - first[1], last[2] - first[2]]
+                elif 'y_axis' in y_axis_input or 'z_axis' in y_axis_input:
+                    # It's a plane, extract its y_axis or z_axis
+                    y_axis = y_axis_input.get('y_axis', y_axis_input.get('z_axis', [0, 1, 0]))
+                else:
+                    y_axis = [0, 1, 0]
+            elif isinstance(y_axis_input, (list, tuple)) and len(y_axis_input) == 3:
+                y_axis = list(y_axis_input)
+            else:
+                y_axis = [0, 1, 0]
+            
+            # Normalize X-axis
+            x_len = math.sqrt(x_axis[0]**2 + x_axis[1]**2 + x_axis[2]**2)
+            if x_len == 0:
+                x_norm = [1, 0, 0]
+            else:
+                x_norm = [x_axis[0] / x_len, x_axis[1] / x_len, x_axis[2] / x_len]
+            
+            # Normalize Y-axis
+            y_len = math.sqrt(y_axis[0]**2 + y_axis[1]**2 + y_axis[2]**2)
+            if y_len == 0:
+                y_norm = [0, 1, 0]
+            else:
+                y_norm = [y_axis[0] / y_len, y_axis[1] / y_len, y_axis[2] / y_len]
+            
+            # Z = X cross Y
+            z_axis = [
+                x_norm[1] * y_norm[2] - x_norm[2] * y_norm[1],
+                x_norm[2] * y_norm[0] - x_norm[0] * y_norm[2],
+                x_norm[0] * y_norm[1] - x_norm[1] * y_norm[0]
             ]
+            z_len = math.sqrt(z_axis[0]**2 + z_axis[1]**2 + z_axis[2]**2)
+            if z_len > 0:
+                z_norm = [z_axis[0] / z_len, z_axis[1] / z_len, z_axis[2] / z_len]
+            else:
+                z_norm = [0, 0, 1]
             
             plane = {
                 'origin': origin,
-                'x_axis': x_axis,
-                'y_axis': y_axis,
+                'x_axis': x_norm,
+                'y_axis': y_norm,
                 'z_axis': z_norm
             }
             planes.append(plane)
@@ -664,10 +699,10 @@ def evaluate_plane_normal(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             # GH Plane Normal: extract Z-axis
             # Z-axis can be a vector [x,y,z], a plane dict, or a polyline dict
             if isinstance(z_input, dict):
-                if 'x_axis' in z_input:
-                    # It's a plane, extract its X-axis as the new Z-axis
-                    # (Grasshopper Plane Normal uses input plane's X-axis as output Z-axis)
-                    z_axis = z_input['x_axis']
+                if 'z_axis' in z_input:
+                    # It's a plane, extract its Z-axis as the new Z-axis direction
+                    # (Grasshopper Plane Normal uses input plane's Z-axis for direction)
+                    z_axis = z_input['z_axis']
                 elif 'vertices' in z_input:
                     # It's a polyline, compute direction from first to last vertex
                     vertices = z_input['vertices']
@@ -1297,8 +1332,7 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         
         for geom, angle, plane in zip(geometries, angles, planes):
             # GH Rotate: rotate geometry around plane's Z-axis at plane's origin
-            # For now, assume XY plane at origin (standard case)
-            # Full implementation would extract plane origin and axes
+            print(f"DEBUG ROTATE: Angle value received: {angle} (radians), {angle * 180 / math.pi:.1f} (degrees)")
             
             cos_a = math.cos(angle)
             sin_a = math.sin(angle)
@@ -1337,6 +1371,74 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                         'corner_b': rotate_point(geom['corner_b']),
                         'plane': geom.get('plane')
                     }
+                    rotated_geoms.append(rotated)
+                elif 'origin' in geom and 'x_axis' in geom and 'y_axis' in geom and 'z_axis' in geom:
+                    # Plane - rotate the plane's axes
+                    # GH Rotate: when rotating a plane, rotate its axes around the rotation plane's Y-axis
+                    # (not Z-axis - this is Grasshopper's convention for plane rotation)
+                    # plane can be a dict (plane object) or empty string/None
+                    print(f"DEBUG ROTATE: Rotating plane, z_axis before: {geom['z_axis']}, plane type: {type(plane)}, plane value: {plane}")
+                    if plane and isinstance(plane, dict) and 'y_axis' in plane:
+                        # Use rotation plane's Y-axis as rotation axis
+                        rot_axis = plane['y_axis']
+                        print(f"DEBUG ROTATE: Using rotation plane's Y-axis: {rot_axis}")
+                    elif plane and isinstance(plane, dict) and 'z_axis' in plane:
+                        # Fallback: use Z-axis if Y-axis not available
+                        rot_axis = plane['z_axis']
+                        print(f"DEBUG ROTATE: Using rotation plane's Z-axis: {rot_axis}")
+                    else:
+                        # Default: rotate around Y-axis (for YZ plane rotation to get z_axis = [1,0,0])
+                        rot_axis = [0, 1, 0]
+                        print(f"DEBUG ROTATE: Using default Y-axis: {rot_axis}")
+                    
+                    # Rotate plane's X, Y, Z axes around rot_axis
+                    def rotate_vector_around_axis(vec, axis, angle):
+                        """Rotate vector around axis using Rodrigues' rotation formula."""
+                        # Normalize axis
+                        axis_len = math.sqrt(axis[0]**2 + axis[1]**2 + axis[2]**2)
+                        if axis_len == 0:
+                            return vec
+                        axis_norm = [axis[0]/axis_len, axis[1]/axis_len, axis[2]/axis_len]
+                        
+                        # Dot product
+                        dot = vec[0]*axis_norm[0] + vec[1]*axis_norm[1] + vec[2]*axis_norm[2]
+                        # Cross product
+                        cross = [
+                            vec[1]*axis_norm[2] - vec[2]*axis_norm[1],
+                            vec[2]*axis_norm[0] - vec[0]*axis_norm[2],
+                            vec[0]*axis_norm[1] - vec[1]*axis_norm[0]
+                        ]
+                        
+                        cos_a = math.cos(angle)
+                        sin_a = math.sin(angle)
+                        
+                        # Rodrigues' formula: v' = v*cos + (axis × v)*sin + axis*(axis·v)*(1-cos)
+                        rotated = [
+                            vec[0]*cos_a + cross[0]*sin_a + axis_norm[0]*dot*(1-cos_a),
+                            vec[1]*cos_a + cross[1]*sin_a + axis_norm[1]*dot*(1-cos_a),
+                            vec[2]*cos_a + cross[2]*sin_a + axis_norm[2]*dot*(1-cos_a)
+                        ]
+                        return rotated
+                    
+                    # GH Rotate: use negative angle for correct rotation direction
+                    x_rot = rotate_vector_around_axis(geom['x_axis'], rot_axis, -angle)
+                    y_rot = rotate_vector_around_axis(geom['y_axis'], rot_axis, -angle)
+                    z_rot = rotate_vector_around_axis(geom['z_axis'], rot_axis, -angle)
+                    
+                    print(f"DEBUG ROTATE: z_axis rotated (before normalize): {z_rot}")
+                    
+                    # Normalize rotated axes
+                    def normalize(v):
+                        length = math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
+                        return [v[0]/length, v[1]/length, v[2]/length] if length > 0 else v
+                    
+                    rotated = {
+                        'origin': geom['origin'],
+                        'x_axis': normalize(x_rot),
+                        'y_axis': normalize(y_rot),
+                        'z_axis': normalize(z_rot)
+                    }
+                    print(f"DEBUG ROTATE: z_axis after normalize: {rotated['z_axis']}")
                     rotated_geoms.append(rotated)
                 else:
                     rotated_geoms.append(geom)
