@@ -191,36 +191,76 @@ def evaluate_angle(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         else:
             raise ValueError(f"GH Angle: cannot extract vector from {type(item)}: {item}")
     
+    def extract_plane_normal(item):
+        """Extract plane normal (Z-axis) if provided; return None if not usable."""
+        if isinstance(item, dict):
+            if 'z_axis' in item:
+                return item['z_axis']
+            if 'normal' in item:
+                return item['normal']
+        # Allow direct vector as normal
+        if isinstance(item, (list, tuple)) and len(item) >= 3:
+            return list(item[:3])
+        return None
+    
+    def normalize(vec):
+        length = math.sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
+        return [vec[0]/length, vec[1]/length, vec[2]/length] if length > 0 else [0, 0, 0]
+    
     for path in a_matched.get_paths():
         a_items = a_matched.get_branch(path)
         b_items = b_matched.get_branch(path)
         plane_items = plane_matched.get_branch(path)
         
+        # Skip empty branches
+        if len(a_items) == 0 or len(b_items) == 0:
+            continue
+        
         angles = []
         reflexes = []
         
         for a_item, b_item, plane_item in zip(a_items, b_items, plane_items):
+            # Skip if any required input is None
+            if a_item is None or b_item is None:
+                # GH Angle: skip None inputs (can happen with mismatched data trees)
+                continue
+            
             # Extract vectors from inputs
             a_vec = extract_vector(a_item)
             b_vec = extract_vector(b_item)
-            # Note: plane_item is available but not used yet (for future oriented angle implementation)
+            plane_normal = extract_plane_normal(plane_item)
             
             # GH Angle: compute angle using dot product
             # angle = arccos(dot(a, b) / (|a| * |b|))
-            ax, ay, az = a_vec
-            bx, by, bz = b_vec
+            a_unit = normalize(a_vec)
+            b_unit = normalize(b_vec)
             
-            dot = ax * bx + ay * by + az * bz
-            mag_a = math.sqrt(ax**2 + ay**2 + az**2)
-            mag_b = math.sqrt(bx**2 + by**2 + bz**2)
+            dot_raw = a_vec[0] * b_vec[0] + a_vec[1] * b_vec[1] + a_vec[2] * b_vec[2]
+            mag_a = math.sqrt(a_vec[0]**2 + a_vec[1]**2 + a_vec[2]**2)
+            mag_b = math.sqrt(b_vec[0]**2 + b_vec[1]**2 + b_vec[2]**2)
             
             if mag_a == 0 or mag_b == 0:
                 angle = 0
             else:
-                cos_angle = dot / (mag_a * mag_b)
+                cos_angle = dot_raw / (mag_a * mag_b)
                 # Clamp to [-1, 1] to avoid numerical errors
                 cos_angle = max(-1, min(1, cos_angle))
                 angle = math.acos(cos_angle)
+                
+                # If plane normal provided, compute oriented angle
+                if plane_normal:
+                    n_unit = normalize(plane_normal)
+                    cross = [
+                        a_unit[1] * b_unit[2] - a_unit[2] * b_unit[1],
+                        a_unit[2] * b_unit[0] - a_unit[0] * b_unit[2],
+                        a_unit[0] * b_unit[1] - a_unit[1] * b_unit[0]
+                    ]
+                    sign = cross[0] * n_unit[0] + cross[1] * n_unit[1] + cross[2] * n_unit[2]
+                    # GH oriented angle: if cross is aligned with plane normal, keep angle; otherwise take reflex
+                    if sign > 0:
+                        angle = angle
+                    else:
+                        angle = (2 * math.pi) - angle
             
             angles.append(angle)
             reflexes.append(2 * math.pi - angle)
@@ -304,21 +344,36 @@ def evaluate_list_item(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         # The branch IS the list to extract from
         list_items = list_tree.get_branch(path)
         
-        # Get corresponding indices (match longest with list)
-        index_branch = index_tree.get_branch(path) if path in index_tree.get_paths() else [0]
-        wrap_branch = wrap_tree.get_branch(path) if path in wrap_tree.get_paths() else [True]
+        # Get corresponding indices - if index is scalar, use it for all branches
+        # Otherwise try to match by path
+        if path in index_tree.get_paths():
+            index_branch = index_tree.get_branch(path)
+        elif len(index_tree.get_paths()) == 1:
+            # Single scalar index - use for all branches
+            index_branch = index_tree.get_branch(index_tree.get_paths()[0])
+        else:
+            # Default to 0 if no match
+            index_branch = [0]
+        
+        # Same for wrap
+        if path in wrap_tree.get_paths():
+            wrap_branch = wrap_tree.get_branch(path)
+        elif len(wrap_tree.get_paths()) == 1:
+            wrap_branch = wrap_tree.get_branch(wrap_tree.get_paths()[0])
+        else:
+            wrap_branch = [True]
         
         # If we have multiple indices, extract multiple items
         # Otherwise, extract one item
         extracted = []
         
-        if len(list_items) == 0:
-            # Empty list
-            result.set_branch(path, [])
-            continue
-        
         # Match longest: for each index, extract from the list
         max_len = max(len(index_branch), len(wrap_branch), 1)
+        
+        if len(list_items) == 0:
+            # Empty list -> GH returns nulls for each requested index
+            result.set_branch(path, [None] * max_len)
+            continue
         
         for i in range(max_len):
             idx = index_branch[min(i, len(index_branch) - 1)] if index_branch else 0
@@ -330,8 +385,10 @@ def evaluate_list_item(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                 # GH List Item: wrap index
                 idx_int = idx_int % len(list_items)
             else:
-                # GH List Item: clamp index
-                idx_int = max(0, min(idx_int, len(list_items) - 1))
+                # GH List Item: out-of-range returns null
+                if idx_int < 0 or idx_int >= len(list_items):
+                    extracted.append(None)
+                    continue
             
             extracted.append(list_items[idx_int])
         
@@ -530,12 +587,12 @@ def evaluate_yz_plane(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         
         for origin in origins:
             # GH YZ Plane: plane with origin and X-axis normal
-            # Plane = (origin, X-axis, Y-axis, Z-axis)
+            # Plane axes lie in the YZ plane; normal points along +X
             plane = {
                 'origin': origin,
-                'x_axis': [1, 0, 0],  # Normal to YZ plane
-                'y_axis': [0, 1, 0],
-                'z_axis': [0, 0, 1]
+                'x_axis': [0, 1, 0],  # Along world Y
+                'y_axis': [0, 0, 1],  # Along world Z
+                'z_axis': [1, 0, 0]   # Normal to YZ plane (+X)
             }
             planes.append(plane)
         
@@ -671,12 +728,9 @@ def evaluate_plane_normal(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         Plane: Constructed plane
     """
     # GH Plane Normal: constructs a plane from origin + z-axis
-    origin_tree = inputs.get('Origin', DataTree())
-    z_axis_tree = inputs.get('Z-Axis', DataTree())
-    
-    # If no inputs, return empty
-    if not origin_tree.get_paths() or not z_axis_tree.get_paths():
-        return {'Plane': DataTree()}
+    # Defaults: origin = (0,0,0), Z-axis = (0,0,1)
+    origin_tree = inputs.get('Origin', DataTree.from_list([[0, 0, 0]]))
+    z_axis_tree = inputs.get('Z-Axis', DataTree.from_list([[0, 0, 1]]))
     
     # Match the two inputs using longest list matching
     origin_matched, z_axis_matched = match_longest(origin_tree, z_axis_tree)
@@ -734,11 +788,12 @@ def evaluate_plane_normal(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             else:
                 ref = [0.0, 0.0, 1.0]
             
-            # X-axis = cross(ref, Z), then normalize
+            # X-axis = ref projected onto plane perpendicular to Z, normalized
+            ref_dot_z = ref[0]*z_norm[0] + ref[1]*z_norm[1] + ref[2]*z_norm[2]
             x_axis = [
-                ref[1] * z_norm[2] - ref[2] * z_norm[1],
-                ref[2] * z_norm[0] - ref[0] * z_norm[2],
-                ref[0] * z_norm[1] - ref[1] * z_norm[0]
+                ref[0] - ref_dot_z * z_norm[0],
+                ref[1] - ref_dot_z * z_norm[1],
+                ref[2] - ref_dot_z * z_norm[2]
             ]
             x_len = (x_axis[0]**2 + x_axis[1]**2 + x_axis[2]**2)**0.5
             x_norm = [x_axis[0]/x_len, x_axis[1]/x_len, x_axis[2]/x_len]
@@ -788,6 +843,7 @@ def evaluate_line(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     start_tree = inputs.get('Start Point', DataTree())
     end_tree = inputs.get('End Point', DataTree())
     direction_tree = inputs.get('Direction', DataTree())
+    length_tree = inputs.get('Length', DataTree.from_scalar(None))
     
     # Determine mode: if End Point is present, use two-point mode
     if end_tree.get_paths():
@@ -831,8 +887,8 @@ def evaluate_line(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         return {'Line': line_result, 'Length': length_result}
     
     else:
-        # Mode 2: Start Point + Direction
-        start_m, direction_m = match_longest(start_tree, direction_tree)
+        # Mode 2: Start Point + Direction (+ optional Length)
+        start_m, direction_m, length_m = match_longest(start_tree, direction_tree, length_tree)
         
         line_result = DataTree()
         length_result = DataTree()
@@ -840,11 +896,12 @@ def evaluate_line(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         for path in start_m.get_paths():
             starts = start_m.get_branch(path)
             directions = direction_m.get_branch(path)
+            lengths_override = length_m.get_branch(path)
             
             lines = []
             lengths = []
             
-            for start, direction in zip(starts, directions):
+            for start, direction, length_override in zip(starts, directions, lengths_override):
                 # GH Line: line from start in direction
                 if start is None:
                     raise ValueError("GH Line: start point is None")
@@ -856,17 +913,32 @@ def evaluate_line(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     raise ValueError(f"GH Line: invalid direction format: {direction}")
                 
                 dx, dy, dz = direction
-                length = math.sqrt(dx**2 + dy**2 + dz**2)
-                
-                end = [
-                    start[0] + dx,
-                    start[1] + dy,
-                    start[2] + dz
-                ]
-                
-                line = {'start': start, 'end': end}
-            lines.append(line)
-            lengths.append(length)
+                dir_len = math.sqrt(dx**2 + dy**2 + dz**2)
+
+                # If a length override is provided, scale the direction to that length
+                if length_override is None:
+                    use_len = dir_len
+                else:
+                    try:
+                        use_len = float(length_override)
+                    except (TypeError, ValueError):
+                        use_len = dir_len
+
+                if dir_len == 0:
+                    end = list(start)
+                    length_val = 0
+                else:
+                    scale = use_len / dir_len if use_len is not None else 1.0
+                    end = [
+                        start[0] + dx * scale,
+                        start[1] + dy * scale,
+                        start[2] + dz * scale
+                    ]
+                    length_val = abs(use_len) if use_len is not None else dir_len
+
+                line = {'start': list(start), 'end': end}
+                lines.append(line)
+                lengths.append(length_val)
         
         line_result.set_branch(path, lines)
         length_result.set_branch(path, lengths)
@@ -994,23 +1066,29 @@ def evaluate_divide_length(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                 dz = end[2] - start[2]
                 total_length = math.sqrt(dx**2 + dy**2 + dz**2)
                 
-                if total_length == 0 or seg_length == 0:
+                if total_length == 0 or seg_length <= 0:
                     all_points.append(start)
                     all_tangents.append([0, 0, 0])
                     all_parameters.append(0)
                     continue
                 
+                # Number of full segments of length seg_length
                 num_segments = int(total_length / seg_length)
+                num_segments = max(1, num_segments)  # At least one segment for non-zero length
                 
-                for i in range(num_segments + 1):
-                    t = i / max(num_segments, 1)
+                tangent = [dx / total_length, dy / total_length, dz / total_length]
+                
+                # Generate parameters at multiples of seg_length along the line
+                t_values = [min((i * seg_length) / total_length, 1.0) for i in range(num_segments + 1)]
+                if t_values[-1] < 1.0:
+                    t_values.append(1.0)  # Ensure endpoint
+                
+                for t in t_values:
                     point = [
                         start[0] + t * dx,
                         start[1] + t * dy,
                         start[2] + t * dz
                     ]
-                    tangent = [dx / total_length, dy / total_length, dz / total_length]
-                    
                     all_points.append(point)
                     all_tangents.append(tangent)
                     all_parameters.append(t)
@@ -1332,17 +1410,51 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         
         for geom, angle, plane in zip(geometries, angles, planes):
             # GH Rotate: rotate geometry around plane's Z-axis at plane's origin
-            print(f"DEBUG ROTATE: Angle value received: {angle} (radians), {angle * 180 / math.pi:.1f} (degrees)")
-            
             cos_a = math.cos(angle)
             sin_a = math.sin(angle)
             
+            # Determine rotation origin/axis (Grasshopper: plane origin, plane Z)
+            if plane and isinstance(plane, dict):
+                rot_origin = plane.get('origin', [0, 0, 0])
+                rot_axis = plane.get('z_axis', plane.get('normal', [0, 0, 1]))
+            else:
+                rot_origin = [0, 0, 0]
+                rot_axis = [0, 0, 1]
+
+            def normalize(vec):
+                length = math.sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
+                return [vec[0]/length, vec[1]/length, vec[2]/length] if length > 0 else vec
+
+            rot_axis_norm = normalize(rot_axis)
+
             def rotate_point(pt):
-                """Rotate point around Z-axis at origin."""
-                x, y, z = pt
-                x_rot = x * cos_a - y * sin_a
-                y_rot = x * sin_a + y * cos_a
-                return [x_rot, y_rot, z]
+                """Rotate point around rot_axis at rot_origin."""
+                # Translate to origin
+                px = pt[0] - rot_origin[0]
+                py = pt[1] - rot_origin[1]
+                pz = pt[2] - rot_origin[2]
+
+                # Rodrigues' rotation formula
+                ax, ay, az = rot_axis_norm
+                dot = px*ax + py*ay + pz*az
+                cross = [
+                    py*az - pz*ay,
+                    pz*ax - px*az,
+                    px*ay - py*ax
+                ]
+
+                rotated = [
+                    px * cos_a + cross[0] * sin_a + ax * dot * (1 - cos_a),
+                    py * cos_a + cross[1] * sin_a + ay * dot * (1 - cos_a),
+                    pz * cos_a + cross[2] * sin_a + az * dot * (1 - cos_a)
+                ]
+
+                # Translate back
+                return [
+                    rotated[0] + rot_origin[0],
+                    rotated[1] + rot_origin[1],
+                    rotated[2] + rot_origin[2]
+                ]
             
             if isinstance(geom, list) and len(geom) == 3:
                 # Point
@@ -1373,72 +1485,34 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     }
                     rotated_geoms.append(rotated)
                 elif 'origin' in geom and 'x_axis' in geom and 'y_axis' in geom and 'z_axis' in geom:
-                    # Plane - rotate the plane's axes
-                    # GH Rotate: when rotating a plane, rotate its axes around the rotation plane's Y-axis
-                    # (not Z-axis - this is Grasshopper's convention for plane rotation)
-                    # plane can be a dict (plane object) or empty string/None
-                    print(f"DEBUG ROTATE: Rotating plane, z_axis before: {geom['z_axis']}, plane type: {type(plane)}, plane value: {plane}")
-                    if plane and isinstance(plane, dict) and 'y_axis' in plane:
-                        # Use rotation plane's Y-axis as rotation axis
-                        rot_axis = plane['y_axis']
-                        print(f"DEBUG ROTATE: Using rotation plane's Y-axis: {rot_axis}")
-                    elif plane and isinstance(plane, dict) and 'z_axis' in plane:
-                        # Fallback: use Z-axis if Y-axis not available
-                        rot_axis = plane['z_axis']
-                        print(f"DEBUG ROTATE: Using rotation plane's Z-axis: {rot_axis}")
-                    else:
-                        # Default: rotate around Y-axis (for YZ plane rotation to get z_axis = [1,0,0])
-                        rot_axis = [0, 1, 0]
-                        print(f"DEBUG ROTATE: Using default Y-axis: {rot_axis}")
-                    
-                    # Rotate plane's X, Y, Z axes around rot_axis
-                    def rotate_vector_around_axis(vec, axis, angle):
-                        """Rotate vector around axis using Rodrigues' rotation formula."""
-                        # Normalize axis
-                        axis_len = math.sqrt(axis[0]**2 + axis[1]**2 + axis[2]**2)
-                        if axis_len == 0:
-                            return vec
-                        axis_norm = [axis[0]/axis_len, axis[1]/axis_len, axis[2]/axis_len]
-                        
-                        # Dot product
-                        dot = vec[0]*axis_norm[0] + vec[1]*axis_norm[1] + vec[2]*axis_norm[2]
-                        # Cross product
+                    # Plane: rotate origin and axes around rotation plane's Z/normal
+                    def rotate_vec(vec):
+                        """Rotate direction vector around rot_axis_norm (no translation)."""
+                        ax, ay, az = rot_axis_norm
+                        vx, vy, vz = vec
+                        dot = vx*ax + vy*ay + vz*az
                         cross = [
-                            vec[1]*axis_norm[2] - vec[2]*axis_norm[1],
-                            vec[2]*axis_norm[0] - vec[0]*axis_norm[2],
-                            vec[0]*axis_norm[1] - vec[1]*axis_norm[0]
+                            vy*az - vz*ay,
+                            vz*ax - vx*az,
+                            vx*ay - vy*ax
                         ]
-                        
-                        cos_a = math.cos(angle)
-                        sin_a = math.sin(angle)
-                        
-                        # Rodrigues' formula: v' = v*cos + (axis × v)*sin + axis*(axis·v)*(1-cos)
-                        rotated = [
-                            vec[0]*cos_a + cross[0]*sin_a + axis_norm[0]*dot*(1-cos_a),
-                            vec[1]*cos_a + cross[1]*sin_a + axis_norm[1]*dot*(1-cos_a),
-                            vec[2]*cos_a + cross[2]*sin_a + axis_norm[2]*dot*(1-cos_a)
+                        return [
+                            vx * cos_a + cross[0] * sin_a + ax * dot * (1 - cos_a),
+                            vy * cos_a + cross[1] * sin_a + ay * dot * (1 - cos_a),
+                            vz * cos_a + cross[2] * sin_a + az * dot * (1 - cos_a)
                         ]
-                        return rotated
-                    
-                    # GH Rotate: use negative angle for correct rotation direction
-                    x_rot = rotate_vector_around_axis(geom['x_axis'], rot_axis, -angle)
-                    y_rot = rotate_vector_around_axis(geom['y_axis'], rot_axis, -angle)
-                    z_rot = rotate_vector_around_axis(geom['z_axis'], rot_axis, -angle)
-                    
-                    print(f"DEBUG ROTATE: z_axis rotated (before normalize): {z_rot}")
-                    
-                    # Normalize rotated axes
-                    def normalize(v):
-                        length = math.sqrt(v[0]**2 + v[1]**2 + v[2]**2)
-                        return [v[0]/length, v[1]/length, v[2]/length] if length > 0 else v
-                    
+
+                    rotated_origin = rotate_point(geom['origin'])
+                    x_rot = rotate_vec(geom['x_axis'])
+                    y_rot = rotate_vec(geom['y_axis'])
+                    z_rot = rotate_vec(geom['z_axis'])
+
                     rotated = {
-                        'origin': geom['origin'],
+                        'origin': rotated_origin,
                         'x_axis': normalize(x_rot),
                         'y_axis': normalize(y_rot),
                         'z_axis': normalize(z_rot)
                     }
-                    print(f"DEBUG ROTATE: z_axis after normalize: {rotated['z_axis']}")
                     rotated_geoms.append(rotated)
                 else:
                     rotated_geoms.append(geom)
@@ -1469,15 +1543,98 @@ def evaluate_project(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         Curve: Projected curve
     """
     # GH Project: project curve onto surface
+    print(f"evaluate_project: #####################################################")
     curve_tree = inputs.get('Curve', DataTree())
     brep_tree = inputs.get('Brep', DataTree())
-    direction_tree = inputs.get('Direction', DataTree())
-    
-    # For now, just return the input curve as-is (projection not fully implemented)
-    # In full implementation, this would project the curve onto the brep surface
-    # This is acceptable since the actual projection logic is complex and not needed for basic flow
-    
-    return {'Curve': curve_tree}
+    direction_tree = inputs.get('Direction', DataTree.from_scalar([0, 0, -1]))
+
+    curve_m, brep_m, direction_m = match_longest(curve_tree, brep_tree, direction_tree)
+
+    def normalize(vec):
+        length = math.sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
+        return [vec[0]/length, vec[1]/length, vec[2]/length] if length > 0 else vec
+
+    def extract_direction(item):
+        # Direction can be vector or plane (use plane normal)
+        if isinstance(item, (list, tuple)) and len(item) >= 3:
+            return list(item[:3])
+        if isinstance(item, dict) and 'z_axis' in item:
+            return item['z_axis']
+        return [0, 0, -1]
+
+    def extract_plane(item):
+        # Brep is approximated as a plane target for projection
+        if isinstance(item, dict) and 'origin' in item and 'z_axis' in item:
+            return item
+        # Default: world XY
+        return {
+            'origin': [0, 0, 0],
+            'z_axis': [0, 0, 1],
+            'x_axis': [1, 0, 0],
+            'y_axis': [0, 1, 0]
+        }
+
+    def project_point(pt, plane, direction):
+        """Project point onto plane along direction."""
+        if pt is None or len(pt) < 3:
+            return pt
+        origin = plane.get('origin', [0, 0, 0])
+        plane_normal = plane.get('z_axis', plane.get('normal', [0, 0, 1]))
+        d_vec = direction or [0, 0, -1]
+
+        n = normalize(plane_normal)
+        d = d_vec
+        dn = d[0]*n[0] + d[1]*n[1] + d[2]*n[2]
+        if dn == 0:
+            # Direction is parallel to plane; return original point
+            return list(pt)
+        t = ((origin[0]-pt[0]) * n[0] + (origin[1]-pt[1]) * n[1] + (origin[2]-pt[2]) * n[2]) / dn
+        return [pt[0] + t * d[0], pt[1] + t * d[1], pt[2] + t * d[2]]
+
+    projected_result = DataTree()
+
+    for path in curve_m.get_paths():
+        curves = curve_m.get_branch(path)
+        breps = brep_m.get_branch(path)
+        directions = direction_m.get_branch(path)
+
+        projected_curves = []
+
+        for curve, brep, direction in zip(curves, breps, directions):
+            plane = extract_plane(brep)
+            dir_vec = extract_direction(direction)
+
+            if isinstance(curve, list) and len(curve) == 3:
+                # Point as degenerate curve
+                projected_curves.append(project_point(curve, plane, dir_vec))
+            elif isinstance(curve, dict):
+                if 'start' in curve and 'end' in curve:
+                    # Line
+                    projected_curves.append({
+                        'start': project_point(curve['start'], plane, dir_vec),
+                        'end': project_point(curve['end'], plane, dir_vec)
+                    })
+                elif 'vertices' in curve:
+                    # Polyline
+                    projected_curves.append({
+                        'vertices': [project_point(v, plane, dir_vec) for v in curve['vertices']]
+                    })
+                elif 'corners' in curve:
+                    # Rectangle polyline
+                    projected_curves.append({
+                        'corners': [project_point(c, plane, dir_vec) for c in curve['corners']],
+                        'plane': plane
+                    })
+                else:
+                    # Unknown dict geometry: leave unchanged
+                    projected_curves.append(curve)
+            else:
+                # Unsupported type, pass through
+                projected_curves.append(curve)
+
+        projected_result.set_branch(path, projected_curves)
+
+    return {'Curve': projected_result}
 
 
 # ============================================================================
@@ -1500,4 +1657,3 @@ if __name__ == '__main__':
     print()
     print("All components implement exact Grasshopper behavior.")
     print("Ready for PHASE 5: Wired topological evaluation")
-

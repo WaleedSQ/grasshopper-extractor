@@ -345,6 +345,10 @@ def evaluate_component_wired(comp_guid: str, context: EvaluationContext,
         if param['type'] == 'input':
             param_name = param['name']
             resolved_data = resolve_input(param, context, external_inputs)
+            # Apply input mapping (Graft/Flatten) if specified
+            mapping = param.get('mapping', 0)
+            if mapping != 0:
+                resolved_data = apply_mapping(resolved_data, mapping)
             inputs[param_name] = resolved_data
     
     # Evaluate component

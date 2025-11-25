@@ -224,14 +224,60 @@ def match_longest(*trees):
         for tree in trees:
             branch = tree.get_branch(path)
             
-            # If branch is empty, try to find parent branch
-            if len(branch) == 0 and len(path) > 1:
-                # Look for parent path (e.g., {0} is parent of {0;0})
-                parent_path = path[:-1]
-                parent_branch = tree.get_branch(parent_path)
-                if len(parent_branch) > 0:
-                    # Use parent branch data (automatic replication)
-                    branch = parent_branch
+            # If branch doesn't exist or is empty, try to find parent or sibling branch
+            if len(branch) == 0:
+                if len(path) > 1:
+                    # Look for parent path (e.g., {0} is parent of {0;0})
+                    parent_path = path[:-1]
+                    parent_branch = tree.get_branch(parent_path)
+                    if len(parent_branch) > 0:
+                        # Use item from parent branch at index corresponding to last element of path
+                        # E.g., for path (0, 3), use parent_branch[3]
+                        child_index = path[-1]
+                        if isinstance(child_index, int) and 0 <= child_index < len(parent_branch):
+                            # Use single item from parent at child's index
+                            branch = [parent_branch[child_index]]
+                        else:
+                            # Fallback: use entire parent branch (for non-integer indices or out of range)
+                            branch = parent_branch
+                    else:
+                        # Parent doesn't exist, try to find a sibling branch (same parent)
+                        # E.g., if path is (0, 1, 0) and doesn't exist, try (0, 0, 0)
+                        parent_path = path[:-1]
+                        sibling_paths = [p for p in tree.get_paths() 
+                                       if len(p) == len(path) and len(p) > 0 and p[:-1] == parent_path]
+                        if sibling_paths:
+                            # Use the first sibling branch's data (replicate scalar across branches)
+                            sibling_branch = tree.get_branch(sibling_paths[0])
+                            if len(sibling_branch) > 0:
+                                branch = sibling_branch
+                        else:
+                            # No sibling found with same parent, try to find any branch with same length (for grafting replication)
+                            # E.g., if path is (0, 1, 0) and doesn't exist, try any (0, X, 0) or (0, 0)
+                            same_length_paths = [p for p in tree.get_paths() if len(p) == len(path) and len(p) > 0]
+                            if same_length_paths:
+                                # Use the first available branch's data (replicate scalar)
+                                sibling_branch = tree.get_branch(same_length_paths[0])
+                                if len(sibling_branch) > 0:
+                                    branch = sibling_branch
+                            else:
+                                # Try to find a branch with one less level (ungrafted version)
+                                # E.g., if path is (0, 1, 0) and doesn't exist, try (0, 1) or (0, 0)
+                                shorter_paths = [p for p in tree.get_paths() if len(p) == len(path) - 1 and len(p) > 0]
+                                if shorter_paths:
+                                    # Use the first shorter branch's data
+                                    shorter_branch = tree.get_branch(shorter_paths[0])
+                                    if len(shorter_branch) > 0:
+                                        branch = shorter_branch
+                elif len(path) > 0:
+                    # For root-level paths, try to find any sibling branch
+                    # E.g., if path is (1,) and doesn't exist, try (0,)
+                    sibling_paths = [p for p in tree.get_paths() if len(p) == len(path)]
+                    if sibling_paths:
+                        # Use the first sibling branch's data
+                        sibling_branch = tree.get_branch(sibling_paths[0])
+                        if len(sibling_branch) > 0:
+                            branch = sibling_branch
             
             branches.append(branch)
         
