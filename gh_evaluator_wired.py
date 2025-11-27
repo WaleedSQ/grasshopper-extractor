@@ -37,7 +37,22 @@ def apply_mapping(data_tree: DataTree, mapping: int) -> DataTree:
     
     elif mapping == 1:
         # GRAFT: Each item gets its own branch by appending an index to the path
+        # BUT: If the tree already has grafted structure (each branch has 1 item),
+        # don't add extra nesting - just return as-is
         result = DataTree()
+        all_single_item = True
+        for path in data_tree.get_paths():
+            items = data_tree.get_branch(path)
+            if len(items) > 1:
+                all_single_item = False
+                break
+        
+        # If all branches already have exactly 1 item, the tree is already grafted
+        # Don't add extra nesting - return as-is
+        if all_single_item and data_tree.branch_count() > 1:
+            return data_tree
+        
+        # Otherwise, graft by appending index to each path
         for path in data_tree.get_paths():
             items = data_tree.get_branch(path)
             for i, item in enumerate(items):
@@ -216,31 +231,46 @@ def resolve_input(param: dict, context: EvaluationContext,
     # 1. Check for wire connections
     sources = param.get('sources', [])
     if sources:
-        # Get data from first source (GH uses first wire if multiple)
-        source_param_guid = sources[0]
-        
-        # First check if source is an external input (slider/panel outside group)
-        if source_param_guid in external_inputs:
-            data = external_inputs[source_param_guid]
-            if isinstance(data, list):
-                result_tree = DataTree.from_list(data)
-            else:
-                result_tree = DataTree.from_scalar(data)
-        
-        # Find which component owns this output parameter
-        if not result_tree:
-            for comp_guid, comp in context.components.items():
-                for out_param in comp['params']:
-                    if out_param['param_guid'] == source_param_guid:
-                        # Found the source component
-                        if context.is_evaluated(comp_guid):
-                            # Get the output from this component
-                            outputs = context.get_result(comp_guid)
-                            # Match output parameter name
-                            output_name = out_param['name']
-                            if output_name in outputs:
-                                result_tree = outputs[output_name]
+        # Collect all source trees and merge (GH merges multiple wires)
+        merged_tree = DataTree()
+        for source_param_guid in sources:
+            source_tree = None
+            
+            # External input (slider/panel or injected tree)
+            if source_param_guid in external_inputs:
+                data = external_inputs[source_param_guid]
+                if isinstance(data, DataTree):
+                    source_tree = data
+                elif isinstance(data, list):
+                    if len(data) == 3 and all(isinstance(x, (int, float)) for x in data):
+                        source_tree = DataTree.from_list([data])
+                    else:
+                        source_tree = DataTree.from_list(data)
+                else:
+                    source_tree = DataTree.from_scalar(data)
+            
+            # From evaluated component output
+            if not source_tree:
+                for comp_guid, comp in context.components.items():
+                    for out_param in comp['params']:
+                        if out_param['param_guid'] == source_param_guid:
+                            if context.is_evaluated(comp_guid):
+                                outputs = context.get_result(comp_guid)
+                                output_name = out_param['name']
+                                if output_name in outputs:
+                                    source_tree = outputs[output_name]
+                            break
+                    if source_tree:
                         break
+            
+            # Merge branch-wise
+            if source_tree:
+                for path in source_tree.get_paths():
+                    existing = merged_tree.get_branch(path)
+                    merged_tree.set_branch(path, existing + source_tree.get_branch(path))
+        
+        if merged_tree.branch_count() > 0:
+            result_tree = merged_tree
     
     # 2. Check for persistent data in parameter
     if not result_tree:
@@ -256,8 +286,13 @@ def resolve_input(param: dict, context: EvaluationContext,
     if not result_tree:
         if param_guid in external_inputs:
             data = external_inputs[param_guid]
-            if isinstance(data, list):
-                result_tree = DataTree.from_list(data)
+            if isinstance(data, DataTree):
+                result_tree = data
+            elif isinstance(data, list):
+                if len(data) == 3 and all(isinstance(x, (int, float)) for x in data):
+                    result_tree = DataTree.from_list([data])
+                else:
+                    result_tree = DataTree.from_list(data)
             else:
                 result_tree = DataTree.from_scalar(data)
     
@@ -552,4 +587,3 @@ def evaluate_rotatingslats():
 
 if __name__ == '__main__':
     evaluate_rotatingslats()
-

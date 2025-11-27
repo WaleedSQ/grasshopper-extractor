@@ -1,0 +1,12 @@
+{
+  "wires": [
+    {
+      "from_component": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+      "from_param": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
+      "to_component": "0f529988-b68b-4d48-9a48-cf099af69050",
+      "to_param": "b1398a69-fbda-4447-af1b-e68aa5938736",
+      "to_param_name": "Motion"
+    }
+  ],
+  "count": 1
+}

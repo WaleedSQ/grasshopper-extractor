@@ -1254,8 +1254,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9766.0,
-        "y": 2909.0
+        "x": 9616.0,
+        "y": 2946.0
       },
       "params": [
         {
@@ -1301,8 +1301,8 @@
       "nickname": "/",
       "container": "",
       "position": {
-        "x": 9951.0,
-        "y": 2904.0
+        "x": 9801.0,
+        "y": 2941.0
       },
       "params": [
         {
@@ -1348,8 +1348,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9765.0,
-        "y": 2862.0
+        "x": 9615.0,
+        "y": 2899.0
       },
       "params": [
         {
@@ -1422,7 +1422,9 @@
               10.0
             ]
           ],
-          "sources": [],
+          "sources": [
+            "e932b554-bb15-4f31-bb75-7157a92b9a0a"
+          ],
           "expression": null,
           "mapping": 0,
           "reverse_data": false
@@ -1749,8 +1751,8 @@
       "nickname": "/",
       "container": "",
       "position": {
-        "x": 9951.0,
-        "y": 2954.0
+        "x": 9801.0,
+        "y": 2991.0
       },
       "params": [
         {
@@ -1796,8 +1798,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9766.0,
-        "y": 3004.0
+        "x": 9616.0,
+        "y": 3041.0
       },
       "params": [
         {
@@ -1843,8 +1845,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9766.0,
-        "y": 2956.0
+        "x": 9616.0,
+        "y": 2993.0
       },
       "params": [
         {
@@ -3029,8 +3031,8 @@
       "nickname": "YZ Plane",
       "container": "",
       "position": {
-        "x": 11526.0,
-        "y": 2899.0
+        "x": 11522.0,
+        "y": 2904.0
       },
       "params": [
         {
@@ -3697,6 +3699,13 @@
       "to_param_name": "A"
     },
     {
+      "from_component": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+      "from_param": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
+      "to_component": "0f529988-b68b-4d48-9a48-cf099af69050",
+      "to_param": "b1398a69-fbda-4447-af1b-e68aa5938736",
+      "to_param_name": "Motion"
+    },
+    {
       "from_component": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
       "from_param": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
       "to_component": "e11dd9b3-8452-4aa1-a4a1-4201e1de4578",
@@ -3769,5 +3778,5 @@
   ],
   "component_count": 56,
   "internal_wire_count": 65,
-  "external_wire_count": 21
+  "external_wire_count": 22
 }

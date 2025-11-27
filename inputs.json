@@ -1,0 +1,126 @@
+{
+  "537142d8-e672-4d12-8254-46dbe1e3c7ef": {
+    "guid": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
+    "type": "Number Slider",
+    "nickname": "Number of slats",
+    "data": [
+      10.0
+    ]
+  },
+  "507b14ee-692b-41df-973f-6bfef76514c2": {
+    "guid": "507b14ee-692b-41df-973f-6bfef76514c2",
+    "type": "Number Slider",
+    "nickname": "Distance from window",
+    "data": [
+      -0.07
+    ]
+  },
+  "08edbcda-c850-40fd-9900-c6ab83acca1b": {
+    "guid": "08edbcda-c850-40fd-9900-c6ab83acca1b",
+    "type": "Number Slider",
+    "nickname": "Horizontal shift between slats",
+    "data": [
+      0.0
+    ]
+  },
+  "c8dfe19f-4140-41a4-973e-a2acb75038d7": {
+    "guid": "c8dfe19f-4140-41a4-973e-a2acb75038d7",
+    "type": "Number Slider",
+    "nickname": "Slat width",
+    "data": [
+      0.08
+    ]
+  },
+  "456d176f-14cf-4134-9062-b4623202c00e": {
+    "guid": "456d176f-14cf-4134-9062-b4623202c00e",
+    "type": "Number Slider",
+    "nickname": "Slats height (top)",
+    "data": [
+      3.8
+    ]
+  },
+  "125e7c20-d243-4cdc-927b-568ceb6315b5": {
+    "guid": "125e7c20-d243-4cdc-927b-568ceb6315b5",
+    "type": "Number Slider",
+    "nickname": "Last target from slats",
+    "data": [
+      4.5
+    ]
+  },
+  "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7": {
+    "guid": "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7",
+    "type": "Number Slider",
+    "nickname": "Slats height (threshold)",
+    "data": [
+      3.1
+    ]
+  },
+  "e81f2ba2-a9aa-401c-bde6-290d119877dc": {
+    "guid": "e81f2ba2-a9aa-401c-bde6-290d119877dc",
+    "type": "Number Slider",
+    "nickname": "1st targets from slats",
+    "data": [
+      1.0
+    ]
+  },
+  "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b": {
+    "guid": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
+    "type": "Number Slider",
+    "nickname": "Targets Height",
+    "data": [
+      4.0
+    ]
+  },
+  "a7d2817a-3182-496e-a453-80e7eeba16fa": {
+    "guid": "a7d2817a-3182-496e-a453-80e7eeba16fa",
+    "type": "Number Slider",
+    "nickname": "room width",
+    "data": [
+      5.0
+    ]
+  },
+  "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2": {
+    "guid": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
+    "type": "Panel",
+    "nickname": "",
+    "data": null
+  },
+  "04df4976-98d6-4ee8-b76a-96211120d851": {
+    "guid": "04df4976-98d6-4ee8-b76a-96211120d851",
+    "type": "Panel",
+    "nickname": "",
+    "data": null
+  },
+  "5354f884-8b45-418e-968a-55689cb2e986": {
+    "guid": "5354f884-8b45-418e-968a-55689cb2e986",
+    "type": "Number Slider",
+    "nickname": "Orientation",
+    "data": [
+      0.0
+    ]
+  },
+  "86379f02-2481-4a60-bc43-5e5c81ecc838": {
+    "guid": "86379f02-2481-4a60-bc43-5e5c81ecc838",
+    "type": "Number Slider",
+    "nickname": "Month",
+    "data": [
+      8.0
+    ]
+  },
+  "8a457e4b-7089-459f-a9f8-bf07defdca0d": {
+    "guid": "8a457e4b-7089-459f-a9f8-bf07defdca0d",
+    "type": "Number Slider",
+    "nickname": "Day",
+    "data": [
+      13.0
+    ]
+  },
+  "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7": {
+    "guid": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7",
+    "type": "Number Slider",
+    "nickname": "Hour",
+    "data": [
+      11.0
+    ]
+  }
+}

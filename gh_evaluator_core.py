@@ -215,6 +215,21 @@ def match_longest(*trees):
     
     all_paths = sorted(all_paths - paths_to_remove)
     
+    # If we have mixed path depths (e.g., (0,) and (0,0), (0,1), ...),
+    # use the deepest paths and replicate simpler ones
+    # This prevents creating nested paths like (0, 0, 0) when matching (0,) with (0, 0)
+    if all_paths:
+        max_depth = max(len(p) for p in all_paths)
+        # If we have paths of different depths, prefer the deeper ones
+        if max_depth > 1:
+            # Check if we have both shallow and deep paths
+            shallow_paths = [p for p in all_paths if len(p) < max_depth]
+            deep_paths = [p for p in all_paths if len(p) == max_depth]
+            if shallow_paths and deep_paths:
+                # Use only the deep paths, will replicate shallow tree's data to match
+                # This ensures we don't create extra nesting levels
+                all_paths = deep_paths
+    
     # Match each path across all trees
     matched_trees = [DataTree() for _ in trees]
     
@@ -237,6 +252,10 @@ def match_longest(*trees):
                         if isinstance(child_index, int) and 0 <= child_index < len(parent_branch):
                             # Use single item from parent at child's index
                             branch = [parent_branch[child_index]]
+                        elif isinstance(child_index, int) and len(parent_branch) > 0:
+                            # Index out of range: use first item (replicate scalar for all grafted branches)
+                            # This handles the case where (0,) with 1 item matches (0,0), (0,1), ..., (0,9)
+                            branch = [parent_branch[0]]
                         else:
                             # Fallback: use entire parent branch (for non-integer indices or out of range)
                             branch = parent_branch
@@ -284,6 +303,8 @@ def match_longest(*trees):
         max_len = max(len(b) for b in branches) if branches else 0
         
         # Extend each branch to max_len using longest strategy
+        # CRITICAL: Use the path from all_paths directly - this preserves the structure
+        # from the deeper tree (e.g., (0,0), (0,1), ...) instead of creating nested paths
         for i, branch in enumerate(branches):
             if len(branch) == 0:
                 # Empty branch - fill with None
@@ -293,6 +314,9 @@ def match_longest(*trees):
                 extended = list(branch) + [branch[-1]] * (max_len - len(branch))
                 matched_trees[i].set_branch(path, extended)
             else:
+                # Use path directly from all_paths - this is the key fix
+                # When matching (0,) with (0,0), (0,1), ..., we use paths (0,0), (0,1), ...
+                # not create (0,0,0), (0,1,0), ...
                 matched_trees[i].set_branch(path, branch)
     
     return matched_trees

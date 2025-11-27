@@ -1076,6 +1076,18 @@ def evaluate_divide_length(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                 num_segments = int(total_length / seg_length)
                 num_segments = max(1, num_segments)  # At least one segment for non-zero length
                 
+                # Cap the number of segments to prevent excessive point generation
+                # This handles cases where sun scale (100000) creates very long lines
+                # Grasshopper tooltip shows ~14-15 points per branch (145 total / 10 branches)
+                # Use a reasonable maximum that matches Grasshopper behavior
+                # Allow some variation: 15-20 points per branch is reasonable
+                # MAX_SEGMENTS = 15
+                # if num_segments > MAX_SEGMENTS:
+                #     num_segments = MAX_SEGMENTS
+                #     # When capped, adjust seg_length to match the capped division
+                #     # This ensures we still divide the full length, just with fewer points
+                #     seg_length = total_length / num_segments
+                
                 tangent = [dx / total_length, dy / total_length, dz / total_length]
                 
                 # Generate parameters at multiples of seg_length along the line
@@ -1635,6 +1647,393 @@ def evaluate_project(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         projected_result.set_branch(path, projected_curves)
 
     return {'Curve': projected_result}
+
+
+# ============================================================================
+# SUN PATH ANALYSIS COMPONENTS
+# ============================================================================
+
+@COMPONENT_REGISTRY.register("LB Download Weather")
+def evaluate_download_weather(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH LB Download Weather component (STUB): returns local EPW file path.
+    
+    Inputs:
+        _weather_URL: URL string (ignored for stub)
+        _folder_: Optional folder path (ignored for stub)
+    
+    Outputs:
+        epw_file: Path to local EPW file (hardcoded)
+        stat_file: Empty/None
+        ddy_file: Empty/None
+    """
+    # GH LB Download Weather: STUB - return local EPW file path
+    epw_path = "GBR_SCT_Salsburgh.031520_TMYx.epw"
+    return {
+        'epw_file': DataTree.from_scalar(epw_path),
+        'stat_file': DataTree(),
+        'ddy_file': DataTree()
+    }
+
+
+@COMPONENT_REGISTRY.register("LB Import EPW")
+def evaluate_import_epw(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH LB Import EPW component: parse EPW weather file for location data.
+    
+    Inputs:
+        _epw_file: Path to EPW file
+    
+    Outputs:
+        location: Location dict with lat, lon, elevation, timezone, etc.
+        (Other outputs stubbed for now)
+    """
+    # GH LB Import EPW: parse EPW file
+    epw_file_tree = inputs.get('_epw_file', DataTree())
+    
+    # Get EPW file path (should be a single value)
+    epw_path = None
+    for path in epw_file_tree.get_paths():
+        items = epw_file_tree.get_branch(path)
+        if items:
+            epw_path = items[0]
+            break
+    
+    if not epw_path:
+        # Default to local file
+        epw_path = "GBR_SCT_Salsburgh.031520_TMYx.epw"
+    
+    # Parse EPW file - first line contains location data
+    # Format: LOCATION,Name,State,Country,Source,WMONumber,Latitude,Longitude,TimeZone,Elevation
+    # TimeZone is in hours offset from UTC (not minutes!)
+    # Elevation is in meters
+    location = {
+        'latitude': 55.86700,  # Default values from EPW file
+        'longitude': -3.86700,
+        'elevation': 275.0,
+        'timezone': 0.0,  # Timezone offset in hours (EPW format: hours, not minutes)
+        'name': 'Salsburgh',
+        'state': 'SCT',
+        'country': 'GBR'
+    }
+    
+    try:
+        with open(epw_path, 'r') as f:
+            first_line = f.readline().strip()
+            if first_line.startswith('LOCATION,'):
+                parts = first_line.split(',')
+                if len(parts) >= 9:
+                    location['name'] = parts[1] if parts[1] else 'Salsburgh'
+                    location['state'] = parts[2] if parts[2] else 'SCT'
+                    location['country'] = parts[3] if parts[3] else 'GBR'
+                    try:
+                        location['latitude'] = float(parts[6]) if parts[6] else 55.86700
+                        location['longitude'] = float(parts[7]) if parts[7] else -3.86700
+                        # Timezone in EPW is already in hours (not minutes!)
+                        location['timezone'] = float(parts[8]) if parts[8] else 0.0
+                        location['elevation'] = float(parts[9]) if len(parts) > 9 and parts[9] else 275.0
+                    except (ValueError, IndexError):
+                        pass
+    except (FileNotFoundError, IOError):
+        # Use defaults if file not found
+        pass
+    
+    # Return location as DataTree
+    location_tree = DataTree.from_scalar(location)
+    
+    # Return all outputs (stub other outputs as empty)
+    return {
+        'location': location_tree,
+        'dry_bulb_temperature': DataTree(),
+        'dew_point_temperature': DataTree(),
+        'relative_humidity': DataTree(),
+        'wind_speed': DataTree(),
+        'wind_direction': DataTree(),
+        'direct_normal_rad': DataTree(),
+        'diffuse_horizontal_rad': DataTree(),
+        'global_horizontal_rad': DataTree(),
+        'horizontal_infrared_rad': DataTree(),
+        'direct_normal_ill': DataTree(),
+        'diffuse_horizontal_ill': DataTree(),
+        'global_horizontal_ill': DataTree(),
+        'total_sky_cover': DataTree(),
+        'barometric_pressure': DataTree(),
+        'model_year': DataTree(),
+        'ground_temperature': DataTree()
+    }
+
+
+@COMPONENT_REGISTRY.register("LB Calculate HOY")
+def evaluate_calculate_hoy(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH LB Calculate HOY component: convert month/day/hour to hour of year (0-8759).
+    
+    Inputs:
+        _month_: Month (1-12)
+        _day_: Day (1-31)
+        _hour_: Hour (0-23)
+        _minute_: Optional minute (default 0)
+    
+    Outputs:
+        hoy: Hour of year (integer 0-8759)
+        doy: Day of year (1-365/366)
+        date: Date object (optional, can be stubbed)
+    """
+    # GH LB Calculate HOY: calculate hour of year from month/day/hour
+    month_tree = inputs.get('_month_', DataTree.from_scalar(1))
+    day_tree = inputs.get('_day_', DataTree.from_scalar(1))
+    hour_tree = inputs.get('_hour_', DataTree.from_scalar(0))
+    minute_tree = inputs.get('_minute_', DataTree.from_scalar(0))
+    
+    # Match all inputs
+    month_m, day_m, hour_m, minute_m = match_longest(month_tree, day_tree, hour_tree, minute_tree)
+    
+    hoy_result = DataTree()
+    doy_result = DataTree()
+    date_result = DataTree()
+    
+    # Days per month (non-leap year)
+    days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    
+    for path in month_m.get_paths():
+        months = month_m.get_branch(path)
+        days = day_m.get_branch(path)
+        hours = hour_m.get_branch(path)
+        minutes = minute_m.get_branch(path)
+        
+        hoys = []
+        doys = []
+        dates = []
+        
+        for month, day, hour, minute in zip(months, days, hours, minutes):
+            # GH LB Calculate HOY: validate inputs
+            month_int = int(month) if month is not None else 1
+            day_int = int(day) if day is not None else 1
+            hour_int = int(hour) if hour is not None else 0
+            minute_int = int(minute) if minute is not None else 0
+            
+            # Clamp values
+            month_int = max(1, min(12, month_int))
+            day_int = max(1, min(31, day_int))
+            hour_int = max(0, min(23, hour_int))
+            minute_int = max(0, min(59, minute_int))
+            
+            # Calculate day of year
+            doy = sum(days_per_month[:month_int-1]) + day_int
+            
+            # Calculate hour of year
+            hoy = (doy - 1) * 24 + hour_int
+            
+            hoys.append(hoy)
+            doys.append(doy)
+            dates.append(None)  # Date object stubbed for now
+        
+        hoy_result.set_branch(path, hoys)
+        doy_result.set_branch(path, doys)
+        date_result.set_branch(path, dates)
+    
+    return {
+        'hoy': hoy_result,
+        'doy': doy_result,
+        'date': date_result
+    }
+
+
+@COMPONENT_REGISTRY.register("LB SunPath")
+def evaluate_sunpath(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH LB SunPath component: calculate sun position vectors for given location and hour of year.
+    
+    Inputs:
+        _location: Location dict from ImportEPW (contains lat, lon, elevation, timezone)
+        hoys_: Hour of year from HOY component (single value or list)
+        north_: Optional north direction (default 0)
+        Other inputs are optional/unused
+    
+    Outputs:
+        sun_pts: Sun position points/vectors (3D coordinates)
+        vectors: Sun direction vectors
+        altitudes: Sun altitude angles
+        azimuths: Sun azimuth angles
+        (Other outputs stubbed)
+    """
+    # GH LB SunPath: calculate sun position
+    location_tree = inputs.get('_location', DataTree())
+    hoys_tree = inputs.get('hoys_', DataTree())
+    north_tree = inputs.get('north_', DataTree.from_scalar(0))
+    scale_tree = inputs.get('_scale_', DataTree.from_scalar(1.0))
+    
+    # Match inputs
+    location_m, hoys_m, north_m, scale_m = match_longest(location_tree, hoys_tree, north_tree, scale_tree)
+    
+    sun_pts_result = DataTree()
+    vectors_result = DataTree()
+    altitudes_result = DataTree()
+    azimuths_result = DataTree()
+    
+    for path in hoys_m.get_paths():
+        locations = location_m.get_branch(path)
+        hoys = hoys_m.get_branch(path)
+        norths = north_m.get_branch(path)
+        scales = scale_m.get_branch(path)
+        
+        sun_pts = []
+        vectors = []
+        altitudes = []
+        azimuths = []
+        
+        for location, hoy, north, scale in zip(locations, hoys, norths, scales):
+            # Extract location data (Ladybug location)
+            if isinstance(location, dict):
+                lat = float(location.get('latitude', 0.0))
+                lon = float(location.get('longitude', 0.0))
+                tz = float(location.get('timezone', 0.0))
+            else:
+                lat = 0.0
+                lon = 0.0
+                tz = 0.0
+            
+            hoy_val = float(hoy) if hoy is not None else 0.0
+            scale_val = float(scale) if scale is not None else 1.0
+            north_val = float(north) if north is not None else 0.0  # degrees, CCW from +Y
+            
+            # Day of year and fractional hour (HOY can be fractional)
+            doy = int(hoy_val // 24) + 1
+            hour_decimal = hoy_val % 24.0
+            
+            # NOAA solar position (gamma-based) approximation, matching Ladybug core logic
+            gamma = 2.0 * math.pi / 365.0 * (doy - 1 + (hour_decimal - 12) / 24.0)
+            declination = (0.006918
+                           - 0.399912 * math.cos(gamma)
+                           + 0.070257 * math.sin(gamma)
+                           - 0.006758 * math.cos(2 * gamma)
+                           + 0.000907 * math.sin(2 * gamma)
+                           - 0.002697 * math.cos(3 * gamma)
+                           + 0.00148  * math.sin(3 * gamma))
+            
+            # Equation of time (minutes)
+            eq_time = (229.18 * (0.000075
+                                 + 0.001868 * math.cos(gamma)
+                                 - 0.032077 * math.sin(gamma)
+                                 - 0.014615 * math.cos(2 * gamma)
+                                 - 0.040849 * math.sin(2 * gamma)))
+            
+            # True solar time (minutes); longitude positive East
+            # Standard formula: TST = clock_minutes + eq_time + 4*(lon - tz*15)
+            # Solar time = Local standard time + Equation of time + 4*(Longitude - Standard meridian)
+            # Where Standard meridian = Timezone * 15 degrees
+            # For longitude positive East, solar time is later (add time)
+            time_offset = eq_time + 4 * (lon - tz * 15.0)
+            true_solar_time = (hour_decimal * 60.0 + time_offset) % 1440.0
+            
+            # Hour angle (radians), measured from solar noon
+            hour_angle_deg = true_solar_time / 4.0 - 180.0
+            hour_angle = math.radians(hour_angle_deg)
+            
+            lat_rad = math.radians(lat)
+            
+            # Solar zenith/altitude
+            cos_zenith = (math.sin(lat_rad) * math.sin(declination) +
+                          math.cos(lat_rad) * math.cos(declination) * math.cos(hour_angle))
+            cos_zenith = max(-1.0, min(1.0, cos_zenith))
+            zenith = math.acos(cos_zenith)
+            altitude = math.pi / 2 - zenith
+            altitude_deg = math.degrees(altitude)
+            
+            # Solar azimuth from north, clockwise
+            sin_az = (-math.sin(hour_angle) * math.cos(declination)) / max(1e-12, math.sin(zenith))
+            cos_az = ((math.sin(declination) - math.sin(lat_rad) * math.cos(zenith)) /
+                      (math.cos(lat_rad) * math.sin(zenith) + 1e-12))
+            azimuth = math.atan2(sin_az, cos_az)
+            if azimuth < 0:
+                azimuth += 2 * math.pi
+            azimuth_deg = math.degrees(azimuth)
+            
+            # Apply north_ rotation (north_ is CCW from +Y); rotate azimuth accordingly
+            azimuth_rotated = azimuth + math.radians(north_val)
+            
+            # Convert to 3D point/vector; Grasshopper SunPath scales points by a large default factor
+            base_scale = 100000.0
+            effective_scale = scale_val * base_scale
+            x = math.cos(altitude) * math.sin(azimuth_rotated) * effective_scale
+            y = math.cos(altitude) * math.cos(azimuth_rotated) * effective_scale
+            z = math.sin(altitude) * effective_scale
+            
+            sun_pt = [x, y, z]
+            sun_pts.append(sun_pt)
+            
+            # Direction vector (normalized)
+            vec_len = math.sqrt(x*x + y*y + z*z)
+            if vec_len > 0:
+                vectors.append([x/vec_len, y/vec_len, z/vec_len])
+            else:
+                vectors.append([0, 0, 1])
+            
+            altitudes.append(altitude_deg)
+            azimuths.append(azimuth_deg)
+        
+        sun_pts_result.set_branch(path, sun_pts)
+        vectors_result.set_branch(path, vectors)
+        altitudes_result.set_branch(path, altitudes)
+        azimuths_result.set_branch(path, azimuths)
+    
+    # Return all outputs (stub others)
+    return {
+        'out': DataTree(),  # Report output
+        'vectors': vectors_result,
+        'altitudes': altitudes_result,
+        'azimuths': azimuths_result,
+        'hoys': hoys_m,
+        'sun_pts': sun_pts_result,
+        'analemma': DataTree(),
+        'daily': DataTree(),
+        'compass': DataTree(),
+        'legend': DataTree(),
+        'title': DataTree(),
+        'color_pts': DataTree(),
+        'vis_set': DataTree()
+    }
+
+
+@COMPONENT_REGISTRY.register("Explode Tree")
+def evaluate_explode_tree(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH Explode Tree component: extract specific branches from data tree.
+    
+    Inputs:
+        Data: DataTree input
+    
+    Outputs:
+        Branch 0: First branch (path (0,))
+        Branch 1: Second branch (path (1,))
+        Branch 2: Third branch (path (2,))
+        etc.
+    """
+    # GH Explode Tree: extract branches from DataTree
+    data_tree = inputs.get('Data', DataTree())
+    
+    # Get all paths sorted
+    paths = sorted(data_tree.get_paths())
+    
+    # Create output for each branch
+    # Branch 0 = path (0,), Branch 1 = path (1,), etc.
+    branch_outputs = {}
+    
+    for i, path in enumerate(paths):
+        branch_name = f'Branch {i}'
+        items = data_tree.get_branch(path)
+        branch_tree = DataTree()
+        branch_tree.set_branch((0,), items)  # Put items in branch (0,)
+        branch_outputs[branch_name] = branch_tree
+    
+    # If there are fewer branches than expected outputs, create empty branches
+    # Grasshopper typically has Branch 0, Branch 1, Branch 2 outputs
+    for i in range(3):
+        branch_name = f'Branch {i}'
+        if branch_name not in branch_outputs:
+            branch_outputs[branch_name] = DataTree()
+    
+    return branch_outputs
 
 
 # ============================================================================

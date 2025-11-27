@@ -1,0 +1,350 @@
+{
+  "f94b6883-a02d-4daf-af16-40cf1e328666": {
+    "component_info": {
+      "guid": "f94b6883-a02d-4daf-af16-40cf1e328666",
+      "type": "Scribble",
+      "nickname": "Scribble",
+      "position": {
+        "x": 11032.131,
+        "y": 1847.6393
+      }
+    },
+    "outputs": {}
+  },
+  "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2": {
+    "component_info": {
+      "guid": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
+      "type": "Panel",
+      "nickname": "",
+      "position": {
+        "x": 9992.707,
+        "y": 2068.561
+      }
+    },
+    "outputs": {}
+  },
+  "a4dc00a7-f21a-44c7-a074-be8a0296701d": {
+    "component_info": {
+      "guid": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+      "type": "LB Calculate HOY",
+      "nickname": "HOY",
+      "position": {
+        "x": 10627.0,
+        "y": 1855.0
+      }
+    },
+    "outputs": {
+      "hoy": {
+        "branches": {
+          "(0, 0)": [
+            5387
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "doy": {
+        "branches": {
+          "(0, 0)": [
+            225
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "date": {
+        "branches": {
+          "(0, 0)": [
+            null
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf": {
+    "component_info": {
+      "guid": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
+      "type": "LB Download Weather",
+      "nickname": "DownloadEPW",
+      "position": {
+        "x": 10380.0,
+        "y": 2134.0
+      }
+    },
+    "outputs": {
+      "epw_file": {
+        "branches": {
+          "(0,)": [
+            "GBR_SCT_Salsburgh.031520_TMYx.epw"
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "stat_file": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "ddy_file": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "ccddde54-016e-477f-8a32-15e9acb9b902": {
+    "component_info": {
+      "guid": "ccddde54-016e-477f-8a32-15e9acb9b902",
+      "type": "LB Import EPW",
+      "nickname": "ImportEPW",
+      "position": {
+        "x": 10549.0,
+        "y": 2098.0
+      }
+    },
+    "outputs": {
+      "location": {
+        "branches": {
+          "(0,)": [
+            {
+              "latitude": 55.867,
+              "longitude": -3.867,
+              "elevation": 275.0,
+              "timezone": 0.0,
+              "name": "Salsburgh",
+              "state": "SCT",
+              "country": "GBR"
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "dry_bulb_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "dew_point_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "relative_humidity": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "wind_speed": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "wind_direction": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "direct_normal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "diffuse_horizontal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "global_horizontal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "horizontal_infrared_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "direct_normal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "diffuse_horizontal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "global_horizontal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "total_sky_cover": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "barometric_pressure": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "model_year": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "ground_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "84b7e65e-450c-4d9c-a13b-273ccc8283d5": {
+    "component_info": {
+      "guid": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "type": "LB SunPath",
+      "nickname": "Sunpath",
+      "position": {
+        "x": 10859.0,
+        "y": 2023.0
+      }
+    },
+    "outputs": {
+      "out": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "vectors": {
+        "branches": {
+          "(0, 0)": [
+            [
+              0.33328075181892286,
+              -0.6062243979664721,
+              0.722091351407287
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "altitudes": {
+        "branches": {
+          "(0, 0)": [
+            46.22741730932741
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "azimuths": {
+        "branches": {
+          "(0, 0)": [
+            151.1995595466814
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "hoys": {
+        "branches": {
+          "(0, 0)": [
+            5387
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "sun_pts": {
+        "branches": {
+          "(0, 0)": [
+            [
+              33328.07518189229,
+              -60622.43979664721,
+              72209.1351407287
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "analemma": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "daily": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "compass": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "legend": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "title": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "color_pts": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "vis_set": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "44387b24-9fda-46f7-9d1b-9e4790d8dbfe": {
+    "component_info": {
+      "guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+      "type": "Explode Tree",
+      "nickname": "Ex Tree",
+      "position": {
+        "x": 11074.0,
+        "y": 1974.0
+      }
+    },
+    "outputs": {
+      "Branch 0": {
+        "branches": {
+          "(0,)": [
+            [
+              33328.07518189229,
+              -60622.43979664721,
+              72209.1351407287
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Branch 1": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "Branch 2": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  }
+}

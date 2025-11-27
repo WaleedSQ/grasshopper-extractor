@@ -1,6 +1,83 @@
 {
   "components": [
     {
+      "guid": "bb0d5d5a-bc1e-46a9-9bba-42e32b20ca53",
+      "instance_guid": "bb0d5d5a-bc1e-46a9-9bba-42e32b20ca53",
+      "type_name": "Group",
+      "nickname": "sunGroup",
+      "container": "",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "params": []
+    },
+    {
+      "guid": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
+      "instance_guid": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
+      "type_name": "LB Download Weather",
+      "nickname": "DownloadEPW",
+      "container": "",
+      "position": {
+        "x": 10380.0,
+        "y": 2134.0
+      },
+      "params": [
+        {
+          "param_guid": "e3674285-67cb-4599-8e8b-b7fef6528035",
+          "name": "_weather_URL",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "2d23f3c2-8a9e-4210-b1cd-a94c26accc9f",
+          "name": "_folder_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "a91b3e00-05bb-4167-a9f9-c0833c19defc",
+          "name": "epw_file",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "47dffc62-0abc-4ada-bd25-302e1a9dfcbb",
+          "name": "stat_file",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "92fba45a-86cb-4041-b91a-07ce4ba86f57",
+          "name": "ddy_file",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
       "guid": "f61d32bf-423d-42d9-b9b0-00c9f9c32197",
       "instance_guid": "f61d32bf-423d-42d9-b9b0-00c9f9c32197",
       "type_name": "Group",
@@ -13,6 +90,201 @@
       "params": []
     },
     {
+      "guid": "ccddde54-016e-477f-8a32-15e9acb9b902",
+      "instance_guid": "ccddde54-016e-477f-8a32-15e9acb9b902",
+      "type_name": "LB Import EPW",
+      "nickname": "ImportEPW",
+      "container": "",
+      "position": {
+        "x": 10549.0,
+        "y": 2098.0
+      },
+      "params": [
+        {
+          "param_guid": "abb52b47-0429-4431-93df-c62f6a432f0d",
+          "name": "_epw_file",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "a91b3e00-05bb-4167-a9f9-c0833c19defc"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "40ee12a4-2539-40da-a03f-eb02a3ccebdb",
+          "name": "location",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "b1e17dc5-88c7-4ca4-9b55-90da65866a24",
+          "name": "dry_bulb_temperature",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "d3e788db-e4a4-4b94-ba1b-2f18fd142377",
+          "name": "dew_point_temperature",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "9a639657-1ab2-45b6-9137-72b191ecd445",
+          "name": "relative_humidity",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "37ec1197-5809-456e-a820-ea90674a4368",
+          "name": "wind_speed",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "bfc6c6e7-64aa-41d0-a226-c51475a9e13b",
+          "name": "wind_direction",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "861edfee-0e44-4770-b0e6-16c095670987",
+          "name": "direct_normal_rad",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "5f050f23-8ded-4107-8c46-cafebf5e54fd",
+          "name": "diffuse_horizontal_rad",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "f720fddf-d5df-4998-9638-9d76d4df32a2",
+          "name": "global_horizontal_rad",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "a2b4a667-77f3-45be-96ad-a5c62086fdfb",
+          "name": "horizontal_infrared_rad",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "e436c055-0960-490a-b03b-1be2cc46fd26",
+          "name": "direct_normal_ill",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "9fd711d0-1441-47cd-ab86-92eded66d0b6",
+          "name": "diffuse_horizontal_ill",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "29facdb1-e644-4a47-930b-8e466ff4a9ca",
+          "name": "global_horizontal_ill",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "eb4599e4-23e1-4940-8cec-4d528b0fc624",
+          "name": "total_sky_cover",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "261f5039-1e10-4b2a-84fb-1f6de9cf5828",
+          "name": "barometric_pressure",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "22746e52-c732-4d86-9a8b-16d10c8b7553",
+          "name": "model_year",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "6c53779a-2a10-470f-a91a-413773f404ac",
+          "name": "ground_temperature",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
       "guid": "a05a518e-50fa-416b-9419-3feb23fd9679",
       "instance_guid": "a05a518e-50fa-416b-9419-3feb23fd9679",
       "type_name": "Group",
@@ -23,6 +295,279 @@
         "y": 0
       },
       "params": []
+    },
+    {
+      "guid": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "instance_guid": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "type_name": "LB SunPath",
+      "nickname": "Sunpath",
+      "container": "",
+      "position": {
+        "x": 10859.0,
+        "y": 2023.0
+      },
+      "params": [
+        {
+          "param_guid": "2835e26a-e991-49a2-b91e-f747b5cc03df",
+          "name": "north_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "fc27d329-4993-47bc-bc27-59c5fc6ab769",
+          "name": "_location",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "40ee12a4-2539-40da-a03f-eb02a3ccebdb"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "0b138011-4630-4eda-ab9f-e370e112550d",
+          "name": "hoys_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "179241c2-31f1-46dc-9d66-066dc2e54548"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "821032a1-5b1f-4c1c-aa53-f88d80483b25",
+          "name": "dl_saving_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "e3dd617c-c6a2-4e25-9467-bd99bcf257e3",
+          "name": "solar_time_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "2cce3291-92b7-43af-8986-9ea362a7bb64",
+          "name": "_center_pt_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "2f3ceab9-3974-4036-94fb-e0079e1007d3",
+          "name": "_scale_",
+          "type": "input",
+          "persistent_data": [
+            1
+          ],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "8b88aa31-c2cc-4b3e-b751-b2a8f5e7d238",
+          "name": "projection_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "8c51bf6a-c235-48c0-bd22-c72b1adf1360",
+          "name": "daily_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "ed3e01ae-5be9-4372-a0fe-b75f4d93af05",
+          "name": "data_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "5f050f23-8ded-4107-8c46-cafebf5e54fd",
+            "f720fddf-d5df-4998-9638-9d76d4df32a2",
+            "a2b4a667-77f3-45be-96ad-a5c62086fdfb"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "e1627669-ba27-47f6-849c-c8546ef6beea",
+          "name": "statement_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "f653a842-76a7-45cb-a888-09803af7fef2",
+          "name": "legend_par_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "56199df1-05ae-4a9b-9ef5-8daf0ea24617",
+          "name": "out",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "3d7ff145-4901-4cd3-8f73-4fcc5836937c",
+          "name": "vectors",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "1ff26bb4-991a-48bb-a57f-c92791e6cde5",
+          "name": "altitudes",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "069a1b77-16c7-4bc5-9db6-e8fe9ab18c79",
+          "name": "azimuths",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "5be8c7c7-9774-40bc-9438-e8812dfc44e6",
+          "name": "hoys",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "c53c0d0c-971b-4bce-a82c-4c495c1d6590",
+          "name": "sun_pts",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "1dbc5391-ac62-42a5-a274-fd1f51b05908",
+          "name": "analemma",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "9cc31dfe-c4e0-45b4-85e3-ce759c56c4dd",
+          "name": "daily",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "a91fcddb-5005-4b91-8622-dfcf2a7a64fe",
+          "name": "compass",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "0a7ec3ca-4e1c-4a4d-aa9d-003b5b7b9a14",
+          "name": "legend",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "0824e03f-7ba4-423e-8754-5b052f78da3c",
+          "name": "title",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "f583346e-2be6-4698-9171-4930dd907fe1",
+          "name": "color_pts",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "72b458ff-9f35-4df4-a142-507fd7bcc347",
+          "name": "vis_set",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
     },
     {
       "guid": "26a0d12f-b392-4dff-9451-1a7a8b70bc91",
@@ -73,6 +618,18 @@
       "params": []
     },
     {
+      "guid": "7bd4db33-9cd8-495c-b0a9-a001790427ed",
+      "instance_guid": "7bd4db33-9cd8-495c-b0a9-a001790427ed",
+      "type_name": "Group",
+      "nickname": "Distance between slats and targets",
+      "container": "",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "params": []
+    },
+    {
       "guid": "c5d53bff-8a41-4573-ad6c-18e8efb0f95f",
       "instance_guid": "c5d53bff-8a41-4573-ad6c-18e8efb0f95f",
       "type_name": "Group",
@@ -99,6 +656,18 @@
     {
       "guid": "a1c33b95-f4ed-4ee7-aae4-d8da7afda354",
       "instance_guid": "a1c33b95-f4ed-4ee7-aae4-d8da7afda354",
+      "type_name": "Group",
+      "nickname": "",
+      "container": "",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "params": []
+    },
+    {
+      "guid": "e7b54b86-8231-4a2d-bc78-28cc33735d92",
+      "instance_guid": "e7b54b86-8231-4a2d-bc78-28cc33735d92",
       "type_name": "Group",
       "nickname": "",
       "container": "",
@@ -255,8 +824,8 @@
       "nickname": "Number of slats",
       "container": "",
       "position": {
-        "x": 9181.045,
-        "y": 2859.7778
+        "x": 9148.496,
+        "y": 2904.609
       },
       "params": [
         {
@@ -279,8 +848,8 @@
       "nickname": "Distance from window",
       "container": "",
       "position": {
-        "x": 9154.059,
-        "y": 2887.963
+        "x": 9121.51,
+        "y": 2932.794
       },
       "params": [
         {
@@ -895,8 +1464,8 @@
       "nickname": "Horizontal shift between slats",
       "container": "",
       "position": {
-        "x": 9153.209,
-        "y": 2972.1128
+        "x": 9120.66,
+        "y": 3016.9438
       },
       "params": [
         {
@@ -1113,8 +1682,8 @@
       "nickname": "Slat width",
       "container": "",
       "position": {
-        "x": 9190.08,
-        "y": 2770.513
+        "x": 9157.531,
+        "y": 2815.344
       },
       "params": [
         {
@@ -1264,6 +1833,73 @@
       ]
     },
     {
+      "guid": "ad1b8a6c-f731-479b-9018-91fe7193a70e",
+      "instance_guid": "ad1b8a6c-f731-479b-9018-91fe7193a70e",
+      "type_name": "Scribble",
+      "nickname": "Scribble",
+      "container": "",
+      "position": {
+        "x": 8415.245,
+        "y": 2621.769
+      },
+      "params": []
+    },
+    {
+      "guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+      "instance_guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+      "type_name": "Explode Tree",
+      "nickname": "Ex Tree",
+      "container": "",
+      "position": {
+        "x": 11074.0,
+        "y": 1974.0
+      },
+      "params": [
+        {
+          "param_guid": "06d8458e-06fe-40d8-a33d-a757b07fe993",
+          "name": "Data",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "c53c0d0c-971b-4bce-a82c-4c495c1d6590"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
+          "name": "Branch 0",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "7b596afb-0787-405f-a751-78ec69c7f450",
+          "name": "Branch 1",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "cc8c9c0f-c3ed-491d-a3a4-f6d462e710bd",
+          "name": "Branch 2",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
       "guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
       "instance_guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
       "type_name": "Division",
@@ -1317,8 +1953,8 @@
       "nickname": "Slats height (top)",
       "container": "",
       "position": {
-        "x": 9183.809,
-        "y": 2944.9128
+        "x": 9151.26,
+        "y": 2989.744
       },
       "params": [
         {
@@ -1341,8 +1977,8 @@
       "nickname": "Last target from slats",
       "container": "",
       "position": {
-        "x": 9171.695,
-        "y": 2807.5957
+        "x": 9139.146,
+        "y": 2852.4268
       },
       "params": [
         {
@@ -1414,6 +2050,18 @@
       "position": {
         "x": 0,
         "y": 0
+      },
+      "params": []
+    },
+    {
+      "guid": "f94b6883-a02d-4daf-af16-40cf1e328666",
+      "instance_guid": "f94b6883-a02d-4daf-af16-40cf1e328666",
+      "type_name": "Scribble",
+      "nickname": "Scribble",
+      "container": "",
+      "position": {
+        "x": 11032.131,
+        "y": 1847.6393
       },
       "params": []
     },
@@ -1541,8 +2189,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9766.0,
-        "y": 2909.0
+        "x": 9616.0,
+        "y": 2946.0
       },
       "params": [
         {
@@ -1588,8 +2236,8 @@
       "nickname": "Slats height (threshold)",
       "container": "",
       "position": {
-        "x": 9183.809,
-        "y": 2913.463
+        "x": 9151.26,
+        "y": 2958.294
       },
       "params": [
         {
@@ -1612,8 +2260,8 @@
       "nickname": "/",
       "container": "",
       "position": {
-        "x": 9951.0,
-        "y": 2904.0
+        "x": 9801.0,
+        "y": 2941.0
       },
       "params": [
         {
@@ -1659,8 +2307,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9765.0,
-        "y": 2862.0
+        "x": 9615.0,
+        "y": 2899.0
       },
       "params": [
         {
@@ -1706,8 +2354,8 @@
       "nickname": "1st targets from slats",
       "container": "",
       "position": {
-        "x": 9171.47,
-        "y": 2835.0403
+        "x": 9138.921,
+        "y": 2879.8713
       },
       "params": [
         {
@@ -1769,7 +2417,9 @@
               10.0
             ]
           ],
-          "sources": [],
+          "sources": [
+            "e932b554-bb15-4f31-bb75-7157a92b9a0a"
+          ],
           "expression": null,
           "mapping": 0,
           "reverse_data": false
@@ -2096,8 +2746,8 @@
       "nickname": "/",
       "container": "",
       "position": {
-        "x": 9951.0,
-        "y": 2954.0
+        "x": 9801.0,
+        "y": 2991.0
       },
       "params": [
         {
@@ -2143,8 +2793,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9766.0,
-        "y": 3004.0
+        "x": 9616.0,
+        "y": 3041.0
       },
       "params": [
         {
@@ -2190,8 +2840,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9766.0,
-        "y": 2956.0
+        "x": 9616.0,
+        "y": 2993.0
       },
       "params": [
         {
@@ -2237,8 +2887,8 @@
       "nickname": "Targets Height",
       "container": "",
       "position": {
-        "x": 9231.411,
-        "y": 3024.8127
+        "x": 9198.862,
+        "y": 3069.6438
       },
       "params": [
         {
@@ -2285,8 +2935,8 @@
       "nickname": "room width",
       "container": "",
       "position": {
-        "x": 9185.056,
-        "y": 2731.7827
+        "x": 9152.507,
+        "y": 2776.6138
       },
       "params": [
         {
@@ -2919,6 +3569,18 @@
       "position": {
         "x": 0,
         "y": 0
+      },
+      "params": []
+    },
+    {
+      "guid": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
+      "instance_guid": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
+      "type_name": "Panel",
+      "nickname": "",
+      "container": "",
+      "position": {
+        "x": 9992.707,
+        "y": 2068.561
       },
       "params": []
     },
@@ -4952,8 +5614,8 @@
       "nickname": "Orientation",
       "container": "",
       "position": {
-        "x": 9232.643,
-        "y": 3071.4187
+        "x": 9194.566,
+        "y": 3107.6519
       },
       "params": [
         {
@@ -5362,14 +6024,103 @@
       ]
     },
     {
+      "guid": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+      "instance_guid": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+      "type_name": "LB Calculate HOY",
+      "nickname": "HOY",
+      "container": "",
+      "position": {
+        "x": 10627.0,
+        "y": 1855.0
+      },
+      "params": [
+        {
+          "param_guid": "74f4f738-9f96-48a2-839b-ec4214333614",
+          "name": "_month_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "86379f02-2481-4a60-bc43-5e5c81ecc838"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "4cfba927-5d3c-45f0-b709-428a31aff33d",
+          "name": "_day_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "8a457e4b-7089-459f-a9f8-bf07defdca0d"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "940acb72-993c-4bd5-8324-9bc4ee3d0791",
+          "name": "_hour_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "da9d4878-f0ee-4671-8549-52077b99dae4",
+          "name": "_minute_",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "179241c2-31f1-46dc-9d66-066dc2e54548",
+          "name": "hoy",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 1,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "9e629599-e3c6-45b8-b38b-af7ad50c20bb",
+          "name": "doy",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 1,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "2e6dfff5-652c-4518-8874-5e4dbe217086",
+          "name": "date",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 1,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
       "guid": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
       "instance_guid": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
       "type_name": "YZ Plane",
       "nickname": "YZ Plane",
       "container": "",
       "position": {
-        "x": 11526.0,
-        "y": 2899.0
+        "x": 11522.0,
+        "y": 2904.0
       },
       "params": [
         {
@@ -5500,8 +6251,8 @@
       ]
     },
     {
-      "guid": "85286674-9111-419a-9e16-d7f5002f685f",
-      "instance_guid": "85286674-9111-419a-9e16-d7f5002f685f",
+      "guid": "f184c10d-f21e-4eb6-95e4-6e00fc0b761b",
+      "instance_guid": "f184c10d-f21e-4eb6-95e4-6e00fc0b761b",
       "type_name": "Group",
       "nickname": "",
       "container": "",
@@ -5510,9 +6261,130 @@
         "y": 0
       },
       "params": []
+    },
+    {
+      "guid": "86379f02-2481-4a60-bc43-5e5c81ecc838",
+      "instance_guid": "86379f02-2481-4a60-bc43-5e5c81ecc838",
+      "type_name": "Number Slider",
+      "nickname": "Month",
+      "container": "",
+      "position": {
+        "x": 10279.522,
+        "y": 1804.1403
+      },
+      "params": [
+        {
+          "param_guid": "86379f02-2481-4a60-bc43-5e5c81ecc838",
+          "name": "Value",
+          "type": "output",
+          "persistent_data": [
+            8.0
+          ],
+          "sources": [],
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "8a457e4b-7089-459f-a9f8-bf07defdca0d",
+      "instance_guid": "8a457e4b-7089-459f-a9f8-bf07defdca0d",
+      "type_name": "Number Slider",
+      "nickname": "Day",
+      "container": "",
+      "position": {
+        "x": 10279.522,
+        "y": 1835.1403
+      },
+      "params": [
+        {
+          "param_guid": "8a457e4b-7089-459f-a9f8-bf07defdca0d",
+          "name": "Value",
+          "type": "output",
+          "persistent_data": [
+            13.0
+          ],
+          "sources": [],
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7",
+      "instance_guid": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7",
+      "type_name": "Number Slider",
+      "nickname": "Hour",
+      "container": "",
+      "position": {
+        "x": 10278.522,
+        "y": 1863.1403
+      },
+      "params": [
+        {
+          "param_guid": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7",
+          "name": "Value",
+          "type": "output",
+          "persistent_data": [
+            11.0
+          ],
+          "sources": [],
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
     }
   ],
   "wires": [
+    {
+      "from_component": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
+      "from_param": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
+      "to_component": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
+      "to_param": "e3674285-67cb-4599-8e8b-b7fef6528035",
+      "to_param_name": "_weather_URL"
+    },
+    {
+      "from_component": "a91b3e00-05bb-4167-a9f9-c0833c19defc",
+      "from_param": "a91b3e00-05bb-4167-a9f9-c0833c19defc",
+      "to_component": "ccddde54-016e-477f-8a32-15e9acb9b902",
+      "to_param": "abb52b47-0429-4431-93df-c62f6a432f0d",
+      "to_param_name": "_epw_file"
+    },
+    {
+      "from_component": "40ee12a4-2539-40da-a03f-eb02a3ccebdb",
+      "from_param": "40ee12a4-2539-40da-a03f-eb02a3ccebdb",
+      "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "to_param": "fc27d329-4993-47bc-bc27-59c5fc6ab769",
+      "to_param_name": "_location"
+    },
+    {
+      "from_component": "179241c2-31f1-46dc-9d66-066dc2e54548",
+      "from_param": "179241c2-31f1-46dc-9d66-066dc2e54548",
+      "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "to_param": "0b138011-4630-4eda-ab9f-e370e112550d",
+      "to_param_name": "hoys_"
+    },
+    {
+      "from_component": "5f050f23-8ded-4107-8c46-cafebf5e54fd",
+      "from_param": "5f050f23-8ded-4107-8c46-cafebf5e54fd",
+      "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "to_param": "ed3e01ae-5be9-4372-a0fe-b75f4d93af05",
+      "to_param_name": "data_"
+    },
+    {
+      "from_component": "f720fddf-d5df-4998-9638-9d76d4df32a2",
+      "from_param": "f720fddf-d5df-4998-9638-9d76d4df32a2",
+      "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "to_param": "ed3e01ae-5be9-4372-a0fe-b75f4d93af05",
+      "to_param_name": "data_"
+    },
+    {
+      "from_component": "a2b4a667-77f3-45be-96ad-a5c62086fdfb",
+      "from_param": "a2b4a667-77f3-45be-96ad-a5c62086fdfb",
+      "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "to_param": "ed3e01ae-5be9-4372-a0fe-b75f4d93af05",
+      "to_param_name": "data_"
+    },
     {
       "from_component": "dbc236d4-a2fe-48a8-a86e-eebfb04b1053",
       "from_param": "dbc236d4-a2fe-48a8-a86e-eebfb04b1053",
@@ -5696,6 +6568,13 @@
       "to_param_name": "Value"
     },
     {
+      "from_component": "c53c0d0c-971b-4bce-a82c-4c495c1d6590",
+      "from_param": "c53c0d0c-971b-4bce-a82c-4c495c1d6590",
+      "to_component": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+      "to_param": "06d8458e-06fe-40d8-a33d-a757b07fe993",
+      "to_param_name": "Data"
+    },
+    {
       "from_component": "a7d2817a-3182-496e-a453-80e7eeba16fa",
       "from_param": "a7d2817a-3182-496e-a453-80e7eeba16fa",
       "to_component": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
@@ -5771,6 +6650,13 @@
       "to_component": "0f529988-b68b-4d48-9a48-cf099af69050",
       "to_param": "f02c8edd-c2ce-477d-bd9d-5458509e99ba",
       "to_param_name": "Geometry"
+    },
+    {
+      "from_component": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
+      "from_param": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
+      "to_component": "0f529988-b68b-4d48-9a48-cf099af69050",
+      "to_param": "b1398a69-fbda-4447-af1b-e68aa5938736",
+      "to_param_name": "Motion"
     },
     {
       "from_component": "e898f4cb-46e4-4be2-821d-11e2a96379f4",
@@ -6095,6 +6981,27 @@
       "to_param_name": "Angle"
     },
     {
+      "from_component": "86379f02-2481-4a60-bc43-5e5c81ecc838",
+      "from_param": "86379f02-2481-4a60-bc43-5e5c81ecc838",
+      "to_component": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+      "to_param": "74f4f738-9f96-48a2-839b-ec4214333614",
+      "to_param_name": "_month_"
+    },
+    {
+      "from_component": "8a457e4b-7089-459f-a9f8-bf07defdca0d",
+      "from_param": "8a457e4b-7089-459f-a9f8-bf07defdca0d",
+      "to_component": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+      "to_param": "4cfba927-5d3c-45f0-b709-428a31aff33d",
+      "to_param_name": "_day_"
+    },
+    {
+      "from_component": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7",
+      "from_param": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7",
+      "to_component": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+      "to_param": "940acb72-993c-4bd5-8324-9bc4ee3d0791",
+      "to_param_name": "_hour_"
+    },
+    {
       "from_component": "34529a8c-3dfd-4d96-865b-9e4cbfddad6c",
       "from_param": "34529a8c-3dfd-4d96-865b-9e4cbfddad6c",
       "to_component": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
@@ -6115,7 +7022,5 @@
       "to_param": "a1761f27-9d24-4205-b000-5284717acd65",
       "to_param_name": "Angle"
     }
-  ],
-  "component_count": 241,
-  "wire_count": 86
+  ]
 }

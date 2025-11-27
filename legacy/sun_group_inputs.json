@@ -1,0 +1,26 @@
+{
+  "86379f02-2481-4a60-bc43-5e5c81ecc838": {
+    "guid": "86379f02-2481-4a60-bc43-5e5c81ecc838",
+    "type": "Number Slider",
+    "nickname": "Month",
+    "data": [
+      8.0
+    ]
+  },
+  "8a457e4b-7089-459f-a9f8-bf07defdca0d": {
+    "guid": "8a457e4b-7089-459f-a9f8-bf07defdca0d",
+    "type": "Number Slider",
+    "nickname": "Day",
+    "data": [
+      13.0
+    ]
+  },
+  "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7": {
+    "guid": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7",
+    "type": "Number Slider",
+    "nickname": "Hour",
+    "data": [
+      11.0
+    ]
+  }
+}
