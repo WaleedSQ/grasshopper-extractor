@@ -1,0 +1,7910 @@
+{
+  "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf": {
+    "component_info": {
+      "guid": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
+      "type": "LB Download Weather",
+      "nickname": "DownloadEPW",
+      "position": {
+        "x": 10380.0,
+        "y": 2134.0
+      }
+    },
+    "outputs": {
+      "epw_file": {
+        "branches": {
+          "(0,)": [
+            "GBR_SCT_Salsburgh.031520_TMYx.epw"
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "stat_file": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "ddy_file": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c": {
+    "component_info": {
+      "guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
+      "type": "Construct Point",
+      "nickname": "p1",
+      "position": {
+        "x": 10672.0,
+        "y": 2894.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              -2,
+              7
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a6b98c27-e4dd-405e-93f5-755c12294748": {
+    "component_info": {
+      "guid": "a6b98c27-e4dd-405e-93f5-755c12294748",
+      "type": "Construct Point",
+      "nickname": "p1",
+      "position": {
+        "x": 10676.0,
+        "y": 2964.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              3,
+              -3
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "2b8f6d1a-e9d8-4afa-838f-5d0f6b1ea06b": {
+    "component_info": {
+      "guid": "2b8f6d1a-e9d8-4afa-838f-5d0f6b1ea06b",
+      "type": "Scribble",
+      "nickname": "Scribble",
+      "position": {
+        "x": 8869.987,
+        "y": 2993.9746
+      }
+    },
+    "outputs": {}
+  },
+  "ad1b8a6c-f731-479b-9018-91fe7193a70e": {
+    "component_info": {
+      "guid": "ad1b8a6c-f731-479b-9018-91fe7193a70e",
+      "type": "Scribble",
+      "nickname": "Scribble",
+      "position": {
+        "x": 8415.245,
+        "y": 2621.769
+      }
+    },
+    "outputs": {}
+  },
+  "32cc502c-07b0-4d58-aef1-8acf8b2f4015": {
+    "component_info": {
+      "guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
+      "type": "Division",
+      "nickname": "/",
+      "position": {
+        "x": 9229.0,
+        "y": 2554.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            2.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "b9102ff3-4813-4791-a67d-5654a9f7bae9": {
+    "component_info": {
+      "guid": "b9102ff3-4813-4791-a67d-5654a9f7bae9",
+      "type": "Division",
+      "nickname": "/",
+      "position": {
+        "x": 9218.0,
+        "y": 2618.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            0.04
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "f94b6883-a02d-4daf-af16-40cf1e328666": {
+    "component_info": {
+      "guid": "f94b6883-a02d-4daf-af16-40cf1e328666",
+      "type": "Scribble",
+      "nickname": "Scribble",
+      "position": {
+        "x": 11032.131,
+        "y": 1847.6393
+      }
+    },
+    "outputs": {}
+  },
+  "6e403ec2-3d34-4142-a92e-a5bceba31177": {
+    "component_info": {
+      "guid": "6e403ec2-3d34-4142-a92e-a5bceba31177",
+      "type": "Scribble",
+      "nickname": "Scribble",
+      "position": {
+        "x": 12675.026,
+        "y": 2711.7783
+      }
+    },
+    "outputs": {}
+  },
+  "b3c71890-f270-4efd-b308-60428215f2be": {
+    "component_info": {
+      "guid": "b3c71890-f270-4efd-b308-60428215f2be",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 9991.0,
+        "y": 2763.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -3.8
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a69d2e4a-b63b-40d0-838f-dff4d90a83ce": {
+    "component_info": {
+      "guid": "a69d2e4a-b63b-40d0-838f-dff4d90a83ce",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 9990.0,
+        "y": 2699.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -0.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "d055df7d-4a48-4ccd-b770-433bbaa60269": {
+    "component_info": {
+      "guid": "d055df7d-4a48-4ccd-b770-433bbaa60269",
+      "type": "Subtraction",
+      "nickname": "-",
+      "position": {
+        "x": 9616.0,
+        "y": 2946.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            0.6999999999999997
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "e2671ced-ddeb-4187-8048-66f3d519cefb": {
+    "component_info": {
+      "guid": "e2671ced-ddeb-4187-8048-66f3d519cefb",
+      "type": "Subtraction",
+      "nickname": "-",
+      "position": {
+        "x": 9615.0,
+        "y": 2899.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            9.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "e11dd9b3-8452-4aa1-a4a1-4201e1de4578": {
+    "component_info": {
+      "guid": "e11dd9b3-8452-4aa1-a4a1-4201e1de4578",
+      "type": "Subtraction",
+      "nickname": "-",
+      "position": {
+        "x": 9616.0,
+        "y": 3041.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            9.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a7644f3e-b082-4aea-b58d-043d3b6c9a28": {
+    "component_info": {
+      "guid": "a7644f3e-b082-4aea-b58d-043d3b6c9a28",
+      "type": "Subtraction",
+      "nickname": "-",
+      "position": {
+        "x": 9616.0,
+        "y": 2993.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            3.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "ef588711-b5db-40dd-850c-60ca8bac70e4": {
+    "component_info": {
+      "guid": "ef588711-b5db-40dd-850c-60ca8bac70e4",
+      "type": "Sketch",
+      "nickname": "Sketch",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "outputs": {}
+  },
+  "145ff01f-9c03-4771-ae24-68831f14123c": {
+    "component_info": {
+      "guid": "145ff01f-9c03-4771-ae24-68831f14123c",
+      "type": "Sketch",
+      "nickname": "Sketch",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "outputs": {}
+  },
+  "03d56853-f55f-48cb-b76c-4dfb661b4d1b": {
+    "component_info": {
+      "guid": "03d56853-f55f-48cb-b76c-4dfb661b4d1b",
+      "type": "Sketch",
+      "nickname": "Sketch",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "outputs": {}
+  },
+  "9754db2b-c513-48b6-bbf7-0d06f53b3ce4": {
+    "component_info": {
+      "guid": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
+      "type": "Construct Point",
+      "nickname": "Construct Point",
+      "position": {
+        "x": 10454.0,
+        "y": 3038.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              4.5,
+              4.0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a4dc00a7-f21a-44c7-a074-be8a0296701d": {
+    "component_info": {
+      "guid": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+      "type": "LB Calculate HOY",
+      "nickname": "HOY",
+      "position": {
+        "x": 10627.0,
+        "y": 1855.0
+      }
+    },
+    "outputs": {
+      "hoy": {
+        "branches": {
+          "(0, 0)": [
+            5394
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "doy": {
+        "branches": {
+          "(0, 0)": [
+            225
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "date": {
+        "branches": {
+          "(0, 0)": [
+            null
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "ccddde54-016e-477f-8a32-15e9acb9b902": {
+    "component_info": {
+      "guid": "ccddde54-016e-477f-8a32-15e9acb9b902",
+      "type": "LB Import EPW",
+      "nickname": "ImportEPW",
+      "position": {
+        "x": 10549.0,
+        "y": 2098.0
+      }
+    },
+    "outputs": {
+      "location": {
+        "branches": {
+          "(0,)": [
+            {
+              "latitude": 55.867,
+              "longitude": -3.867,
+              "elevation": 275.0,
+              "timezone": 0.0,
+              "name": "Salsburgh",
+              "state": "SCT",
+              "country": "GBR"
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "dry_bulb_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "dew_point_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "relative_humidity": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "wind_speed": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "wind_direction": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "direct_normal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "diffuse_horizontal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "global_horizontal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "horizontal_infrared_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "direct_normal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "diffuse_horizontal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "global_horizontal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "total_sky_cover": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "barometric_pressure": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "model_year": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "ground_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "b908d823-e613-4684-9e94-65a0f60f19b7": {
+    "component_info": {
+      "guid": "b908d823-e613-4684-9e94-65a0f60f19b7",
+      "type": "Box 2Pt",
+      "nickname": "Box 2Pt",
+      "position": {
+        "x": 10827.0,
+        "y": 2898.0
+      }
+    },
+    "outputs": {
+      "Box": {
+        "branches": {
+          "(0,)": [
+            {
+              "corner_a": [
+                0,
+                -2,
+                7
+              ],
+              "corner_b": [
+                0,
+                3,
+                -3
+              ],
+              "plane": null
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "835d042f-2535-476b-b5ae-1eeb534e57bc": {
+    "component_info": {
+      "guid": "835d042f-2535-476b-b5ae-1eeb534e57bc",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 9413.0,
+        "y": 2578.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -2.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "be907c11-5a37-4cf5-9736-0f3c61ba7014": {
+    "component_info": {
+      "guid": "be907c11-5a37-4cf5-9736-0f3c61ba7014",
+      "type": "Construct Point",
+      "nickname": "CP",
+      "position": {
+        "x": 9685.0,
+        "y": 2527.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              2.5,
+              0.04,
+              0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92": {
+    "component_info": {
+      "guid": "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 9421.0,
+        "y": 2618.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -0.04
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "680b290d-e662-4a76-9b3c-e5e921230589": {
+    "component_info": {
+      "guid": "680b290d-e662-4a76-9b3c-e5e921230589",
+      "type": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10159.0,
+        "y": 2699.0
+      }
+    },
+    "outputs": {
+      "Series": {
+        "branches": {
+          "(0,)": [
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1": {
+    "component_info": {
+      "guid": "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1",
+      "type": "Division",
+      "nickname": "/",
+      "position": {
+        "x": 9801.0,
+        "y": 2941.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            0.07777777777777775
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "524ba570-d8ac-4fc6-beee-87eab3265a4f": {
+    "component_info": {
+      "guid": "524ba570-d8ac-4fc6-beee-87eab3265a4f",
+      "type": "Division",
+      "nickname": "/",
+      "position": {
+        "x": 9801.0,
+        "y": 2991.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            0.3888888888888889
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "84b7e65e-450c-4d9c-a13b-273ccc8283d5": {
+    "component_info": {
+      "guid": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "type": "LB SunPath",
+      "nickname": "Sunpath",
+      "position": {
+        "x": 10859.0,
+        "y": 2023.0
+      }
+    },
+    "outputs": {
+      "out": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "vectors": {
+        "branches": {
+          "(0, 0)": [
+            [
+              0.9643647366398209,
+              -0.06916184522004905,
+              -0.25537676850365004
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "altitudes": {
+        "branches": {
+          "(0, 0)": [
+            14.795911594525284
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "azimuths": {
+        "branches": {
+          "(0, 0)": [
+            274.10208781450217
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "hoys": {
+        "branches": {
+          "(0, 0)": [
+            5394
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "sun_pts": {
+        "branches": {
+          "(0, 0)": [
+            [
+              -96436.47366398209,
+              6916.1845220049045,
+              25537.676850365006
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "analemma": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "daily": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "compass": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "legend": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "title": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "color_pts": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "vis_set": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "6991f781-7047-4cdb-b1d9-ffacaca51fdf": {
+    "component_info": {
+      "guid": "6991f781-7047-4cdb-b1d9-ffacaca51fdf",
+      "type": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11011.0,
+        "y": 2929.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            {
+              "corner_a": [
+                0.0,
+                -2.0,
+                7.0
+              ],
+              "corner_b": [
+                0.0,
+                3.0,
+                -3.0
+              ],
+              "plane": null
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "67b3eb53-9ea7-4280-bf8b-ae16c080cc23": {
+    "component_info": {
+      "guid": "67b3eb53-9ea7-4280-bf8b-ae16c080cc23",
+      "type": "Construct Point",
+      "nickname": "CP",
+      "position": {
+        "x": 9685.0,
+        "y": 2596.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              -2.5,
+              -0.04,
+              0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "268410b9-4d90-4bb6-b716-3e8df5798c14": {
+    "component_info": {
+      "guid": "268410b9-4d90-4bb6-b716-3e8df5798c14",
+      "type": "Unit Y",
+      "nickname": "Unit Y",
+      "position": {
+        "x": 10320.0,
+        "y": 2741.0
+      }
+    },
+    "outputs": {
+      "Unit vector": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "b785e424-ebb1-42fc-ac03-dee2d7d764b4": {
+    "component_info": {
+      "guid": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
+      "type": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10159.0,
+        "y": 2767.0
+      }
+    },
+    "outputs": {
+      "Series": {
+        "branches": {
+          "(0,)": [
+            -3.8,
+            -3.722222222222222,
+            -3.6444444444444444,
+            -3.5666666666666664,
+            -3.488888888888889,
+            -3.411111111111111,
+            -3.3333333333333335,
+            -3.2555555555555555,
+            -3.177777777777778,
+            -3.1
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "474a94bf-3e89-4a45-8598-c5ccdb21edae": {
+    "component_info": {
+      "guid": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
+      "type": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10159.0,
+        "y": 2835.0
+      }
+    },
+    "outputs": {
+      "Series": {
+        "branches": {
+          "(0,)": [
+            0.0,
+            0.3888888888888889,
+            0.7777777777777778,
+            1.1666666666666667,
+            1.5555555555555556,
+            1.9444444444444444,
+            2.3333333333333335,
+            2.7222222222222223,
+            3.111111111111111,
+            3.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "44387b24-9fda-46f7-9d1b-9e4790d8dbfe": {
+    "component_info": {
+      "guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+      "type": "Explode Tree",
+      "nickname": "Ex Tree",
+      "position": {
+        "x": 11074.0,
+        "y": 1974.0
+      }
+    },
+    "outputs": {
+      "Branch 0": {
+        "branches": {
+          "(0,)": [
+            [
+              -96436.47366398209,
+              6916.1845220049045,
+              25537.676850365006
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Branch 1": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "Branch 2": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "77f7eddb-d54b-4280-aad9-4c4a8400a56b": {
+    "component_info": {
+      "guid": "77f7eddb-d54b-4280-aad9-4c4a8400a56b",
+      "type": "Area",
+      "nickname": "Area",
+      "position": {
+        "x": 11298.0,
+        "y": 2894.0
+      }
+    },
+    "outputs": {
+      "Area": {
+        "branches": {
+          "(0,)": [
+            100.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Centroid": {
+        "branches": {
+          "(0,)": [
+            [
+              0.0,
+              0.5,
+              2.0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a3eb185f-a7cb-4727-aeaf-d5899f934b99": {
+    "component_info": {
+      "guid": "a3eb185f-a7cb-4727-aeaf-d5899f934b99",
+      "type": "Rectangle 2Pt",
+      "nickname": "Rectangle 2Pt",
+      "position": {
+        "x": 9824.0,
+        "y": 2565.0
+      }
+    },
+    "outputs": {
+      "Rectangle": {
+        "branches": {
+          "(0,)": [
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.04,
+                  0
+                ],
+                [
+                  -2.5,
+                  0.04,
+                  0
+                ],
+                [
+                  -2.5,
+                  -0.04,
+                  0
+                ],
+                [
+                  2.5,
+                  -0.04,
+                  0
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            5.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Width": {
+        "branches": {
+          "(0,)": [
+            0.08
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b": {
+    "component_info": {
+      "guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 10296.0,
+        "y": 2798.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            3.8,
+            3.722222222222222,
+            3.6444444444444444,
+            3.5666666666666664,
+            3.488888888888889,
+            3.411111111111111,
+            3.3333333333333335,
+            3.2555555555555555,
+            3.177777777777778,
+            3.1
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "ebcd02a2-ac68-43a5-b02e-701fa8770206": {
+    "component_info": {
+      "guid": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
+      "type": "Negative",
+      "nickname": "Negative",
+      "position": {
+        "x": 10430.0,
+        "y": 2910.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -0.0,
+            -0.3888888888888889,
+            -0.7777777777777778,
+            -1.1666666666666667,
+            -1.5555555555555556,
+            -1.9444444444444444,
+            -2.3333333333333335,
+            -2.7222222222222223,
+            -3.111111111111111,
+            -3.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "0f6e14e7-bff0-4d57-9f75-cd3f83812578": {
+    "component_info": {
+      "guid": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
+      "type": "YZ Plane",
+      "nickname": "YZ Plane",
+      "position": {
+        "x": 11522.0,
+        "y": 2904.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.5,
+                2.0
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "3732df33-c378-4227-b549-b5ab541e82c6": {
+    "component_info": {
+      "guid": "3732df33-c378-4227-b549-b5ab541e82c6",
+      "type": "Unit Z",
+      "nickname": "Unit Z",
+      "position": {
+        "x": 10436.0,
+        "y": 2824.0
+      }
+    },
+    "outputs": {
+      "Unit vector": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              0,
+              3.8
+            ],
+            [
+              0,
+              0,
+              3.722222222222222
+            ],
+            [
+              0,
+              0,
+              3.6444444444444444
+            ],
+            [
+              0,
+              0,
+              3.5666666666666664
+            ],
+            [
+              0,
+              0,
+              3.488888888888889
+            ],
+            [
+              0,
+              0,
+              3.411111111111111
+            ],
+            [
+              0,
+              0,
+              3.3333333333333335
+            ],
+            [
+              0,
+              0,
+              3.2555555555555555
+            ],
+            [
+              0,
+              0,
+              3.177777777777778
+            ],
+            [
+              0,
+              0,
+              3.1
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "af7efbe5-8f3d-4101-ad11-c9efc24d5577": {
+    "component_info": {
+      "guid": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
+      "type": "Unit Y",
+      "nickname": "Unit Y",
+      "position": {
+        "x": 10608.0,
+        "y": 3058.0
+      }
+    },
+    "outputs": {
+      "Unit vector": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              -0.0,
+              0
+            ],
+            [
+              0,
+              -0.3888888888888889,
+              0
+            ],
+            [
+              0,
+              -0.7777777777777778,
+              0
+            ],
+            [
+              0,
+              -1.1666666666666667,
+              0
+            ],
+            [
+              0,
+              -1.5555555555555556,
+              0
+            ],
+            [
+              0,
+              -1.9444444444444444,
+              0
+            ],
+            [
+              0,
+              -2.3333333333333335,
+              0
+            ],
+            [
+              0,
+              -2.7222222222222223,
+              0
+            ],
+            [
+              0,
+              -3.111111111111111,
+              0
+            ],
+            [
+              0,
+              -3.5,
+              0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "1162b56a-787a-4446-8b26-56947cad14f5": {
+    "component_info": {
+      "guid": "1162b56a-787a-4446-8b26-56947cad14f5",
+      "type": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11814.0,
+        "y": 2866.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.5,
+                2.0
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "ea032caa-ddff-403c-ab58-8ab6e24931ac": {
+    "component_info": {
+      "guid": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
+      "type": "Vector 2Pt",
+      "nickname": "Vector 2Pt",
+      "position": {
+        "x": 10603.0,
+        "y": 2805.0
+      }
+    },
+    "outputs": {
+      "Vector": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              0.07,
+              3.8
+            ],
+            [
+              0,
+              0.07,
+              3.722222222222222
+            ],
+            [
+              0,
+              0.07,
+              3.6444444444444444
+            ],
+            [
+              0,
+              0.07,
+              3.5666666666666664
+            ],
+            [
+              0,
+              0.07,
+              3.488888888888889
+            ],
+            [
+              0,
+              0.07,
+              3.411111111111111
+            ],
+            [
+              0,
+              0.07,
+              3.3333333333333335
+            ],
+            [
+              0,
+              0.07,
+              3.2555555555555555
+            ],
+            [
+              0,
+              0.07,
+              3.177777777777778
+            ],
+            [
+              0,
+              0.07,
+              3.1
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            3.80064468215591,
+            3.722880372991447,
+            3.645116638551087,
+            3.5673535164195753,
+            3.4895910475315506,
+            3.411829276553221,
+            3.3340682523174463,
+            3.256308028321129,
+            3.178548663295604,
+            3.1007902218628076
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "c2ab4791-ae5f-4087-82af-dfd4587ed22e": {
+    "component_info": {
+      "guid": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
+      "type": "Move",
+      "nickname": "Move",
+      "position": {
+        "x": 10795.0,
+        "y": 3048.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              4.5,
+              4.0
+            ],
+            [
+              0,
+              4.111111111111111,
+              4.0
+            ],
+            [
+              0,
+              3.7222222222222223,
+              4.0
+            ],
+            [
+              0,
+              3.333333333333333,
+              4.0
+            ],
+            [
+              0,
+              2.9444444444444446,
+              4.0
+            ],
+            [
+              0,
+              2.5555555555555554,
+              4.0
+            ],
+            [
+              0,
+              2.1666666666666665,
+              4.0
+            ],
+            [
+              0,
+              1.7777777777777777,
+              4.0
+            ],
+            [
+              0,
+              1.3888888888888888,
+              4.0
+            ],
+            [
+              0,
+              1.0,
+              4.0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "translation": [
+                0,
+                -0.0,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -0.3888888888888889,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -0.7777777777777778,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -1.1666666666666667,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -1.5555555555555556,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -1.9444444444444444,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -2.3333333333333335,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -2.7222222222222223,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -3.111111111111111,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -3.5,
+                0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "ddb9e6ae-7d3e-41ae-8c75-fc726c984724": {
+    "component_info": {
+      "guid": "ddb9e6ae-7d3e-41ae-8c75-fc726c984724",
+      "type": "Move",
+      "nickname": "Slats original",
+      "position": {
+        "x": 10797.0,
+        "y": 2767.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.8
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.8
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.8
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.8
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.722222222222222
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.722222222222222
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.722222222222222
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.722222222222222
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.6444444444444444
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.6444444444444444
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.6444444444444444
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.6444444444444444
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.5666666666666664
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.5666666666666664
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.5666666666666664
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.5666666666666664
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.488888888888889
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.488888888888889
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.488888888888889
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.488888888888889
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.411111111111111
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.411111111111111
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.411111111111111
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.411111111111111
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.3333333333333335
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.3333333333333335
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.3333333333333335
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.3333333333333335
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.2555555555555555
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.2555555555555555
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.2555555555555555
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.2555555555555555
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.177777777777778
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.177777777777778
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.177777777777778
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.177777777777778
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.1
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.1
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.1
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.1
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "translation": [
+                0,
+                0.07,
+                3.8
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.722222222222222
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.6444444444444444
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.5666666666666664
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.488888888888889
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.411111111111111
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.3333333333333335
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.2555555555555555
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.177777777777778
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.1
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "464c66b3-4ac6-4cc0-b283-407f8fe787a3": {
+    "component_info": {
+      "guid": "464c66b3-4ac6-4cc0-b283-407f8fe787a3",
+      "type": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11016.0,
+        "y": 3058.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            [
+              0.0,
+              4.5,
+              4.0
+            ],
+            [
+              0.0,
+              4.111111111111111,
+              4.0
+            ],
+            [
+              0.0,
+              3.7222222222222223,
+              4.0
+            ],
+            [
+              0.0,
+              3.333333333333333,
+              4.0
+            ],
+            [
+              0.0,
+              2.9444444444444446,
+              4.0
+            ],
+            [
+              0.0,
+              2.5555555555555554,
+              4.0
+            ],
+            [
+              0.0,
+              2.1666666666666665,
+              4.0
+            ],
+            [
+              0.0,
+              1.7777777777777777,
+              4.0
+            ],
+            [
+              0.0,
+              1.3888888888888888,
+              4.0
+            ],
+            [
+              0.0,
+              1.0,
+              4.0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "505e72fd-e7f0-4e7d-ba69-88f047b56bb9": {
+    "component_info": {
+      "guid": "505e72fd-e7f0-4e7d-ba69-88f047b56bb9",
+      "type": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11013.0,
+        "y": 2820.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.8
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.8
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.8
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.8
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.722222222222222
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.722222222222222
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.722222222222222
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.722222222222222
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.6444444444444444
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.6444444444444444
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.6444444444444444
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.6444444444444444
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.5666666666666664
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.5666666666666664
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.5666666666666664
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.5666666666666664
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.488888888888889
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.488888888888889
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.488888888888889
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.488888888888889
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.411111111111111
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.411111111111111
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.411111111111111
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.411111111111111
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.3333333333333335
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.3333333333333335
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.3333333333333335
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.3333333333333335
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.2555555555555555
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.2555555555555555
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.2555555555555555
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.2555555555555555
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.177777777777778
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.177777777777778
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.177777777777778
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.177777777777778
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.1
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.1
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.1
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.1
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "ef803855-36ec-4b48-8d76-89d870a0438f": {
+    "component_info": {
+      "guid": "ef803855-36ec-4b48-8d76-89d870a0438f",
+      "type": "PolyLine",
+      "nickname": "PolyLine",
+      "position": {
+        "x": 11862.0,
+        "y": 2990.0
+      }
+    },
+    "outputs": {
+      "Polyline": {
+        "branches": {
+          "(0,)": [
+            {
+              "vertices": [
+                [
+                  0.0,
+                  4.5,
+                  4.0
+                ],
+                [
+                  0.0,
+                  4.111111111111111,
+                  4.0
+                ],
+                [
+                  0.0,
+                  3.7222222222222223,
+                  4.0
+                ],
+                [
+                  0.0,
+                  3.333333333333333,
+                  4.0
+                ],
+                [
+                  0.0,
+                  2.9444444444444446,
+                  4.0
+                ],
+                [
+                  0.0,
+                  2.5555555555555554,
+                  4.0
+                ],
+                [
+                  0.0,
+                  2.1666666666666665,
+                  4.0
+                ],
+                [
+                  0.0,
+                  1.7777777777777777,
+                  4.0
+                ],
+                [
+                  0.0,
+                  1.3888888888888888,
+                  4.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  4.0
+                ]
+              ],
+              "closed": false
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            3.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "3bd2c1d3-149d-49fb-952c-8db272035f9e": {
+    "component_info": {
+      "guid": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
+      "type": "Area",
+      "nickname": "Area",
+      "position": {
+        "x": 11290.0,
+        "y": 2824.0
+      }
+    },
+    "outputs": {
+      "Area": {
+        "branches": {
+          "(0,)": [
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Centroid": {
+        "branches": {
+          "(0,)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.8
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.722222222222222
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.6444444444444444
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.5666666666666664
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.488888888888889
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.411111111111111
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.3333333333333335
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.2555555555555555
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.177777777777778
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.1
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "0f529988-b68b-4d48-9a48-cf099af69050": {
+    "component_info": {
+      "guid": "0f529988-b68b-4d48-9a48-cf099af69050",
+      "type": "Move",
+      "nickname": "New Sun",
+      "position": {
+        "x": 11481.0,
+        "y": 2770.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25541.476850365005
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25541.399072587228
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25541.32129480945
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25541.24351703167
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25541.165739253895
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25541.087961476118
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25541.010183698338
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25540.93240592056
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25540.854628142784
+            ],
+            [
+              -96436.47366398209,
+              6916.254522004904,
+              25540.776850365004
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            },
+            {
+              "translation": [
+                -96436.47366398209,
+                6916.1845220049045,
+                25537.676850365006
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "c7dba531-36f1-4a2d-8e0e-ed94b3873bba": {
+    "component_info": {
+      "guid": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
+      "type": "Line",
+      "nickname": "In Ray",
+      "position": {
+        "x": 12038.0,
+        "y": 2790.0
+      }
+    },
+    "outputs": {
+      "Line": {
+        "branches": {
+          "(0, 0)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "end": [
+                0.0,
+                4.5,
+                4.0
+              ]
+            }
+          ],
+          "(0, 1)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "end": [
+                0.0,
+                4.111111111111111,
+                4.0
+              ]
+            }
+          ],
+          "(0, 2)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "end": [
+                0.0,
+                3.7222222222222223,
+                4.0
+              ]
+            }
+          ],
+          "(0, 3)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "end": [
+                0.0,
+                3.333333333333333,
+                4.0
+              ]
+            }
+          ],
+          "(0, 4)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "end": [
+                0.0,
+                2.9444444444444446,
+                4.0
+              ]
+            }
+          ],
+          "(0, 5)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "end": [
+                0.0,
+                2.5555555555555554,
+                4.0
+              ]
+            }
+          ],
+          "(0, 6)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "end": [
+                0.0,
+                2.1666666666666665,
+                4.0
+              ]
+            }
+          ],
+          "(0, 7)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "end": [
+                0.0,
+                1.7777777777777777,
+                4.0
+              ]
+            }
+          ],
+          "(0, 8)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "end": [
+                0.0,
+                1.3888888888888888,
+                4.0
+              ]
+            }
+          ],
+          "(0, 9)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "end": [
+                0.0,
+                1.0,
+                4.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Length": {
+        "branches": {
+          "(0, 0)": [
+            4.434512374545819
+          ],
+          "(0, 1)": [
+            4.050646800965598
+          ],
+          "(0, 2)": [
+            3.669488644699728
+          ],
+          "(0, 3)": [
+            3.2919784662452187
+          ],
+          "(0, 4)": [
+            2.9195317145218285
+          ],
+          "(0, 5)": [
+            2.5543642150660264
+          ],
+          "(0, 6)": [
+            2.2001035329173844
+          ],
+          "(0, 7)": [
+            1.8629821440732601
+          ],
+          "(0, 8)": [
+            1.5541934512635858
+          ],
+          "(0, 9)": [
+            1.2941792766073794
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "9ff79870-05d0-483d-87be-b3641d71c6fc": {
+    "component_info": {
+      "guid": "9ff79870-05d0-483d-87be-b3641d71c6fc",
+      "type": "List Item",
+      "nickname": "List Item",
+      "position": {
+        "x": 11880.0,
+        "y": 3147.0
+      }
+    },
+    "outputs": {
+      "Item": {
+        "branches": {
+          "(0,)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.1
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "326da981-351e-4794-9d60-77e8e87bd778": {
+    "component_info": {
+      "guid": "326da981-351e-4794-9d60-77e8e87bd778",
+      "type": "Plane Normal",
+      "nickname": "Plane Normal",
+      "position": {
+        "x": 12043.0,
+        "y": 2991.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "910c335c-b5e8-41bf-bfb4-576cb17432c7": {
+    "component_info": {
+      "guid": "910c335c-b5e8-41bf-bfb4-576cb17432c7",
+      "type": "PolyLine",
+      "nickname": "PolyLine",
+      "position": {
+        "x": 11867.0,
+        "y": 3064.0
+      }
+    },
+    "outputs": {
+      "Polyline": {
+        "branches": {
+          "(0,)": [
+            {
+              "vertices": [
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.1
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.177777777777778
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.2555555555555555
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.3333333333333335
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.411111111111111
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.488888888888889
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.5666666666666664
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.6444444444444444
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.722222222222222
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.8
+                ]
+              ],
+              "closed": false
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            0.6999999999999997
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "9a33273a-910e-439d-98d5-d225e29faebf": {
+    "component_info": {
+      "guid": "9a33273a-910e-439d-98d5-d225e29faebf",
+      "type": "Line",
+      "nickname": "Out Ray",
+      "position": {
+        "x": 11734.0,
+        "y": 2770.0
+      }
+    },
+    "outputs": {
+      "Line": {
+        "branches": {
+          "(0,)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25541.476850365005
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25541.399072587228
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25541.32129480945
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25541.24351703167
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25541.165739253895
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25541.087961476118
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25541.010183698338
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25540.93240592056
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25540.854628142784
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "end": [
+                -96436.47366398209,
+                6916.254522004904,
+                25540.776850365004
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            100000.00000000001,
+            100000.00000000001,
+            100000.00000000001,
+            100000.00000000001,
+            100000.00000000001,
+            100000.00000000001,
+            100000.00000000001,
+            100000.00000000001,
+            100000.00000000001,
+            100000.00000000001
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "c7b8773d-e1e0-4c31-9b7c-b8b54f9e40e0": {
+    "component_info": {
+      "guid": "c7b8773d-e1e0-4c31-9b7c-b8b54f9e40e0",
+      "type": "Divide Length",
+      "nickname": "DL",
+      "position": {
+        "x": 12167.0,
+        "y": 2800.0
+      }
+    },
+    "outputs": {
+      "Points": {
+        "branches": {
+          "(0, 0)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.8
+            ],
+            [
+              0.0,
+              0.2697964883547639,
+              3.8090201574877995
+            ],
+            [
+              0.0,
+              0.46959297670952777,
+              3.8180403149755993
+            ],
+            [
+              0.0,
+              0.6693894650642916,
+              3.827060472463399
+            ],
+            [
+              0.0,
+              0.8691859534190556,
+              3.8360806299511987
+            ],
+            [
+              0.0,
+              1.0689824417738192,
+              3.8451007874389984
+            ],
+            [
+              0.0,
+              1.2687789301285832,
+              3.854120944926798
+            ],
+            [
+              0.0,
+              1.4685754184833473,
+              3.863141102414598
+            ],
+            [
+              0.0,
+              1.668371906838111,
+              3.8721612599023976
+            ],
+            [
+              0.0,
+              1.8681683951928747,
+              3.8811814173901973
+            ],
+            [
+              0.0,
+              2.0679648835476385,
+              3.890201574877997
+            ],
+            [
+              0.0,
+              2.2677613719024023,
+              3.8992217323657967
+            ],
+            [
+              0.0,
+              2.467557860257166,
+              3.9082418898535964
+            ],
+            [
+              0.0,
+              2.66735434861193,
+              3.917262047341396
+            ],
+            [
+              0.0,
+              2.8671508369666943,
+              3.926282204829196
+            ],
+            [
+              0.0,
+              3.0669473253214576,
+              3.9353023623169956
+            ],
+            [
+              0.0,
+              3.266743813676222,
+              3.9443225198047953
+            ],
+            [
+              0.0,
+              3.4665403020309857,
+              3.9533426772925955
+            ],
+            [
+              0.0,
+              3.666336790385749,
+              3.9623628347803947
+            ],
+            [
+              0.0,
+              3.8661332787405134,
+              3.971382992268195
+            ],
+            [
+              0.0,
+              4.065929767095277,
+              3.9804031497559946
+            ],
+            [
+              0.0,
+              4.2657262554500415,
+              3.9894233072437943
+            ],
+            [
+              0.0,
+              4.465522743804805,
+              3.998443464731594
+            ]
+          ],
+          "(0, 1)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.722222222222222
+            ],
+            [
+              0.0,
+              0.26952917692788153,
+              3.735937452970633
+            ],
+            [
+              0.0,
+              0.46905835385576305,
+              3.749652683719044
+            ],
+            [
+              0.0,
+              0.6685875307836446,
+              3.7633679144674548
+            ],
+            [
+              0.0,
+              0.8681167077115262,
+              3.7770831452158653
+            ],
+            [
+              0.0,
+              1.0676458846394075,
+              3.7907983759642763
+            ],
+            [
+              0.0,
+              1.2671750615672892,
+              3.8045136067126872
+            ],
+            [
+              0.0,
+              1.4667042384951707,
+              3.818228837461098
+            ],
+            [
+              0.0,
+              1.6662334154230523,
+              3.831944068209509
+            ],
+            [
+              0.0,
+              1.8657625923509336,
+              3.84565929895792
+            ],
+            [
+              0.0,
+              2.065291769278815,
+              3.859374529706331
+            ],
+            [
+              0.0,
+              2.264820946206697,
+              3.8730897604547416
+            ],
+            [
+              0.0,
+              2.464350123134578,
+              3.8868049912031526
+            ],
+            [
+              0.0,
+              2.66387930006246,
+              3.9005202219515636
+            ],
+            [
+              0.0,
+              2.863408476990341,
+              3.9142354526999745
+            ],
+            [
+              0.0,
+              3.0629376539182225,
+              3.9279506834483855
+            ],
+            [
+              0.0,
+              3.2624668308461042,
+              3.9416659141967965
+            ],
+            [
+              0.0,
+              3.461996007773986,
+              3.9553811449452074
+            ],
+            [
+              0.0,
+              3.661525184701867,
+              3.969096375693618
+            ],
+            [
+              0.0,
+              3.861054361629749,
+              3.982811606442029
+            ],
+            [
+              0.0,
+              4.06058353855763,
+              3.99652683719044
+            ]
+          ],
+          "(0, 2)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.6444444444444444
+            ],
+            [
+              0.0,
+              0.2690589194217867,
+              3.6638234691523763
+            ],
+            [
+              0.0,
+              0.46811783884357344,
+              3.683202493860308
+            ],
+            [
+              0.0,
+              0.6671767582653603,
+              3.70258151856824
+            ],
+            [
+              0.0,
+              0.8662356776871469,
+              3.7219605432761713
+            ],
+            [
+              0.0,
+              1.0652945971089336,
+              3.7413395679841033
+            ],
+            [
+              0.0,
+              1.2643535165307205,
+              3.7607185926920352
+            ],
+            [
+              0.0,
+              1.4634124359525071,
+              3.7800976173999667
+            ],
+            [
+              0.0,
+              1.6624713553742938,
+              3.7994766421078987
+            ],
+            [
+              0.0,
+              1.8615302747960805,
+              3.81885566681583
+            ],
+            [
+              0.0,
+              2.060589194217867,
+              3.838234691523762
+            ],
+            [
+              0.0,
+              2.259648113639654,
+              3.857613716231694
+            ],
+            [
+              0.0,
+              2.4587070330614407,
+              3.8769927409396256
+            ],
+            [
+              0.0,
+              2.6577659524832273,
+              3.8963717656475576
+            ],
+            [
+              0.0,
+              2.856824871905014,
+              3.915750790355489
+            ],
+            [
+              0.0,
+              3.0558837913268007,
+              3.935129815063421
+            ],
+            [
+              0.0,
+              3.2549427107485873,
+              3.9545088397713526
+            ],
+            [
+              0.0,
+              3.4540016301703744,
+              3.9738878644792845
+            ],
+            [
+              0.0,
+              3.6530605495921606,
+              3.9932668891872165
+            ]
+          ],
+          "(0, 3)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.5666666666666664
+            ],
+            [
+              0.0,
+              0.2682597010760792,
+              3.5929932868299863
+            ],
+            [
+              0.0,
+              0.46651940215215837,
+              3.6193199069933066
+            ],
+            [
+              0.0,
+              0.6647791032282376,
+              3.6456465271566265
+            ],
+            [
+              0.0,
+              0.8630388043043168,
+              3.6719731473199464
+            ],
+            [
+              0.0,
+              1.0612985053803958,
+              3.6982997674832667
+            ],
+            [
+              0.0,
+              1.2595582064564752,
+              3.7246263876465866
+            ],
+            [
+              0.0,
+              1.4578179075325544,
+              3.7509530078099065
+            ],
+            [
+              0.0,
+              1.6560776086086335,
+              3.777279627973227
+            ],
+            [
+              0.0,
+              1.8543373096847127,
+              3.8036062481365467
+            ],
+            [
+              0.0,
+              2.052597010760792,
+              3.8299328682998666
+            ],
+            [
+              0.0,
+              2.250856711836871,
+              3.856259488463187
+            ],
+            [
+              0.0,
+              2.44911641291295,
+              3.8825861086265068
+            ],
+            [
+              0.0,
+              2.6473761139890293,
+              3.9089127287898267
+            ],
+            [
+              0.0,
+              2.8456358150651084,
+              3.935239348953147
+            ],
+            [
+              0.0,
+              3.043895516141187,
+              3.961565969116467
+            ],
+            [
+              0.0,
+              3.2421552172172667,
+              3.9878925892797867
+            ]
+          ],
+          "(0, 4)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.488888888888889
+            ],
+            [
+              0.0,
+              0.2669113354821174,
+              3.523902114370827
+            ],
+            [
+              0.0,
+              0.46382267096423474,
+              3.5589153398527653
+            ],
+            [
+              0.0,
+              0.6607340064463522,
+              3.5939285653347035
+            ],
+            [
+              0.0,
+              0.8576453419284695,
+              3.6289417908166417
+            ],
+            [
+              0.0,
+              1.0545566774105866,
+              3.6639550162985794
+            ],
+            [
+              0.0,
+              1.2514680128927043,
+              3.6989682417805176
+            ],
+            [
+              0.0,
+              1.4483793483748215,
+              3.733981467262456
+            ],
+            [
+              0.0,
+              1.645290683856939,
+              3.768994692744394
+            ],
+            [
+              0.0,
+              1.842202019339056,
+              3.804007918226332
+            ],
+            [
+              0.0,
+              2.0391133548211733,
+              3.8390211437082704
+            ],
+            [
+              0.0,
+              2.2360246903032905,
+              3.8740343691902086
+            ],
+            [
+              0.0,
+              2.4329360257854082,
+              3.909047594672147
+            ],
+            [
+              0.0,
+              2.6298473612675255,
+              3.9440608201540845
+            ],
+            [
+              0.0,
+              2.8267586967496428,
+              3.9790740456360227
+            ]
+          ],
+          "(0, 5)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.411111111111111
+            ],
+            [
+              0.0,
+              0.264612462928769,
+              3.4572195623190893
+            ],
+            [
+              0.0,
+              0.45922492585753794,
+              3.5033280135270677
+            ],
+            [
+              0.0,
+              0.653837388786307,
+              3.549436464735046
+            ],
+            [
+              0.0,
+              0.8484498517150759,
+              3.5955449159430244
+            ],
+            [
+              0.0,
+              1.043062314643845,
+              3.6416533671510027
+            ],
+            [
+              0.0,
+              1.237674777572614,
+              3.687761818358981
+            ],
+            [
+              0.0,
+              1.432287240501383,
+              3.7338702695669594
+            ],
+            [
+              0.0,
+              1.6268997034301518,
+              3.779978720774938
+            ],
+            [
+              0.0,
+              1.8215121663589209,
+              3.826087171982916
+            ],
+            [
+              0.0,
+              2.0161246292876895,
+              3.8721956231908945
+            ],
+            [
+              0.0,
+              2.210737092216459,
+              3.918304074398873
+            ],
+            [
+              0.0,
+              2.4053495551452277,
+              3.964412525606851
+            ]
+          ],
+          "(0, 6)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.3333333333333335
+            ],
+            [
+              0.0,
+              0.26059709102747924,
+              3.3939365419271263
+            ],
+            [
+              0.0,
+              0.4511941820549585,
+              3.4545397505209197
+            ],
+            [
+              0.0,
+              0.6417912730824379,
+              3.5151429591147125
+            ],
+            [
+              0.0,
+              0.832388364109917,
+              3.575746167708506
+            ],
+            [
+              0.0,
+              1.022985455137396,
+              3.6363493763022987
+            ],
+            [
+              0.0,
+              1.2135825461648757,
+              3.696952584896092
+            ],
+            [
+              0.0,
+              1.4041796371923547,
+              3.757555793489885
+            ],
+            [
+              0.0,
+              1.594776728219834,
+              3.818159002083678
+            ],
+            [
+              0.0,
+              1.785373819247313,
+              3.878762210677471
+            ],
+            [
+              0.0,
+              1.9759709102747922,
+              3.939365419271264
+            ],
+            [
+              0.0,
+              2.1665680013022715,
+              3.9999686278650572
+            ]
+          ],
+          "(0, 7)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.2555555555555555
+            ],
+            [
+              0.0,
+              0.2533380725854795,
+              3.3354752098381004
+            ],
+            [
+              0.0,
+              0.436676145170959,
+              3.415394864120645
+            ],
+            [
+              0.0,
+              0.6200142177564385,
+              3.4953145184031897
+            ],
+            [
+              0.0,
+              0.803352290341918,
+              3.5752341726857346
+            ],
+            [
+              0.0,
+              0.9866903629273974,
+              3.655153826968279
+            ],
+            [
+              0.0,
+              1.170028435512877,
+              3.735073481250824
+            ],
+            [
+              0.0,
+              1.3533665080983566,
+              3.814993135533369
+            ],
+            [
+              0.0,
+              1.536704580683836,
+              3.8949127898159137
+            ],
+            [
+              0.0,
+              1.7200426532693154,
+              3.974832444098458
+            ]
+          ],
+          "(0, 8)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.177777777777778
+            ],
+            [
+              0.0,
+              0.23972004196988606,
+              3.2835847121145223
+            ],
+            [
+              0.0,
+              0.40944008393977205,
+              3.389391646451267
+            ],
+            [
+              0.0,
+              0.5791601259096582,
+              3.4951985807880113
+            ],
+            [
+              0.0,
+              0.7488801678795441,
+              3.601005515124756
+            ],
+            [
+              0.0,
+              0.91860020984943,
+              3.7068124494615002
+            ],
+            [
+              0.0,
+              1.0883202518193162,
+              3.8126193837982445
+            ],
+            [
+              0.0,
+              1.2580402937892021,
+              3.9184263181349888
+            ]
+          ],
+          "(0, 9)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.1
+            ],
+            [
+              0.0,
+              0.21372042835331817,
+              3.2390842855032114
+            ],
+            [
+              0.0,
+              0.35744085670663633,
+              3.378168571006422
+            ],
+            [
+              0.0,
+              0.5011612850599546,
+              3.5172528565096335
+            ],
+            [
+              0.0,
+              0.6448817134132727,
+              3.6563371420128448
+            ],
+            [
+              0.0,
+              0.7886021417665908,
+              3.7954214275160556
+            ],
+            [
+              0.0,
+              0.9323225701199092,
+              3.934505713019267
+            ]
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 145
+      }
+    }
+  },
+  "157c48b5-0aed-49e5-a808-d4c64666062d": {
+    "component_info": {
+      "guid": "157c48b5-0aed-49e5-a808-d4c64666062d",
+      "type": "List Item",
+      "nickname": "List Item",
+      "position": {
+        "x": 12195.0,
+        "y": 2971.0
+      }
+    },
+    "outputs": {
+      "Item": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "30f76ec5-d532-4903-aa18-cd18b27442f9": {
+    "component_info": {
+      "guid": "30f76ec5-d532-4903-aa18-cd18b27442f9",
+      "type": "Construct Plane",
+      "nickname": "Construct Plane",
+      "position": {
+        "x": 12039.0,
+        "y": 3119.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "9cd053c9-3dd2-432b-aa46-a29a4b05c339": {
+    "component_info": {
+      "guid": "9cd053c9-3dd2-432b-aa46-a29a4b05c339",
+      "type": "Project",
+      "nickname": "Project",
+      "position": {
+        "x": 12014.0,
+        "y": 2869.0
+      }
+    },
+    "outputs": {
+      "Curve": {
+        "branches": {
+          "(0, 0)": [
+            {
+              "start": [
+                16.843318875354484,
+                -1.137961022204278,
+                0.0
+              ],
+              "end": [
+                11.85612799057249,
+                -0.780292070871649,
+                0.0
+              ]
+            }
+          ],
+          "(0, 1)": [
+            {
+              "start": [
+                16.549611085790907,
+                -1.116897028561688,
+                0.0
+              ],
+              "end": [
+                11.56242020100891,
+                -0.7592280772290589,
+                0.0
+              ]
+            }
+          ],
+          "(0, 2)": [
+            {
+              "start": [
+                16.255903296227327,
+                -1.0958330349190983,
+                -4.440892098500626e-16
+              ],
+              "end": [
+                11.268712411445332,
+                -0.7381640835864691,
+                -4.440892098500626e-16
+              ]
+            }
+          ],
+          "(0, 3)": [
+            {
+              "start": [
+                15.962195506663743,
+                -1.0747690412765083,
+                4.440892098500626e-16
+              ],
+              "end": [
+                10.975004621881748,
+                -0.7171000899438791,
+                4.440892098500626e-16
+              ]
+            }
+          ],
+          "(0, 4)": [
+            {
+              "start": [
+                15.668487717100167,
+                -1.0537050476339185,
+                0.0
+              ],
+              "end": [
+                10.681296832318171,
+                -0.6960360963012895,
+                0.0
+              ]
+            }
+          ],
+          "(0, 5)": [
+            {
+              "start": [
+                15.374779927536586,
+                -1.0326410539913287,
+                0.0
+              ],
+              "end": [
+                10.387589042754591,
+                -0.6749721026586994,
+                0.0
+              ]
+            }
+          ],
+          "(0, 6)": [
+            {
+              "start": [
+                15.081072137973006,
+                -1.0115770603487386,
+                0.0
+              ],
+              "end": [
+                10.093881253191011,
+                -0.6539081090161096,
+                0.0
+              ]
+            }
+          ],
+          "(0, 7)": [
+            {
+              "start": [
+                14.787364348409424,
+                -0.9905130667061488,
+                0.0
+              ],
+              "end": [
+                9.800173463627429,
+                -0.6328441153735196,
+                0.0
+              ]
+            }
+          ],
+          "(0, 8)": [
+            {
+              "start": [
+                14.493656558845847,
+                -0.969449073063559,
+                -4.440892098500626e-16
+              ],
+              "end": [
+                9.506465674063852,
+                -0.61178012173093,
+                -4.440892098500626e-16
+              ]
+            }
+          ],
+          "(0, 9)": [
+            {
+              "start": [
+                14.199948769282265,
+                -0.948385079420969,
+                0.0
+              ],
+              "end": [
+                9.21275788450027,
+                -0.59071612808834,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "ed4878fc-7b79-46d9-a4b1-7637f35de976": {
+    "component_info": {
+      "guid": "ed4878fc-7b79-46d9-a4b1-7637f35de976",
+      "type": "List Item",
+      "nickname": "LI",
+      "position": {
+        "x": 12348.0,
+        "y": 2795.0
+      }
+    },
+    "outputs": {
+      "Item": {
+        "branches": {
+          "(0, 0)": [
+            [
+              0.0,
+              0.2697964883547639,
+              3.8090201574877995
+            ]
+          ],
+          "(0, 1)": [
+            [
+              0.0,
+              0.26952917692788153,
+              3.735937452970633
+            ]
+          ],
+          "(0, 2)": [
+            [
+              0.0,
+              0.2690589194217867,
+              3.6638234691523763
+            ]
+          ],
+          "(0, 3)": [
+            [
+              0.0,
+              0.2682597010760792,
+              3.5929932868299863
+            ]
+          ],
+          "(0, 4)": [
+            [
+              0.0,
+              0.2669113354821174,
+              3.523902114370827
+            ]
+          ],
+          "(0, 5)": [
+            [
+              0.0,
+              0.264612462928769,
+              3.4572195623190893
+            ]
+          ],
+          "(0, 6)": [
+            [
+              0.0,
+              0.26059709102747924,
+              3.3939365419271263
+            ]
+          ],
+          "(0, 7)": [
+            [
+              0.0,
+              0.2533380725854795,
+              3.3354752098381004
+            ]
+          ],
+          "(0, 8)": [
+            [
+              0.0,
+              0.23972004196988606,
+              3.2835847121145223
+            ]
+          ],
+          "(0, 9)": [
+            [
+              0.0,
+              0.21372042835331817,
+              3.2390842855032114
+            ]
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "011398ea-ce1d-412a-afeb-fe91e8fac96c": {
+    "component_info": {
+      "guid": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
+      "type": "Plane Normal",
+      "nickname": "Plane Normal",
+      "position": {
+        "x": 12184.0,
+        "y": 3075.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "1e2231f7-0d69-4908-8f56-55f13a5d4237": {
+    "component_info": {
+      "guid": "1e2231f7-0d69-4908-8f56-55f13a5d4237",
+      "type": "Divide Length",
+      "nickname": "DL",
+      "position": {
+        "x": 12167.0,
+        "y": 2879.0
+      }
+    },
+    "outputs": {
+      "Points": {
+        "branches": {
+          "(0, 0)": [
+            [
+              16.843318875354484,
+              -1.137961022204278,
+              0.0
+            ],
+            [
+              16.643831239963205,
+              -1.1236542641509728,
+              0.0
+            ],
+            [
+              16.444343604571923,
+              -1.1093475060976676,
+              0.0
+            ],
+            [
+              16.244855969180644,
+              -1.0950407480443625,
+              0.0
+            ],
+            [
+              16.045368333789366,
+              -1.0807339899910573,
+              0.0
+            ],
+            [
+              15.845880698398085,
+              -1.0664272319377521,
+              0.0
+            ],
+            [
+              15.646393063006805,
+              -1.052120473884447,
+              0.0
+            ],
+            [
+              15.446905427615524,
+              -1.0378137158311418,
+              0.0
+            ],
+            [
+              15.247417792224246,
+              -1.0235069577778366,
+              0.0
+            ],
+            [
+              15.047930156832965,
+              -1.0092001997245315,
+              0.0
+            ],
+            [
+              14.848442521441687,
+              -0.9948934416712263,
+              0.0
+            ],
+            [
+              14.648954886050406,
+              -0.9805866836179211,
+              0.0
+            ],
+            [
+              14.449467250659126,
+              -0.966279925564616,
+              0.0
+            ],
+            [
+              14.249979615267847,
+              -0.9519731675113108,
+              0.0
+            ],
+            [
+              14.050491979876567,
+              -0.9376664094580056,
+              0.0
+            ],
+            [
+              13.851004344485286,
+              -0.9233596514047004,
+              0.0
+            ],
+            [
+              13.651516709094007,
+              -0.9090528933513953,
+              0.0
+            ],
+            [
+              13.452029073702727,
+              -0.8947461352980901,
+              0.0
+            ],
+            [
+              13.252541438311447,
+              -0.8804393772447849,
+              0.0
+            ],
+            [
+              13.053053802920168,
+              -0.8661326191914798,
+              0.0
+            ],
+            [
+              12.853566167528887,
+              -0.8518258611381746,
+              0.0
+            ],
+            [
+              12.654078532137607,
+              -0.8375191030848694,
+              0.0
+            ],
+            [
+              12.454590896746328,
+              -0.8232123450315643,
+              0.0
+            ],
+            [
+              12.255103261355048,
+              -0.8089055869782591,
+              0.0
+            ],
+            [
+              12.055615625963767,
+              -0.7945988289249539,
+              0.0
+            ]
+          ],
+          "(0, 1)": [
+            [
+              16.549611085790907,
+              -1.116897028561688,
+              0.0
+            ],
+            [
+              16.35012345039963,
+              -1.1025902705083828,
+              0.0
+            ],
+            [
+              16.150635815008346,
+              -1.0882835124550776,
+              0.0
+            ],
+            [
+              15.951148179617068,
+              -1.0739767544017724,
+              0.0
+            ],
+            [
+              15.751660544225787,
+              -1.0596699963484673,
+              0.0
+            ],
+            [
+              15.552172908834509,
+              -1.045363238295162,
+              0.0
+            ],
+            [
+              15.352685273443228,
+              -1.031056480241857,
+              0.0
+            ],
+            [
+              15.15319763805195,
+              -1.0167497221885518,
+              0.0
+            ],
+            [
+              14.953710002660669,
+              -1.0024429641352466,
+              0.0
+            ],
+            [
+              14.754222367269389,
+              -0.9881362060819415,
+              0.0
+            ],
+            [
+              14.55473473187811,
+              -0.9738294480286364,
+              0.0
+            ],
+            [
+              14.35524709648683,
+              -0.9595226899753312,
+              0.0
+            ],
+            [
+              14.155759461095549,
+              -0.945215931922026,
+              0.0
+            ],
+            [
+              13.95627182570427,
+              -0.930909173868721,
+              0.0
+            ],
+            [
+              13.75678419031299,
+              -0.9166024158154158,
+              0.0
+            ],
+            [
+              13.55729655492171,
+              -0.9022956577621106,
+              0.0
+            ],
+            [
+              13.35780891953043,
+              -0.8879888997088055,
+              0.0
+            ],
+            [
+              13.15832128413915,
+              -0.8736821416555003,
+              0.0
+            ],
+            [
+              12.95883364874787,
+              -0.8593753836021951,
+              0.0
+            ],
+            [
+              12.759346013356591,
+              -0.84506862554889,
+              0.0
+            ],
+            [
+              12.55985837796531,
+              -0.8307618674955848,
+              0.0
+            ],
+            [
+              12.36037074257403,
+              -0.8164551094422796,
+              0.0
+            ],
+            [
+              12.160883107182752,
+              -0.8021483513889744,
+              0.0
+            ],
+            [
+              11.961395471791471,
+              -0.7878415933356693,
+              0.0
+            ],
+            [
+              11.76190783640019,
+              -0.7735348352823641,
+              0.0
+            ],
+            [
+              11.562420201008912,
+              -0.759228077229059,
+              0.0
+            ]
+          ],
+          "(0, 2)": [
+            [
+              16.255903296227327,
+              -1.0958330349190983,
+              -4.440892098500626e-16
+            ],
+            [
+              16.05641566083605,
+              -1.0815262768657932,
+              -4.440892098500626e-16
+            ],
+            [
+              15.856928025444768,
+              -1.067219518812488,
+              -4.440892098500626e-16
+            ],
+            [
+              15.657440390053488,
+              -1.0529127607591828,
+              -4.440892098500626e-16
+            ],
+            [
+              15.457952754662207,
+              -1.0386060027058777,
+              -4.440892098500626e-16
+            ],
+            [
+              15.258465119270928,
+              -1.0242992446525725,
+              -4.440892098500626e-16
+            ],
+            [
+              15.058977483879648,
+              -1.0099924865992673,
+              -4.440892098500626e-16
+            ],
+            [
+              14.85948984848837,
+              -0.9956857285459622,
+              -4.440892098500626e-16
+            ],
+            [
+              14.660002213097089,
+              -0.981378970492657,
+              -4.440892098500626e-16
+            ],
+            [
+              14.460514577705808,
+              -0.9670722124393518,
+              -4.440892098500626e-16
+            ],
+            [
+              14.26102694231453,
+              -0.9527654543860467,
+              -4.440892098500626e-16
+            ],
+            [
+              14.06153930692325,
+              -0.9384586963327415,
+              -4.440892098500626e-16
+            ],
+            [
+              13.862051671531969,
+              -0.9241519382794363,
+              -4.440892098500626e-16
+            ],
+            [
+              13.66256403614069,
+              -0.9098451802261311,
+              -4.440892098500626e-16
+            ],
+            [
+              13.46307640074941,
+              -0.895538422172826,
+              -4.440892098500626e-16
+            ],
+            [
+              13.26358876535813,
+              -0.8812316641195208,
+              -4.440892098500626e-16
+            ],
+            [
+              13.06410112996685,
+              -0.8669249060662156,
+              -4.440892098500626e-16
+            ],
+            [
+              12.86461349457557,
+              -0.8526181480129105,
+              -4.440892098500626e-16
+            ],
+            [
+              12.66512585918429,
+              -0.8383113899596053,
+              -4.440892098500626e-16
+            ],
+            [
+              12.465638223793011,
+              -0.8240046319063001,
+              -4.440892098500626e-16
+            ],
+            [
+              12.26615058840173,
+              -0.809697873852995,
+              -4.440892098500626e-16
+            ],
+            [
+              12.06666295301045,
+              -0.7953911157996898,
+              -4.440892098500626e-16
+            ],
+            [
+              11.867175317619171,
+              -0.7810843577463846,
+              -4.440892098500626e-16
+            ],
+            [
+              11.667687682227891,
+              -0.7667775996930795,
+              -4.440892098500626e-16
+            ],
+            [
+              11.46820004683661,
+              -0.7524708416397743,
+              -4.440892098500626e-16
+            ],
+            [
+              11.268712411445332,
+              -0.7381640835864691,
+              -4.440892098500626e-16
+            ]
+          ],
+          "(0, 3)": [
+            [
+              15.962195506663743,
+              -1.0747690412765083,
+              4.440892098500626e-16
+            ],
+            [
+              15.762707871272463,
+              -1.0604622832232031,
+              4.440892098500626e-16
+            ],
+            [
+              15.563220235881184,
+              -1.046155525169898,
+              4.440892098500626e-16
+            ],
+            [
+              15.363732600489904,
+              -1.0318487671165928,
+              4.440892098500626e-16
+            ],
+            [
+              15.164244965098623,
+              -1.0175420090632876,
+              4.440892098500626e-16
+            ],
+            [
+              14.964757329707345,
+              -1.0032352510099825,
+              4.440892098500626e-16
+            ],
+            [
+              14.765269694316064,
+              -0.9889284929566773,
+              4.440892098500626e-16
+            ],
+            [
+              14.565782058924786,
+              -0.9746217349033721,
+              4.440892098500626e-16
+            ],
+            [
+              14.366294423533505,
+              -0.960314976850067,
+              4.440892098500626e-16
+            ],
+            [
+              14.166806788142225,
+              -0.9460082187967618,
+              4.440892098500626e-16
+            ],
+            [
+              13.967319152750946,
+              -0.9317014607434566,
+              4.440892098500626e-16
+            ],
+            [
+              13.767831517359665,
+              -0.9173947026901514,
+              4.440892098500626e-16
+            ],
+            [
+              13.568343881968385,
+              -0.9030879446368463,
+              4.440892098500626e-16
+            ],
+            [
+              13.368856246577106,
+              -0.8887811865835411,
+              4.440892098500626e-16
+            ],
+            [
+              13.169368611185826,
+              -0.8744744285302359,
+              4.440892098500626e-16
+            ],
+            [
+              12.969880975794545,
+              -0.8601676704769308,
+              4.440892098500626e-16
+            ],
+            [
+              12.770393340403267,
+              -0.8458609124236256,
+              4.440892098500626e-16
+            ],
+            [
+              12.570905705011986,
+              -0.8315541543703204,
+              4.440892098500626e-16
+            ],
+            [
+              12.371418069620706,
+              -0.8172473963170153,
+              4.440892098500626e-16
+            ],
+            [
+              12.171930434229427,
+              -0.8029406382637101,
+              4.440892098500626e-16
+            ],
+            [
+              11.972442798838147,
+              -0.7886338802104049,
+              4.440892098500626e-16
+            ],
+            [
+              11.772955163446866,
+              -0.7743271221570998,
+              4.440892098500626e-16
+            ],
+            [
+              11.573467528055588,
+              -0.7600203641037946,
+              4.440892098500626e-16
+            ],
+            [
+              11.373979892664307,
+              -0.7457136060504894,
+              4.440892098500626e-16
+            ],
+            [
+              11.174492257273027,
+              -0.7314068479971843,
+              4.440892098500626e-16
+            ],
+            [
+              10.975004621881748,
+              -0.7171000899438791,
+              4.440892098500626e-16
+            ]
+          ],
+          "(0, 4)": [
+            [
+              15.668487717100167,
+              -1.0537050476339185,
+              0.0
+            ],
+            [
+              15.469000081708886,
+              -1.0393982895806133,
+              0.0
+            ],
+            [
+              15.269512446317608,
+              -1.0250915315273081,
+              0.0
+            ],
+            [
+              15.070024810926327,
+              -1.010784773474003,
+              0.0
+            ],
+            [
+              14.870537175535047,
+              -0.9964780154206978,
+              0.0
+            ],
+            [
+              14.671049540143768,
+              -0.9821712573673926,
+              0.0
+            ],
+            [
+              14.471561904752487,
+              -0.9678644993140875,
+              0.0
+            ],
+            [
+              14.272074269361209,
+              -0.9535577412607823,
+              0.0
+            ],
+            [
+              14.072586633969928,
+              -0.9392509832074772,
+              0.0
+            ],
+            [
+              13.873098998578648,
+              -0.9249442251541721,
+              0.0
+            ],
+            [
+              13.67361136318737,
+              -0.9106374671008669,
+              0.0
+            ],
+            [
+              13.474123727796089,
+              -0.8963307090475617,
+              0.0
+            ],
+            [
+              13.274636092404808,
+              -0.8820239509942566,
+              0.0
+            ],
+            [
+              13.07514845701353,
+              -0.8677171929409514,
+              0.0
+            ],
+            [
+              12.87566082162225,
+              -0.8534104348876462,
+              0.0
+            ],
+            [
+              12.676173186230969,
+              -0.8391036768343411,
+              0.0
+            ],
+            [
+              12.47668555083969,
+              -0.8247969187810359,
+              0.0
+            ],
+            [
+              12.27719791544841,
+              -0.8104901607277307,
+              0.0
+            ],
+            [
+              12.07771028005713,
+              -0.7961834026744257,
+              0.0
+            ],
+            [
+              11.87822264466585,
+              -0.7818766446211205,
+              0.0
+            ],
+            [
+              11.67873500927457,
+              -0.7675698865678153,
+              0.0
+            ],
+            [
+              11.47924737388329,
+              -0.7532631285145102,
+              0.0
+            ],
+            [
+              11.279759738492011,
+              -0.738956370461205,
+              0.0
+            ],
+            [
+              11.08027210310073,
+              -0.7246496124078998,
+              0.0
+            ],
+            [
+              10.88078446770945,
+              -0.7103428543545947,
+              0.0
+            ],
+            [
+              10.681296832318171,
+              -0.6960360963012895,
+              0.0
+            ]
+          ],
+          "(0, 5)": [
+            [
+              15.374779927536586,
+              -1.0326410539913287,
+              0.0
+            ],
+            [
+              15.175292292145306,
+              -1.0183342959380235,
+              0.0
+            ],
+            [
+              14.975804656754027,
+              -1.0040275378847183,
+              0.0
+            ],
+            [
+              14.776317021362747,
+              -0.9897207798314132,
+              0.0
+            ],
+            [
+              14.576829385971466,
+              -0.975414021778108,
+              0.0
+            ],
+            [
+              14.377341750580188,
+              -0.9611072637248028,
+              0.0
+            ],
+            [
+              14.177854115188907,
+              -0.9468005056714976,
+              0.0
+            ],
+            [
+              13.978366479797629,
+              -0.9324937476181925,
+              0.0
+            ],
+            [
+              13.778878844406348,
+              -0.9181869895648873,
+              0.0
+            ],
+            [
+              13.579391209015068,
+              -0.9038802315115821,
+              0.0
+            ],
+            [
+              13.379903573623789,
+              -0.889573473458277,
+              0.0
+            ],
+            [
+              13.180415938232509,
+              -0.8752667154049718,
+              0.0
+            ],
+            [
+              12.980928302841228,
+              -0.8609599573516666,
+              0.0
+            ],
+            [
+              12.78144066744995,
+              -0.8466531992983615,
+              0.0
+            ],
+            [
+              12.581953032058669,
+              -0.8323464412450563,
+              0.0
+            ],
+            [
+              12.382465396667389,
+              -0.8180396831917511,
+              0.0
+            ],
+            [
+              12.18297776127611,
+              -0.803732925138446,
+              0.0
+            ],
+            [
+              11.98349012588483,
+              -0.7894261670851408,
+              0.0
+            ],
+            [
+              11.784002490493549,
+              -0.7751194090318356,
+              0.0
+            ],
+            [
+              11.58451485510227,
+              -0.7608126509785305,
+              0.0
+            ],
+            [
+              11.38502721971099,
+              -0.7465058929252253,
+              0.0
+            ],
+            [
+              11.18553958431971,
+              -0.7321991348719201,
+              0.0
+            ],
+            [
+              10.98605194892843,
+              -0.717892376818615,
+              0.0
+            ],
+            [
+              10.78656431353715,
+              -0.7035856187653098,
+              0.0
+            ],
+            [
+              10.58707667814587,
+              -0.6892788607120046,
+              0.0
+            ],
+            [
+              10.387589042754591,
+              -0.6749721026586994,
+              0.0
+            ]
+          ],
+          "(0, 6)": [
+            [
+              15.081072137973006,
+              -1.0115770603487386,
+              0.0
+            ],
+            [
+              14.881584502581726,
+              -0.9972703022954335,
+              0.0
+            ],
+            [
+              14.682096867190447,
+              -0.9829635442421283,
+              0.0
+            ],
+            [
+              14.482609231799167,
+              -0.9686567861888231,
+              0.0
+            ],
+            [
+              14.283121596407886,
+              -0.954350028135518,
+              0.0
+            ],
+            [
+              14.083633961016607,
+              -0.9400432700822128,
+              0.0
+            ],
+            [
+              13.884146325625327,
+              -0.9257365120289076,
+              0.0
+            ],
+            [
+              13.684658690234048,
+              -0.9114297539756024,
+              0.0
+            ],
+            [
+              13.485171054842768,
+              -0.8971229959222974,
+              0.0
+            ],
+            [
+              13.285683419451487,
+              -0.8828162378689922,
+              0.0
+            ],
+            [
+              13.086195784060209,
+              -0.868509479815687,
+              0.0
+            ],
+            [
+              12.886708148668928,
+              -0.8542027217623819,
+              0.0
+            ],
+            [
+              12.687220513277648,
+              -0.8398959637090767,
+              0.0
+            ],
+            [
+              12.48773287788637,
+              -0.8255892056557715,
+              0.0
+            ],
+            [
+              12.288245242495089,
+              -0.8112824476024664,
+              0.0
+            ],
+            [
+              12.088757607103808,
+              -0.7969756895491612,
+              0.0
+            ],
+            [
+              11.88926997171253,
+              -0.782668931495856,
+              0.0
+            ],
+            [
+              11.68978233632125,
+              -0.7683621734425509,
+              0.0
+            ],
+            [
+              11.490294700929969,
+              -0.7540554153892458,
+              0.0
+            ],
+            [
+              11.29080706553869,
+              -0.7397486573359406,
+              0.0
+            ],
+            [
+              11.09131943014741,
+              -0.7254418992826355,
+              0.0
+            ],
+            [
+              10.89183179475613,
+              -0.7111351412293303,
+              0.0
+            ],
+            [
+              10.69234415936485,
+              -0.6968283831760251,
+              0.0
+            ],
+            [
+              10.49285652397357,
+              -0.68252162512272,
+              0.0
+            ],
+            [
+              10.29336888858229,
+              -0.6682148670694148,
+              0.0
+            ],
+            [
+              10.093881253191011,
+              -0.6539081090161096,
+              0.0
+            ]
+          ],
+          "(0, 7)": [
+            [
+              14.787364348409424,
+              -0.9905130667061488,
+              0.0
+            ],
+            [
+              14.587876713018144,
+              -0.9762063086528436,
+              0.0
+            ],
+            [
+              14.388389077626865,
+              -0.9618995505995385,
+              0.0
+            ],
+            [
+              14.188901442235585,
+              -0.9475927925462333,
+              0.0
+            ],
+            [
+              13.989413806844304,
+              -0.9332860344929281,
+              0.0
+            ],
+            [
+              13.789926171453025,
+              -0.918979276439623,
+              0.0
+            ],
+            [
+              13.590438536061745,
+              -0.9046725183863178,
+              0.0
+            ],
+            [
+              13.390950900670465,
+              -0.8903657603330126,
+              0.0
+            ],
+            [
+              13.191463265279186,
+              -0.8760590022797075,
+              0.0
+            ],
+            [
+              12.991975629887905,
+              -0.8617522442264023,
+              0.0
+            ],
+            [
+              12.792487994496625,
+              -0.8474454861730971,
+              0.0
+            ],
+            [
+              12.593000359105346,
+              -0.833138728119792,
+              0.0
+            ],
+            [
+              12.393512723714066,
+              -0.8188319700664868,
+              0.0
+            ],
+            [
+              12.194025088322787,
+              -0.8045252120131816,
+              0.0
+            ],
+            [
+              11.994537452931507,
+              -0.7902184539598764,
+              0.0
+            ],
+            [
+              11.795049817540228,
+              -0.7759116959065713,
+              0.0
+            ],
+            [
+              11.595562182148948,
+              -0.7616049378532661,
+              0.0
+            ],
+            [
+              11.396074546757667,
+              -0.7472981797999609,
+              0.0
+            ],
+            [
+              11.196586911366389,
+              -0.7329914217466558,
+              0.0
+            ],
+            [
+              10.997099275975108,
+              -0.7186846636933506,
+              0.0
+            ],
+            [
+              10.797611640583828,
+              -0.7043779056400454,
+              0.0
+            ],
+            [
+              10.598124005192549,
+              -0.6900711475867403,
+              0.0
+            ],
+            [
+              10.398636369801267,
+              -0.6757643895334351,
+              0.0
+            ],
+            [
+              10.199148734409988,
+              -0.6614576314801299,
+              0.0
+            ],
+            [
+              9.999661099018708,
+              -0.6471508734268248,
+              0.0
+            ],
+            [
+              9.800173463627429,
+              -0.6328441153735196,
+              0.0
+            ]
+          ],
+          "(0, 8)": [
+            [
+              14.493656558845847,
+              -0.969449073063559,
+              -4.440892098500626e-16
+            ],
+            [
+              14.294168923454567,
+              -0.9551423150102538,
+              -4.440892098500626e-16
+            ],
+            [
+              14.094681288063288,
+              -0.9408355569569486,
+              -4.440892098500626e-16
+            ],
+            [
+              13.895193652672008,
+              -0.9265287989036435,
+              -4.440892098500626e-16
+            ],
+            [
+              13.695706017280727,
+              -0.9122220408503383,
+              -4.440892098500626e-16
+            ],
+            [
+              13.496218381889449,
+              -0.8979152827970331,
+              -4.440892098500626e-16
+            ],
+            [
+              13.296730746498168,
+              -0.883608524743728,
+              -4.440892098500626e-16
+            ],
+            [
+              13.097243111106888,
+              -0.8693017666904228,
+              -4.440892098500626e-16
+            ],
+            [
+              12.89775547571561,
+              -0.8549950086371177,
+              -4.440892098500626e-16
+            ],
+            [
+              12.698267840324329,
+              -0.8406882505838126,
+              -4.440892098500626e-16
+            ],
+            [
+              12.498780204933048,
+              -0.8263814925305074,
+              -4.440892098500626e-16
+            ],
+            [
+              12.29929256954177,
+              -0.8120747344772022,
+              -4.440892098500626e-16
+            ],
+            [
+              12.09980493415049,
+              -0.7977679764238971,
+              -4.440892098500626e-16
+            ],
+            [
+              11.90031729875921,
+              -0.7834612183705919,
+              -4.440892098500626e-16
+            ],
+            [
+              11.70082966336793,
+              -0.7691544603172867,
+              -4.440892098500626e-16
+            ],
+            [
+              11.501342027976651,
+              -0.7548477022639816,
+              -4.440892098500626e-16
+            ],
+            [
+              11.301854392585371,
+              -0.7405409442106764,
+              -4.440892098500626e-16
+            ],
+            [
+              11.10236675719409,
+              -0.7262341861573712,
+              -4.440892098500626e-16
+            ],
+            [
+              10.902879121802812,
+              -0.7119274281040662,
+              -4.440892098500626e-16
+            ],
+            [
+              10.703391486411531,
+              -0.697620670050761,
+              -4.440892098500626e-16
+            ],
+            [
+              10.503903851020251,
+              -0.6833139119974558,
+              -4.440892098500626e-16
+            ],
+            [
+              10.304416215628972,
+              -0.6690071539441507,
+              -4.440892098500626e-16
+            ],
+            [
+              10.10492858023769,
+              -0.6547003958908455,
+              -4.440892098500626e-16
+            ],
+            [
+              9.905440944846411,
+              -0.6403936378375403,
+              -4.440892098500626e-16
+            ],
+            [
+              9.705953309455131,
+              -0.6260868797842352,
+              -4.440892098500626e-16
+            ],
+            [
+              9.506465674063852,
+              -0.61178012173093,
+              -4.440892098500626e-16
+            ]
+          ],
+          "(0, 9)": [
+            [
+              14.199948769282265,
+              -0.948385079420969,
+              0.0
+            ],
+            [
+              14.000461133890985,
+              -0.9340783213676638,
+              0.0
+            ],
+            [
+              13.800973498499706,
+              -0.9197715633143586,
+              0.0
+            ],
+            [
+              13.601485863108426,
+              -0.9054648052610534,
+              0.0
+            ],
+            [
+              13.401998227717145,
+              -0.8911580472077483,
+              0.0
+            ],
+            [
+              13.202510592325867,
+              -0.8768512891544431,
+              0.0
+            ],
+            [
+              13.003022956934586,
+              -0.8625445311011379,
+              0.0
+            ],
+            [
+              12.803535321543308,
+              -0.8482377730478328,
+              0.0
+            ],
+            [
+              12.604047686152027,
+              -0.8339310149945277,
+              0.0
+            ],
+            [
+              12.404560050760747,
+              -0.8196242569412225,
+              0.0
+            ],
+            [
+              12.205072415369468,
+              -0.8053174988879174,
+              0.0
+            ],
+            [
+              12.005584779978188,
+              -0.7910107408346122,
+              0.0
+            ],
+            [
+              11.806097144586907,
+              -0.776703982781307,
+              0.0
+            ],
+            [
+              11.606609509195629,
+              -0.7623972247280019,
+              0.0
+            ],
+            [
+              11.407121873804348,
+              -0.7480904666746967,
+              0.0
+            ],
+            [
+              11.207634238413068,
+              -0.7337837086213915,
+              0.0
+            ],
+            [
+              11.008146603021789,
+              -0.7194769505680864,
+              0.0
+            ],
+            [
+              10.808658967630508,
+              -0.7051701925147812,
+              0.0
+            ],
+            [
+              10.609171332239228,
+              -0.6908634344614761,
+              0.0
+            ],
+            [
+              10.40968369684795,
+              -0.676556676408171,
+              0.0
+            ],
+            [
+              10.210196061456669,
+              -0.6622499183548658,
+              0.0
+            ],
+            [
+              10.010708426065388,
+              -0.6479431603015606,
+              0.0
+            ],
+            [
+              9.81122079067411,
+              -0.6336364022482555,
+              0.0
+            ],
+            [
+              9.61173315528283,
+              -0.6193296441949503,
+              0.0
+            ],
+            [
+              9.412245519891549,
+              -0.6050228861416451,
+              0.0
+            ],
+            [
+              9.21275788450027,
+              -0.59071612808834,
+              0.0
+            ]
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 259
+      }
+    }
+  },
+  "3f21b46a-6839-4ce7-b107-eb3908e540ac": {
+    "component_info": {
+      "guid": "3f21b46a-6839-4ce7-b107-eb3908e540ac",
+      "type": "List Item",
+      "nickname": "LI",
+      "position": {
+        "x": 12349.0,
+        "y": 2870.0
+      }
+    },
+    "outputs": {
+      "Item": {
+        "branches": {
+          "(0, 0)": [
+            [
+              16.643831239963205,
+              -1.1236542641509728,
+              0.0
+            ]
+          ],
+          "(0, 1)": [
+            [
+              16.35012345039963,
+              -1.1025902705083828,
+              0.0
+            ]
+          ],
+          "(0, 2)": [
+            [
+              16.05641566083605,
+              -1.0815262768657932,
+              -4.440892098500626e-16
+            ]
+          ],
+          "(0, 3)": [
+            [
+              15.762707871272463,
+              -1.0604622832232031,
+              4.440892098500626e-16
+            ]
+          ],
+          "(0, 4)": [
+            [
+              15.469000081708886,
+              -1.0393982895806133,
+              0.0
+            ]
+          ],
+          "(0, 5)": [
+            [
+              15.175292292145306,
+              -1.0183342959380235,
+              0.0
+            ]
+          ],
+          "(0, 6)": [
+            [
+              14.881584502581726,
+              -0.9972703022954335,
+              0.0
+            ]
+          ],
+          "(0, 7)": [
+            [
+              14.587876713018144,
+              -0.9762063086528436,
+              0.0
+            ]
+          ],
+          "(0, 8)": [
+            [
+              14.294168923454567,
+              -0.9551423150102538,
+              -4.440892098500626e-16
+            ]
+          ],
+          "(0, 9)": [
+            [
+              14.000461133890985,
+              -0.9340783213676638,
+              0.0
+            ]
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "a518331f-8529-47db-bc2e-58ff8ef78e97": {
+    "component_info": {
+      "guid": "a518331f-8529-47db-bc2e-58ff8ef78e97",
+      "type": "Line",
+      "nickname": "Between",
+      "position": {
+        "x": 12483.0,
+        "y": 2835.0
+      }
+    },
+    "outputs": {
+      "Line": {
+        "branches": {
+          "(0, 0)": [
+            {
+              "start": [
+                0.0,
+                0.2697964883547639,
+                3.8090201574877995
+              ],
+              "end": [
+                16.643831239963205,
+                -1.1236542641509728,
+                0.0
+              ]
+            }
+          ],
+          "(0, 1)": [
+            {
+              "start": [
+                0.0,
+                0.26952917692788153,
+                3.735937452970633
+              ],
+              "end": [
+                16.35012345039963,
+                -1.1025902705083828,
+                0.0
+              ]
+            }
+          ],
+          "(0, 2)": [
+            {
+              "start": [
+                0.0,
+                0.2690589194217867,
+                3.6638234691523763
+              ],
+              "end": [
+                16.05641566083605,
+                -1.0815262768657932,
+                -4.440892098500626e-16
+              ]
+            }
+          ],
+          "(0, 3)": [
+            {
+              "start": [
+                0.0,
+                0.2682597010760792,
+                3.5929932868299863
+              ],
+              "end": [
+                15.762707871272463,
+                -1.0604622832232031,
+                4.440892098500626e-16
+              ]
+            }
+          ],
+          "(0, 4)": [
+            {
+              "start": [
+                0.0,
+                0.2669113354821174,
+                3.523902114370827
+              ],
+              "end": [
+                15.469000081708886,
+                -1.0393982895806133,
+                0.0
+              ]
+            }
+          ],
+          "(0, 5)": [
+            {
+              "start": [
+                0.0,
+                0.264612462928769,
+                3.4572195623190893
+              ],
+              "end": [
+                15.175292292145306,
+                -1.0183342959380235,
+                0.0
+              ]
+            }
+          ],
+          "(0, 6)": [
+            {
+              "start": [
+                0.0,
+                0.26059709102747924,
+                3.3939365419271263
+              ],
+              "end": [
+                14.881584502581726,
+                -0.9972703022954335,
+                0.0
+              ]
+            }
+          ],
+          "(0, 7)": [
+            {
+              "start": [
+                0.0,
+                0.2533380725854795,
+                3.3354752098381004
+              ],
+              "end": [
+                14.587876713018144,
+                -0.9762063086528436,
+                0.0
+              ]
+            }
+          ],
+          "(0, 8)": [
+            {
+              "start": [
+                0.0,
+                0.23972004196988606,
+                3.2835847121145223
+              ],
+              "end": [
+                14.294168923454567,
+                -0.9551423150102538,
+                -4.440892098500626e-16
+              ]
+            }
+          ],
+          "(0, 9)": [
+            {
+              "start": [
+                0.0,
+                0.21372042835331817,
+                3.2390842855032114
+              ],
+              "end": [
+                14.000461133890985,
+                -0.9340783213676638,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Length": {
+        "branches": {
+          "(0, 0)": [
+            17.130891917941177
+          ],
+          "(0, 1)": [
+            16.827551137163404
+          ],
+          "(0, 2)": [
+            16.524411234869582
+          ],
+          "(0, 3)": [
+            16.221530824981976
+          ],
+          "(0, 4)": [
+            15.918991628746722
+          ],
+          "(0, 5)": [
+            15.616908005114627
+          ],
+          "(0, 6)": [
+            15.315436426602208
+          ],
+          "(0, 7)": [
+            15.014770103304821
+          ],
+          "(0, 8)": [
+            14.715056568902977
+          ],
+          "(0, 9)": [
+            14.416033467637586
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "0d695e6b-3696-4337-bc80-d14104f8a59e": {
+    "component_info": {
+      "guid": "0d695e6b-3696-4337-bc80-d14104f8a59e",
+      "type": "Angle",
+      "nickname": "Angle",
+      "position": {
+        "x": 12642.0,
+        "y": 2835.0
+      }
+    },
+    "outputs": {
+      "Angle": {
+        "branches": {
+          "(0, 0)": [
+            4.793820347907088
+          ],
+          "(0, 1)": [
+            4.794019663923036
+          ],
+          "(0, 2)": [
+            4.794212981293121
+          ],
+          "(0, 3)": [
+            4.794391864510971
+          ],
+          "(0, 4)": [
+            4.794541178866263
+          ],
+          "(0, 5)": [
+            4.794632803501476
+          ],
+          "(0, 6)": [
+            4.794612288633607
+          ],
+          "(0, 7)": [
+            4.794369771122697
+          ],
+          "(0, 8)": [
+            4.793678461283682
+          ],
+          "(0, 9)": [
+            4.792092938327918
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Reflex": {
+        "branches": {
+          "(0, 0)": [
+            1.489364959272498
+          ],
+          "(0, 1)": [
+            1.48916564325655
+          ],
+          "(0, 2)": [
+            1.4889723258864649
+          ],
+          "(0, 3)": [
+            1.488793442668615
+          ],
+          "(0, 4)": [
+            1.4886441283133234
+          ],
+          "(0, 5)": [
+            1.4885525036781102
+          ],
+          "(0, 6)": [
+            1.4885730185459796
+          ],
+          "(0, 7)": [
+            1.4888155360568893
+          ],
+          "(0, 8)": [
+            1.489506845895904
+          ],
+          "(0, 9)": [
+            1.4910923688516684
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58": {
+    "component_info": {
+      "guid": "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58",
+      "type": "Degrees",
+      "nickname": "Degrees",
+      "position": {
+        "x": 12779.0,
+        "y": 2820.0
+      }
+    },
+    "outputs": {
+      "Degrees": {
+        "branches": {
+          "(0, 0)": [
+            274.6656736790121
+          ],
+          "(0, 1)": [
+            274.6770936455153
+          ],
+          "(0, 2)": [
+            274.68816991492776
+          ],
+          "(0, 3)": [
+            274.6984191683363
+          ],
+          "(0, 4)": [
+            274.7069742507152
+          ],
+          "(0, 5)": [
+            274.71222395561233
+          ],
+          "(0, 6)": [
+            274.7110485402662
+          ],
+          "(0, 7)": [
+            274.697153310433
+          ],
+          "(0, 8)": [
+            274.6575441743216
+          ],
+          "(0, 9)": [
+            274.56670040063517
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  }
+}

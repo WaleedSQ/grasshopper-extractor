@@ -19,8 +19,8 @@
       "nickname": "DownloadEPW",
       "container": "",
       "position": {
-        "x": 10380.0,
-        "y": 2134.0
+        "x": 11057.0,
+        "y": 1835.0
       },
       "params": [
         {
@@ -96,8 +96,8 @@
       "nickname": "ImportEPW",
       "container": "",
       "position": {
-        "x": 10549.0,
-        "y": 2098.0
+        "x": 11226.0,
+        "y": 1815.0
       },
       "params": [
         {
@@ -303,8 +303,8 @@
       "nickname": "Sunpath",
       "container": "",
       "position": {
-        "x": 10859.0,
-        "y": 2023.0
+        "x": 11543.0,
+        "y": 1777.0
       },
       "params": [
         {
@@ -408,11 +408,7 @@
           "name": "data_",
           "type": "input",
           "persistent_data": [],
-          "sources": [
-            "5f050f23-8ded-4107-8c46-cafebf5e54fd",
-            "f720fddf-d5df-4998-9638-9d76d4df32a2",
-            "a2b4a667-77f3-45be-96ad-a5c62086fdfb"
-          ],
+          "sources": [],
           "expression": null,
           "mapping": 0,
           "reverse_data": false
@@ -696,8 +692,8 @@
       "nickname": "Slats original",
       "container": "",
       "position": {
-        "x": 10797.0,
-        "y": 2767.0
+        "x": 10800.0,
+        "y": 2758.0
       },
       "params": [
         {
@@ -759,8 +755,8 @@
       "nickname": "Series",
       "container": "",
       "position": {
-        "x": 10159.0,
-        "y": 2767.0
+        "x": 10162.0,
+        "y": 2758.0
       },
       "params": [
         {
@@ -872,8 +868,8 @@
       "nickname": "Unit Z",
       "container": "",
       "position": {
-        "x": 10436.0,
-        "y": 2824.0
+        "x": 10439.0,
+        "y": 2815.0
       },
       "params": [
         {
@@ -909,8 +905,8 @@
       "nickname": "Unit Y",
       "container": "",
       "position": {
-        "x": 10320.0,
-        "y": 2741.0
+        "x": 10323.0,
+        "y": 2732.0
       },
       "params": [
         {
@@ -946,8 +942,8 @@
       "nickname": "Vector 2Pt",
       "container": "",
       "position": {
-        "x": 10603.0,
-        "y": 2805.0
+        "x": 10606.0,
+        "y": 2796.0
       },
       "params": [
         {
@@ -1015,8 +1011,8 @@
       "nickname": "Series",
       "container": "",
       "position": {
-        "x": 10159.0,
-        "y": 2835.0
+        "x": 10162.0,
+        "y": 2826.0
       },
       "params": [
         {
@@ -1072,132 +1068,14 @@
       ]
     },
     {
-      "guid": "ed4878fc-7b79-46d9-a4b1-7637f35de976",
-      "instance_guid": "ed4878fc-7b79-46d9-a4b1-7637f35de976",
-      "type_name": "List Item",
-      "nickname": "LI",
-      "container": "",
-      "position": {
-        "x": 12348.0,
-        "y": 2795.0
-      },
-      "params": [
-        {
-          "param_guid": "e0d1124c-46be-4d3e-a561-f8abd35d834e",
-          "name": "List",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "0460d28c-3b22-467d-b03f-a330e94bd2f4"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "8e2f4b9c-577c-4ae3-813c-daac83723f03",
-          "name": "Index",
-          "type": "input",
-          "persistent_data": [
-            1
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "ff1cdf31-d398-4119-bc38-ed98fabf711a",
-          "name": "Wrap",
-          "type": "input",
-          "persistent_data": [
-            true
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "e8c7faf9-eba0-471e-8540-a33385281d9a",
-          "name": "Item",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "3f21b46a-6839-4ce7-b107-eb3908e540ac",
-      "instance_guid": "3f21b46a-6839-4ce7-b107-eb3908e540ac",
-      "type_name": "List Item",
-      "nickname": "LI",
-      "container": "",
-      "position": {
-        "x": 12349.0,
-        "y": 2870.0
-      },
-      "params": [
-        {
-          "param_guid": "e59cf958-b0b9-4f27-a703-894d5cdd2ef3",
-          "name": "List",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "ac0efd11-aa24-46cf-8bcc-3ebfa4205ea1"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "2bed9814-75b8-4ed7-b7c7-0a9cdaa5f424",
-          "name": "Index",
-          "type": "input",
-          "persistent_data": [
-            1
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "995af458-be7e-4eaf-bf03-09ba330658ea",
-          "name": "Wrap",
-          "type": "input",
-          "persistent_data": [
-            true
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "24f7f310-4f11-4a59-8206-7daadb96a034",
-          "name": "Item",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
       "instance_guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
       "type_name": "Construct Point",
       "nickname": "p1",
       "container": "",
       "position": {
-        "x": 10672.0,
-        "y": 2894.0
+        "x": 10675.0,
+        "y": 2879.0
       },
       "params": [
         {
@@ -1255,8 +1133,8 @@
       "nickname": "p1",
       "container": "",
       "position": {
-        "x": 10676.0,
-        "y": 2964.0
+        "x": 10679.0,
+        "y": 2955.0
       },
       "params": [
         {
@@ -1314,8 +1192,8 @@
       "nickname": "Box 2Pt",
       "container": "",
       "position": {
-        "x": 10827.0,
-        "y": 2898.0
+        "x": 10837.0,
+        "y": 2895.0
       },
       "params": [
         {
@@ -1399,8 +1277,8 @@
       "nickname": "Series",
       "container": "",
       "position": {
-        "x": 10159.0,
-        "y": 2699.0
+        "x": 10162.0,
+        "y": 2690.0
       },
       "params": [
         {
@@ -1500,8 +1378,8 @@
       "nickname": "Rectangle 2Pt",
       "container": "",
       "position": {
-        "x": 9824.0,
-        "y": 2565.0
+        "x": 9827.0,
+        "y": 2556.0
       },
       "params": [
         {
@@ -1619,8 +1497,8 @@
       "nickname": "CP",
       "container": "",
       "position": {
-        "x": 9685.0,
-        "y": 2527.0
+        "x": 9688.0,
+        "y": 2518.0
       },
       "params": [
         {
@@ -1706,8 +1584,8 @@
       "nickname": "CP",
       "container": "",
       "position": {
-        "x": 9685.0,
-        "y": 2596.0
+        "x": 9688.0,
+        "y": 2587.0
       },
       "params": [
         {
@@ -1769,8 +1647,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9413.0,
-        "y": 2578.0
+        "x": 9416.0,
+        "y": 2569.0
       },
       "params": [
         {
@@ -1804,8 +1682,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9421.0,
-        "y": 2618.0
+        "x": 9424.0,
+        "y": 2609.0
       },
       "params": [
         {
@@ -1851,8 +1729,8 @@
       "nickname": "Ex Tree",
       "container": "",
       "position": {
-        "x": 11074.0,
-        "y": 1974.0
+        "x": 11529.0,
+        "y": 2415.0
       },
       "params": [
         {
@@ -1906,8 +1784,8 @@
       "nickname": "/",
       "container": "",
       "position": {
-        "x": 9229.0,
-        "y": 2554.0
+        "x": 9232.0,
+        "y": 2545.0
       },
       "params": [
         {
@@ -2001,8 +1879,8 @@
       "nickname": "/",
       "container": "",
       "position": {
-        "x": 9218.0,
-        "y": 2618.0
+        "x": 9221.0,
+        "y": 2609.0
       },
       "params": [
         {
@@ -2060,8 +1938,8 @@
       "nickname": "Scribble",
       "container": "",
       "position": {
-        "x": 11032.131,
-        "y": 1847.6393
+        "x": 11710.7,
+        "y": 1567.2589
       },
       "params": []
     },
@@ -2072,8 +1950,8 @@
       "nickname": "Scribble",
       "container": "",
       "position": {
-        "x": 12675.026,
-        "y": 2711.7783
+        "x": 12678.556,
+        "y": 2703.5432
       },
       "params": []
     },
@@ -2084,8 +1962,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 10296.0,
-        "y": 2798.0
+        "x": 10299.0,
+        "y": 2789.0
       },
       "params": [
         {
@@ -2119,8 +1997,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9991.0,
-        "y": 2763.0
+        "x": 9994.0,
+        "y": 2754.0
       },
       "params": [
         {
@@ -2154,8 +2032,8 @@
       "nickname": "-",
       "container": "",
       "position": {
-        "x": 9990.0,
-        "y": 2699.0
+        "x": 9993.0,
+        "y": 2690.0
       },
       "params": [
         {
@@ -2390,8 +2268,8 @@
       "nickname": "New Sun",
       "container": "",
       "position": {
-        "x": 11481.0,
-        "y": 2770.0
+        "x": 11484.0,
+        "y": 2761.0
       },
       "params": [
         {
@@ -2450,11 +2328,11 @@
       "guid": "9cd053c9-3dd2-432b-aa46-a29a4b05c339",
       "instance_guid": "9cd053c9-3dd2-432b-aa46-a29a4b05c339",
       "type_name": "Project",
-      "nickname": "Project",
+      "nickname": "Project Curve",
       "container": "",
       "position": {
-        "x": 12014.0,
-        "y": 2869.0
+        "x": 11984.0,
+        "y": 2808.0
       },
       "params": [
         {
@@ -2518,8 +2396,8 @@
       "nickname": "Out Ray",
       "container": "",
       "position": {
-        "x": 11734.0,
-        "y": 2770.0
+        "x": 11737.0,
+        "y": 2717.0
       },
       "params": [
         {
@@ -2559,81 +2437,14 @@
       ]
     },
     {
-      "guid": "1e2231f7-0d69-4908-8f56-55f13a5d4237",
-      "instance_guid": "1e2231f7-0d69-4908-8f56-55f13a5d4237",
-      "type_name": "Divide Length",
-      "nickname": "DL",
-      "container": "",
-      "position": {
-        "x": 12167.0,
-        "y": 2879.0
-      },
-      "params": [
-        {
-          "param_guid": "6cfc25e6-7e19-47a4-bca2-28389ce82a17",
-          "name": "Curve",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "aeedb946-4c19-44d8-8e7d-77f9dd230432"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "1eda2726-09f7-4960-a30d-c4af7c1a1d00",
-          "name": "Length",
-          "type": "input",
-          "persistent_data": [
-            0.2
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "ac0efd11-aa24-46cf-8bcc-3ebfa4205ea1",
-          "name": "Points",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "b260c688-6bad-4e88-abd8-bc33d806ec3e",
-          "name": "Tangents",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "2b7a595c-aeb3-4250-851e-e9f04a01e6e8",
-          "name": "Parameters",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
       "instance_guid": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
       "type_name": "Line",
       "nickname": "In Ray",
       "container": "",
       "position": {
-        "x": 12038.0,
-        "y": 2790.0
+        "x": 12022.0,
+        "y": 2743.0
       },
       "params": [
         {
@@ -2663,73 +2474,6 @@
         {
           "param_guid": "9822511c-b2b2-4e5c-8f61-8f6be460cabb",
           "name": "Line",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "c7b8773d-e1e0-4c31-9b7c-b8b54f9e40e0",
-      "instance_guid": "c7b8773d-e1e0-4c31-9b7c-b8b54f9e40e0",
-      "type_name": "Divide Length",
-      "nickname": "DL",
-      "container": "",
-      "position": {
-        "x": 12167.0,
-        "y": 2800.0
-      },
-      "params": [
-        {
-          "param_guid": "2fbbdfe1-e487-4e86-a3b2-fa2582cdb1e1",
-          "name": "Curve",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "9822511c-b2b2-4e5c-8f61-8f6be460cabb"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "94a6cc2c-ad0b-4cfe-aa68-dbad2c24ba53",
-          "name": "Length",
-          "type": "input",
-          "persistent_data": [
-            0.2
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "0460d28c-3b22-467d-b03f-a330e94bd2f4",
-          "name": "Points",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "9be78673-1065-4fb1-adb7-d9ffae54e553",
-          "name": "Tangents",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "06c41045-f92c-4894-a60f-e5dfe84f01de",
-          "name": "Parameters",
           "type": "output",
           "persistent_data": [],
           "sources": [],
@@ -3139,8 +2883,8 @@
       "nickname": "Angle",
       "container": "",
       "position": {
-        "x": 12642.0,
-        "y": 2835.0
+        "x": 12645.0,
+        "y": 2826.0
       },
       "params": [
         {
@@ -3161,7 +2905,7 @@
           "type": "input",
           "persistent_data": [],
           "sources": [
-            "73455c39-5152-49b3-87b1-a4c384b4efbb"
+            "944abd50-d894-4e46-893e-7a2cdf566398"
           ],
           "expression": null,
           "mapping": 1,
@@ -3208,8 +2952,8 @@
       "nickname": "Degrees",
       "container": "",
       "position": {
-        "x": 12779.0,
-        "y": 2820.0
+        "x": 12820.0,
+        "y": 2815.0
       },
       "params": [
         {
@@ -3237,61 +2981,14 @@
       ]
     },
     {
-      "guid": "a518331f-8529-47db-bc2e-58ff8ef78e97",
-      "instance_guid": "a518331f-8529-47db-bc2e-58ff8ef78e97",
-      "type_name": "Line",
-      "nickname": "Between",
-      "container": "",
-      "position": {
-        "x": 12483.0,
-        "y": 2835.0
-      },
-      "params": [
-        {
-          "param_guid": "b317688e-f5e9-4d4c-99dc-614b764fe54d",
-          "name": "Start Point",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "e8c7faf9-eba0-471e-8540-a33385281d9a"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "0f1dbd3e-1237-4f7e-9308-a54bb429fef8",
-          "name": "End Point",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "24f7f310-4f11-4a59-8206-7daadb96a034"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "73455c39-5152-49b3-87b1-a4c384b4efbb",
-          "name": "Line",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "9ff79870-05d0-483d-87be-b3641d71c6fc",
       "instance_guid": "9ff79870-05d0-483d-87be-b3641d71c6fc",
       "type_name": "List Item",
       "nickname": "List Item",
       "container": "",
       "position": {
-        "x": 11880.0,
-        "y": 3147.0
+        "x": 11883.0,
+        "y": 3138.0
       },
       "params": [
         {
@@ -3576,11 +3273,11 @@
       "guid": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
       "instance_guid": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
       "type_name": "Panel",
-      "nickname": "",
+      "nickname": "Panel",
       "container": "",
       "position": {
-        "x": 9992.707,
-        "y": 2068.561
+        "x": 10672.722,
+        "y": 1781.1807
       },
       "params": []
     },
@@ -5067,8 +4764,8 @@
       "nickname": "PolyLine",
       "container": "",
       "position": {
-        "x": 11862.0,
-        "y": 2990.0
+        "x": 11865.0,
+        "y": 2981.0
       },
       "params": [
         {
@@ -5114,8 +4811,8 @@
       "nickname": "Plane Normal",
       "container": "",
       "position": {
-        "x": 12043.0,
-        "y": 2991.0
+        "x": 12046.0,
+        "y": 2982.0
       },
       "params": [
         {
@@ -5173,8 +4870,8 @@
       "nickname": "Construct Plane",
       "container": "",
       "position": {
-        "x": 12039.0,
-        "y": 3119.0
+        "x": 12042.0,
+        "y": 3110.0
       },
       "params": [
         {
@@ -5250,8 +4947,8 @@
       "nickname": "PolyLine",
       "container": "",
       "position": {
-        "x": 11867.0,
-        "y": 3064.0
+        "x": 11870.0,
+        "y": 3055.0
       },
       "params": [
         {
@@ -5297,8 +4994,8 @@
       "nickname": "List Item",
       "container": "",
       "position": {
-        "x": 12195.0,
-        "y": 2971.0
+        "x": 12198.0,
+        "y": 2962.0
       },
       "params": [
         {
@@ -5356,8 +5053,8 @@
       "nickname": "Plane Normal",
       "container": "",
       "position": {
-        "x": 12184.0,
-        "y": 3075.0
+        "x": 12187.0,
+        "y": 3066.0
       },
       "params": [
         {
@@ -5415,8 +5112,8 @@
       "nickname": "Area",
       "container": "",
       "position": {
-        "x": 11290.0,
-        "y": 2824.0
+        "x": 11293.0,
+        "y": 2815.0
       },
       "params": [
         {
@@ -5460,8 +5157,8 @@
       "nickname": "Area",
       "container": "",
       "position": {
-        "x": 11298.0,
-        "y": 2894.0
+        "x": 11290.0,
+        "y": 2937.0
       },
       "params": [
         {
@@ -5502,11 +5199,11 @@
       "guid": "04df4976-98d6-4ee8-b76a-96211120d851",
       "instance_guid": "04df4976-98d6-4ee8-b76a-96211120d851",
       "type_name": "Panel",
-      "nickname": "",
+      "nickname": "Panel",
       "container": "",
       "position": {
-        "x": 12915.058,
-        "y": 2815.5269
+        "x": 12926.822,
+        "y": 2790.8608
       },
       "params": []
     },
@@ -5517,8 +5214,8 @@
       "nickname": "Rotate",
       "container": "",
       "position": {
-        "x": 11011.0,
-        "y": 2929.0
+        "x": 11014.0,
+        "y": 2915.0
       },
       "params": [
         {
@@ -5638,8 +5335,8 @@
       "nickname": "Construct Point",
       "container": "",
       "position": {
-        "x": 10454.0,
-        "y": 3038.0
+        "x": 10457.0,
+        "y": 3029.0
       },
       "params": [
         {
@@ -5701,8 +5398,8 @@
       "nickname": "Move",
       "container": "",
       "position": {
-        "x": 10795.0,
-        "y": 3048.0
+        "x": 10798.0,
+        "y": 3039.0
       },
       "params": [
         {
@@ -5764,8 +5461,8 @@
       "nickname": "Negative",
       "container": "",
       "position": {
-        "x": 10430.0,
-        "y": 2910.0
+        "x": 10433.0,
+        "y": 2901.0
       },
       "params": [
         {
@@ -5799,8 +5496,8 @@
       "nickname": "Unit Y",
       "container": "",
       "position": {
-        "x": 10608.0,
-        "y": 3058.0
+        "x": 10611.0,
+        "y": 3049.0
       },
       "params": [
         {
@@ -5836,8 +5533,8 @@
       "nickname": "Rotate",
       "container": "",
       "position": {
-        "x": 11013.0,
-        "y": 2820.0
+        "x": 11016.0,
+        "y": 2811.0
       },
       "params": [
         {
@@ -5933,8 +5630,8 @@
       "nickname": "Rotate",
       "container": "",
       "position": {
-        "x": 11016.0,
-        "y": 3058.0
+        "x": 11019.0,
+        "y": 3049.0
       },
       "params": [
         {
@@ -6030,8 +5727,8 @@
       "nickname": "HOY",
       "container": "",
       "position": {
-        "x": 10627.0,
-        "y": 1855.0
+        "x": 11304.0,
+        "y": 1572.0
       },
       "params": [
         {
@@ -6119,8 +5816,8 @@
       "nickname": "YZ Plane",
       "container": "",
       "position": {
-        "x": 11522.0,
-        "y": 2904.0
+        "x": 11529.0,
+        "y": 2911.0
       },
       "params": [
         {
@@ -6160,8 +5857,8 @@
       "nickname": "Rotate",
       "container": "",
       "position": {
-        "x": 11814.0,
-        "y": 2866.0
+        "x": 11786.0,
+        "y": 2854.0
       },
       "params": [
         {
@@ -6269,8 +5966,8 @@
       "nickname": "Month",
       "container": "",
       "position": {
-        "x": 10279.522,
-        "y": 1804.1403
+        "x": 10856.79,
+        "y": 1532.1403
       },
       "params": [
         {
@@ -6293,8 +5990,8 @@
       "nickname": "Day",
       "container": "",
       "position": {
-        "x": 10279.522,
-        "y": 1835.1403
+        "x": 10859.067,
+        "y": 1572.4626
       },
       "params": [
         {
@@ -6317,8 +6014,8 @@
       "nickname": "Hour",
       "container": "",
       "position": {
-        "x": 10278.522,
-        "y": 1863.1403
+        "x": 10854.785,
+        "y": 1610.0178
       },
       "params": [
         {
@@ -6329,6 +6026,387 @@
             11.0
           ],
           "sources": [],
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "8b74fb97-30df-4367-94ce-f0428cbd1eed",
+      "instance_guid": "8b74fb97-30df-4367-94ce-f0428cbd1eed",
+      "type_name": "Panel",
+      "nickname": "Panel",
+      "container": "",
+      "position": {
+        "x": 11707.769,
+        "y": 2234.0999
+      },
+      "params": []
+    },
+    {
+      "guid": "92f33af4-2125-4cf6-9d5d-054a84f822c6",
+      "instance_guid": "92f33af4-2125-4cf6-9d5d-054a84f822c6",
+      "type_name": "Panel",
+      "nickname": "Panel",
+      "container": "",
+      "position": {
+        "x": 11723.482,
+        "y": 1593.8125
+      },
+      "params": []
+    },
+    {
+      "guid": "3cc54cc1-2a58-4a4e-b577-5af723379829",
+      "instance_guid": "3cc54cc1-2a58-4a4e-b577-5af723379829",
+      "type_name": "Panel",
+      "nickname": "Panel",
+      "container": "",
+      "position": {
+        "x": 11797.272,
+        "y": 1754.11
+      },
+      "params": []
+    },
+    {
+      "guid": "d0e2340a-a743-4a21-9b2d-89df84a00268",
+      "instance_guid": "d0e2340a-a743-4a21-9b2d-89df84a00268",
+      "type_name": "Panel",
+      "nickname": "Panel",
+      "container": "",
+      "position": {
+        "x": 11472.133,
+        "y": 1483.2
+      },
+      "params": []
+    },
+    {
+      "guid": "a3809f63-a9c5-4546-8014-9621a0b29566",
+      "instance_guid": "a3809f63-a9c5-4546-8014-9621a0b29566",
+      "type_name": "Panel",
+      "nickname": "Panel",
+      "container": "",
+      "position": {
+        "x": 11687.159,
+        "y": 1479.8201
+      },
+      "params": []
+    },
+    {
+      "guid": "b15ad607-2432-46d0-8d6a-e79c55cfc0c6",
+      "instance_guid": "b15ad607-2432-46d0-8d6a-e79c55cfc0c6",
+      "type_name": "Panel",
+      "nickname": "Panel",
+      "container": "",
+      "position": {
+        "x": 11839.508,
+        "y": 1921.9675
+      },
+      "params": []
+    },
+    {
+      "guid": "8a54ec8d-7ab9-4e8d-9116-525a90a2d69e",
+      "instance_guid": "8a54ec8d-7ab9-4e8d-9116-525a90a2d69e",
+      "type_name": "Panel",
+      "nickname": "Panel",
+      "container": "",
+      "position": {
+        "x": 12799.176,
+        "y": 2563.4707
+      },
+      "params": []
+    },
+    {
+      "guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
+      "instance_guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
+      "type_name": "YZ Plane",
+      "nickname": "YZ Plane",
+      "container": "",
+      "position": {
+        "x": 11862.0,
+        "y": 2653.0
+      },
+      "params": [
+        {
+          "param_guid": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
+          "name": "Origin",
+          "type": "input",
+          "persistent_data": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "sources": [
+            "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
+          "name": "Plane",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
+      "instance_guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
+      "type_name": "Circle",
+      "nickname": "Circle",
+      "container": "",
+      "position": {
+        "x": 12022.0,
+        "y": 2669.0
+      },
+      "params": [
+        {
+          "param_guid": "5cf732f4-5636-4d38-843b-7261c7d04ed4",
+          "name": "Plane",
+          "type": "input",
+          "persistent_data": [
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ],
+          "sources": [
+            "b8cbaed8-c6f7-4c1c-b9ba-88320b975081"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "a5594611-6b3d-4506-9ca6-add63c97fd5e",
+          "name": "Radius",
+          "type": "input",
+          "persistent_data": [
+            0.1
+          ],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "fccb1a7c-db3f-40e8-8c26-f30c05624576",
+          "name": "Circle",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "bdde1ec6-2004-476b-b670-3de72b6fb0b0",
+      "instance_guid": "bdde1ec6-2004-476b-b670-3de72b6fb0b0",
+      "type_name": "Curve | Curve",
+      "nickname": "Curve | Curve",
+      "container": "",
+      "position": {
+        "x": 12225.0,
+        "y": 2693.0
+      },
+      "params": [
+        {
+          "param_guid": "bc29d83e-a3b9-4fe4-97b6-8a60358f152c",
+          "name": "Curve A",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "fccb1a7c-db3f-40e8-8c26-f30c05624576"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "88da8f3e-9018-4cef-ba85-2132770ae0cb",
+          "name": "Curve B",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "9822511c-b2b2-4e5c-8f61-8f6be460cabb"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "23461142-003e-496e-83b5-6c1e947aa859",
+          "name": "Points",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "368a069f-82be-4e22-acce-186441c1cd62",
+          "name": "Params A",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "580f1b0b-f834-4e8c-98cd-5900c25e52bb",
+          "name": "Params B",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "0974a3a7-c1f6-4451-89e4-ad726846f035",
+      "instance_guid": "0974a3a7-c1f6-4451-89e4-ad726846f035",
+      "type_name": "Curve | Curve",
+      "nickname": "Curve | Curve",
+      "container": "",
+      "position": {
+        "x": 12259.0,
+        "y": 2827.0
+      },
+      "params": [
+        {
+          "param_guid": "16663cb6-e2eb-4ac0-90aa-034384945d05",
+          "name": "Curve A",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "fccb1a7c-db3f-40e8-8c26-f30c05624576"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "b6e9e1da-b96f-4c21-8650-e4da8bf0790f",
+          "name": "Curve B",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "aeedb946-4c19-44d8-8e7d-77f9dd230432"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "0d6b3ee1-d62a-47ce-8dc6-2a2c52ac9c49",
+          "name": "Points",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "be2d7002-1690-47cb-8447-6c753a7e3d1c",
+          "name": "Params A",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "aae51212-1af9-4a3e-81c9-3fd412c04bfc",
+          "name": "Params B",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
+      "instance_guid": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
+      "type_name": "Line",
+      "nickname": "Line",
+      "container": "",
+      "position": {
+        "x": 12489.0,
+        "y": 2760.0
+      },
+      "params": [
+        {
+          "param_guid": "a649d825-c688-43e3-bcdc-4519ce395a6a",
+          "name": "Start Point",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "23461142-003e-496e-83b5-6c1e947aa859"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "87eb3f27-bb21-4cc3-9edd-e1575b045048",
+          "name": "End Point",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "0d6b3ee1-d62a-47ce-8dc6-2a2c52ac9c49"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "944abd50-d894-4e46-893e-7a2cdf566398",
+          "name": "Line",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
           "mapping": 0,
           "reverse_data": false
         }
@@ -6363,27 +6441,6 @@
       "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
       "to_param": "0b138011-4630-4eda-ab9f-e370e112550d",
       "to_param_name": "hoys_"
-    },
-    {
-      "from_component": "5f050f23-8ded-4107-8c46-cafebf5e54fd",
-      "from_param": "5f050f23-8ded-4107-8c46-cafebf5e54fd",
-      "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
-      "to_param": "ed3e01ae-5be9-4372-a0fe-b75f4d93af05",
-      "to_param_name": "data_"
-    },
-    {
-      "from_component": "f720fddf-d5df-4998-9638-9d76d4df32a2",
-      "from_param": "f720fddf-d5df-4998-9638-9d76d4df32a2",
-      "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
-      "to_param": "ed3e01ae-5be9-4372-a0fe-b75f4d93af05",
-      "to_param_name": "data_"
-    },
-    {
-      "from_component": "a2b4a667-77f3-45be-96ad-a5c62086fdfb",
-      "from_param": "a2b4a667-77f3-45be-96ad-a5c62086fdfb",
-      "to_component": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
-      "to_param": "ed3e01ae-5be9-4372-a0fe-b75f4d93af05",
-      "to_param_name": "data_"
     },
     {
       "from_component": "dbc236d4-a2fe-48a8-a86e-eebfb04b1053",
@@ -6461,20 +6518,6 @@
       "to_component": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
       "to_param": "663e13ce-1b1d-4ab4-a564-8b7261377b65",
       "to_param_name": "Count"
-    },
-    {
-      "from_component": "0460d28c-3b22-467d-b03f-a330e94bd2f4",
-      "from_param": "0460d28c-3b22-467d-b03f-a330e94bd2f4",
-      "to_component": "ed4878fc-7b79-46d9-a4b1-7637f35de976",
-      "to_param": "e0d1124c-46be-4d3e-a561-f8abd35d834e",
-      "to_param_name": "List"
-    },
-    {
-      "from_component": "ac0efd11-aa24-46cf-8bcc-3ebfa4205ea1",
-      "from_param": "ac0efd11-aa24-46cf-8bcc-3ebfa4205ea1",
-      "to_component": "3f21b46a-6839-4ce7-b107-eb3908e540ac",
-      "to_param": "e59cf958-b0b9-4f27-a703-894d5cdd2ef3",
-      "to_param_name": "List"
     },
     {
       "from_component": "0fb443ce-5a5e-455f-999f-96fcaec0e113",
@@ -6694,13 +6737,6 @@
       "to_param_name": "End Point"
     },
     {
-      "from_component": "aeedb946-4c19-44d8-8e7d-77f9dd230432",
-      "from_param": "aeedb946-4c19-44d8-8e7d-77f9dd230432",
-      "to_component": "1e2231f7-0d69-4908-8f56-55f13a5d4237",
-      "to_param": "6cfc25e6-7e19-47a4-bca2-28389ce82a17",
-      "to_param_name": "Curve"
-    },
-    {
       "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
       "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
       "to_component": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
@@ -6713,13 +6749,6 @@
       "to_component": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
       "to_param": "98d8b1d4-5d32-44bb-b49f-9faa1a14739c",
       "to_param_name": "End Point"
-    },
-    {
-      "from_component": "9822511c-b2b2-4e5c-8f61-8f6be460cabb",
-      "from_param": "9822511c-b2b2-4e5c-8f61-8f6be460cabb",
-      "to_component": "c7b8773d-e1e0-4c31-9b7c-b8b54f9e40e0",
-      "to_param": "2fbbdfe1-e487-4e86-a3b2-fa2582cdb1e1",
-      "to_param_name": "Curve"
     },
     {
       "from_component": "8cb00f94-7bbb-49d9-8065-df2645a32790",
@@ -6764,8 +6793,8 @@
       "to_param_name": "Vector A"
     },
     {
-      "from_component": "73455c39-5152-49b3-87b1-a4c384b4efbb",
-      "from_param": "73455c39-5152-49b3-87b1-a4c384b4efbb",
+      "from_component": "944abd50-d894-4e46-893e-7a2cdf566398",
+      "from_param": "944abd50-d894-4e46-893e-7a2cdf566398",
       "to_component": "0d695e6b-3696-4337-bc80-d14104f8a59e",
       "to_param": "cd9362aa-9560-4cb4-8245-510bb30319f9",
       "to_param_name": "Vector B"
@@ -6783,20 +6812,6 @@
       "to_component": "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58",
       "to_param": "9deef9fb-4aa0-40fa-bee0-a5309dc39533",
       "to_param_name": "Radians"
-    },
-    {
-      "from_component": "e8c7faf9-eba0-471e-8540-a33385281d9a",
-      "from_param": "e8c7faf9-eba0-471e-8540-a33385281d9a",
-      "to_component": "a518331f-8529-47db-bc2e-58ff8ef78e97",
-      "to_param": "b317688e-f5e9-4d4c-99dc-614b764fe54d",
-      "to_param_name": "Start Point"
-    },
-    {
-      "from_component": "24f7f310-4f11-4a59-8206-7daadb96a034",
-      "from_param": "24f7f310-4f11-4a59-8206-7daadb96a034",
-      "to_component": "a518331f-8529-47db-bc2e-58ff8ef78e97",
-      "to_param": "0f1dbd3e-1237-4f7e-9308-a54bb429fef8",
-      "to_param_name": "End Point"
     },
     {
       "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
@@ -7021,6 +7036,62 @@
       "to_component": "1162b56a-787a-4446-8b26-56947cad14f5",
       "to_param": "a1761f27-9d24-4205-b000-5284717acd65",
       "to_param_name": "Angle"
+    },
+    {
+      "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "to_component": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
+      "to_param": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
+      "to_param_name": "Origin"
+    },
+    {
+      "from_component": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
+      "from_param": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
+      "to_component": "2c8beafc-c3a7-425a-905e-4830f637c094",
+      "to_param": "5cf732f4-5636-4d38-843b-7261c7d04ed4",
+      "to_param_name": "Plane"
+    },
+    {
+      "from_component": "fccb1a7c-db3f-40e8-8c26-f30c05624576",
+      "from_param": "fccb1a7c-db3f-40e8-8c26-f30c05624576",
+      "to_component": "bdde1ec6-2004-476b-b670-3de72b6fb0b0",
+      "to_param": "bc29d83e-a3b9-4fe4-97b6-8a60358f152c",
+      "to_param_name": "Curve A"
+    },
+    {
+      "from_component": "9822511c-b2b2-4e5c-8f61-8f6be460cabb",
+      "from_param": "9822511c-b2b2-4e5c-8f61-8f6be460cabb",
+      "to_component": "bdde1ec6-2004-476b-b670-3de72b6fb0b0",
+      "to_param": "88da8f3e-9018-4cef-ba85-2132770ae0cb",
+      "to_param_name": "Curve B"
+    },
+    {
+      "from_component": "fccb1a7c-db3f-40e8-8c26-f30c05624576",
+      "from_param": "fccb1a7c-db3f-40e8-8c26-f30c05624576",
+      "to_component": "0974a3a7-c1f6-4451-89e4-ad726846f035",
+      "to_param": "16663cb6-e2eb-4ac0-90aa-034384945d05",
+      "to_param_name": "Curve A"
+    },
+    {
+      "from_component": "aeedb946-4c19-44d8-8e7d-77f9dd230432",
+      "from_param": "aeedb946-4c19-44d8-8e7d-77f9dd230432",
+      "to_component": "0974a3a7-c1f6-4451-89e4-ad726846f035",
+      "to_param": "b6e9e1da-b96f-4c21-8650-e4da8bf0790f",
+      "to_param_name": "Curve B"
+    },
+    {
+      "from_component": "23461142-003e-496e-83b5-6c1e947aa859",
+      "from_param": "23461142-003e-496e-83b5-6c1e947aa859",
+      "to_component": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
+      "to_param": "a649d825-c688-43e3-bcdc-4519ce395a6a",
+      "to_param_name": "Start Point"
+    },
+    {
+      "from_component": "0d6b3ee1-d62a-47ce-8dc6-2a2c52ac9c49",
+      "from_param": "0d6b3ee1-d62a-47ce-8dc6-2a2c52ac9c49",
+      "to_component": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
+      "to_param": "87eb3f27-bb21-4cc3-9edd-e1575b045048",
+      "to_param_name": "End Point"
     }
   ]
 }
