@@ -442,7 +442,7 @@ def main():
     print("=" * 80)
     print()
     
-    ghx_path = 'refactored-no-sun.ghx'
+    ghx_path = 'refactored-sun-simple.ghx'
     
     print(f"Parsing {ghx_path}...")
     components, wires = parse_ghx(ghx_path)

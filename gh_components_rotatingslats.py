@@ -1714,6 +1714,44 @@ def evaluate_project(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         # Brep is approximated as a plane target for projection
         if isinstance(item, dict) and 'origin' in item and 'z_axis' in item:
             return item
+        # Handle Box geometry (from Box 2Pt component)
+        if isinstance(item, dict) and 'corner_a' in item and 'corner_b' in item:
+            ca = item['corner_a']
+            cb = item['corner_b']
+            # Determine which plane the box lies in based on which coordinate is constant
+            tol = 1e-6
+            if abs(ca[0] - cb[0]) < tol:
+                # YZ plane (x is constant)
+                return {
+                    'origin': [ca[0], (ca[1] + cb[1]) / 2, (ca[2] + cb[2]) / 2],
+                    'z_axis': [1, 0, 0],  # normal pointing in X
+                    'x_axis': [0, 1, 0],
+                    'y_axis': [0, 0, 1]
+                }
+            elif abs(ca[1] - cb[1]) < tol:
+                # XZ plane (y is constant)
+                return {
+                    'origin': [(ca[0] + cb[0]) / 2, ca[1], (ca[2] + cb[2]) / 2],
+                    'z_axis': [0, 1, 0],  # normal pointing in Y
+                    'x_axis': [1, 0, 0],
+                    'y_axis': [0, 0, 1]
+                }
+            elif abs(ca[2] - cb[2]) < tol:
+                # XY plane (z is constant)
+                return {
+                    'origin': [(ca[0] + cb[0]) / 2, (ca[1] + cb[1]) / 2, ca[2]],
+                    'z_axis': [0, 0, 1],  # normal pointing in Z
+                    'x_axis': [1, 0, 0],
+                    'y_axis': [0, 1, 0]
+                }
+            else:
+                # Non-planar box - use XY plane through center
+                return {
+                    'origin': [(ca[0] + cb[0]) / 2, (ca[1] + cb[1]) / 2, (ca[2] + cb[2]) / 2],
+                    'z_axis': [0, 0, 1],
+                    'x_axis': [1, 0, 0],
+                    'y_axis': [0, 1, 0]
+                }
         # Default: world XY
         return {
             'origin': [0, 0, 0],
@@ -2472,6 +2510,480 @@ def evaluate_explode_tree(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             branch_outputs[branch_name] = DataTree()
     
     return branch_outputs
+
+
+# ============================================================================
+# CIRCLE AND CURVE INTERSECTION COMPONENTS
+# ============================================================================
+
+@COMPONENT_REGISTRY.register("Circle")
+def evaluate_circle(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH Circle component: create circle from plane and radius.
+    
+    Inputs:
+        Plane: Plane defining circle center and orientation
+        Radius: Circle radius
+    
+    Outputs:
+        Circle: Circle geometry
+    
+    Grasshopper Behavior:
+        - Creates a circle on the specified plane
+        - Center is at plane origin
+        - Circle lies in the plane (perpendicular to plane normal)
+    """
+    # GH Circle: create circle from plane and radius
+    plane_tree = inputs.get('Plane', DataTree.from_scalar({
+        'origin': [0, 0, 0],
+        'x_axis': [1, 0, 0],
+        'y_axis': [0, 1, 0],
+        'z_axis': [0, 0, 1]
+    }))
+    radius_tree = inputs.get('Radius', DataTree.from_scalar(1.0))
+    
+    # Match inputs using longest strategy
+    plane_matched, radius_matched = match_longest(plane_tree, radius_tree)
+    
+    result = DataTree()
+    
+    for path in plane_matched.get_paths():
+        planes = plane_matched.get_branch(path)
+        radii = radius_matched.get_branch(path)
+        
+        circles = []
+        
+        for plane, radius in zip(planes, radii):
+            # GH Circle: extract plane information
+            if isinstance(plane, dict):
+                # Use plane directly
+                plane_dict = plane
+            else:
+                # Default plane
+                plane_dict = {
+                    'origin': [0, 0, 0],
+                    'x_axis': [1, 0, 0],
+                    'y_axis': [0, 1, 0],
+                    'z_axis': [0, 0, 1]
+                }
+            
+            # Extract radius
+            if radius is None:
+                radius = 1.0
+            else:
+                try:
+                    radius = float(radius)
+                except (TypeError, ValueError):
+                    radius = 1.0
+            
+            # GH Circle: create circle representation
+            # Circle is defined by center (plane origin), plane, and radius
+            circle = {
+                'center': plane_dict.get('origin', [0, 0, 0]),
+                'plane': plane_dict,
+                'radius': radius
+            }
+            circles.append(circle)
+        
+        result.set_branch(path, circles)
+    
+    return {'Circle': result}
+
+
+@COMPONENT_REGISTRY.register("Curve | Curve")
+def evaluate_curve_curve(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH Curve | Curve component: find intersection points between two curves.
+    
+    Inputs:
+        Curve A: First curve
+        Curve B: Second curve
+    
+    Outputs:
+        Points: Intersection points
+        Params A: Parameter values on Curve A where intersections occur
+        Params B: Parameter values on Curve B where intersections occur
+    
+    Grasshopper Behavior:
+        - Finds all intersection points between two curves
+        - Returns intersection points and their parameter values on both curves
+        - Handles lines, polylines, and circles
+    """
+    # GH Curve | Curve: find intersections between two curves
+    curve_a_tree = inputs.get('Curve A', DataTree())
+    curve_b_tree = inputs.get('Curve B', DataTree())
+    
+    # Match inputs using longest strategy
+    curve_a_matched, curve_b_matched = match_longest(curve_a_tree, curve_b_tree)
+    
+    points_result = DataTree()
+    params_a_result = DataTree()
+    params_b_result = DataTree()
+    
+    def extract_curve_points(curve):
+        """Extract points from a curve representation."""
+        if isinstance(curve, dict):
+            if 'start' in curve and 'end' in curve:
+                # Line segment
+                return [curve['start'], curve['end']]
+            elif 'vertices' in curve:
+                # Polyline
+                return curve['vertices']
+            elif 'corners' in curve:
+                # Rectangle
+                return curve['corners']
+            elif 'center' in curve and 'radius' in curve:
+                # Circle - sample points on circle
+                center = curve['center']
+                radius = curve['radius']
+                plane = curve.get('plane', {'x_axis': [1, 0, 0], 'y_axis': [0, 1, 0]})
+                x_axis = plane.get('x_axis', [1, 0, 0])
+                y_axis = plane.get('y_axis', [0, 1, 0])
+                # Sample 8 points around circle
+                import math
+                points = []
+                for i in range(8):
+                    angle = 2 * math.pi * i / 8
+                    x = x_axis[0] * math.cos(angle) + y_axis[0] * math.sin(angle)
+                    y = x_axis[1] * math.cos(angle) + y_axis[1] * math.sin(angle)
+                    z = x_axis[2] * math.cos(angle) + y_axis[2] * math.sin(angle)
+                    point = [
+                        center[0] + radius * x,
+                        center[1] + radius * y,
+                        center[2] + radius * z
+                    ]
+                    points.append(point)
+                return points
+        elif isinstance(curve, (list, tuple)) and len(curve) == 3:
+            # Single point
+            return [list(curve)]
+        return []
+    
+    def line_line_intersection(line1, line2):
+        """Find intersection between two line segments."""
+        # Line 1: P1 + t * (P2 - P1), t in [0, 1]
+        # Line 2: P3 + s * (P4 - P3), s in [0, 1]
+        p1 = line1['start']
+        p2 = line1['end']
+        p3 = line2['start']
+        p4 = line2['end']
+        
+        d1 = [p2[0] - p1[0], p2[1] - p1[1], p2[2] - p1[2]]
+        d2 = [p4[0] - p3[0], p4[1] - p3[1], p4[2] - p3[2]]
+        
+        # Check if lines are parallel
+        cross = [
+            d1[1] * d2[2] - d1[2] * d2[1],
+            d1[2] * d2[0] - d1[0] * d2[2],
+            d1[0] * d2[1] - d1[1] * d2[0]
+        ]
+        cross_len = math.sqrt(cross[0]**2 + cross[1]**2 + cross[2]**2)
+        
+        if cross_len < 1e-10:
+            # Lines are parallel - check if they're the same line
+            # For simplicity, return no intersection
+            return []
+        
+        # Find intersection using parametric form
+        # Solve: P1 + t * d1 = P3 + s * d2
+        # This is a 3D system, use least squares approach
+        # For 2D projection (XY plane), solve:
+        # p1[0] + t * d1[0] = p3[0] + s * d2[0]
+        # p1[1] + t * d1[1] = p3[1] + s * d2[1]
+        
+        # Use XY plane projection
+        denom = d1[0] * d2[1] - d1[1] * d2[0]
+        if abs(denom) < 1e-10:
+            # Try XZ plane
+            denom = d1[0] * d2[2] - d1[2] * d2[0]
+            if abs(denom) < 1e-10:
+                # Try YZ plane
+                denom = d1[1] * d2[2] - d1[2] * d2[1]
+                if abs(denom) < 1e-10:
+                    return []
+                # Use YZ
+                t = ((p3[1] - p1[1]) * d2[2] - (p3[2] - p1[2]) * d2[1]) / denom
+                s = ((p3[1] - p1[1]) * d1[2] - (p3[2] - p1[2]) * d1[1]) / denom
+            else:
+                # Use XZ
+                t = ((p3[0] - p1[0]) * d2[2] - (p3[2] - p1[2]) * d2[0]) / denom
+                s = ((p3[0] - p1[0]) * d1[2] - (p3[2] - p1[2]) * d1[0]) / denom
+        else:
+            # Use XY
+            t = ((p3[0] - p1[0]) * d2[1] - (p3[1] - p1[1]) * d2[0]) / denom
+            s = ((p3[0] - p1[0]) * d1[1] - (p3[1] - p1[1]) * d1[0]) / denom
+        
+        # Check if intersection is within both segments
+        if 0 <= t <= 1 and 0 <= s <= 1:
+            # Calculate intersection point
+            intersection = [
+                p1[0] + t * d1[0],
+                p1[1] + t * d1[1],
+                p1[2] + t * d1[2]
+            ]
+            return [(intersection, t, s)]
+        
+        return []
+    
+    def line_circle_intersection(line, circle):
+        """
+        Find intersection(s) between a line segment and a circle in 3D.
+        
+        Returns list of (point, line_param, circle_param) tuples.
+        - line_param: parameter t in [0, 1] along line segment
+        - circle_param: angle in radians [0, 2*pi) around circle
+        """
+        center = circle['center']
+        radius = circle['radius']
+        plane = circle.get('plane', {})
+        
+        # Get circle's plane axes
+        x_axis = plane.get('x_axis', [1, 0, 0])
+        y_axis = plane.get('y_axis', [0, 1, 0])
+        z_axis = plane.get('z_axis', [0, 0, 1])  # plane normal
+        
+        # Line: P(t) = start + t * direction, t in [0, 1]
+        start = line['start']
+        end = line['end']
+        direction = [end[0] - start[0], end[1] - start[1], end[2] - start[2]]
+        
+        # Vector from circle center to line start
+        v = [start[0] - center[0], start[1] - center[1], start[2] - center[2]]
+        
+        # Project line onto circle's plane
+        # Check if line is parallel to the plane (direction · normal ≈ 0)
+        dir_dot_normal = direction[0] * z_axis[0] + direction[1] * z_axis[1] + direction[2] * z_axis[2]
+        v_dot_normal = v[0] * z_axis[0] + v[1] * z_axis[1] + v[2] * z_axis[2]
+        
+        intersections = []
+        
+        if abs(dir_dot_normal) < 1e-10:
+            # Line is parallel to the plane
+            if abs(v_dot_normal) < 1e-10:
+                # Line lies in the circle's plane - 2D line-circle intersection
+                # Project everything to 2D using circle's plane axes
+                
+                # Line start in 2D (relative to circle center)
+                start_2d_x = v[0] * x_axis[0] + v[1] * x_axis[1] + v[2] * x_axis[2]
+                start_2d_y = v[0] * y_axis[0] + v[1] * y_axis[1] + v[2] * y_axis[2]
+                
+                # Line direction in 2D
+                dir_2d_x = direction[0] * x_axis[0] + direction[1] * x_axis[1] + direction[2] * x_axis[2]
+                dir_2d_y = direction[0] * y_axis[0] + direction[1] * y_axis[1] + direction[2] * y_axis[2]
+                
+                # 2D line-circle intersection
+                # |P0 + t*d|² = r²  where P0 = (start_2d_x, start_2d_y), d = (dir_2d_x, dir_2d_y)
+                # a*t² + b*t + c = 0
+                a = dir_2d_x**2 + dir_2d_y**2
+                b = 2 * (start_2d_x * dir_2d_x + start_2d_y * dir_2d_y)
+                c = start_2d_x**2 + start_2d_y**2 - radius**2
+                
+                if a < 1e-10:
+                    # Line has zero length in plane
+                    return []
+                
+                discriminant = b**2 - 4*a*c
+                
+                if discriminant < -1e-10:
+                    # No intersection
+                    return []
+                elif discriminant < 1e-10:
+                    # One intersection (tangent)
+                    t = -b / (2*a)
+                    if 0 <= t <= 1:
+                        # Calculate 3D intersection point
+                        inter_point = [
+                            start[0] + t * direction[0],
+                            start[1] + t * direction[1],
+                            start[2] + t * direction[2]
+                        ]
+                        # Calculate circle parameter (angle)
+                        inter_2d_x = start_2d_x + t * dir_2d_x
+                        inter_2d_y = start_2d_y + t * dir_2d_y
+                        circle_param = math.atan2(inter_2d_y, inter_2d_x)
+                        if circle_param < 0:
+                            circle_param += 2 * math.pi
+                        intersections.append((inter_point, t, circle_param))
+                else:
+                    # Two intersections - keep only the EXIT point (larger t value)
+                    # This matches Grasshopper's CCX behavior for line-circle intersections
+                    sqrt_disc = math.sqrt(discriminant)
+                    t1 = (-b - sqrt_disc) / (2*a)  # entry point (smaller t)
+                    t2 = (-b + sqrt_disc) / (2*a)  # exit point (larger t)
+                    
+                    # Prefer exit point (t2), fall back to entry point (t1) if exit is out of bounds
+                    t = None
+                    if 0 <= t2 <= 1:
+                        t = t2
+                    elif 0 <= t1 <= 1:
+                        t = t1
+                    
+                    if t is not None:
+                        # Calculate 3D intersection point
+                        inter_point = [
+                            start[0] + t * direction[0],
+                            start[1] + t * direction[1],
+                            start[2] + t * direction[2]
+                        ]
+                        # Calculate circle parameter (angle)
+                        inter_2d_x = start_2d_x + t * dir_2d_x
+                        inter_2d_y = start_2d_y + t * dir_2d_y
+                        circle_param = math.atan2(inter_2d_y, inter_2d_x)
+                        if circle_param < 0:
+                            circle_param += 2 * math.pi
+                        intersections.append((inter_point, t, circle_param))
+            # else: line is parallel but not in plane - no intersection
+        else:
+            # Line intersects the plane at one point
+            # Solve: (start + t * direction - center) · normal = 0
+            # v · normal + t * (direction · normal) = 0
+            # t = -v_dot_normal / dir_dot_normal
+            t = -v_dot_normal / dir_dot_normal
+            
+            if 0 <= t <= 1:
+                # Calculate intersection point with plane
+                inter_point = [
+                    start[0] + t * direction[0],
+                    start[1] + t * direction[1],
+                    start[2] + t * direction[2]
+                ]
+                
+                # Check if this point is on the circle (distance from center = radius)
+                diff = [inter_point[0] - center[0], inter_point[1] - center[1], inter_point[2] - center[2]]
+                dist_sq = diff[0]**2 + diff[1]**2 + diff[2]**2
+                
+                if abs(dist_sq - radius**2) < 1e-6:  # On the circle
+                    # Calculate circle parameter (angle in circle's plane)
+                    proj_x = diff[0] * x_axis[0] + diff[1] * x_axis[1] + diff[2] * x_axis[2]
+                    proj_y = diff[0] * y_axis[0] + diff[1] * y_axis[1] + diff[2] * y_axis[2]
+                    circle_param = math.atan2(proj_y, proj_x)
+                    if circle_param < 0:
+                        circle_param += 2 * math.pi
+                    intersections.append((inter_point, t, circle_param))
+        
+        return intersections
+    
+    def find_intersections(curve_a, curve_b):
+        """Find all intersections between two curves."""
+        intersections = []
+        
+        # Extract curve representations
+        if isinstance(curve_a, dict) and 'start' in curve_a and 'end' in curve_a:
+            # Line A
+            if isinstance(curve_b, dict) and 'start' in curve_b and 'end' in curve_b:
+                # Line B - line-line intersection
+                return line_line_intersection(curve_a, curve_b)
+            elif isinstance(curve_b, dict) and 'vertices' in curve_b:
+                # Polyline B - check each segment
+                for i in range(len(curve_b['vertices']) - 1):
+                    seg = {
+                        'start': curve_b['vertices'][i],
+                        'end': curve_b['vertices'][i + 1]
+                    }
+                    for inter, t_a, t_b in line_line_intersection(curve_a, seg):
+                        # t_b needs to be adjusted for segment index
+                        param_b = i + t_b
+                        intersections.append((inter, t_a, param_b))
+                return intersections
+            elif isinstance(curve_b, dict) and 'center' in curve_b:
+                # Circle B - line-circle intersection
+                return line_circle_intersection(curve_a, curve_b)
+        elif isinstance(curve_a, dict) and 'vertices' in curve_a:
+            # Polyline A
+            if isinstance(curve_b, dict) and 'start' in curve_b and 'end' in curve_b:
+                # Line B - check each segment of A
+                for i in range(len(curve_a['vertices']) - 1):
+                    seg = {
+                        'start': curve_a['vertices'][i],
+                        'end': curve_a['vertices'][i + 1]
+                    }
+                    for inter, t_a, t_b in line_line_intersection(seg, curve_b):
+                        param_a = i + t_a
+                        intersections.append((inter, param_a, t_b))
+                return intersections
+            elif isinstance(curve_b, dict) and 'vertices' in curve_b:
+                # Polyline B - check all segments
+                for i in range(len(curve_a['vertices']) - 1):
+                    seg_a = {
+                        'start': curve_a['vertices'][i],
+                        'end': curve_a['vertices'][i + 1]
+                    }
+                    for j in range(len(curve_b['vertices']) - 1):
+                        seg_b = {
+                            'start': curve_b['vertices'][j],
+                            'end': curve_b['vertices'][j + 1]
+                        }
+                        for inter, t_a, t_b in line_line_intersection(seg_a, seg_b):
+                            param_a = i + t_a
+                            param_b = j + t_b
+                            intersections.append((inter, param_a, param_b))
+                return intersections
+            elif isinstance(curve_b, dict) and 'center' in curve_b:
+                # Circle B - polyline-circle intersection
+                for i in range(len(curve_a['vertices']) - 1):
+                    seg = {
+                        'start': curve_a['vertices'][i],
+                        'end': curve_a['vertices'][i + 1]
+                    }
+                    for inter, t_seg, circle_param in line_circle_intersection(seg, curve_b):
+                        param_a = i + t_seg
+                        intersections.append((inter, param_a, circle_param))
+                return intersections
+        elif isinstance(curve_a, dict) and 'center' in curve_a:
+            # Circle A
+            if isinstance(curve_b, dict) and 'start' in curve_b and 'end' in curve_b:
+                # Line B - circle-line intersection (swap params in result)
+                for inter, line_param, circle_param in line_circle_intersection(curve_b, curve_a):
+                    intersections.append((inter, circle_param, line_param))
+                return intersections
+            elif isinstance(curve_b, dict) and 'vertices' in curve_b:
+                # Polyline B - circle-polyline intersection
+                for i in range(len(curve_b['vertices']) - 1):
+                    seg = {
+                        'start': curve_b['vertices'][i],
+                        'end': curve_b['vertices'][i + 1]
+                    }
+                    for inter, line_param, circle_param in line_circle_intersection(seg, curve_a):
+                        param_b = i + line_param
+                        intersections.append((inter, circle_param, param_b))
+                return intersections
+            elif isinstance(curve_b, dict) and 'center' in curve_b:
+                # Circle B - circle-circle intersection
+                # For simplicity, return empty (would need circle-circle intersection math)
+                return []
+        
+        # Default: no intersections found
+        return []
+    
+    for path in curve_a_matched.get_paths():
+        curves_a = curve_a_matched.get_branch(path)
+        curves_b = curve_b_matched.get_branch(path)
+        
+        all_points = []
+        all_params_a = []
+        all_params_b = []
+        
+        for curve_a, curve_b in zip(curves_a, curves_b):
+            if curve_a is None or curve_b is None:
+                continue
+            
+            # Find intersections
+            intersections = find_intersections(curve_a, curve_b)
+            
+            for inter_point, param_a, param_b in intersections:
+                all_points.append(inter_point)
+                all_params_a.append(param_a)
+                all_params_b.append(param_b)
+        
+        points_result.set_branch(path, all_points)
+        params_a_result.set_branch(path, all_params_a)
+        params_b_result.set_branch(path, all_params_b)
+    
+    return {
+        'Points': points_result,
+        'Params A': params_a_result,
+        'Params B': params_b_result
+    }
 
 
 # ============================================================================
