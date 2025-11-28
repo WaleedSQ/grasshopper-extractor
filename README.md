@@ -75,11 +75,11 @@ This project evaluates Grasshopper definition files (currently `refactored-sun-s
     - Debugging wire resolution issues
     - Visualizing component dependencies
   - **Note**: Not used in pipeline execution, but valuable for reference and debugging
-- **`rotatingslats_graph.json`** - Isolated Rotatingslats group graph (used by Phase 5)
-- **`rotatingslats_inputs.json`** - External inputs (sliders, panels, etc.) (used by Phase 5)
+- **`ghx_graph.json`** - Isolated Rotatingslats group graph (used by Phase 5)
+- **`inputs.json`** - External inputs (sliders, panels, etc.) (used by Phase 5)
 
 #### Output Files (Generated)
-- **`rotatingslats_evaluation_results.json`** - Final evaluation results with component outputs
+- **`evaluation_results.json`** - Final evaluation results with component outputs
 
 ### Utility Scripts (Optional)
 
@@ -172,27 +172,6 @@ All components are implemented in `gh_components_rotatingslats.py`:
 - **Move**: Moves geometry by motion vector
 - **Polar Array**: Creates polar array of geometry
 - And many more...
-
-## Recent Fixes
-
-### Angle Component Variation Fix
-- **Issue**: Angle values were identical within each branch instead of varying
-- **Root Cause**: 
-  1. `List Item` component wasn't applying scalar index to all branches
-  2. `match_longest` was replicating entire parent branches instead of specific items
-  3. Input mapping (Graft) wasn't being applied before component evaluation
-- **Fix**: 
-  - Fixed `List Item` to use scalar index across all branches
-  - Fixed `match_longest` to retrieve specific items from parent branches
-  - Added input mapping application in `gh_evaluator_wired.py`
-
-### Rotate Component Fix
-- **Issue**: Plane rotation not working correctly
-- **Fix**: Implemented Rodrigues' rotation formula for rotating plane axes
-
-### Plane Normal & Construct Plane Fix
-- **Issue**: Incorrect axis extraction and plane construction
-- **Fix**: Corrected to use proper axes (Z-axis for Plane Normal, X/Y for Construct Plane)
 
 ## Verification
 
