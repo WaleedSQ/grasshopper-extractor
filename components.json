@@ -1131,18 +1131,6 @@
     ]
   },
   {
-    "guid": "2b8f6d1a-e9d8-4afa-838f-5d0f6b1ea06b",
-    "instance_guid": "2b8f6d1a-e9d8-4afa-838f-5d0f6b1ea06b",
-    "type_name": "Scribble",
-    "nickname": "Scribble",
-    "container": "",
-    "position": {
-      "x": 8869.987,
-      "y": 2993.9746
-    },
-    "params": []
-  },
-  {
     "guid": "a3eb185f-a7cb-4727-aeaf-d5899f934b99",
     "instance_guid": "a3eb185f-a7cb-4727-aeaf-d5899f934b99",
     "type_name": "Rectangle 2Pt",
@@ -1458,18 +1446,6 @@
     ]
   },
   {
-    "guid": "ad1b8a6c-f731-479b-9018-91fe7193a70e",
-    "instance_guid": "ad1b8a6c-f731-479b-9018-91fe7193a70e",
-    "type_name": "Scribble",
-    "nickname": "Scribble",
-    "container": "",
-    "position": {
-      "x": 8415.245,
-      "y": 2621.769
-    },
-    "params": []
-  },
-  {
     "guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
     "instance_guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
     "type_name": "Explode Tree",
@@ -1617,30 +1593,6 @@
         "reverse_data": false
       }
     ]
-  },
-  {
-    "guid": "f94b6883-a02d-4daf-af16-40cf1e328666",
-    "instance_guid": "f94b6883-a02d-4daf-af16-40cf1e328666",
-    "type_name": "Scribble",
-    "nickname": "Scribble",
-    "container": "",
-    "position": {
-      "x": 11710.7,
-      "y": 1567.2589
-    },
-    "params": []
-  },
-  {
-    "guid": "6e403ec2-3d34-4142-a92e-a5bceba31177",
-    "instance_guid": "6e403ec2-3d34-4142-a92e-a5bceba31177",
-    "type_name": "Scribble",
-    "nickname": "Scribble",
-    "container": "",
-    "position": {
-      "x": 12678.556,
-      "y": 2703.5432
-    },
-    "params": []
   },
   {
     "guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
@@ -2252,18 +2204,6 @@
     ]
   },
   {
-    "guid": "ef588711-b5db-40dd-850c-60ca8bac70e4",
-    "instance_guid": "ef588711-b5db-40dd-850c-60ca8bac70e4",
-    "type_name": "Sketch",
-    "nickname": "Sketch",
-    "container": "",
-    "position": {
-      "x": 0,
-      "y": 0
-    },
-    "params": []
-  },
-  {
     "guid": "0d695e6b-3696-4337-bc80-d14104f8a59e",
     "instance_guid": "0d695e6b-3696-4337-bc80-d14104f8a59e",
     "type_name": "Angle",
@@ -2427,30 +2367,6 @@
         "reverse_data": false
       }
     ]
-  },
-  {
-    "guid": "145ff01f-9c03-4771-ae24-68831f14123c",
-    "instance_guid": "145ff01f-9c03-4771-ae24-68831f14123c",
-    "type_name": "Sketch",
-    "nickname": "Sketch",
-    "container": "",
-    "position": {
-      "x": 0,
-      "y": 0
-    },
-    "params": []
-  },
-  {
-    "guid": "03d56853-f55f-48cb-b76c-4dfb661b4d1b",
-    "instance_guid": "03d56853-f55f-48cb-b76c-4dfb661b4d1b",
-    "type_name": "Sketch",
-    "nickname": "Sketch",
-    "container": "",
-    "position": {
-      "x": 0,
-      "y": 0
-    },
-    "params": []
   },
   {
     "guid": "ef803855-36ec-4b48-8d76-89d870a0438f",

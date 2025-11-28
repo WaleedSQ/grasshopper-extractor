@@ -79,18 +79,6 @@
       5.0
     ]
   },
-  "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2": {
-    "guid": "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
-  },
-  "04df4976-98d6-4ee8-b76a-96211120d851": {
-    "guid": "04df4976-98d6-4ee8-b76a-96211120d851",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
-  },
   "5354f884-8b45-418e-968a-55689cb2e986": {
     "guid": "5354f884-8b45-418e-968a-55689cb2e986",
     "type": "Number Slider",
@@ -122,47 +110,5 @@
     "data": [
       11.0
     ]
-  },
-  "8b74fb97-30df-4367-94ce-f0428cbd1eed": {
-    "guid": "8b74fb97-30df-4367-94ce-f0428cbd1eed",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
-  },
-  "92f33af4-2125-4cf6-9d5d-054a84f822c6": {
-    "guid": "92f33af4-2125-4cf6-9d5d-054a84f822c6",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
-  },
-  "3cc54cc1-2a58-4a4e-b577-5af723379829": {
-    "guid": "3cc54cc1-2a58-4a4e-b577-5af723379829",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
-  },
-  "d0e2340a-a743-4a21-9b2d-89df84a00268": {
-    "guid": "d0e2340a-a743-4a21-9b2d-89df84a00268",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
-  },
-  "a3809f63-a9c5-4546-8014-9621a0b29566": {
-    "guid": "a3809f63-a9c5-4546-8014-9621a0b29566",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
-  },
-  "b15ad607-2432-46d0-8d6a-e79c55cfc0c6": {
-    "guid": "b15ad607-2432-46d0-8d6a-e79c55cfc0c6",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
-  },
-  "8a54ec8d-7ab9-4e8d-9116-525a90a2d69e": {
-    "guid": "8a54ec8d-7ab9-4e8d-9116-525a90a2d69e",
-    "type": "Panel",
-    "nickname": "Panel",
-    "data": null
   }
 }

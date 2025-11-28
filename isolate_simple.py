@@ -72,7 +72,7 @@ def isolate_simple():
     computation_components = []
     
     # Data source types (inputs)
-    input_types = {'Number Slider', 'Panel', 'Value List'}
+    input_types = {'Number Slider', 'Value List'}
     
     for comp in components:
         comp_type = comp['type_name']

@@ -83,30 +83,6 @@
       }
     }
   },
-  "2b8f6d1a-e9d8-4afa-838f-5d0f6b1ea06b": {
-    "component_info": {
-      "guid": "2b8f6d1a-e9d8-4afa-838f-5d0f6b1ea06b",
-      "type": "Scribble",
-      "nickname": "Scribble",
-      "position": {
-        "x": 8869.987,
-        "y": 2993.9746
-      }
-    },
-    "outputs": {}
-  },
-  "ad1b8a6c-f731-479b-9018-91fe7193a70e": {
-    "component_info": {
-      "guid": "ad1b8a6c-f731-479b-9018-91fe7193a70e",
-      "type": "Scribble",
-      "nickname": "Scribble",
-      "position": {
-        "x": 8415.245,
-        "y": 2621.769
-      }
-    },
-    "outputs": {}
-  },
   "32cc502c-07b0-4d58-aef1-8acf8b2f4015": {
     "component_info": {
       "guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
@@ -150,30 +126,6 @@
         "item_count": 1
       }
     }
-  },
-  "f94b6883-a02d-4daf-af16-40cf1e328666": {
-    "component_info": {
-      "guid": "f94b6883-a02d-4daf-af16-40cf1e328666",
-      "type": "Scribble",
-      "nickname": "Scribble",
-      "position": {
-        "x": 11710.7,
-        "y": 1567.2589
-      }
-    },
-    "outputs": {}
-  },
-  "6e403ec2-3d34-4142-a92e-a5bceba31177": {
-    "component_info": {
-      "guid": "6e403ec2-3d34-4142-a92e-a5bceba31177",
-      "type": "Scribble",
-      "nickname": "Scribble",
-      "position": {
-        "x": 12678.556,
-        "y": 2703.5432
-      }
-    },
-    "outputs": {}
   },
   "b3c71890-f270-4efd-b308-60428215f2be": {
     "component_info": {
@@ -306,42 +258,6 @@
         "item_count": 1
       }
     }
-  },
-  "ef588711-b5db-40dd-850c-60ca8bac70e4": {
-    "component_info": {
-      "guid": "ef588711-b5db-40dd-850c-60ca8bac70e4",
-      "type": "Sketch",
-      "nickname": "Sketch",
-      "position": {
-        "x": 0,
-        "y": 0
-      }
-    },
-    "outputs": {}
-  },
-  "145ff01f-9c03-4771-ae24-68831f14123c": {
-    "component_info": {
-      "guid": "145ff01f-9c03-4771-ae24-68831f14123c",
-      "type": "Sketch",
-      "nickname": "Sketch",
-      "position": {
-        "x": 0,
-        "y": 0
-      }
-    },
-    "outputs": {}
-  },
-  "03d56853-f55f-48cb-b76c-4dfb661b4d1b": {
-    "component_info": {
-      "guid": "03d56853-f55f-48cb-b76c-4dfb661b4d1b",
-      "type": "Sketch",
-      "nickname": "Sketch",
-      "position": {
-        "x": 0,
-        "y": 0
-      }
-    },
-    "outputs": {}
   },
   "9754db2b-c513-48b6-bbf7-0d06f53b3ce4": {
     "component_info": {

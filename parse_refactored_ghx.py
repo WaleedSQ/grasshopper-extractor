@@ -13,6 +13,39 @@ import xml.etree.ElementTree as ET
 import json
 from collections import defaultdict
 
+# Non-functional component types to skip
+NON_FUNCTIONAL_TYPES = {'Scribble', 'Sketch', 'Group', 'Panel'}
+
+
+def extract_items(elem):
+    """Extract items dict from XML element."""
+    items = {}
+    items_elem = elem.find('./items')
+    if items_elem is not None:
+        for item in items_elem.findall('./item'):
+            name = item.get('name', '')
+            value = item.text or ''
+            items[name] = value.strip()
+    return items
+
+
+def find_chunk(parent, name):
+    """Find first chunk with given name."""
+    for chunk in parent.findall('./chunks/chunk'):
+        if chunk.get('name') == name:
+            return chunk
+    return None
+
+
+def safe_float(elem, default=0.0):
+    """Safely extract float from XML element."""
+    if elem is not None and elem.text:
+        try:
+            return float(elem.text)
+        except (ValueError, TypeError):
+            pass
+    return default
+
 
 def parse_ghx(ghx_path):
     """Parse GHX file and extract complete component graph."""
@@ -24,377 +57,225 @@ def parse_ghx(ghx_path):
     wires = []
     
     # Find Definition chunk
-    definition = None
-    for chunk in root.findall('.//chunk'):
-        if chunk.get('name') == 'Definition':
-            definition = chunk
-            break
-    
+    definition = next((c for c in root.findall('.//chunk') if c.get('name') == 'Definition'), None)
     if definition is None:
         print("ERROR: No Definition chunk found in GHX")
-        return None, None, None
+        return None, None
     
-    # Find DefinitionObjects chunk within Definition
-    def_objects = None
-    for chunk in definition.findall('./chunks/chunk'):
-        if chunk.get('name') == 'DefinitionObjects':
-            def_objects = chunk
-            break
-    
+    # Find DefinitionObjects chunk
+    def_objects = find_chunk(definition, 'DefinitionObjects')
     if def_objects is None:
         print("ERROR: No DefinitionObjects chunk found")
-        return None, None, None
+        return None, None
     
-    # Extract all components from Object chunks
+    # Extract components
     for chunk in def_objects.findall('./chunks/chunk'):
-        if chunk.get('name') == 'Object' or chunk.get('name') == 'Group':
+        if chunk.get('name') == 'Object':
             component = extract_component_from_chunk(chunk)
             if component:
                 components.append(component)
     
-    # Extract all wires from Source elements
+    # Extract wires from source connections
     for comp in components:
-        comp_guid = comp['guid']
         for param in comp['params']:
-            param_guid = param['param_guid']
-            
-            # Check if this parameter has source wires
-            if 'sources' in param and param['sources']:
-                for source_guid in param['sources']:
-                    wires.append({
-                        'from_component': source_guid,
-                        'from_param': source_guid,  # Will resolve later
-                        'to_component': comp_guid,
-                        'to_param': param_guid,
-                        'to_param_name': param['name']
-                    })
+            for source_guid in param.get('sources', []):
+                wires.append({
+                    'from_component': source_guid,
+                    'from_param': source_guid,
+                    'to_component': comp['guid'],
+                    'to_param': param['param_guid'],
+                    'to_param_name': param['name']
+                })
     
     return components, wires
 
 
 def extract_component_from_chunk(chunk):
-    """Extract component metadata and parameters from Object/Group chunk."""
+    """Extract component metadata and parameters from Object chunk."""
+    items = extract_items(chunk)
+    type_name = items.get('Name', chunk.get('name', ''))
     
-    chunk_name = chunk.get('name', '')
-    
-    # Extract top-level Object properties
-    items = {}
-    items_elem = chunk.find('./items')
-    if items_elem is not None:
-        for item in items_elem.findall('./item'):
-            item_name = item.get('name', '')
-            item_value = item.text
-            if item_value is None:
-                item_value = ''
-            items[item_name] = item_value.strip()
-    
-    # Get component type (Name field for Objects)
-    type_name = items.get('Name', chunk_name)
-    
-    # Find the Container chunk inside the Object
-    container_chunk = None
-    for sub_chunk in chunk.findall('./chunks/chunk'):
-        if sub_chunk.get('name') == 'Container':
-            container_chunk = sub_chunk
-            break
-    
-    if container_chunk is None:
-        # For groups, the chunk itself contains the data
-        if chunk_name == 'Group':
-            guid = items.get('InstanceGuid', '')
-            nickname = items.get('NickName', items.get('Name', ''))
-            return {
-                'guid': guid,
-                'instance_guid': guid,
-                'type_name': 'Group',
-                'nickname': nickname,
-                'container': '',
-                'position': {'x': 0, 'y': 0},
-                'params': []
-            }
+    # Skip non-functional components
+    if type_name in NON_FUNCTIONAL_TYPES:
         return None
     
-    # Extract Container items (actual component details)
-    container_items = {}
-    container_items_elem = container_chunk.find('./items')
-    if container_items_elem is not None:
-        for item in container_items_elem.findall('./item'):
-            item_name = item.get('name', '')
-            item_value = item.text
-            if item_value is None:
-                item_value = ''
-            container_items[item_name] = item_value.strip()
+    # Find Container chunk (required for all functional components)
+    container_chunk = find_chunk(chunk, 'Container')
+    if container_chunk is None:
+        return None
     
-    # Get GUID (required)
+    # Extract component details
+    container_items = extract_items(container_chunk)
     guid = container_items.get('InstanceGuid', '')
     if not guid:
         return None
     
-    # Get nickname
-    nickname = container_items.get('NickName', container_items.get('Name', ''))
-    
-    # Get container (group) - stored in attributes
-    container = ''
-    
-    # Position - need to check attributes chunk
+    # Extract position and container from Attributes
     position = {'x': 0, 'y': 0}
-    for sub_chunk in container_chunk.findall('./chunks/chunk'):
-        if sub_chunk.get('name') == 'Attributes':
-            attrs_items_elem = sub_chunk.find('./items')
-            if attrs_items_elem is not None:
-                for item in attrs_items_elem.findall('./item'):
-                    item_name = item.get('name', '')
-                    if item_name == 'Pivot':
-                        # Parse pivot point from structured XML
-                        x_elem = item.find('./X')
-                        y_elem = item.find('./Y')
-                        if x_elem is not None and y_elem is not None:
-                            try:
-                                position['x'] = float(x_elem.text)
-                                position['y'] = float(y_elem.text)
-                            except:
-                                pass
-                    elif item_name == 'Parent':
-                        # This is the container/group GUID
-                        parent_guid = item.find('./ParentID')
-                        if parent_guid is not None and parent_guid.text:
-                            container = parent_guid.text.strip()
+    container = ''
+    attrs_chunk = find_chunk(container_chunk, 'Attributes')
+    if attrs_chunk:
+        for item in attrs_chunk.findall('./items/item'):
+            name = item.get('name', '')
+            if name == 'Pivot':
+                position['x'] = safe_float(item.find('./X'))
+                position['y'] = safe_float(item.find('./Y'))
+            elif name == 'Parent':
+                parent_id = item.find('./ParentID')
+                if parent_id is not None and parent_id.text:
+                    container = parent_id.text.strip()
     
-    instance_guid = guid
-    
-    # Extract parameters from param_input and param_output chunks in Container
+    # Extract parameters
     params = []
-    
     for sub_chunk in container_chunk.findall('./chunks/chunk'):
         chunk_name = sub_chunk.get('name', '')
         
         if chunk_name == 'param_input':
-            # This IS the parameter chunk
             param = extract_parameter_from_chunk(sub_chunk, 'input')
             if param:
                 params.append(param)
-        
         elif chunk_name == 'param_output':
-            # This IS the parameter chunk
             param = extract_parameter_from_chunk(sub_chunk, 'output')
             if param:
                 params.append(param)
-        
         elif chunk_name == 'ParameterData':
-            # Variable-parameter components (e.g., List Item) use this structure
+            # Variable-parameter components (e.g., List Item)
             for param_chunk in sub_chunk.findall('./chunks/chunk'):
-                param_chunk_name = param_chunk.get('name', '')
-                if param_chunk_name == 'InputParam':
-                    param = extract_parameter_from_chunk(param_chunk, 'input')
+                param_type = 'input' if param_chunk.get('name') == 'InputParam' else 'output'
+                if param_chunk.get('name') in ('InputParam', 'OutputParam'):
+                    param = extract_parameter_from_chunk(param_chunk, param_type)
                     if param:
                         params.append(param)
-                elif param_chunk_name == 'OutputParam':
-                    param = extract_parameter_from_chunk(param_chunk, 'output')
-                    if param:
-                        params.append(param)
-        
         elif chunk_name == 'Slider' and type_name == 'Number Slider':
             # Special handling for Number Slider
             slider_items = sub_chunk.find('./items')
-            if slider_items is not None:
-                slider_value = None
+            if slider_items:
                 for item in slider_items.findall('./item'):
                     if item.get('name') == 'Value':
-                        slider_value = float(item.text) if item.text else 0
+                        slider_value = safe_float(item, 0)
+                        params.append({
+                            'param_guid': guid,
+                            'name': 'Value',
+                            'type': 'output',
+                            'persistent_data': [slider_value],
+                            'sources': [],
+                            'mapping': 0,
+                            'reverse_data': False
+                        })
                         break
-                
-                # Create a synthetic output parameter with the slider value
-                if slider_value is not None:
-                    param = {
-                        'param_guid': guid,  # Use component GUID as param GUID
-                        'name': 'Value',
-                        'type': 'output',
-                        'persistent_data': [slider_value],
-                        'sources': [],
-                        'mapping': 0,  # Sliders don't have mapping
-                        'reverse_data': False  # Sliders don't have reverse
-                    }
-                    params.append(param)
     
-    component = {
+    return {
         'guid': guid,
-        'instance_guid': instance_guid,
+        'instance_guid': guid,
         'type_name': type_name,
-        'nickname': nickname,
+        'nickname': container_items.get('NickName', container_items.get('Name', '')),
         'container': container,
         'position': position,
         'params': params
     }
-    
-    return component
 
 
 def extract_parameter_from_chunk(param_chunk, param_type):
     """Extract parameter information including persistent data and sources."""
-    
-    # Extract parameter properties
-    items = {}
-    items_elem = param_chunk.find('./items')
-    if items_elem is not None:
-        for item in items_elem.findall('./item'):
-            item_name = item.get('name', '')
-            item_value = item.text
-            if item_value is None:
-                item_value = ''
-            items[item_name] = item_value.strip()
-    
+    items = extract_items(param_chunk)
     param_guid = items.get('InstanceGuid', '')
     if not param_guid:
         return None
     
-    name = items.get('Name', '')
-    
-    # Extract persistent data
-    persistent_data = extract_persistent_data_from_chunk(param_chunk)
-    
-    # Extract source wires (for inputs) - stored as indexed items named "Source"
+    # Extract source wires (for inputs)
     sources = []
-    if param_type == 'input' and items_elem is not None:
-        for item in items_elem.findall('./item'):
-            item_name = item.get('name', '')
-            if item_name == 'Source':
-                item_value = item.text
-                if item_value:
-                    sources.append(item_value.strip())
+    if param_type == 'input':
+        items_elem = param_chunk.find('./items')
+        if items_elem:
+            for item in items_elem.findall('./item'):
+                if item.get('name') == 'Source' and item.text:
+                    sources.append(item.text.strip())
     
-    # Extract expression if present (for parameters with expressions like "x-1")
-    expression = items.get('InternalExpression', None)
+    # Extract mapping and reverse_data
+    mapping = int(items.get('Mapping', '0')) if items.get('Mapping', '0').isdigit() else 0
+    reverse_data = items.get('ReverseData', 'false').lower() == 'true'
     
-    # Extract Mapping (0=None, 1=Graft, 2=Flatten)
-    mapping = items.get('Mapping', '0')
-    try:
-        mapping = int(mapping)
-    except (ValueError, TypeError):
-        mapping = 0
-    
-    # Extract ReverseData flag (reverses input data order)
-    reverse_data = items.get('ReverseData', 'false')
-    try:
-        reverse_data = reverse_data.lower() == 'true'
-    except:
-        reverse_data = False
-    
-    param = {
+    return {
         'param_guid': param_guid,
-        'name': name,
+        'name': items.get('Name', ''),
         'type': param_type,
-        'persistent_data': persistent_data,
+        'persistent_data': extract_persistent_data_from_chunk(param_chunk),
         'sources': sources,
-        'expression': expression,
+        'expression': items.get('InternalExpression'),
         'mapping': mapping,
         'reverse_data': reverse_data
     }
-    
-    return param
 
 
 def extract_persistent_data_from_chunk(param_chunk):
-    """Extract persistent data from parameter chunk (sliders, panels, number inputs)."""
-    
+    """Extract persistent data from parameter chunk (sliders, number inputs)."""
     data = []
+    persistent_chunk = find_chunk(param_chunk, 'PersistentData')
+    if not persistent_chunk:
+        return data
     
-    # Look for PersistentData chunk
-    for sub_chunk in param_chunk.findall('./chunks/chunk'):
-        if sub_chunk.get('name') == 'PersistentData':
-            # Check for direct items (simple values)
-            items_elem = sub_chunk.find('./items')
-            if items_elem is not None:
-                for item in items_elem.findall('./item'):
-                    item_name = item.get('name', '')
-                    if item_name != 'Count':  # Skip count metadata
-                        value = item.text
-                        if value is not None:
-                            try:
-                                if '.' in value or 'e' in value.lower():
-                                    data.append(float(value))
-                                else:
-                                    data.append(int(value))
-                            except ValueError:
-                                data.append(value.strip())
+    # Extract direct items (simple values)
+    for item in persistent_chunk.findall('./items/item'):
+        if item.get('name') != 'Count' and item.text:
+            value = item.text.strip()
+            try:
+                data.append(float(value) if '.' in value or 'e' in value.lower() else int(value))
+            except ValueError:
+                data.append(value)
+    
+    # Extract tree structure (Branch chunks)
+    for branch_chunk in persistent_chunk.findall('./chunks/chunk'):
+        if branch_chunk.get('name') != 'Branch':
+            continue
+        
+        branch_data = []
+        for item_chunk in branch_chunk.findall('./chunks/chunk'):
+            if item_chunk.get('name') != 'Item':
+                continue
             
-            # Check for tree structure (Branch chunks)
-            for branch_chunk in sub_chunk.findall('./chunks/chunk'):
-                if branch_chunk.get('name') == 'Branch':
-                    branch_data = []
-                    # Look for Item chunks within Branch
-                    for item_chunk in branch_chunk.findall('./chunks/chunk'):
-                        if item_chunk.get('name') == 'Item':
-                            # Extract value from item chunk
-                            item_items = item_chunk.find('./items')
-                            if item_items is not None:
-                                for item in item_items.findall('./item'):
-                                    item_name = item.get('name', '')
-                                    
-                                    # Skip TypeName metadata
-                                    if item_name == 'TypeName':
-                                        continue
-                                    
-                                    # Check for plane type (gh_plane)
-                                    if item_name == 'plane':
-                                        # Plane type: extract Ox, Oy, Oz, Xx, Xy, Xz, Yx, Yy, Yz
-                                        try:
-                                            ox = float(item.find('./Ox').text) if item.find('./Ox') is not None else 0.0
-                                            oy = float(item.find('./Oy').text) if item.find('./Oy') is not None else 0.0
-                                            oz = float(item.find('./Oz').text) if item.find('./Oz') is not None else 0.0
-                                            xx = float(item.find('./Xx').text) if item.find('./Xx') is not None else 1.0
-                                            xy = float(item.find('./Xy').text) if item.find('./Xy') is not None else 0.0
-                                            xz = float(item.find('./Xz').text) if item.find('./Xz') is not None else 0.0
-                                            yx = float(item.find('./Yx').text) if item.find('./Yx') is not None else 0.0
-                                            yy = float(item.find('./Yy').text) if item.find('./Yy') is not None else 1.0
-                                            yz = float(item.find('./Yz').text) if item.find('./Yz') is not None else 0.0
-                                            
-                                            origin = [ox, oy, oz]
-                                            x_axis = [xx, xy, xz]
-                                            y_axis = [yx, yy, yz]
-                                            
-                                            # Calculate Z-axis (normal) as cross product of X and Y
-                                            z_axis = [
-                                                x_axis[1] * y_axis[2] - x_axis[2] * y_axis[1],
-                                                x_axis[2] * y_axis[0] - x_axis[0] * y_axis[2],
-                                                x_axis[0] * y_axis[1] - x_axis[1] * y_axis[0]
-                                            ]
-                                            
-                                            plane_dict = {
-                                                'origin': origin,
-                                                'x_axis': x_axis,
-                                                'y_axis': y_axis,
-                                                'z_axis': z_axis,
-                                                'normal': z_axis
-                                            }
-                                            branch_data.append(plane_dict)
-                                        except (ValueError, TypeError, AttributeError):
-                                            # If plane parsing fails, skip it
-                                            pass
-                                    # Check for structured types (point/vector)
-                                    elif item.find('./X') is not None:
-                                        # Point or vector
-                                        x = float(item.find('./X').text)
-                                        y = float(item.find('./Y').text)
-                                        z = float(item.find('./Z').text)
-                                        branch_data.append([x, y, z])
-                                    elif item_name == 'boolean':
-                                        # Boolean type (GHX line 1521)
-                                        value = item.text
-                                        if value is not None:
-                                            branch_data.append(value.strip().lower() == 'true')
-                                    else:
-                                        # Simple value
-                                        value = item.text
-                                        if value is not None:
-                                            try:
-                                                if '.' in value or 'e' in value.lower():
-                                                    branch_data.append(float(value))
-                                                else:
-                                                    branch_data.append(int(value))
-                                            except ValueError:
-                                                branch_data.append(value.strip())
-                    if branch_data:
-                        data.extend(branch_data)  # Flatten for now
+            item_items = item_chunk.find('./items')
+            if not item_items:
+                continue
+            
+            for item in item_items.findall('./item'):
+                item_name = item.get('name', '')
+                if item_name == 'TypeName':
+                    continue
+                
+                # Handle plane type
+                if item_name == 'plane':
+                    try:
+                        plane_dict = {
+                            'origin': [safe_float(item.find('./Ox')), safe_float(item.find('./Oy')), safe_float(item.find('./Oz'))],
+                            'x_axis': [safe_float(item.find('./Xx'), 1.0), safe_float(item.find('./Xy')), safe_float(item.find('./Xz'))],
+                            'y_axis': [safe_float(item.find('./Yx')), safe_float(item.find('./Yy'), 1.0), safe_float(item.find('./Yz'))]
+                        }
+                        # Calculate Z-axis (normal) as cross product
+                        x, y = plane_dict['x_axis'], plane_dict['y_axis']
+                        z_axis = [
+                            x[1] * y[2] - x[2] * y[1],
+                            x[2] * y[0] - x[0] * y[2],
+                            x[0] * y[1] - x[1] * y[0]
+                        ]
+                        plane_dict['z_axis'] = plane_dict['normal'] = z_axis
+                        branch_data.append(plane_dict)
+                    except (ValueError, TypeError, AttributeError):
+                        pass
+                # Handle point/vector
+                elif item.find('./X') is not None:
+                    branch_data.append([safe_float(item.find('./X')), safe_float(item.find('./Y')), safe_float(item.find('./Z'))])
+                # Handle boolean
+                elif item_name == 'boolean' and item.text:
+                    branch_data.append(item.text.strip().lower() == 'true')
+                # Handle simple value
+                elif item.text:
+                    value = item.text.strip()
+                    try:
+                        branch_data.append(float(value) if '.' in value or 'e' in value.lower() else int(value))
+                    except ValueError:
+                        branch_data.append(value)
+        
+        data.extend(branch_data)
     
     return data
 
