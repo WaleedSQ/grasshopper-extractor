@@ -12,7 +12,7 @@ Each line documents its GH correspondence:
 """
 
 import math
-from typing import Dict, List, Tuple
+from typing import Dict
 from gh_evaluator_core import DataTree, match_longest, COMPONENT_REGISTRY
 
 
@@ -167,7 +167,7 @@ def evaluate_angle(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     a_matched, b_matched, plane_matched = match_longest(a_tree, b_tree, plane_tree)
     
     angle_result = DataTree()
-    reflex_result = DataTree()
+    # Reflex output is unused - skip calculation
     
     def extract_vector(item):
         """Extract a vector from various geometry types."""
@@ -217,7 +217,6 @@ def evaluate_angle(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             continue
         
         angles = []
-        reflexes = []
         
         for a_item, b_item, plane_item in zip(a_items, b_items, plane_items):
             # Skip if any required input is None
@@ -263,12 +262,10 @@ def evaluate_angle(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                         angle = (2 * math.pi) - angle
             
             angles.append(angle)
-            reflexes.append(2 * math.pi - angle)
         
         angle_result.set_branch(path, angles)
-        reflex_result.set_branch(path, reflexes)
     
-    return {'Angle': angle_result, 'Reflex': reflex_result}
+    return {'Angle': angle_result, 'Reflex': DataTree()}
 
 
 # ============================================================================
@@ -424,7 +421,7 @@ def evaluate_vector_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     a_matched, b_matched, unitize_matched = match_longest(a_tree, b_tree, unitize_tree)
     
     vector_result = DataTree()
-    length_result = DataTree()
+    # Length output is unused - skip calculation
     
     for path in a_matched.get_paths():
         a_items = a_matched.get_branch(path)
@@ -432,7 +429,6 @@ def evaluate_vector_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         unitize_items = unitize_matched.get_branch(path)
         
         vectors = []
-        lengths = []
         
         for a_pt, b_pt, unitize in zip(a_items, b_items, unitize_items):
             # GH Vector 2Pt: vector = B - A
@@ -452,22 +448,19 @@ def evaluate_vector_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             vy = by - ay
             vz = bz - az
             
-            # GH Vector 2Pt: compute length before unitizing
-            length = math.sqrt(vx**2 + vy**2 + vz**2)
-            
             # GH Vector 2Pt: unitize if requested (GHX line 1521)
-            if unitize and length > 0:
-                vx = vx / length
-                vy = vy / length
-                vz = vz / length
+            if unitize:
+                length = math.sqrt(vx**2 + vy**2 + vz**2)
+                if length > 0:
+                    vx = vx / length
+                    vy = vy / length
+                    vz = vz / length
             
             vectors.append([vx, vy, vz])
-            lengths.append(length)
         
         vector_result.set_branch(path, vectors)
-        length_result.set_branch(path, lengths)
     
-    return {'Vector': vector_result, 'Length': length_result}
+    return {'Vector': vector_result, 'Length': DataTree()}
 
 
 @COMPONENT_REGISTRY.register("Unit Y")
@@ -1016,199 +1009,6 @@ def evaluate_polyline(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     
     return {'Polyline': polyline_result, 'Length': length_result}
 
-
-@COMPONENT_REGISTRY.register("Divide Length")
-def evaluate_divide_length(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
-    """
-    GH Divide Length component: divide curve into segments of specified length.
-    
-    Matches Grasshopper behavior:
-    - Creates division points at intervals of the specified length
-    - Points are placed at 0, seg_length, 2*seg_length, etc. along the curve
-    - The endpoint is NOT included unless it falls exactly on a division
-    
-    Inputs:
-        Curve: Curve to divide (line or polyline)
-        Length: Segment length
-    
-    Outputs:
-        Points: Division points
-        Tangents: Tangent vectors at points
-        Parameters: Parameter values (actual distance along curve)
-    """
-    curve_tree = inputs.get('Curve', DataTree())
-    length_tree = inputs.get('Length', DataTree.from_scalar(1))
-    
-    curve_m, length_m = match_longest(curve_tree, length_tree)
-    
-    points_result = DataTree()
-    tangents_result = DataTree()
-    parameters_result = DataTree()
-    
-    def divide_line_segment(start, end, seg_length):
-        """Divide a line segment by length, returning points, tangents, and parameters."""
-        dx = end[0] - start[0]
-        dy = end[1] - start[1]
-        dz = end[2] - start[2]
-        total_length = math.sqrt(dx**2 + dy**2 + dz**2)
-        
-        if total_length == 0 or seg_length <= 0:
-            return [[start[0], start[1], start[2]]], [[0, 0, 0]], [0.0]
-        
-        # Unit tangent vector
-        tangent = [dx / total_length, dy / total_length, dz / total_length]
-        
-        # Number of division points (Grasshopper places points at 0, seg_length, 2*seg_length, ...)
-        # floor(total_length / seg_length) gives the number of FULL segments
-        # We get that many segments + 1 point (for the start)
-        num_full_segments = int(total_length / seg_length)
-        
-        points = []
-        tangents = []
-        parameters = []
-        
-        # Generate points at each division
-        for i in range(num_full_segments + 1):
-            dist_along = i * seg_length
-            t = dist_along / total_length if total_length > 0 else 0
-            
-            point = [
-                start[0] + t * dx,
-                start[1] + t * dy,
-                start[2] + t * dz
-            ]
-            points.append(point)
-            tangents.append(tangent[:])
-            # Parameter is the actual distance along the curve (matching Grasshopper)
-            parameters.append(dist_along)
-        
-        return points, tangents, parameters
-    
-    def divide_polyline(vertices, seg_length):
-        """Divide a polyline by length."""
-        if not vertices or len(vertices) < 2:
-            return [], [], []
-        
-        all_points = []
-        all_tangents = []
-        all_parameters = []
-        
-        # Calculate cumulative lengths along polyline
-        cumulative_dist = 0.0
-        next_division = 0.0
-        
-        # Add start point
-        all_points.append(list(vertices[0]))
-        if len(vertices) > 1:
-            dx = vertices[1][0] - vertices[0][0]
-            dy = vertices[1][1] - vertices[0][1]
-            dz = vertices[1][2] - vertices[0][2]
-            seg_len = math.sqrt(dx**2 + dy**2 + dz**2)
-            if seg_len > 0:
-                all_tangents.append([dx/seg_len, dy/seg_len, dz/seg_len])
-            else:
-                all_tangents.append([0, 0, 0])
-        else:
-            all_tangents.append([0, 0, 0])
-        all_parameters.append(0.0)
-        next_division = seg_length
-        
-        # Walk along polyline segments
-        for i in range(len(vertices) - 1):
-            v1 = vertices[i]
-            v2 = vertices[i + 1]
-            
-            dx = v2[0] - v1[0]
-            dy = v2[1] - v1[1]
-            dz = v2[2] - v1[2]
-            segment_length = math.sqrt(dx**2 + dy**2 + dz**2)
-            
-            if segment_length == 0:
-                continue
-            
-            tangent = [dx / segment_length, dy / segment_length, dz / segment_length]
-            
-            # Check for division points within this segment
-            segment_start_dist = cumulative_dist
-            segment_end_dist = cumulative_dist + segment_length
-            
-            while next_division <= segment_end_dist:
-                # Interpolate point on this segment
-                local_t = (next_division - segment_start_dist) / segment_length
-                point = [
-                    v1[0] + local_t * dx,
-                    v1[1] + local_t * dy,
-                    v1[2] + local_t * dz
-                ]
-                all_points.append(point)
-                all_tangents.append(tangent[:])
-                all_parameters.append(next_division)
-                next_division += seg_length
-            
-            cumulative_dist = segment_end_dist
-        
-        return all_points, all_tangents, all_parameters
-    
-    for path in curve_m.get_paths():
-        curves = curve_m.get_branch(path)
-        lengths = length_m.get_branch(path)
-        
-        all_points = []
-        all_tangents = []
-        all_parameters = []
-        
-        for curve, seg_length in zip(curves, lengths):
-            if curve is None:
-                continue
-            
-            seg_length = float(seg_length) if seg_length is not None else 1.0
-            
-            if isinstance(curve, dict):
-                if 'start' in curve and 'end' in curve:
-                    # Line segment
-                    pts, tans, params = divide_line_segment(
-                        curve['start'], curve['end'], seg_length
-                    )
-                    all_points.extend(pts)
-                    all_tangents.extend(tans)
-                    all_parameters.extend(params)
-                    
-                elif 'vertices' in curve:
-                    # Polyline
-                    pts, tans, params = divide_polyline(curve['vertices'], seg_length)
-                    all_points.extend(pts)
-                    all_tangents.extend(tans)
-                    all_parameters.extend(params)
-                    
-                elif 'corners' in curve:
-                    # Rectangle (treat as closed polyline)
-                    corners = curve['corners']
-                    if len(corners) >= 4:
-                        # Close the polyline
-                        vertices = list(corners) + [corners[0]]
-                        pts, tans, params = divide_polyline(vertices, seg_length)
-                        all_points.extend(pts)
-                        all_tangents.extend(tans)
-                        all_parameters.extend(params)
-                else:
-                    # Unknown dict format - try to extract vertices or skip
-                    pass
-                    
-            elif isinstance(curve, (list, tuple)) and len(curve) == 3:
-                # Single point - just return it
-                all_points.append(list(curve))
-                all_tangents.append([0, 0, 0])
-                all_parameters.append(0.0)
-        
-        points_result.set_branch(path, all_points)
-        tangents_result.set_branch(path, all_tangents)
-        parameters_result.set_branch(path, all_parameters)
-    
-    return {
-        'Points': points_result
-    }
-
-
 # ============================================================================
 # SURFACE OPERATIONS
 # ============================================================================
@@ -1236,8 +1036,7 @@ def evaluate_rectangle_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     plane_m, a_m, b_m = match_longest(plane_tree, a_tree, b_tree)
     
     rectangle_result = DataTree()
-    length_result = DataTree()
-    width_result = DataTree()
+    # Length and Width outputs are unused - skip calculation
     
     for path in plane_m.get_paths():
         planes = plane_m.get_branch(path)
@@ -1245,8 +1044,6 @@ def evaluate_rectangle_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         b_points = b_m.get_branch(path)
         
         rectangles = []
-        lengths = []
-        widths = []
         
         for plane, pt_a, pt_b in zip(planes, a_points, b_points):
             # GH Rectangle 2Pt: create rectangle from two diagonal corners
@@ -1258,27 +1055,19 @@ def evaluate_rectangle_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             corner3 = pt_b
             corner4 = [pt_a[0], pt_b[1], pt_a[2]]
             
-            # Compute dimensions
-            length = abs(pt_b[0] - pt_a[0])
-            width = abs(pt_b[1] - pt_a[1])
-            
             rectangle = {
                 'corners': [corner1, corner2, corner3, corner4],
                 'plane': plane
             }
             
             rectangles.append(rectangle)
-            lengths.append(length)
-            widths.append(width)
         
         rectangle_result.set_branch(path, rectangles)
-        length_result.set_branch(path, lengths)
-        width_result.set_branch(path, widths)
     
     return {
         'Rectangle': rectangle_result,
-        'Length': length_result,
-        'Width': width_result
+        'Length': DataTree(),
+        'Width': DataTree()
     }
 
 
@@ -1298,13 +1087,12 @@ def evaluate_area(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     """
     geom_tree = inputs.get('Geometry', DataTree())
     
-    area_result = DataTree()
     centroid_result = DataTree()
+    # Area output is unused - skip calculation
     
     for path in geom_tree.get_paths():
         geometries = geom_tree.get_branch(path)
         
-        areas = []
         centroids = []
         
         for geom in geometries:
@@ -1314,42 +1102,30 @@ def evaluate_area(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     start = geom['start']
                     end = geom['end']
                     
-                    # Lines have 0 area
-                    area = 0.0
-                    
                     # Centroid is the midpoint of the line
                     cx = (start[0] + end[0]) / 2
                     cy = (start[1] + end[1]) / 2
                     cz = (start[2] + end[2]) / 2
                     centroid = [cx, cy, cz]
                     
-                    areas.append(area)
                     centroids.append(centroid)
                     
                 elif 'vertices' in geom:
                     # Polyline - centroid is average of all vertices
                     vertices = geom['vertices']
                     if vertices:
-                        area = 0.0  # Open polylines have 0 area
                         cx = sum(v[0] for v in vertices) / len(vertices)
                         cy = sum(v[1] for v in vertices) / len(vertices)
                         cz = sum(v[2] for v in vertices) / len(vertices)
                         centroid = [cx, cy, cz]
                     else:
-                        area = 0.0
                         centroid = [0, 0, 0]
                     
-                    areas.append(area)
                     centroids.append(centroid)
                     
                 elif 'corners' in geom:
                     # Rectangle
                     corners = geom['corners']
-                    
-                    # Compute area as width * height
-                    dx = abs(corners[2][0] - corners[0][0])
-                    dy = abs(corners[2][1] - corners[0][1])
-                    area = dx * dy
                     
                     # Centroid is average of corners
                     cx = sum(c[0] for c in corners) / len(corners)
@@ -1357,7 +1133,6 @@ def evaluate_area(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     cz = sum(c[2] for c in corners) / len(corners)
                     centroid = [cx, cy, cz]
                     
-                    areas.append(area)
                     centroids.append(centroid)
                     
                 elif 'corner_a' in geom and 'corner_b' in geom:
@@ -1365,36 +1140,25 @@ def evaluate_area(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     corner_a = geom['corner_a']
                     corner_b = geom['corner_b']
                     
-                    # Compute surface area (sum of all 6 faces)
-                    dx = abs(corner_b[0] - corner_a[0])
-                    dy = abs(corner_b[1] - corner_a[1])
-                    dz = abs(corner_b[2] - corner_a[2])
-                    area = 2 * (dx * dy + dy * dz + dz * dx)
-                    
                     # Centroid is midpoint of diagonal
                     cx = (corner_a[0] + corner_b[0]) / 2
                     cy = (corner_a[1] + corner_b[1]) / 2
                     cz = (corner_a[2] + corner_b[2]) / 2
                     centroid = [cx, cy, cz]
                     
-                    areas.append(area)
                     centroids.append(centroid)
                 else:
-                    areas.append(0)
                     centroids.append([0, 0, 0])
                     
             elif isinstance(geom, (list, tuple)) and len(geom) == 3:
                 # Single point - treat as degenerate case
-                areas.append(0)
                 centroids.append(list(geom))
             else:
-                areas.append(0)
                 centroids.append([0, 0, 0])
         
-        area_result.set_branch(path, areas)
         centroid_result.set_branch(path, centroids)
     
-    return {'Area': area_result, 'Centroid': centroid_result}
+    return {'Area': DataTree(), 'Centroid': centroid_result}
 
 
 @COMPONENT_REGISTRY.register("Box 2Pt")
@@ -1464,14 +1228,13 @@ def evaluate_move(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     geom_m, motion_m = match_longest(geom_tree, motion_tree)
     
     geometry_result = DataTree()
-    transform_result = DataTree()
+    # Transform output is unused - skip calculation
     
     for path in geom_m.get_paths():
         geometries = geom_m.get_branch(path)
         motions = motion_m.get_branch(path)
         
         moved_geoms = []
-        transforms = []
         
         for geom, motion in zip(geometries, motions):
             # GH Move: translate by motion vector
@@ -1509,15 +1272,10 @@ def evaluate_move(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     moved_geoms.append(geom)
             else:
                 moved_geoms.append(geom)
-            
-            # Transformation matrix (translation)
-            transform = {'translation': motion}
-            transforms.append(transform)
         
         geometry_result.set_branch(path, moved_geoms)
-        transform_result.set_branch(path, transforms)
     
-    return {'Geometry': geometry_result, 'Transform': transform_result}
+    return {'Geometry': geometry_result, 'Transform': DataTree()}
 
 
 @COMPONENT_REGISTRY.register("Rotate")
@@ -1542,7 +1300,7 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     geom_m, angle_m, plane_m = match_longest(geom_tree, angle_tree, plane_tree)
     
     geometry_result = DataTree()
-    transform_result = DataTree()
+    # Transform output is unused - skip calculation
     
     for path in geom_m.get_paths():
         geometries = geom_m.get_branch(path)
@@ -1550,7 +1308,6 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         planes = plane_m.get_branch(path)
         
         rotated_geoms = []
-        transforms = []
         
         for geom, angle, plane in zip(geometries, angles, planes):
             # GH Rotate: rotate geometry around plane's Z-axis at plane's origin
@@ -1662,15 +1419,10 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     rotated_geoms.append(geom)
             else:
                 rotated_geoms.append(geom)
-            
-            # Transformation matrix
-            transform = {'rotation': angle, 'axis': plane}
-            transforms.append(transform)
         
         geometry_result.set_branch(path, rotated_geoms)
-        transform_result.set_branch(path, transforms)
     
-    return {'Geometry': geometry_result, 'Transform': transform_result}
+    return {'Geometry': geometry_result, 'Transform': DataTree()}
 
 
 @COMPONENT_REGISTRY.register("Project")
@@ -1991,6 +1743,7 @@ def evaluate_download_weather(inputs: Dict[str, DataTree]) -> Dict[str, DataTree
         ddy_file: Empty/None
     """
     # GH LB Download Weather: STUB - return local EPW file path
+    # stat_file and ddy_file outputs are unused - skip calculation
     epw_path = "GBR_SCT_Salsburgh.031520_TMYx.epw"
     return {
         'epw_file': DataTree.from_scalar(epw_path),
@@ -2064,7 +1817,7 @@ def evaluate_import_epw(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     # Return location as DataTree
     location_tree = DataTree.from_scalar(location)
     
-    # Return all outputs (stub other outputs as empty)
+    # All outputs except location are unused - return empty DataTrees
     return {
         'location': location_tree,
         'dry_bulb_temperature': DataTree(),
@@ -2112,8 +1865,7 @@ def evaluate_calculate_hoy(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     month_m, day_m, hour_m, minute_m = match_longest(month_tree, day_tree, hour_tree, minute_tree)
     
     hoy_result = DataTree()
-    doy_result = DataTree()
-    date_result = DataTree()
+    # doy and date outputs are unused - skip calculation
     
     # Days per month (non-leap year)
     days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -2125,8 +1877,6 @@ def evaluate_calculate_hoy(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         minutes = minute_m.get_branch(path)
         
         hoys = []
-        doys = []
-        dates = []
         
         for month, day, hour, minute in zip(months, days, hours, minutes):
             # GH LB Calculate HOY: validate inputs
@@ -2141,24 +1891,20 @@ def evaluate_calculate_hoy(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             hour_int = max(0, min(23, hour_int))
             minute_int = max(0, min(59, minute_int))
             
-            # Calculate day of year
+            # Calculate day of year (needed for hoy calculation)
             doy = sum(days_per_month[:month_int-1]) + day_int
             
             # Calculate hour of year
             hoy = (doy - 1) * 24 + hour_int
             
             hoys.append(hoy)
-            doys.append(doy)
-            dates.append(None)  # Date object stubbed for now
         
         hoy_result.set_branch(path, hoys)
-        doy_result.set_branch(path, doys)
-        date_result.set_branch(path, dates)
     
     return {
         'hoy': hoy_result,
-        'doy': doy_result,
-        'date': date_result
+        'doy': DataTree(),
+        'date': DataTree()
     }
 
 
@@ -2253,9 +1999,7 @@ def evaluate_sunpath(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     location_m, hoys_m, north_m, scale_m = match_longest(location_tree, hoys_tree, north_tree, scale_tree)
     
     sun_pts_result = DataTree()
-    vectors_result = DataTree()
-    altitudes_result = DataTree()
-    azimuths_result = DataTree()
+    # All outputs except sun_pts are unused - skip calculation
     
     for path in hoys_m.get_paths():
         locations = location_m.get_branch(path)
@@ -2264,9 +2008,6 @@ def evaluate_sunpath(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         scales = scale_m.get_branch(path)
         
         sun_pts = []
-        vectors = []
-        altitudes = []
-        azimuths = []
         
         for location, hoy, north, scale in zip(locations, hoys, norths, scales):
             # Extract location data
@@ -2430,11 +2171,6 @@ def evaluate_sunpath(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                 x_reversed = x_temp
                 y_reversed = y_temp
             
-            # sun_vector is the reverse of sun_vector_reversed
-            sun_vec_x = -x_reversed
-            sun_vec_y = -y_reversed
-            sun_vec_z = -z_reversed
-            
             # ========== SUN POINT (scaled sun_vector_reversed) ==========
             # Ladybug uses sun_vector_reversed * radius for position_3d
             base_scale = 100000.0
@@ -2445,21 +2181,16 @@ def evaluate_sunpath(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             sun_pt_z = z_reversed * effective_scale
             
             sun_pts.append([sun_pt_x, sun_pt_y, sun_pt_z])
-            vectors.append([sun_vec_x, sun_vec_y, sun_vec_z])
-            altitudes.append(altitude_deg)
-            azimuths.append(azimuth_deg)
+            # vectors, altitudes, azimuths outputs are unused - skip storing
         
         sun_pts_result.set_branch(path, sun_pts)
-        vectors_result.set_branch(path, vectors)
-        altitudes_result.set_branch(path, altitudes)
-        azimuths_result.set_branch(path, azimuths)
     
     return {
         'out': DataTree(),
-        'vectors': vectors_result,
-        'altitudes': altitudes_result,
-        'azimuths': azimuths_result,
-        'hoys': hoys_m,
+        'vectors': DataTree(),
+        'altitudes': DataTree(),
+        'azimuths': DataTree(),
+        'hoys': DataTree(),
         'sun_pts': sun_pts_result,
         'analemma': DataTree(),
         'daily': DataTree(),
@@ -2495,15 +2226,15 @@ def evaluate_explode_tree(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     # Branch 0 = path (0,), Branch 1 = path (1,), etc.
     branch_outputs = {}
     
-    for i, path in enumerate(paths):
-        branch_name = f'Branch {i}'
-        items = data_tree.get_branch(path)
+    # Only process Branch 0 (used output)
+    if paths:
+        branch_name = 'Branch 0'
+        items = data_tree.get_branch(paths[0])
         branch_tree = DataTree()
         branch_tree.set_branch((0,), items)  # Put items in branch (0,)
         branch_outputs[branch_name] = branch_tree
     
-    # If there are fewer branches than expected outputs, create empty branches
-    # Grasshopper typically has Branch 0, Branch 1, Branch 2 outputs
+    # Branch 1 and Branch 2 are unused - return empty DataTrees
     for i in range(3):
         branch_name = f'Branch {i}'
         if branch_name not in branch_outputs:
@@ -2617,8 +2348,7 @@ def evaluate_curve_curve(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     curve_a_matched, curve_b_matched = match_longest(curve_a_tree, curve_b_tree)
     
     points_result = DataTree()
-    params_a_result = DataTree()
-    params_b_result = DataTree()
+    # Params A and Params B outputs are unused - skip storing
     
     def extract_curve_points(curve):
         """Extract points from a curve representation."""
@@ -2960,8 +2690,6 @@ def evaluate_curve_curve(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         curves_b = curve_b_matched.get_branch(path)
         
         all_points = []
-        all_params_a = []
-        all_params_b = []
         
         for curve_a, curve_b in zip(curves_a, curves_b):
             if curve_a is None or curve_b is None:
@@ -2972,17 +2700,14 @@ def evaluate_curve_curve(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             
             for inter_point, param_a, param_b in intersections:
                 all_points.append(inter_point)
-                all_params_a.append(param_a)
-                all_params_b.append(param_b)
+                # param_a and param_b are unused - skip storing
         
         points_result.set_branch(path, all_points)
-        params_a_result.set_branch(path, all_params_a)
-        params_b_result.set_branch(path, all_params_b)
     
     return {
         'Points': points_result,
-        'Params A': params_a_result,
-        'Params B': params_b_result
+        'Params A': DataTree(),
+        'Params B': DataTree()
     }
 
 
