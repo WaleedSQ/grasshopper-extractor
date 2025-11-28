@@ -110,20 +110,14 @@ def extract_component_from_chunk(chunk):
     if not guid:
         return None
     
-    # Extract position and container from Attributes
+    # Extract position from Attributes
     position = {'x': 0, 'y': 0}
-    container = ''
     attrs_chunk = find_chunk(container_chunk, 'Attributes')
     if attrs_chunk:
-        for item in attrs_chunk.findall('./items/item'):
-            name = item.get('name', '')
-            if name == 'Pivot':
-                position['x'] = safe_float(item.find('./X'))
-                position['y'] = safe_float(item.find('./Y'))
-            elif name == 'Parent':
-                parent_id = item.find('./ParentID')
-                if parent_id is not None and parent_id.text:
-                    container = parent_id.text.strip()
+        pivot_item = next((item for item in attrs_chunk.findall('./items/item') if item.get('name') == 'Pivot'), None)
+        if pivot_item:
+            position['x'] = safe_float(pivot_item.find('./X'))
+            position['y'] = safe_float(pivot_item.find('./Y'))
     
     # Extract parameters
     params = []
@@ -169,7 +163,6 @@ def extract_component_from_chunk(chunk):
         'instance_guid': guid,
         'type_name': type_name,
         'nickname': container_items.get('NickName', container_items.get('Name', '')),
-        'container': container,
         'position': position,
         'params': params
     }
@@ -281,19 +274,17 @@ def extract_persistent_data_from_chunk(param_chunk):
 
 
 def build_graph_structure(components, wires):
-    """Build structured graph with component index and wire index."""
-    
-    # Component index
-    component_index = {}
-    for comp in components:
-        component_index[comp['guid']] = {
+    """Build structured graph with component index."""
+    component_index = {
+        comp['guid']: {
             'guid': comp['guid'],
             'type_name': comp['type_name'],
             'nickname': comp['nickname'],
-            'container': comp['container'],
             'position': comp['position'],
             'params': {p['name']: p['param_guid'] for p in comp['params']}
         }
+        for comp in components
+    }
     
     # Wire index
     wire_index = []
@@ -376,22 +367,7 @@ def main():
         print(f"  {type_name}: {count}")
     print()
     
-    # Group/Container distribution
-    containers = set()
-    for comp in components:
-        if comp['container']:
-            containers.add(comp['container'])
-    
-    if containers:
-        print(f"Groups found: {len(containers)}")
-        for container in sorted(containers):
-            comp_count = sum(1 for c in components if c['container'] == container)
-            print(f"  {container}: {comp_count} components")
-    else:
-        print("No groups found (will use position-based detection)")
-    
-    print()
-    print("Ready for PHASE 2: Rotatingslats group isolation")
+    print("Ready for PHASE 2: Group isolation")
     print()
 
 

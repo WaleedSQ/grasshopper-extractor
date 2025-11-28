@@ -11,7 +11,7 @@ Complete evaluation engine that:
 
 import json
 from collections import defaultdict, deque
-from typing import Dict, List, Set
+from typing import Dict, List
 from gh_evaluator_core import DataTree, EvaluationContext, COMPONENT_REGISTRY
 from gh_components_rotatingslats import *  # Register all components
 
@@ -467,98 +467,90 @@ def evaluate_graph(components: List[dict], wires: List[dict],
     
     return results
 
-
-# ============================================================================
-# MAIN EVALUATION FUNCTION
-# ============================================================================
-
-def evaluate_rotatingslats():
-    """
-    Main function to evaluate Rotatingslats group.
-    """
+def evaluate_wired():
+    """Evaluate all components together without group complexity."""
+    
     print("=" * 80)
-    print("PHASE 5: Wired Topological Evaluation")
+    print("SIMPLE EVALUATION: Evaluate all components")
     print("=" * 80)
     print()
     
-    # Load Rotatingslats graph
-    print("Loading Rotatingslats graph...")
-    with open('rotatingslats_graph.json', 'r') as f:
-        graph = json.load(f)
+    # ========================================================================
+    # STEP 1: Load data
+    # ========================================================================
+    print("STEP 1: Loading data...")
+    print()
     
-    components = graph['components']
-    internal_wires = graph['internal_wires']
-    external_wires = graph['external_wires']
+    with open('inputs.json', 'r') as f:
+        inputs_raw = json.load(f)
     
+    with open('components.json', 'r') as f:
+        components = json.load(f)
+    
+    with open('wires.json', 'r') as f:
+        wires = json.load(f)
+    
+    print(f"  Inputs: {len(inputs_raw)}")
     print(f"  Components: {len(components)}")
-    print(f"  Internal wires: {len(internal_wires)}")
-    print(f"  External wires: {len(external_wires)}")
+    print(f"  Wires: {len(wires)}")
     print()
     
-    # Load external inputs
-    print("Loading external inputs...")
-    with open('rotatingslats_inputs.json', 'r') as f:
-        external_inputs_raw = json.load(f)
+    # ========================================================================
+    # STEP 2: Convert inputs to external_inputs format
+    # ========================================================================
+    print("STEP 2: Preparing external inputs...")
+    print()
     
-    # Convert external inputs to simple dict
-    # Map both component GUID and output parameter GUIDs to data
+    from gh_evaluator_core import DataTree
+    
     external_inputs = {}
-    for guid, input_data in external_inputs_raw.items():
-        if input_data['data']:
-            # For sliders/panels, the GUID itself is both component AND parameter GUID
-            # Map the GUID (which is the slider's output parameter GUID)
-            external_inputs[input_data['guid']] = input_data['data']
+    for guid, input_data in inputs_raw.items():
+        if input_data.get('data'):
+            data = input_data['data']
+            # Convert to DataTree
+            if isinstance(data, list):
+                tree = DataTree.from_list(data)
+            else:
+                tree = DataTree.from_scalar(data)
             
-            # Also map the key GUID if different (for compatibility)
-            if guid != input_data['guid']:
-                external_inputs[guid] = input_data['data']
+            # Map by component GUID (which is also the parameter GUID for sliders)
+            external_inputs[guid] = tree
             
-            # If there are params (for complex components), map those too
-            for param in input_data.get('params', []):
-                if param.get('type') == 'output':
-                    param_guid = param.get('param_guid')
-                    if param_guid:
-                        external_inputs[param_guid] = input_data['data']
+            # Also map parameter GUID if available
+            # For sliders, the GUID itself is the output parameter GUID
+            external_inputs[guid] = tree
     
-    print(f"  External inputs: {len(external_inputs)}")
-    print()
-    
-    # Print external input values
-    print("External input values:")
-    for guid, input_data in external_inputs_raw.items():
-        nickname = input_data['nickname']
-        data = input_data['data']
+    print(f"  External inputs prepared: {len(external_inputs)}")
+    print("  Input values:")
+    for guid, input_data in inputs_raw.items():
+        nickname = input_data.get('nickname', 'Unknown')
+        data = input_data.get('data')
         if data:
-            print(f"  {nickname}: {data}")
+            print(f"    {nickname}: {data}")
     print()
     
-    # Combine internal and external wires
-    all_wires = internal_wires + external_wires
-    
-    # Evaluate graph
-    results = evaluate_graph(components, all_wires, external_inputs)
-    
+    # ========================================================================
+    # STEP 3: Evaluate all components
+    # ========================================================================
+    print("STEP 3: Evaluating components...")
     print()
-    print("=" * 80)
-    print("PHASE 5 COMPLETE")
-    print("=" * 80)
-    print()
-    print(f"Evaluated {len(results)} components successfully")
     
-    # Save results
-    print()
-    print("Saving evaluation results...")
+    results = evaluate_graph(components, wires, external_inputs)
     
-    # Convert results to JSON-serializable format with component metadata
-    # Create component lookup dict
+    print(f"  Components evaluated: {len(results)}")
+    print()
+    
+    # ========================================================================
+    # STEP 4: Save results
+    # ========================================================================
+    print("STEP 4: Saving results...")
+    print()
+    
     components_dict = {c['guid']: c for c in components}
-    
     results_json = {}
+    
     for comp_guid, outputs in results.items():
-        # Find component info
         comp = components_dict.get(comp_guid, {})
-        
-        # Create enhanced structure with component metadata
         results_json[comp_guid] = {
             'component_info': {
                 'guid': comp_guid,
@@ -568,8 +560,6 @@ def evaluate_rotatingslats():
             },
             'outputs': {}
         }
-        
-        # Add output data
         for output_name, output_tree in outputs.items():
             results_json[comp_guid]['outputs'][output_name] = {
                 'branches': {str(path): items for path, items in output_tree.data.items()},
@@ -577,13 +567,29 @@ def evaluate_rotatingslats():
                 'item_count': output_tree.item_count()
             }
     
-    with open('rotatingslats_evaluation_results.json', 'w') as f:
+    with open('evaluation_results.json', 'w') as f:
         json.dump(results_json, f, indent=2)
+    print("[OK] Saved evaluation_results.json")
     
-    print("[OK] Saved rotatingslats_evaluation_results.json")
     print()
-    print("Ready for PHASE 6: Result verification")
+    print("=" * 80)
+    print("SIMPLE EVALUATION COMPLETE")
+    print("=" * 80)
+    print()
+    print(f"Evaluated {len(results)} components successfully")
+    print()
+    
+    # Summary by component type
+    type_counts = {}
+    for comp_guid, outputs in results.items():
+        comp = components_dict.get(comp_guid, {})
+        comp_type = comp.get('type_name', 'Unknown')
+        type_counts[comp_type] = type_counts.get(comp_type, 0) + 1
+    
+    print("Evaluated component types:")
+    for comp_type, count in sorted(type_counts.items(), key=lambda x: -x[1]):
+        print(f"  {comp_type}: {count}")
 
 
 if __name__ == '__main__':
-    evaluate_rotatingslats()
+    evaluate_wired()

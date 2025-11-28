@@ -6,8 +6,7 @@ NO heuristics, NO approximations, ONE-TO-ONE component mapping.
 """
 
 from collections import defaultdict
-from typing import Dict, List, Any, Tuple, Callable
-import json
+from typing import Dict, List, Callable
 
 
 # ============================================================================
@@ -437,93 +436,4 @@ class EvaluationContext:
         """Get cached evaluation result."""
         return self.evaluated.get(guid)
 
-
-# ============================================================================
-# MAIN EVALUATION FUNCTION (placeholder for Phase 5)
-# ============================================================================
-
-def evaluate_component(guid: str, context: EvaluationContext) -> Dict[str, DataTree]:
-    """
-    Evaluate a single component.
-    
-    This is a placeholder for Phase 5 (wired evaluation).
-    
-    Args:
-        guid: Component GUID
-        context: Evaluation context
-    
-    Returns:
-        Dictionary mapping output parameter names to DataTrees
-    """
-    # Check cache
-    if context.is_evaluated(guid):
-        return context.get_result(guid)
-    
-    # Get component
-    comp = context.get_component(guid)
-    if not comp:
-        raise ValueError(f"Component {guid} not found")
-    
-    # TODO: Phase 5 will implement:
-    # 1. Topological sort
-    # 2. Wire resolution
-    # 3. Input gathering
-    # 4. Component dispatch
-    # 5. Result caching
-    
-    raise NotImplementedError("Full evaluation will be implemented in Phase 5")
-
-
-# ============================================================================
-# MODULE SUMMARY
-# ============================================================================
-
-if __name__ == '__main__':
-    print("=" * 80)
-    print("PHASE 3: DataTree Engine and Component Dispatch")
-    print("=" * 80)
-    print()
-    print("Core components implemented:")
-    print("  [OK] DataTree class with full branch operations")
-    print("  [OK] Data matching (longest strategy)")
-    print("  [OK] Component registry system")
-    print("  [OK] Evaluation context")
-    print()
-    print("Example DataTree usage:")
-    print()
-    
-    # Example 1: Create and manipulate DataTree
-    tree = DataTree()
-    tree.set_branch((0,), [1, 2, 3])
-    tree.set_branch((1,), [4, 5])
-    print("Original tree:")
-    print(tree)
-    print()
-    
-    # Example 2: Flatten
-    flat = tree.flatten()
-    print("Flattened:")
-    print(flat)
-    print()
-    
-    # Example 3: Graft
-    grafted = tree.graft()
-    print("Grafted:")
-    print(grafted)
-    print()
-    
-    # Example 4: Match longest
-    tree1 = DataTree.from_list([1, 2, 3])
-    tree2 = DataTree.from_list([10, 20])
-    matched1, matched2 = match_longest(tree1, tree2)
-    print("Matched trees (longest):")
-    print("  Tree 1:", matched1.to_list())
-    print("  Tree 2:", matched2.to_list())
-    print()
-    
-    print("=" * 80)
-    print("PHASE 3 COMPLETE")
-    print("=" * 80)
-    print()
-    print("Ready for PHASE 4: Component implementation")
 

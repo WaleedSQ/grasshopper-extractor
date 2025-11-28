@@ -4,15 +4,16 @@ A Python-based evaluation engine that replicates Grasshopper component behavior 
 
 ## Project Overview
 
-This project evaluates the "Rotatingslats" group from a Grasshopper definition file (`refactored-no-sun.ghx`), accurately replicating the behavior of individual components including data tree matching, grafting/flattening, and geometric calculations.
+This project evaluates Grasshopper definition files (currently `refactored-sun-simple.ghx`), accurately replicating the behavior of individual components including data tree matching, grafting/flattening, and geometric calculations.
 
 ## Project Structure
 
 ### Core Files (Active)
 
 #### Parsing & Graph Extraction
-- **`parse_refactored_ghx.py`** - Phase 1: Parses `refactored-no-sun.ghx` XML file
+- **`parse_refactored_ghx.py`** - Phase 1: Parses GHX XML files (e.g., `refactored-sun-simple.ghx`)
   - Extracts components, parameters, wires, persistent data
+  - Filters out non-functional components (Scribble, Sketch, Group)
   - Outputs: `ghx_graph.json`, `component_index.json`, `wire_index.json`
   
 - **`isolate_rotatingslats.py`** - Phase 2: Extracts Rotatingslats group subgraph
@@ -42,7 +43,7 @@ This project evaluates the "Rotatingslats" group from a Grasshopper definition f
 ### Input/Output Files
 
 #### Input Files
-- **`refactored-no-sun.ghx`** - Source Grasshopper definition file (880KB)
+- **`refactored-sun-simple.ghx`** - Source Grasshopper definition file
 
 #### Intermediate Files (Generated)
 - **`ghx_graph.json`** - Full component graph from GHX parsing (used by Phase 2)
@@ -98,8 +99,9 @@ This project evaluates the "Rotatingslats" group from a Grasshopper definition f
 ```bash
 python parse_refactored_ghx.py
 ```
-Parses `refactored-no-sun.ghx` and extracts:
-- All components with their parameters, wires, and persistent data
+Parses `refactored-sun-simple.ghx` and extracts:
+- All functional components with their parameters, wires, and persistent data
+- Filters out non-functional components (Scribble, Sketch, Group)
 - Component index for quick lookup
 - Wire index for connection resolution
 
@@ -110,7 +112,7 @@ Parses `refactored-no-sun.ghx` and extracts:
 
 ### Step 2: Isolate Rotatingslats Group
 ```bash
-python isolate_rotatingslats.py
+python isolate_simple.py
 ```
 Extracts the Rotatingslats group subgraph:
 - Finds all components within the group
@@ -118,8 +120,8 @@ Extracts the Rotatingslats group subgraph:
 - Extracts external inputs (sliders, panels, etc.)
 
 **Outputs:**
-- `rotatingslats_graph.json` - Group subgraph
-- `rotatingslats_inputs.json` - External inputs
+- `ghx_graph.json` - Group subgraph
+- `inputs.json` - External inputs
 
 ### Step 3: Evaluate Graph
 ```bash
@@ -133,7 +135,7 @@ Evaluates the component graph:
 - Handles data tree matching (Longest List strategy)
 
 **Outputs:**
-- `rotatingslats_evaluation_results.json` - Complete evaluation results
+- `evaluation_results.json` - Complete evaluation results
 
 ## Key Features
 
@@ -210,10 +212,17 @@ The evaluator has been verified against Grasshopper screenshots:
   - `math` - Mathematical functions
   - `collections` - Data structures
 
-## File Size Reference
+## Recent Improvements
 
-- `refactored-no-sun.ghx`: 880,141 bytes
-- `rotatingslats_evaluation_results.json`: ~287KB
+### Parser Simplification
+- **Simplified code structure**: Reduced from 532 to 401 lines (~25% reduction)
+- **Helper functions**: Added reusable utilities (`extract_items`, `find_chunk`, `safe_float`)
+- **Non-functional component filtering**: Automatically skips Scribble, Sketch, and Group components
+- **Cleaner logic**: Removed redundant code and simplified conditionals
+
+### New Components
+- **Circle**: Creates circle from plane and radius
+- **Curve | Curve**: Finds intersection points between two curves
 
 ## Notes
 

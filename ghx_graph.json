@@ -5,7 +5,6 @@
       "instance_guid": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
       "type_name": "LB Download Weather",
       "nickname": "DownloadEPW",
-      "container": "",
       "position": {
         "x": 11057.0,
         "y": 1835.0
@@ -70,7 +69,6 @@
       "instance_guid": "ccddde54-016e-477f-8a32-15e9acb9b902",
       "type_name": "LB Import EPW",
       "nickname": "ImportEPW",
-      "container": "",
       "position": {
         "x": 11226.0,
         "y": 1815.0
@@ -265,7 +263,6 @@
       "instance_guid": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
       "type_name": "LB SunPath",
       "nickname": "Sunpath",
-      "container": "",
       "position": {
         "x": 11543.0,
         "y": 1777.0
@@ -534,7 +531,6 @@
       "instance_guid": "ddb9e6ae-7d3e-41ae-8c75-fc726c984724",
       "type_name": "Move",
       "nickname": "Slats original",
-      "container": "",
       "position": {
         "x": 10800.0,
         "y": 2758.0
@@ -597,7 +593,6 @@
       "instance_guid": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
       "type_name": "Series",
       "nickname": "Series",
-      "container": "",
       "position": {
         "x": 10162.0,
         "y": 2758.0
@@ -662,7 +657,6 @@
       "instance_guid": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
       "type_name": "Number Slider",
       "nickname": "Number of slats",
-      "container": "",
       "position": {
         "x": 9148.496,
         "y": 2904.609
@@ -686,7 +680,6 @@
       "instance_guid": "507b14ee-692b-41df-973f-6bfef76514c2",
       "type_name": "Number Slider",
       "nickname": "Distance from window",
-      "container": "",
       "position": {
         "x": 9121.51,
         "y": 2932.794
@@ -710,7 +703,6 @@
       "instance_guid": "3732df33-c378-4227-b549-b5ab541e82c6",
       "type_name": "Unit Z",
       "nickname": "Unit Z",
-      "container": "",
       "position": {
         "x": 10439.0,
         "y": 2815.0
@@ -747,7 +739,6 @@
       "instance_guid": "268410b9-4d90-4bb6-b716-3e8df5798c14",
       "type_name": "Unit Y",
       "nickname": "Unit Y",
-      "container": "",
       "position": {
         "x": 10323.0,
         "y": 2732.0
@@ -784,7 +775,6 @@
       "instance_guid": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
       "type_name": "Vector 2Pt",
       "nickname": "Vector 2Pt",
-      "container": "",
       "position": {
         "x": 10606.0,
         "y": 2796.0
@@ -853,7 +843,6 @@
       "instance_guid": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
       "type_name": "Series",
       "nickname": "Series",
-      "container": "",
       "position": {
         "x": 10162.0,
         "y": 2826.0
@@ -916,7 +905,6 @@
       "instance_guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
       "type_name": "Construct Point",
       "nickname": "p1",
-      "container": "",
       "position": {
         "x": 10675.0,
         "y": 2879.0
@@ -975,7 +963,6 @@
       "instance_guid": "a6b98c27-e4dd-405e-93f5-755c12294748",
       "type_name": "Construct Point",
       "nickname": "p1",
-      "container": "",
       "position": {
         "x": 10679.0,
         "y": 2955.0
@@ -1034,7 +1021,6 @@
       "instance_guid": "b908d823-e613-4684-9e94-65a0f60f19b7",
       "type_name": "Box 2Pt",
       "nickname": "Box 2Pt",
-      "container": "",
       "position": {
         "x": 10837.0,
         "y": 2895.0
@@ -1119,7 +1105,6 @@
       "instance_guid": "680b290d-e662-4a76-9b3c-e5e921230589",
       "type_name": "Series",
       "nickname": "Series",
-      "container": "",
       "position": {
         "x": 10162.0,
         "y": 2690.0
@@ -1184,7 +1169,6 @@
       "instance_guid": "08edbcda-c850-40fd-9900-c6ab83acca1b",
       "type_name": "Number Slider",
       "nickname": "Horizontal shift between slats",
-      "container": "",
       "position": {
         "x": 9120.66,
         "y": 3016.9438
@@ -1208,7 +1192,6 @@
       "instance_guid": "a3eb185f-a7cb-4727-aeaf-d5899f934b99",
       "type_name": "Rectangle 2Pt",
       "nickname": "Rectangle 2Pt",
-      "container": "",
       "position": {
         "x": 9827.0,
         "y": 2556.0
@@ -1327,7 +1310,6 @@
       "instance_guid": "be907c11-5a37-4cf5-9736-0f3c61ba7014",
       "type_name": "Construct Point",
       "nickname": "CP",
-      "container": "",
       "position": {
         "x": 9688.0,
         "y": 2518.0
@@ -1390,7 +1372,6 @@
       "instance_guid": "c8dfe19f-4140-41a4-973e-a2acb75038d7",
       "type_name": "Number Slider",
       "nickname": "Slat width",
-      "container": "",
       "position": {
         "x": 9157.531,
         "y": 2815.344
@@ -1414,7 +1395,6 @@
       "instance_guid": "67b3eb53-9ea7-4280-bf8b-ae16c080cc23",
       "type_name": "Construct Point",
       "nickname": "CP",
-      "container": "",
       "position": {
         "x": 9688.0,
         "y": 2587.0
@@ -1477,7 +1457,6 @@
       "instance_guid": "835d042f-2535-476b-b5ae-1eeb534e57bc",
       "type_name": "Negative",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 9416.0,
         "y": 2569.0
@@ -1512,7 +1491,6 @@
       "instance_guid": "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92",
       "type_name": "Negative",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 9424.0,
         "y": 2609.0
@@ -1547,7 +1525,6 @@
       "instance_guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
       "type_name": "Explode Tree",
       "nickname": "Ex Tree",
-      "container": "",
       "position": {
         "x": 11529.0,
         "y": 2415.0
@@ -1602,7 +1579,6 @@
       "instance_guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
       "type_name": "Division",
       "nickname": "/",
-      "container": "",
       "position": {
         "x": 9232.0,
         "y": 2545.0
@@ -1649,7 +1625,6 @@
       "instance_guid": "456d176f-14cf-4134-9062-b4623202c00e",
       "type_name": "Number Slider",
       "nickname": "Slats height (top)",
-      "container": "",
       "position": {
         "x": 9151.26,
         "y": 2989.744
@@ -1673,7 +1648,6 @@
       "instance_guid": "125e7c20-d243-4cdc-927b-568ceb6315b5",
       "type_name": "Number Slider",
       "nickname": "Last target from slats",
-      "container": "",
       "position": {
         "x": 9139.146,
         "y": 2852.4268
@@ -1697,7 +1671,6 @@
       "instance_guid": "b9102ff3-4813-4791-a67d-5654a9f7bae9",
       "type_name": "Division",
       "nickname": "/",
-      "container": "",
       "position": {
         "x": 9221.0,
         "y": 2609.0
@@ -1744,7 +1717,6 @@
       "instance_guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
       "type_name": "Negative",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 10299.0,
         "y": 2789.0
@@ -1779,7 +1751,6 @@
       "instance_guid": "b3c71890-f270-4efd-b308-60428215f2be",
       "type_name": "Negative",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 9994.0,
         "y": 2754.0
@@ -1814,7 +1785,6 @@
       "instance_guid": "a69d2e4a-b63b-40d0-838f-dff4d90a83ce",
       "type_name": "Negative",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 9993.0,
         "y": 2690.0
@@ -1849,7 +1819,6 @@
       "instance_guid": "d055df7d-4a48-4ccd-b770-433bbaa60269",
       "type_name": "Subtraction",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 9616.0,
         "y": 2946.0
@@ -1896,7 +1865,6 @@
       "instance_guid": "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7",
       "type_name": "Number Slider",
       "nickname": "Slats height (threshold)",
-      "container": "",
       "position": {
         "x": 9151.26,
         "y": 2958.294
@@ -1920,7 +1888,6 @@
       "instance_guid": "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1",
       "type_name": "Division",
       "nickname": "/",
-      "container": "",
       "position": {
         "x": 9801.0,
         "y": 2941.0
@@ -1967,7 +1934,6 @@
       "instance_guid": "e2671ced-ddeb-4187-8048-66f3d519cefb",
       "type_name": "Subtraction",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 9615.0,
         "y": 2899.0
@@ -2014,7 +1980,6 @@
       "instance_guid": "e81f2ba2-a9aa-401c-bde6-290d119877dc",
       "type_name": "Number Slider",
       "nickname": "1st targets from slats",
-      "container": "",
       "position": {
         "x": 9138.921,
         "y": 2879.8713
@@ -2038,7 +2003,6 @@
       "instance_guid": "0f529988-b68b-4d48-9a48-cf099af69050",
       "type_name": "Move",
       "nickname": "New Sun",
-      "container": "",
       "position": {
         "x": 11484.0,
         "y": 2761.0
@@ -2101,7 +2065,6 @@
       "instance_guid": "9cd053c9-3dd2-432b-aa46-a29a4b05c339",
       "type_name": "Project",
       "nickname": "Project Curve",
-      "container": "",
       "position": {
         "x": 11984.0,
         "y": 2808.0
@@ -2166,7 +2129,6 @@
       "instance_guid": "9a33273a-910e-439d-98d5-d225e29faebf",
       "type_name": "Line",
       "nickname": "Out Ray",
-      "container": "",
       "position": {
         "x": 11737.0,
         "y": 2717.0
@@ -2213,7 +2175,6 @@
       "instance_guid": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
       "type_name": "Line",
       "nickname": "In Ray",
-      "container": "",
       "position": {
         "x": 12022.0,
         "y": 2743.0
@@ -2260,7 +2221,6 @@
       "instance_guid": "524ba570-d8ac-4fc6-beee-87eab3265a4f",
       "type_name": "Division",
       "nickname": "/",
-      "container": "",
       "position": {
         "x": 9801.0,
         "y": 2991.0
@@ -2307,7 +2267,6 @@
       "instance_guid": "e11dd9b3-8452-4aa1-a4a1-4201e1de4578",
       "type_name": "Subtraction",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 9616.0,
         "y": 3041.0
@@ -2354,7 +2313,6 @@
       "instance_guid": "a7644f3e-b082-4aea-b58d-043d3b6c9a28",
       "type_name": "Subtraction",
       "nickname": "-",
-      "container": "",
       "position": {
         "x": 9616.0,
         "y": 2993.0
@@ -2401,7 +2359,6 @@
       "instance_guid": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
       "type_name": "Number Slider",
       "nickname": "Targets Height",
-      "container": "",
       "position": {
         "x": 9198.862,
         "y": 3069.6438
@@ -2425,7 +2382,6 @@
       "instance_guid": "a7d2817a-3182-496e-a453-80e7eeba16fa",
       "type_name": "Number Slider",
       "nickname": "room width",
-      "container": "",
       "position": {
         "x": 9152.507,
         "y": 2776.6138
@@ -2449,7 +2405,6 @@
       "instance_guid": "0d695e6b-3696-4337-bc80-d14104f8a59e",
       "type_name": "Angle",
       "nickname": "Angle",
-      "container": "",
       "position": {
         "x": 12645.0,
         "y": 2826.0
@@ -2518,7 +2473,6 @@
       "instance_guid": "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58",
       "type_name": "Degrees",
       "nickname": "Degrees",
-      "container": "",
       "position": {
         "x": 12820.0,
         "y": 2815.0
@@ -2553,7 +2507,6 @@
       "instance_guid": "9ff79870-05d0-483d-87be-b3641d71c6fc",
       "type_name": "List Item",
       "nickname": "List Item",
-      "container": "",
       "position": {
         "x": 11883.0,
         "y": 3138.0
@@ -2614,7 +2567,6 @@
       "instance_guid": "ef803855-36ec-4b48-8d76-89d870a0438f",
       "type_name": "PolyLine",
       "nickname": "PolyLine",
-      "container": "",
       "position": {
         "x": 11865.0,
         "y": 2981.0
@@ -2661,7 +2613,6 @@
       "instance_guid": "326da981-351e-4794-9d60-77e8e87bd778",
       "type_name": "Plane Normal",
       "nickname": "Plane Normal",
-      "container": "",
       "position": {
         "x": 12046.0,
         "y": 2982.0
@@ -2720,7 +2671,6 @@
       "instance_guid": "30f76ec5-d532-4903-aa18-cd18b27442f9",
       "type_name": "Construct Plane",
       "nickname": "Construct Plane",
-      "container": "",
       "position": {
         "x": 12042.0,
         "y": 3110.0
@@ -2797,7 +2747,6 @@
       "instance_guid": "910c335c-b5e8-41bf-bfb4-576cb17432c7",
       "type_name": "PolyLine",
       "nickname": "PolyLine",
-      "container": "",
       "position": {
         "x": 11870.0,
         "y": 3055.0
@@ -2844,7 +2793,6 @@
       "instance_guid": "157c48b5-0aed-49e5-a808-d4c64666062d",
       "type_name": "List Item",
       "nickname": "List Item",
-      "container": "",
       "position": {
         "x": 12198.0,
         "y": 2962.0
@@ -2903,7 +2851,6 @@
       "instance_guid": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
       "type_name": "Plane Normal",
       "nickname": "Plane Normal",
-      "container": "",
       "position": {
         "x": 12187.0,
         "y": 3066.0
@@ -2962,7 +2909,6 @@
       "instance_guid": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
       "type_name": "Area",
       "nickname": "Area",
-      "container": "",
       "position": {
         "x": 11293.0,
         "y": 2815.0
@@ -3007,7 +2953,6 @@
       "instance_guid": "77f7eddb-d54b-4280-aad9-4c4a8400a56b",
       "type_name": "Area",
       "nickname": "Area",
-      "container": "",
       "position": {
         "x": 11290.0,
         "y": 2937.0
@@ -3052,7 +2997,6 @@
       "instance_guid": "6991f781-7047-4cdb-b1d9-ffacaca51fdf",
       "type_name": "Rotate",
       "nickname": "Rotate",
-      "container": "",
       "position": {
         "x": 11014.0,
         "y": 2915.0
@@ -3149,7 +3093,6 @@
       "instance_guid": "5354f884-8b45-418e-968a-55689cb2e986",
       "type_name": "Number Slider",
       "nickname": "Orientation",
-      "container": "",
       "position": {
         "x": 9194.566,
         "y": 3107.6519
@@ -3173,7 +3116,6 @@
       "instance_guid": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
       "type_name": "Construct Point",
       "nickname": "Construct Point",
-      "container": "",
       "position": {
         "x": 10457.0,
         "y": 3029.0
@@ -3236,7 +3178,6 @@
       "instance_guid": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
       "type_name": "Move",
       "nickname": "Move",
-      "container": "",
       "position": {
         "x": 10798.0,
         "y": 3039.0
@@ -3299,7 +3240,6 @@
       "instance_guid": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
       "type_name": "Negative",
       "nickname": "Negative",
-      "container": "",
       "position": {
         "x": 10433.0,
         "y": 2901.0
@@ -3334,7 +3274,6 @@
       "instance_guid": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
       "type_name": "Unit Y",
       "nickname": "Unit Y",
-      "container": "",
       "position": {
         "x": 10611.0,
         "y": 3049.0
@@ -3371,7 +3310,6 @@
       "instance_guid": "505e72fd-e7f0-4e7d-ba69-88f047b56bb9",
       "type_name": "Rotate",
       "nickname": "Rotate",
-      "container": "",
       "position": {
         "x": 11016.0,
         "y": 2811.0
@@ -3468,7 +3406,6 @@
       "instance_guid": "464c66b3-4ac6-4cc0-b283-407f8fe787a3",
       "type_name": "Rotate",
       "nickname": "Rotate",
-      "container": "",
       "position": {
         "x": 11019.0,
         "y": 3049.0
@@ -3565,7 +3502,6 @@
       "instance_guid": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
       "type_name": "LB Calculate HOY",
       "nickname": "HOY",
-      "container": "",
       "position": {
         "x": 11304.0,
         "y": 1572.0
@@ -3654,7 +3590,6 @@
       "instance_guid": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
       "type_name": "YZ Plane",
       "nickname": "YZ Plane",
-      "container": "",
       "position": {
         "x": 11529.0,
         "y": 2911.0
@@ -3695,7 +3630,6 @@
       "instance_guid": "1162b56a-787a-4446-8b26-56947cad14f5",
       "type_name": "Rotate",
       "nickname": "Rotate",
-      "container": "",
       "position": {
         "x": 11786.0,
         "y": 2854.0
@@ -3792,7 +3726,6 @@
       "instance_guid": "86379f02-2481-4a60-bc43-5e5c81ecc838",
       "type_name": "Number Slider",
       "nickname": "Month",
-      "container": "",
       "position": {
         "x": 10856.79,
         "y": 1532.1403
@@ -3816,7 +3749,6 @@
       "instance_guid": "8a457e4b-7089-459f-a9f8-bf07defdca0d",
       "type_name": "Number Slider",
       "nickname": "Day",
-      "container": "",
       "position": {
         "x": 10859.067,
         "y": 1572.4626
@@ -3840,7 +3772,6 @@
       "instance_guid": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7",
       "type_name": "Number Slider",
       "nickname": "Hour",
-      "container": "",
       "position": {
         "x": 10854.785,
         "y": 1610.0178
@@ -3864,7 +3795,6 @@
       "instance_guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
       "type_name": "YZ Plane",
       "nickname": "YZ Plane",
-      "container": "",
       "position": {
         "x": 11862.0,
         "y": 2653.0
@@ -3905,7 +3835,6 @@
       "instance_guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
       "type_name": "Circle",
       "nickname": "Circle",
-      "container": "",
       "position": {
         "x": 12022.0,
         "y": 2669.0
@@ -3980,7 +3909,6 @@
       "instance_guid": "bdde1ec6-2004-476b-b670-3de72b6fb0b0",
       "type_name": "Curve | Curve",
       "nickname": "Curve | Curve",
-      "container": "",
       "position": {
         "x": 12225.0,
         "y": 2693.0
@@ -4047,7 +3975,6 @@
       "instance_guid": "0974a3a7-c1f6-4451-89e4-ad726846f035",
       "type_name": "Curve | Curve",
       "nickname": "Curve | Curve",
-      "container": "",
       "position": {
         "x": 12259.0,
         "y": 2827.0
@@ -4114,7 +4041,6 @@
       "instance_guid": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
       "type_name": "Line",
       "nickname": "Line",
-      "container": "",
       "position": {
         "x": 12489.0,
         "y": 2760.0
@@ -4837,5 +4763,7 @@
       "to_param": "87eb3f27-bb21-4cc3-9edd-e1575b045048",
       "to_param_name": "End Point"
     }
-  ]
+  ],
+  "component_count": 74,
+  "wire_count": 97
 }
