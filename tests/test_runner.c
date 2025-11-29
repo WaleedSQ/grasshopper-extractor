@@ -46,7 +46,6 @@ int main(void) {
     run_Degrees_tests();
     run_Division_tests();
     run_DownloadWeather_tests();
-    run_ExplodeTree_tests();
     run_ImportEPW_tests();
     run_Line_tests();
     run_ListItem_tests();

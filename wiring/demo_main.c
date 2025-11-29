@@ -72,10 +72,6 @@ int main(void) {
     printf("Evaluating core group...\n");
     printf("========================================\n");
     core_group_eval(&cfg, &sun, &slats, &dir, &targets, &core);
-    printf("  Calculated %d slat angles:\n", core.angle_count);
-    for (int i = 0; i < core.angle_count && i < 10; i++) {
-        printf("    Slat %d: %.6f degrees\n", i, core.slat_angles[i]);
-    }
     
     printf("\nEvaluation complete!\n");
     return 0;
