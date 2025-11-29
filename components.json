@@ -1,0 +1,3762 @@
+[
+  {
+    "guid": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
+    "instance_guid": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
+    "type_name": "LB Download Weather",
+    "nickname": "DownloadEPW",
+    "position": {
+      "x": 11057.0,
+      "y": 1835.0
+    },
+    "params": [
+      {
+        "param_guid": "e3674285-67cb-4599-8e8b-b7fef6528035",
+        "name": "_weather_URL",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "bd9afa4a-28d7-4746-91bd-b6cf6f44fdf2"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "2d23f3c2-8a9e-4210-b1cd-a94c26accc9f",
+        "name": "_folder_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "a91b3e00-05bb-4167-a9f9-c0833c19defc",
+        "name": "epw_file",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "47dffc62-0abc-4ada-bd25-302e1a9dfcbb",
+        "name": "stat_file",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "92fba45a-86cb-4041-b91a-07ce4ba86f57",
+        "name": "ddy_file",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "ccddde54-016e-477f-8a32-15e9acb9b902",
+    "instance_guid": "ccddde54-016e-477f-8a32-15e9acb9b902",
+    "type_name": "LB Import EPW",
+    "nickname": "ImportEPW",
+    "position": {
+      "x": 11226.0,
+      "y": 1815.0
+    },
+    "params": [
+      {
+        "param_guid": "abb52b47-0429-4431-93df-c62f6a432f0d",
+        "name": "_epw_file",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "a91b3e00-05bb-4167-a9f9-c0833c19defc"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "40ee12a4-2539-40da-a03f-eb02a3ccebdb",
+        "name": "location",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b1e17dc5-88c7-4ca4-9b55-90da65866a24",
+        "name": "dry_bulb_temperature",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "d3e788db-e4a4-4b94-ba1b-2f18fd142377",
+        "name": "dew_point_temperature",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "9a639657-1ab2-45b6-9137-72b191ecd445",
+        "name": "relative_humidity",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "37ec1197-5809-456e-a820-ea90674a4368",
+        "name": "wind_speed",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "bfc6c6e7-64aa-41d0-a226-c51475a9e13b",
+        "name": "wind_direction",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "861edfee-0e44-4770-b0e6-16c095670987",
+        "name": "direct_normal_rad",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "5f050f23-8ded-4107-8c46-cafebf5e54fd",
+        "name": "diffuse_horizontal_rad",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "f720fddf-d5df-4998-9638-9d76d4df32a2",
+        "name": "global_horizontal_rad",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "a2b4a667-77f3-45be-96ad-a5c62086fdfb",
+        "name": "horizontal_infrared_rad",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "e436c055-0960-490a-b03b-1be2cc46fd26",
+        "name": "direct_normal_ill",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "9fd711d0-1441-47cd-ab86-92eded66d0b6",
+        "name": "diffuse_horizontal_ill",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "29facdb1-e644-4a47-930b-8e466ff4a9ca",
+        "name": "global_horizontal_ill",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "eb4599e4-23e1-4940-8cec-4d528b0fc624",
+        "name": "total_sky_cover",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "261f5039-1e10-4b2a-84fb-1f6de9cf5828",
+        "name": "barometric_pressure",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "22746e52-c732-4d86-9a8b-16d10c8b7553",
+        "name": "model_year",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "6c53779a-2a10-470f-a91a-413773f404ac",
+        "name": "ground_temperature",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+    "instance_guid": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+    "type_name": "LB SunPath",
+    "nickname": "Sunpath",
+    "position": {
+      "x": 11543.0,
+      "y": 1777.0
+    },
+    "params": [
+      {
+        "param_guid": "2835e26a-e991-49a2-b91e-f747b5cc03df",
+        "name": "north_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "fc27d329-4993-47bc-bc27-59c5fc6ab769",
+        "name": "_location",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "40ee12a4-2539-40da-a03f-eb02a3ccebdb"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0b138011-4630-4eda-ab9f-e370e112550d",
+        "name": "hoys_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "179241c2-31f1-46dc-9d66-066dc2e54548"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "821032a1-5b1f-4c1c-aa53-f88d80483b25",
+        "name": "dl_saving_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "e3dd617c-c6a2-4e25-9467-bd99bcf257e3",
+        "name": "solar_time_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "2cce3291-92b7-43af-8986-9ea362a7bb64",
+        "name": "_center_pt_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "2f3ceab9-3974-4036-94fb-e0079e1007d3",
+        "name": "_scale_",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "8b88aa31-c2cc-4b3e-b751-b2a8f5e7d238",
+        "name": "projection_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "8c51bf6a-c235-48c0-bd22-c72b1adf1360",
+        "name": "daily_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "ed3e01ae-5be9-4372-a0fe-b75f4d93af05",
+        "name": "data_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "e1627669-ba27-47f6-849c-c8546ef6beea",
+        "name": "statement_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "f653a842-76a7-45cb-a888-09803af7fef2",
+        "name": "legend_par_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "56199df1-05ae-4a9b-9ef5-8daf0ea24617",
+        "name": "out",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "3d7ff145-4901-4cd3-8f73-4fcc5836937c",
+        "name": "vectors",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1ff26bb4-991a-48bb-a57f-c92791e6cde5",
+        "name": "altitudes",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "069a1b77-16c7-4bc5-9db6-e8fe9ab18c79",
+        "name": "azimuths",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "5be8c7c7-9774-40bc-9438-e8812dfc44e6",
+        "name": "hoys",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "c53c0d0c-971b-4bce-a82c-4c495c1d6590",
+        "name": "sun_pts",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1dbc5391-ac62-42a5-a274-fd1f51b05908",
+        "name": "analemma",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "9cc31dfe-c4e0-45b4-85e3-ce759c56c4dd",
+        "name": "daily",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "a91fcddb-5005-4b91-8622-dfcf2a7a64fe",
+        "name": "compass",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0a7ec3ca-4e1c-4a4d-aa9d-003b5b7b9a14",
+        "name": "legend",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0824e03f-7ba4-423e-8754-5b052f78da3c",
+        "name": "title",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "f583346e-2be6-4698-9171-4930dd907fe1",
+        "name": "color_pts",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "72b458ff-9f35-4df4-a142-507fd7bcc347",
+        "name": "vis_set",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "ddb9e6ae-7d3e-41ae-8c75-fc726c984724",
+    "instance_guid": "ddb9e6ae-7d3e-41ae-8c75-fc726c984724",
+    "type_name": "Move",
+    "nickname": "Slats original",
+    "position": {
+      "x": 10800.0,
+      "y": 2758.0
+    },
+    "params": [
+      {
+        "param_guid": "196a42d0-d7af-4cfd-a711-bdf90cac0888",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "dbc236d4-a2fe-48a8-a86e-eebfb04b1053"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "f43c38ad-5987-445b-9abe-6d6f79487522",
+        "name": "Motion",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            10.0
+          ]
+        ],
+        "sources": [
+          "07dcee6c-9ef1-4893-a77f-18130fa2c9ea"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "47af807c-369d-4bd2-bbbb-d53a4605f8e6",
+        "name": "Geometry",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "90f740ef-2068-4c5e-8574-3e35652f75bf",
+        "name": "Transform",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
+    "instance_guid": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
+    "type_name": "Series",
+    "nickname": "Series",
+    "position": {
+      "x": 10162.0,
+      "y": 2758.0
+    },
+    "params": [
+      {
+        "param_guid": "cc1e7e44-c1aa-4ee7-8dfa-849726cdb7c5",
+        "name": "Start",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "f8fdffb7-41e7-43c7-93a7-44bdc965ed27"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "ef467247-5327-4364-b897-38a904554a85",
+        "name": "Step",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [
+          "20f5465a-8288-49ad-acd1-2eb24e1f8765"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "23cf7783-b37e-42a5-b01e-ff22b04c20f2",
+        "name": "Count",
+        "type": "input",
+        "persistent_data": [
+          10
+        ],
+        "sources": [
+          "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "160dcd76-1555-48ba-a352-8e284348cd05",
+        "name": "Series",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "3732df33-c378-4227-b549-b5ab541e82c6",
+    "instance_guid": "3732df33-c378-4227-b549-b5ab541e82c6",
+    "type_name": "Unit Z",
+    "nickname": "Unit Z",
+    "position": {
+      "x": 10439.0,
+      "y": 2815.0
+    },
+    "params": [
+      {
+        "param_guid": "156d24aa-d953-47d9-968a-f53eaf2e97eb",
+        "name": "Factor",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [
+          "3a96e7fa-3a91-4dd9-a965-18049ca7617e"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "4fa54506-86c5-4395-99c0-4fea6344d470",
+        "name": "Unit vector",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "268410b9-4d90-4bb6-b716-3e8df5798c14",
+    "instance_guid": "268410b9-4d90-4bb6-b716-3e8df5798c14",
+    "type_name": "Unit Y",
+    "nickname": "Unit Y",
+    "position": {
+      "x": 10323.0,
+      "y": 2732.0
+    },
+    "params": [
+      {
+        "param_guid": "d8c566f5-4ee4-45cd-a663-2b3622892b76",
+        "name": "Factor",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [
+          "306c324a-3b04-4c46-bd5a-d11cacfe8fdb"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "81565b66-9edb-40aa-af52-a7bb6218de84",
+        "name": "Unit vector",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
+    "instance_guid": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
+    "type_name": "Vector 2Pt",
+    "nickname": "Vector 2Pt",
+    "position": {
+      "x": 10606.0,
+      "y": 2796.0
+    },
+    "params": [
+      {
+        "param_guid": "3d26c657-b61d-4e4d-b613-a78cd2851bc9",
+        "name": "Point A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "81565b66-9edb-40aa-af52-a7bb6218de84"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b2a79070-e04f-4c54-9874-bb876bd116a9",
+        "name": "Point B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "4fa54506-86c5-4395-99c0-4fea6344d470"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "26a250c4-f6e7-40c3-9064-9576bcf8f704",
+        "name": "Unitize",
+        "type": "input",
+        "persistent_data": [
+          false
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "07dcee6c-9ef1-4893-a77f-18130fa2c9ea",
+        "name": "Vector",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "a77c669e-1e7b-4515-b005-b1f6347b8c2e",
+        "name": "Length",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
+    "instance_guid": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
+    "type_name": "Series",
+    "nickname": "Series",
+    "position": {
+      "x": 10162.0,
+      "y": 2826.0
+    },
+    "params": [
+      {
+        "param_guid": "2a1f35c4-2c0e-4f2c-9e3f-01ffb5749aec",
+        "name": "Start",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "5555e87c-cbec-4fd7-8f19-91671b29ca4a",
+        "name": "Step",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [
+          "133aa1b3-f899-4543-88d4-cde6da741d95"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "663e13ce-1b1d-4ab4-a564-8b7261377b65",
+        "name": "Count",
+        "type": "input",
+        "persistent_data": [
+          10
+        ],
+        "sources": [
+          "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "04a32494-760d-465e-85e5-f1a91dd0d1ee",
+        "name": "Series",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
+    "instance_guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
+    "type_name": "Construct Point",
+    "nickname": "p1",
+    "position": {
+      "x": 10675.0,
+      "y": 2879.0
+    },
+    "params": [
+      {
+        "param_guid": "760ab637-afff-4339-9907-16307d9ba82a",
+        "name": "X coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "75d9495d-5576-4d02-ae6c-acbdc71ec7d6",
+        "name": "Y coordinate",
+        "type": "input",
+        "persistent_data": [
+          -2
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "94f511a2-f54e-45a3-a270-40e694999caa",
+        "name": "Z coordinate",
+        "type": "input",
+        "persistent_data": [
+          7
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0fb443ce-5a5e-455f-999f-96fcaec0e113",
+        "name": "Point",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "a6b98c27-e4dd-405e-93f5-755c12294748",
+    "instance_guid": "a6b98c27-e4dd-405e-93f5-755c12294748",
+    "type_name": "Construct Point",
+    "nickname": "p1",
+    "position": {
+      "x": 10679.0,
+      "y": 2955.0
+    },
+    "params": [
+      {
+        "param_guid": "4a6b02a6-3501-43c9-b450-fbba3759cd55",
+        "name": "X coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "c4d9428f-dd29-4a16-bad2-de57930939bf",
+        "name": "Y coordinate",
+        "type": "input",
+        "persistent_data": [
+          3
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "6c448807-c177-4d0c-9ec7-076f700a48ee",
+        "name": "Z coordinate",
+        "type": "input",
+        "persistent_data": [
+          -3
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "2cc32a65-8ddb-4732-a071-9b1903600953",
+        "name": "Point",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "b908d823-e613-4684-9e94-65a0f60f19b7",
+    "instance_guid": "b908d823-e613-4684-9e94-65a0f60f19b7",
+    "type_name": "Box 2Pt",
+    "nickname": "Box 2Pt",
+    "position": {
+      "x": 10837.0,
+      "y": 2895.0
+    },
+    "params": [
+      {
+        "param_guid": "925631fb-a234-42c2-ac95-b755f16b9c1b",
+        "name": "Point A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "0fb443ce-5a5e-455f-999f-96fcaec0e113"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1626f4be-98c5-4b05-8953-e8b7140d4b40",
+        "name": "Point B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "2cc32a65-8ddb-4732-a071-9b1903600953"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "e77e5c98-0dbb-46e3-8263-18620fe06d2f",
+        "name": "Plane",
+        "type": "input",
+        "persistent_data": [
+          {
+            "origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "z_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "f12438b5-04ca-4ed7-b015-3f5310d7b57f",
+        "name": "Box",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "680b290d-e662-4a76-9b3c-e5e921230589",
+    "instance_guid": "680b290d-e662-4a76-9b3c-e5e921230589",
+    "type_name": "Series",
+    "nickname": "Series",
+    "position": {
+      "x": 10162.0,
+      "y": 2690.0
+    },
+    "params": [
+      {
+        "param_guid": "44c022d2-8866-43b1-ab91-1e88d5e0fa5c",
+        "name": "Start",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "507b14ee-692b-41df-973f-6bfef76514c2"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "eab69ed6-bdcf-4313-9a91-924ee114c1f3",
+        "name": "Step",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [
+          "bdac63ee-60a4-4873-8860-06e887053c0e"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b2093866-34f2-47ea-a0b1-19f63ca7dbc7",
+        "name": "Count",
+        "type": "input",
+        "persistent_data": [
+          10
+        ],
+        "sources": [
+          "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "306c324a-3b04-4c46-bd5a-d11cacfe8fdb",
+        "name": "Series",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "a3eb185f-a7cb-4727-aeaf-d5899f934b99",
+    "instance_guid": "a3eb185f-a7cb-4727-aeaf-d5899f934b99",
+    "type_name": "Rectangle 2Pt",
+    "nickname": "Rectangle 2Pt",
+    "position": {
+      "x": 9827.0,
+      "y": 2556.0
+    },
+    "params": [
+      {
+        "param_guid": "a1ba95f2-763a-4d63-8980-d7c2f4f6e278",
+        "name": "Plane",
+        "type": "input",
+        "persistent_data": [
+          {
+            "origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "z_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "3d68795e-4451-4296-bfce-29e87928ae4a",
+        "name": "Point A",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "902866aa-e5b3-4461-9877-73b22ea3618a"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "533ed63d-b12a-4953-8ba0-778e34331bc1",
+        "name": "Point B",
+        "type": "input",
+        "persistent_data": [
+          [
+            10.0,
+            5.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "ef17623c-d081-46f9-8259-2ad83ec05d94"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "20a66bae-abc8-460b-ad96-2f58bb9816cd",
+        "name": "Radius",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "dbc236d4-a2fe-48a8-a86e-eebfb04b1053",
+        "name": "Rectangle",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "cfcd9d65-ab29-4e02-bfc8-1a15e9deb603",
+        "name": "Length",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "be907c11-5a37-4cf5-9736-0f3c61ba7014",
+    "instance_guid": "be907c11-5a37-4cf5-9736-0f3c61ba7014",
+    "type_name": "Construct Point",
+    "nickname": "CP",
+    "position": {
+      "x": 9688.0,
+      "y": 2518.0
+    },
+    "params": [
+      {
+        "param_guid": "e38e57ed-138e-4ab4-9b04-0baa5fe1f9b3",
+        "name": "X coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "4c2fdd4e-7313-4735-8688-1dbdf5aeaee0"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "9bb5353c-a836-45ab-9d64-6e98065acfed",
+        "name": "Y coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "eedce522-16c4-4b3a-8341-c26cc0b6bb91"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1431283b-8898-4475-83ac-341e14077fce",
+        "name": "Z coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "902866aa-e5b3-4461-9877-73b22ea3618a",
+        "name": "Point",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "67b3eb53-9ea7-4280-bf8b-ae16c080cc23",
+    "instance_guid": "67b3eb53-9ea7-4280-bf8b-ae16c080cc23",
+    "type_name": "Construct Point",
+    "nickname": "CP",
+    "position": {
+      "x": 9688.0,
+      "y": 2587.0
+    },
+    "params": [
+      {
+        "param_guid": "da42102c-3a47-49c0-96a6-7e751afece16",
+        "name": "X coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "8a96679d-8f35-4cb4-92a0-6233220f435b"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "d63c9c76-02a7-4de9-8ce5-48ed56a9cd61",
+        "name": "Y coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "370f6ae5-1cf9-4488-9eee-2bd34b38725e"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1becdeae-bdc3-4b2a-bc94-70dac471e483",
+        "name": "Z coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "ef17623c-d081-46f9-8259-2ad83ec05d94",
+        "name": "Point",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "835d042f-2535-476b-b5ae-1eeb534e57bc",
+    "instance_guid": "835d042f-2535-476b-b5ae-1eeb534e57bc",
+    "type_name": "Negative",
+    "nickname": "-",
+    "position": {
+      "x": 9416.0,
+      "y": 2569.0
+    },
+    "params": [
+      {
+        "param_guid": "dda230a3-1ca6-433f-ba74-0bf57a14aa32",
+        "name": "Value",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "4c2fdd4e-7313-4735-8688-1dbdf5aeaee0"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "8a96679d-8f35-4cb4-92a0-6233220f435b",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92",
+    "instance_guid": "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92",
+    "type_name": "Negative",
+    "nickname": "-",
+    "position": {
+      "x": 9424.0,
+      "y": 2609.0
+    },
+    "params": [
+      {
+        "param_guid": "c9c63c96-aece-45ad-abe0-c93bbb55daab",
+        "name": "Value",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "eedce522-16c4-4b3a-8341-c26cc0b6bb91"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "370f6ae5-1cf9-4488-9eee-2bd34b38725e",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+    "instance_guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+    "type_name": "Explode Tree",
+    "nickname": "Ex Tree",
+    "position": {
+      "x": 11529.0,
+      "y": 2415.0
+    },
+    "params": [
+      {
+        "param_guid": "06d8458e-06fe-40d8-a33d-a757b07fe993",
+        "name": "Data",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "c53c0d0c-971b-4bce-a82c-4c495c1d6590"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
+        "name": "Branch 0",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "7b596afb-0787-405f-a751-78ec69c7f450",
+        "name": "Branch 1",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "cc8c9c0f-c3ed-491d-a3a4-f6d462e710bd",
+        "name": "Branch 2",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
+    "instance_guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
+    "type_name": "Division",
+    "nickname": "/",
+    "position": {
+      "x": 9232.0,
+      "y": 2545.0
+    },
+    "params": [
+      {
+        "param_guid": "95442192-abd8-4ea6-9a3c-304279161204",
+        "name": "A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "a7d2817a-3182-496e-a453-80e7eeba16fa"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "bd8dde54-97c0-429c-9185-9b6f3402a042",
+        "name": "B",
+        "type": "input",
+        "persistent_data": [
+          2
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "4c2fdd4e-7313-4735-8688-1dbdf5aeaee0",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "b9102ff3-4813-4791-a67d-5654a9f7bae9",
+    "instance_guid": "b9102ff3-4813-4791-a67d-5654a9f7bae9",
+    "type_name": "Division",
+    "nickname": "/",
+    "position": {
+      "x": 9221.0,
+      "y": 2609.0
+    },
+    "params": [
+      {
+        "param_guid": "1a2fb415-04b1-4031-aef0-63045c7a0d0b",
+        "name": "A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "c8dfe19f-4140-41a4-973e-a2acb75038d7"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "a406263e-5b80-4f2f-83a3-af0f868adc68",
+        "name": "B",
+        "type": "input",
+        "persistent_data": [
+          2
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "eedce522-16c4-4b3a-8341-c26cc0b6bb91",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
+    "instance_guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
+    "type_name": "Negative",
+    "nickname": "-",
+    "position": {
+      "x": 10299.0,
+      "y": 2789.0
+    },
+    "params": [
+      {
+        "param_guid": "fe22979a-ae9f-48e8-b1a6-a1a5c6af8575",
+        "name": "Value",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "160dcd76-1555-48ba-a352-8e284348cd05"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "3a96e7fa-3a91-4dd9-a965-18049ca7617e",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "b3c71890-f270-4efd-b308-60428215f2be",
+    "instance_guid": "b3c71890-f270-4efd-b308-60428215f2be",
+    "type_name": "Negative",
+    "nickname": "-",
+    "position": {
+      "x": 9994.0,
+      "y": 2754.0
+    },
+    "params": [
+      {
+        "param_guid": "c66c4f71-fc20-4b9f-a374-f8d2b17dd8a5",
+        "name": "Value",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "456d176f-14cf-4134-9062-b4623202c00e"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "f8fdffb7-41e7-43c7-93a7-44bdc965ed27",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "a69d2e4a-b63b-40d0-838f-dff4d90a83ce",
+    "instance_guid": "a69d2e4a-b63b-40d0-838f-dff4d90a83ce",
+    "type_name": "Negative",
+    "nickname": "-",
+    "position": {
+      "x": 9993.0,
+      "y": 2690.0
+    },
+    "params": [
+      {
+        "param_guid": "d3b213ea-a00d-4719-a925-f726e9338104",
+        "name": "Value",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "08edbcda-c850-40fd-9900-c6ab83acca1b"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "bdac63ee-60a4-4873-8860-06e887053c0e",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "d055df7d-4a48-4ccd-b770-433bbaa60269",
+    "instance_guid": "d055df7d-4a48-4ccd-b770-433bbaa60269",
+    "type_name": "Subtraction",
+    "nickname": "-",
+    "position": {
+      "x": 9616.0,
+      "y": 2946.0
+    },
+    "params": [
+      {
+        "param_guid": "53898f48-2c78-4a4b-a241-72841349099f",
+        "name": "A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "456d176f-14cf-4134-9062-b4623202c00e"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "3fe59f9b-2867-4ecf-a3af-fdfc26e69a5c",
+        "name": "B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "ea2c7d7f-a62e-46ca-9cb8-343e0fe0afb7"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1c0dfd0d-d43c-4981-8c70-2a01e06e0d43",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1",
+    "instance_guid": "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1",
+    "type_name": "Division",
+    "nickname": "/",
+    "position": {
+      "x": 9801.0,
+      "y": 2941.0
+    },
+    "params": [
+      {
+        "param_guid": "4df43b09-8929-44f0-a426-377f4f659e20",
+        "name": "A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "1c0dfd0d-d43c-4981-8c70-2a01e06e0d43"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "000f93a0-9f6a-45ea-88dc-13216162e6f6",
+        "name": "B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "6c807a4e-25c2-4574-a89d-fa5bcfca769e"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "20f5465a-8288-49ad-acd1-2eb24e1f8765",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "e2671ced-ddeb-4187-8048-66f3d519cefb",
+    "instance_guid": "e2671ced-ddeb-4187-8048-66f3d519cefb",
+    "type_name": "Subtraction",
+    "nickname": "-",
+    "position": {
+      "x": 9615.0,
+      "y": 2899.0
+    },
+    "params": [
+      {
+        "param_guid": "df2c8bb6-a707-4c7e-bb11-eae4fd258b37",
+        "name": "A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "cce9829a-ed41-4574-81af-33d0d5e3d0ba",
+        "name": "B",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "6c807a4e-25c2-4574-a89d-fa5bcfca769e",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "0f529988-b68b-4d48-9a48-cf099af69050",
+    "instance_guid": "0f529988-b68b-4d48-9a48-cf099af69050",
+    "type_name": "Move",
+    "nickname": "New Sun",
+    "position": {
+      "x": 11484.0,
+      "y": 2761.0
+    },
+    "params": [
+      {
+        "param_guid": "f02c8edd-c2ce-477d-bd9d-5458509e99ba",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b1398a69-fbda-4447-af1b-e68aa5938736",
+        "name": "Motion",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            10.0
+          ]
+        ],
+        "sources": [
+          "e932b554-bb15-4f31-bb75-7157a92b9a0a"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "dd0f4d1f-3f64-487c-8949-41d09cbe51d7",
+        "name": "Geometry",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "2b064634-4749-4144-a4c5-725d68397a89",
+        "name": "Transform",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "9cd053c9-3dd2-432b-aa46-a29a4b05c339",
+    "instance_guid": "9cd053c9-3dd2-432b-aa46-a29a4b05c339",
+    "type_name": "Project",
+    "nickname": "Project Curve",
+    "position": {
+      "x": 11984.0,
+      "y": 2808.0
+    },
+    "params": [
+      {
+        "param_guid": "cf7314de-f705-4f78-b79d-3ddf697b6099",
+        "name": "Curve",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "e898f4cb-46e4-4be2-821d-11e2a96379f4"
+        ],
+        "expression": null,
+        "mapping": 2,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0d54bb3f-f6e7-4c6e-901a-d24451a051a0",
+        "name": "Brep",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "eb26fc4b-25d6-4783-8303-5b7cd757521c"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0c5c5a39-071f-4a4e-beda-4f564e7eee63",
+        "name": "Direction",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "sources": [
+          "2e61e21e-3664-45eb-80a0-6c83498d3158"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "aeedb946-4c19-44d8-8e7d-77f9dd230432",
+        "name": "Curve",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 1,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "9a33273a-910e-439d-98d5-d225e29faebf",
+    "instance_guid": "9a33273a-910e-439d-98d5-d225e29faebf",
+    "type_name": "Line",
+    "nickname": "Out Ray",
+    "position": {
+      "x": 11737.0,
+      "y": 2717.0
+    },
+    "params": [
+      {
+        "param_guid": "2eada1e3-f9eb-4d37-b594-660291d0d149",
+        "name": "Start Point",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "3d25ff1e-7828-43b2-983a-0a37fa619b8c",
+        "name": "End Point",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "dd0f4d1f-3f64-487c-8949-41d09cbe51d7"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "e898f4cb-46e4-4be2-821d-11e2a96379f4",
+        "name": "Line",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
+    "instance_guid": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
+    "type_name": "Line",
+    "nickname": "In Ray",
+    "position": {
+      "x": 12022.0,
+      "y": 2743.0
+    },
+    "params": [
+      {
+        "param_guid": "8a12ed41-13aa-4a75-a70f-ef3e7b37aaff",
+        "name": "Start Point",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+        ],
+        "expression": null,
+        "mapping": 1,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "98d8b1d4-5d32-44bb-b49f-9faa1a14739c",
+        "name": "End Point",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "0b4bf936-2e3a-417f-aaf0-61220fcefd66"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "9822511c-b2b2-4e5c-8f61-8f6be460cabb",
+        "name": "Line",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "524ba570-d8ac-4fc6-beee-87eab3265a4f",
+    "instance_guid": "524ba570-d8ac-4fc6-beee-87eab3265a4f",
+    "type_name": "Division",
+    "nickname": "/",
+    "position": {
+      "x": 9801.0,
+      "y": 2991.0
+    },
+    "params": [
+      {
+        "param_guid": "04a561eb-5d4c-4282-836d-be0fe4c575f3",
+        "name": "A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "8cb00f94-7bbb-49d9-8065-df2645a32790"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "13db12e3-87f5-4ad5-81a5-f8a759ccac00",
+        "name": "B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "a7dd54c8-0ce7-4884-913e-10ac0e1336b4"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "133aa1b3-f899-4543-88d4-cde6da741d95",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "e11dd9b3-8452-4aa1-a4a1-4201e1de4578",
+    "instance_guid": "e11dd9b3-8452-4aa1-a4a1-4201e1de4578",
+    "type_name": "Subtraction",
+    "nickname": "-",
+    "position": {
+      "x": 9616.0,
+      "y": 3041.0
+    },
+    "params": [
+      {
+        "param_guid": "2e38fc7f-bcd1-4166-80f7-4147f16d6693",
+        "name": "A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "3548bfc5-1fd1-4cea-8c19-4319dc9b5751",
+        "name": "B",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "a7dd54c8-0ce7-4884-913e-10ac0e1336b4",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "a7644f3e-b082-4aea-b58d-043d3b6c9a28",
+    "instance_guid": "a7644f3e-b082-4aea-b58d-043d3b6c9a28",
+    "type_name": "Subtraction",
+    "nickname": "-",
+    "position": {
+      "x": 9616.0,
+      "y": 2993.0
+    },
+    "params": [
+      {
+        "param_guid": "e0662afd-d2bf-4f83-9fd4-137128f945b4",
+        "name": "A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "125e7c20-d243-4cdc-927b-568ceb6315b5"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "59277e95-5cc4-4809-af2f-4982eb841358",
+        "name": "B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "e81f2ba2-a9aa-401c-bde6-290d119877dc"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "8cb00f94-7bbb-49d9-8065-df2645a32790",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "0d695e6b-3696-4337-bc80-d14104f8a59e",
+    "instance_guid": "0d695e6b-3696-4337-bc80-d14104f8a59e",
+    "type_name": "Angle",
+    "nickname": "Angle",
+    "position": {
+      "x": 12645.0,
+      "y": 2826.0
+    },
+    "params": [
+      {
+        "param_guid": "2c5ac9e7-64aa-47d8-b945-2254ab2b047e",
+        "name": "Vector A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a"
+        ],
+        "expression": null,
+        "mapping": 1,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "cd9362aa-9560-4cb4-8245-510bb30319f9",
+        "name": "Vector B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "944abd50-d894-4e46-893e-7a2cdf566398"
+        ],
+        "expression": null,
+        "mapping": 1,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "fa4e3a1b-5fdc-4ef6-803d-7ed6633531e3",
+        "name": "Plane",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "638a56be-4484-4cb8-ba11-233b9e7421eb"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "23900bd5-6845-4b37-a9ba-bc8342e17168",
+        "name": "Angle",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b8626f03-e70b-4f11-a91f-c4322d1ca406",
+        "name": "Reflex",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58",
+    "instance_guid": "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58",
+    "type_name": "Degrees",
+    "nickname": "Degrees",
+    "position": {
+      "x": 12820.0,
+      "y": 2815.0
+    },
+    "params": [
+      {
+        "param_guid": "9deef9fb-4aa0-40fa-bee0-a5309dc39533",
+        "name": "Radians",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "23900bd5-6845-4b37-a9ba-bc8342e17168"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "4d5670e5-1abc-417e-b9ce-3cf7878b98c2",
+        "name": "Degrees",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "9ff79870-05d0-483d-87be-b3641d71c6fc",
+    "instance_guid": "9ff79870-05d0-483d-87be-b3641d71c6fc",
+    "type_name": "List Item",
+    "nickname": "List Item",
+    "position": {
+      "x": 11883.0,
+      "y": 3138.0
+    },
+    "params": [
+      {
+        "param_guid": "e30b4c91-74dc-4dcd-9724-430f7ae4c72a",
+        "name": "List",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "836435ee-73ce-4f00-ae8c-932cc97f3954",
+        "name": "Index",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+        ],
+        "expression": "x-1",
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "56900547-971f-4154-a0a1-580b02107067",
+        "name": "Wrap",
+        "type": "input",
+        "persistent_data": [
+          true
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "f78fb52e-b019-4ac1-bd55-7bee81f356a4",
+        "name": "Item",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "ef803855-36ec-4b48-8d76-89d870a0438f",
+    "instance_guid": "ef803855-36ec-4b48-8d76-89d870a0438f",
+    "type_name": "PolyLine",
+    "nickname": "PolyLine",
+    "position": {
+      "x": 11865.0,
+      "y": 2981.0
+    },
+    "params": [
+      {
+        "param_guid": "0213fef5-2d96-4fdb-9136-763b427b23ea",
+        "name": "Vertices",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "0b4bf936-2e3a-417f-aaf0-61220fcefd66"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0ceeb194-9053-4ef4-a9ba-542edcbfe9c4",
+        "name": "Closed",
+        "type": "input",
+        "persistent_data": [
+          false
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "def742ff-b2bc-4fcd-833f-523d99cca69d",
+        "name": "Polyline",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "326da981-351e-4794-9d60-77e8e87bd778",
+    "instance_guid": "326da981-351e-4794-9d60-77e8e87bd778",
+    "type_name": "Plane Normal",
+    "nickname": "Plane Normal",
+    "position": {
+      "x": 12046.0,
+      "y": 2982.0
+    },
+    "params": [
+      {
+        "param_guid": "a1fbb5d7-9969-4b89-b4c2-bb0730dc40f5",
+        "name": "Origin",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "8acfd6a4-5549-4ea6-942d-2aefb8174ceb",
+        "name": "Z-Axis",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "sources": [
+          "def742ff-b2bc-4fcd-833f-523d99cca69d"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "4b0092c3-9120-4e4b-bdf3-8035944050a7",
+        "name": "Plane",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "30f76ec5-d532-4903-aa18-cd18b27442f9",
+    "instance_guid": "30f76ec5-d532-4903-aa18-cd18b27442f9",
+    "type_name": "Construct Plane",
+    "nickname": "Construct Plane",
+    "position": {
+      "x": 12042.0,
+      "y": 3110.0
+    },
+    "params": [
+      {
+        "param_guid": "fd338f3a-d9dc-4374-8b28-c84a47cddd60",
+        "name": "Origin",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "5aaceceb-d627-4a70-9c7a-ed252c56af2f",
+        "name": "X-Axis",
+        "type": "input",
+        "persistent_data": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "def742ff-b2bc-4fcd-833f-523d99cca69d"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "37b55dbc-f3a0-4cd7-b394-4d6325bd3ada",
+        "name": "Y-Axis",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "65a37667-b44f-435e-8835-aa8185da4670"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "9bf9263c-2d3b-4064-ba62-1053ee020854",
+        "name": "Plane",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "910c335c-b5e8-41bf-bfb4-576cb17432c7",
+    "instance_guid": "910c335c-b5e8-41bf-bfb4-576cb17432c7",
+    "type_name": "PolyLine",
+    "nickname": "PolyLine",
+    "position": {
+      "x": 11870.0,
+      "y": 3055.0
+    },
+    "params": [
+      {
+        "param_guid": "215615f8-51d8-44fd-8159-279155bc39cb",
+        "name": "Vertices",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": true
+      },
+      {
+        "param_guid": "56e4b79e-55b0-46d1-86d8-8bb807706eee",
+        "name": "Closed",
+        "type": "input",
+        "persistent_data": [
+          false
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "65a37667-b44f-435e-8835-aa8185da4670",
+        "name": "Polyline",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "157c48b5-0aed-49e5-a808-d4c64666062d",
+    "instance_guid": "157c48b5-0aed-49e5-a808-d4c64666062d",
+    "type_name": "List Item",
+    "nickname": "List Item",
+    "position": {
+      "x": 12198.0,
+      "y": 2962.0
+    },
+    "params": [
+      {
+        "param_guid": "128cdce4-9043-4e4c-a6d7-ad52c8af0dfd",
+        "name": "List",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "4b0092c3-9120-4e4b-bdf3-8035944050a7"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "e14c768a-9383-4fee-b9de-b1cdeec1c6a6",
+        "name": "Index",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "ac280e60-85a6-4d3d-8f01-cca6076701db",
+        "name": "Wrap",
+        "type": "input",
+        "persistent_data": [
+          true
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a",
+        "name": "Item",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
+    "instance_guid": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
+    "type_name": "Plane Normal",
+    "nickname": "Plane Normal",
+    "position": {
+      "x": 12187.0,
+      "y": 3066.0
+    },
+    "params": [
+      {
+        "param_guid": "18115c81-fdea-48a1-a611-c97dfa1d2e20",
+        "name": "Origin",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "f78fb52e-b019-4ac1-bd55-7bee81f356a4"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "abf938a3-ce59-4179-89ce-15d5e2b02977",
+        "name": "Z-Axis",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "sources": [
+          "9bf9263c-2d3b-4064-ba62-1053ee020854"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "638a56be-4484-4cb8-ba11-233b9e7421eb",
+        "name": "Plane",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
+    "instance_guid": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
+    "type_name": "Area",
+    "nickname": "Area",
+    "position": {
+      "x": 11293.0,
+      "y": 2815.0
+    },
+    "params": [
+      {
+        "param_guid": "67ebb9f6-8dfb-4874-b03d-33a0dd9262f7",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "042cadab-f52c-4397-a01b-bfcd7b7117f6"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b0b3e64e-f2c8-4881-bfa9-a6026955a0b0",
+        "name": "Area",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+        "name": "Centroid",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "77f7eddb-d54b-4280-aad9-4c4a8400a56b",
+    "instance_guid": "77f7eddb-d54b-4280-aad9-4c4a8400a56b",
+    "type_name": "Area",
+    "nickname": "Area",
+    "position": {
+      "x": 11290.0,
+      "y": 2937.0
+    },
+    "params": [
+      {
+        "param_guid": "25113d3e-f6c5-4bf7-8943-cdaa173949a8",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "eb26fc4b-25d6-4783-8303-5b7cd757521c"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "be0bbae7-3902-48fd-84ca-5cfdf0808b5f",
+        "name": "Area",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "34529a8c-3dfd-4d96-865b-9e4cbfddad6c",
+        "name": "Centroid",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "6991f781-7047-4cdb-b1d9-ffacaca51fdf",
+    "instance_guid": "6991f781-7047-4cdb-b1d9-ffacaca51fdf",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "position": {
+      "x": 11014.0,
+      "y": 2915.0
+    },
+    "params": [
+      {
+        "param_guid": "68875dbf-ad88-43a0-b645-bb3985eb7236",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "f12438b5-04ca-4ed7-b015-3f5310d7b57f"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "ece8cd28-d6cf-444b-8ec4-bf0cbc8a0f89",
+        "name": "Angle",
+        "type": "input",
+        "persistent_data": [
+          1.5707963267948966
+        ],
+        "sources": [
+          "5354f884-8b45-418e-968a-55689cb2e986"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "9761364d-c468-42ee-846c-dbc00a9f9e1b",
+        "name": "Plane",
+        "type": "input",
+        "persistent_data": [
+          {
+            "origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "z_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "eb26fc4b-25d6-4783-8303-5b7cd757521c",
+        "name": "Geometry",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1680ee46-88a0-4f73-8d14-561f94d1bdc7",
+        "name": "Transform",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
+    "instance_guid": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
+    "type_name": "Construct Point",
+    "nickname": "Construct Point",
+    "position": {
+      "x": 10457.0,
+      "y": 3029.0
+    },
+    "params": [
+      {
+        "param_guid": "c6d99abc-0d60-498c-82b0-565e05e62bcb",
+        "name": "X coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "2be05eb0-b047-4927-a81a-99da92df51d7",
+        "name": "Y coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "125e7c20-d243-4cdc-927b-568ceb6315b5"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "3988aa76-a3cf-48be-bd80-9c4724d37edc",
+        "name": "Z coordinate",
+        "type": "input",
+        "persistent_data": [
+          0
+        ],
+        "sources": [
+          "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "3e0431d2-2630-4f1b-9ebd-078d00994cf5",
+        "name": "Point",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
+    "instance_guid": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
+    "type_name": "Move",
+    "nickname": "Move",
+    "position": {
+      "x": 10798.0,
+      "y": 3039.0
+    },
+    "params": [
+      {
+        "param_guid": "5dc1cdfb-4a69-42c7-ae9f-1861a22c96e7",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "3e0431d2-2630-4f1b-9ebd-078d00994cf5"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "d9fc6b37-e624-460f-8425-264eb213fbec",
+        "name": "Motion",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            10.0
+          ]
+        ],
+        "sources": [
+          "800ae5cf-6f77-4b7e-aec7-5725d272bd84"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "904fae86-dbbe-46a6-ad19-bd7d1c6539bf",
+        "name": "Geometry",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "14611b82-7236-4830-8e0a-9a29f3a3f82e",
+        "name": "Transform",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
+    "instance_guid": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
+    "type_name": "Negative",
+    "nickname": "Negative",
+    "position": {
+      "x": 10433.0,
+      "y": 2901.0
+    },
+    "params": [
+      {
+        "param_guid": "9e171c22-f1b3-4ab9-83eb-fdb23144e4af",
+        "name": "Value",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "04a32494-760d-465e-85e5-f1a91dd0d1ee"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1288cc78-451b-423d-bbc4-2e1a268f1389",
+        "name": "Result",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
+    "instance_guid": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
+    "type_name": "Unit Y",
+    "nickname": "Unit Y",
+    "position": {
+      "x": 10611.0,
+      "y": 3049.0
+    },
+    "params": [
+      {
+        "param_guid": "273178c0-f287-4b37-9638-b35292973455",
+        "name": "Factor",
+        "type": "input",
+        "persistent_data": [
+          1
+        ],
+        "sources": [
+          "1288cc78-451b-423d-bbc4-2e1a268f1389"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "800ae5cf-6f77-4b7e-aec7-5725d272bd84",
+        "name": "Unit vector",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "505e72fd-e7f0-4e7d-ba69-88f047b56bb9",
+    "instance_guid": "505e72fd-e7f0-4e7d-ba69-88f047b56bb9",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "position": {
+      "x": 11016.0,
+      "y": 2811.0
+    },
+    "params": [
+      {
+        "param_guid": "703e665b-7a1b-4479-9320-84e2d301bbff",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "47af807c-369d-4bd2-bbbb-d53a4605f8e6"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0a231406-2561-42b7-997e-30830fd1cb66",
+        "name": "Angle",
+        "type": "input",
+        "persistent_data": [
+          1.5707963267948966
+        ],
+        "sources": [
+          "5354f884-8b45-418e-968a-55689cb2e986"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "8fc5500d-d4f9-48ec-a94a-a0189cb753ac",
+        "name": "Plane",
+        "type": "input",
+        "persistent_data": [
+          {
+            "origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "z_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "042cadab-f52c-4397-a01b-bfcd7b7117f6",
+        "name": "Geometry",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "e199c84e-62fb-42cd-b868-c9ca11f6ddf7",
+        "name": "Transform",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "464c66b3-4ac6-4cc0-b283-407f8fe787a3",
+    "instance_guid": "464c66b3-4ac6-4cc0-b283-407f8fe787a3",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "position": {
+      "x": 11019.0,
+      "y": 3049.0
+    },
+    "params": [
+      {
+        "param_guid": "25aaaa70-2339-4889-b4db-ff8e27090e1d",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "904fae86-dbbe-46a6-ad19-bd7d1c6539bf"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "1208af66-55c5-4249-a426-ea85a0456341",
+        "name": "Angle",
+        "type": "input",
+        "persistent_data": [
+          1.5707963267948966
+        ],
+        "sources": [
+          "5354f884-8b45-418e-968a-55689cb2e986"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "26758a87-64f6-4f28-8f33-16ef0bc0fe6b",
+        "name": "Plane",
+        "type": "input",
+        "persistent_data": [
+          {
+            "origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "z_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0b4bf936-2e3a-417f-aaf0-61220fcefd66",
+        "name": "Geometry",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b6dc892e-17f2-4ce0-a35f-0287efdbbd94",
+        "name": "Transform",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+    "instance_guid": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+    "type_name": "LB Calculate HOY",
+    "nickname": "HOY",
+    "position": {
+      "x": 11304.0,
+      "y": 1572.0
+    },
+    "params": [
+      {
+        "param_guid": "74f4f738-9f96-48a2-839b-ec4214333614",
+        "name": "_month_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "86379f02-2481-4a60-bc43-5e5c81ecc838"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "4cfba927-5d3c-45f0-b709-428a31aff33d",
+        "name": "_day_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "8a457e4b-7089-459f-a9f8-bf07defdca0d"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "940acb72-993c-4bd5-8324-9bc4ee3d0791",
+        "name": "_hour_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "da9d4878-f0ee-4671-8549-52077b99dae4",
+        "name": "_minute_",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "179241c2-31f1-46dc-9d66-066dc2e54548",
+        "name": "hoy",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 1,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "9e629599-e3c6-45b8-b38b-af7ad50c20bb",
+        "name": "doy",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 1,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "2e6dfff5-652c-4518-8874-5e4dbe217086",
+        "name": "date",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 1,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
+    "instance_guid": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
+    "type_name": "YZ Plane",
+    "nickname": "YZ Plane",
+    "position": {
+      "x": 11529.0,
+      "y": 2911.0
+    },
+    "params": [
+      {
+        "param_guid": "5cc583d0-5f2a-4b69-8f8b-c40b061d70a5",
+        "name": "Origin",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "34529a8c-3dfd-4d96-865b-9e4cbfddad6c"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0add6c90-5b4a-4259-b9a6-cb941d8756b8",
+        "name": "Plane",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "1162b56a-787a-4446-8b26-56947cad14f5",
+    "instance_guid": "1162b56a-787a-4446-8b26-56947cad14f5",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "position": {
+      "x": 11786.0,
+      "y": 2854.0
+    },
+    "params": [
+      {
+        "param_guid": "e14c969b-54e6-46f7-9b02-df61fb7ed340",
+        "name": "Geometry",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "0add6c90-5b4a-4259-b9a6-cb941d8756b8"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "a1761f27-9d24-4205-b000-5284717acd65",
+        "name": "Angle",
+        "type": "input",
+        "persistent_data": [
+          1.5707963267948966
+        ],
+        "sources": [
+          "5354f884-8b45-418e-968a-55689cb2e986"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "37a46d5c-1e61-4006-b44d-2423aeca87fd",
+        "name": "Plane",
+        "type": "input",
+        "persistent_data": [
+          {
+            "origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "z_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "2e61e21e-3664-45eb-80a0-6c83498d3158",
+        "name": "Geometry",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b8a0bc8b-098b-477e-b674-d2950723188f",
+        "name": "Transform",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
+    "instance_guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
+    "type_name": "YZ Plane",
+    "nickname": "YZ Plane",
+    "position": {
+      "x": 11862.0,
+      "y": 2653.0
+    },
+    "params": [
+      {
+        "param_guid": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
+        "name": "Origin",
+        "type": "input",
+        "persistent_data": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "sources": [
+          "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
+        "name": "Plane",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
+    "instance_guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
+    "type_name": "Circle",
+    "nickname": "Circle",
+    "position": {
+      "x": 12022.0,
+      "y": 2669.0
+    },
+    "params": [
+      {
+        "param_guid": "5cf732f4-5636-4d38-843b-7261c7d04ed4",
+        "name": "Plane",
+        "type": "input",
+        "persistent_data": [
+          {
+            "origin": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "z_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "sources": [
+          "b8cbaed8-c6f7-4c1c-b9ba-88320b975081"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "a5594611-6b3d-4506-9ca6-add63c97fd5e",
+        "name": "Radius",
+        "type": "input",
+        "persistent_data": [
+          0.1
+        ],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "fccb1a7c-db3f-40e8-8c26-f30c05624576",
+        "name": "Circle",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "bdde1ec6-2004-476b-b670-3de72b6fb0b0",
+    "instance_guid": "bdde1ec6-2004-476b-b670-3de72b6fb0b0",
+    "type_name": "Curve | Curve",
+    "nickname": "Curve | Curve",
+    "position": {
+      "x": 12225.0,
+      "y": 2693.0
+    },
+    "params": [
+      {
+        "param_guid": "bc29d83e-a3b9-4fe4-97b6-8a60358f152c",
+        "name": "Curve A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "fccb1a7c-db3f-40e8-8c26-f30c05624576"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "88da8f3e-9018-4cef-ba85-2132770ae0cb",
+        "name": "Curve B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "9822511c-b2b2-4e5c-8f61-8f6be460cabb"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "23461142-003e-496e-83b5-6c1e947aa859",
+        "name": "Points",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "368a069f-82be-4e22-acce-186441c1cd62",
+        "name": "Params A",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "580f1b0b-f834-4e8c-98cd-5900c25e52bb",
+        "name": "Params B",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "0974a3a7-c1f6-4451-89e4-ad726846f035",
+    "instance_guid": "0974a3a7-c1f6-4451-89e4-ad726846f035",
+    "type_name": "Curve | Curve",
+    "nickname": "Curve | Curve",
+    "position": {
+      "x": 12259.0,
+      "y": 2827.0
+    },
+    "params": [
+      {
+        "param_guid": "16663cb6-e2eb-4ac0-90aa-034384945d05",
+        "name": "Curve A",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "fccb1a7c-db3f-40e8-8c26-f30c05624576"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "b6e9e1da-b96f-4c21-8650-e4da8bf0790f",
+        "name": "Curve B",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "aeedb946-4c19-44d8-8e7d-77f9dd230432"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "0d6b3ee1-d62a-47ce-8dc6-2a2c52ac9c49",
+        "name": "Points",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "be2d7002-1690-47cb-8447-6c753a7e3d1c",
+        "name": "Params A",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "aae51212-1af9-4a3e-81c9-3fd412c04bfc",
+        "name": "Params B",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  },
+  {
+    "guid": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
+    "instance_guid": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
+    "type_name": "Line",
+    "nickname": "Line",
+    "position": {
+      "x": 12489.0,
+      "y": 2760.0
+    },
+    "params": [
+      {
+        "param_guid": "a649d825-c688-43e3-bcdc-4519ce395a6a",
+        "name": "Start Point",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "23461142-003e-496e-83b5-6c1e947aa859"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "87eb3f27-bb21-4cc3-9edd-e1575b045048",
+        "name": "End Point",
+        "type": "input",
+        "persistent_data": [],
+        "sources": [
+          "0d6b3ee1-d62a-47ce-8dc6-2a2c52ac9c49"
+        ],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      },
+      {
+        "param_guid": "944abd50-d894-4e46-893e-7a2cdf566398",
+        "name": "Line",
+        "type": "output",
+        "persistent_data": [],
+        "sources": [],
+        "expression": null,
+        "mapping": 0,
+        "reverse_data": false
+      }
+    ]
+  }
+]

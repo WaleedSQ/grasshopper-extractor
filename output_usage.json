@@ -1,0 +1,86 @@
+{
+  "LB Download Weather": {
+    "epw_file": true
+  },
+  "LB Import EPW": {
+    "location": true
+  },
+  "LB SunPath": {
+    "sun_pts": true
+  },
+  "Move": {
+    "Geometry": true
+  },
+  "Series": {
+    "Series": true
+  },
+  "Unit Z": {
+    "Unit vector": true
+  },
+  "Unit Y": {
+    "Unit vector": true
+  },
+  "Vector 2Pt": {
+    "Vector": true
+  },
+  "Construct Point": {
+    "Point": true
+  },
+  "Box 2Pt": {
+    "Box": true
+  },
+  "Rectangle 2Pt": {
+    "Rectangle": true
+  },
+  "Negative": {
+    "Result": true
+  },
+  "Explode Tree": {
+    "Branch 0": true
+  },
+  "Division": {
+    "Result": true
+  },
+  "Subtraction": {
+    "Result": true
+  },
+  "Project": {
+    "Curve": true
+  },
+  "Line": {
+    "Line": true
+  },
+  "Angle": {
+    "Angle": true
+  },
+  "List Item": {
+    "Item": true
+  },
+  "PolyLine": {
+    "Polyline": true
+  },
+  "Plane Normal": {
+    "Plane": true
+  },
+  "Construct Plane": {
+    "Plane": true
+  },
+  "Area": {
+    "Centroid": true
+  },
+  "Rotate": {
+    "Geometry": true
+  },
+  "LB Calculate HOY": {
+    "hoy": true
+  },
+  "YZ Plane": {
+    "Plane": true
+  },
+  "Circle": {
+    "Circle": true
+  },
+  "Curve | Curve": {
+    "Points": true
+  }
+}

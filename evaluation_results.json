@@ -1,0 +1,6434 @@
+{
+  "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf": {
+    "component_info": {
+      "guid": "fd05ff8f-24ef-45b5-93bf-0d5ad31c16cf",
+      "type": "LB Download Weather",
+      "nickname": "DownloadEPW",
+      "position": {
+        "x": 11057.0,
+        "y": 1835.0
+      }
+    },
+    "outputs": {
+      "epw_file": {
+        "branches": {
+          "(0,)": [
+            "GBR_SCT_Salsburgh.031520_TMYx.epw"
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "stat_file": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "ddy_file": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c": {
+    "component_info": {
+      "guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
+      "type": "Construct Point",
+      "nickname": "p1",
+      "position": {
+        "x": 10675.0,
+        "y": 2879.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              -2,
+              7
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a6b98c27-e4dd-405e-93f5-755c12294748": {
+    "component_info": {
+      "guid": "a6b98c27-e4dd-405e-93f5-755c12294748",
+      "type": "Construct Point",
+      "nickname": "p1",
+      "position": {
+        "x": 10679.0,
+        "y": 2955.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              3,
+              -3
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "32cc502c-07b0-4d58-aef1-8acf8b2f4015": {
+    "component_info": {
+      "guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
+      "type": "Division",
+      "nickname": "/",
+      "position": {
+        "x": 9232.0,
+        "y": 2545.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            2.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "b9102ff3-4813-4791-a67d-5654a9f7bae9": {
+    "component_info": {
+      "guid": "b9102ff3-4813-4791-a67d-5654a9f7bae9",
+      "type": "Division",
+      "nickname": "/",
+      "position": {
+        "x": 9221.0,
+        "y": 2609.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            0.04
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "b3c71890-f270-4efd-b308-60428215f2be": {
+    "component_info": {
+      "guid": "b3c71890-f270-4efd-b308-60428215f2be",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 9994.0,
+        "y": 2754.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -3.8
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a69d2e4a-b63b-40d0-838f-dff4d90a83ce": {
+    "component_info": {
+      "guid": "a69d2e4a-b63b-40d0-838f-dff4d90a83ce",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 9993.0,
+        "y": 2690.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -0.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "d055df7d-4a48-4ccd-b770-433bbaa60269": {
+    "component_info": {
+      "guid": "d055df7d-4a48-4ccd-b770-433bbaa60269",
+      "type": "Subtraction",
+      "nickname": "-",
+      "position": {
+        "x": 9616.0,
+        "y": 2946.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            0.6999999999999997
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "e2671ced-ddeb-4187-8048-66f3d519cefb": {
+    "component_info": {
+      "guid": "e2671ced-ddeb-4187-8048-66f3d519cefb",
+      "type": "Subtraction",
+      "nickname": "-",
+      "position": {
+        "x": 9615.0,
+        "y": 2899.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            9.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "e11dd9b3-8452-4aa1-a4a1-4201e1de4578": {
+    "component_info": {
+      "guid": "e11dd9b3-8452-4aa1-a4a1-4201e1de4578",
+      "type": "Subtraction",
+      "nickname": "-",
+      "position": {
+        "x": 9616.0,
+        "y": 3041.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            9.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a7644f3e-b082-4aea-b58d-043d3b6c9a28": {
+    "component_info": {
+      "guid": "a7644f3e-b082-4aea-b58d-043d3b6c9a28",
+      "type": "Subtraction",
+      "nickname": "-",
+      "position": {
+        "x": 9616.0,
+        "y": 2993.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            3.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "9754db2b-c513-48b6-bbf7-0d06f53b3ce4": {
+    "component_info": {
+      "guid": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
+      "type": "Construct Point",
+      "nickname": "Construct Point",
+      "position": {
+        "x": 10457.0,
+        "y": 3029.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              4.5,
+              4.0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a4dc00a7-f21a-44c7-a074-be8a0296701d": {
+    "component_info": {
+      "guid": "a4dc00a7-f21a-44c7-a074-be8a0296701d",
+      "type": "LB Calculate HOY",
+      "nickname": "HOY",
+      "position": {
+        "x": 11304.0,
+        "y": 1572.0
+      }
+    },
+    "outputs": {
+      "hoy": {
+        "branches": {
+          "(0, 0)": [
+            5387
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "doy": {
+        "branches": {
+          "(0, 0)": [
+            225
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "date": {
+        "branches": {
+          "(0, 0)": [
+            null
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "ccddde54-016e-477f-8a32-15e9acb9b902": {
+    "component_info": {
+      "guid": "ccddde54-016e-477f-8a32-15e9acb9b902",
+      "type": "LB Import EPW",
+      "nickname": "ImportEPW",
+      "position": {
+        "x": 11226.0,
+        "y": 1815.0
+      }
+    },
+    "outputs": {
+      "location": {
+        "branches": {
+          "(0,)": [
+            {
+              "latitude": 55.867,
+              "longitude": -3.867,
+              "elevation": 275.0,
+              "timezone": 0.0,
+              "name": "Salsburgh",
+              "state": "SCT",
+              "country": "GBR"
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "dry_bulb_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "dew_point_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "relative_humidity": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "wind_speed": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "wind_direction": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "direct_normal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "diffuse_horizontal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "global_horizontal_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "horizontal_infrared_rad": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "direct_normal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "diffuse_horizontal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "global_horizontal_ill": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "total_sky_cover": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "barometric_pressure": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "model_year": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "ground_temperature": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "b908d823-e613-4684-9e94-65a0f60f19b7": {
+    "component_info": {
+      "guid": "b908d823-e613-4684-9e94-65a0f60f19b7",
+      "type": "Box 2Pt",
+      "nickname": "Box 2Pt",
+      "position": {
+        "x": 10837.0,
+        "y": 2895.0
+      }
+    },
+    "outputs": {
+      "Box": {
+        "branches": {
+          "(0,)": [
+            {
+              "corner_a": [
+                0,
+                -2,
+                7
+              ],
+              "corner_b": [
+                0,
+                3,
+                -3
+              ],
+              "plane": null
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "835d042f-2535-476b-b5ae-1eeb534e57bc": {
+    "component_info": {
+      "guid": "835d042f-2535-476b-b5ae-1eeb534e57bc",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 9416.0,
+        "y": 2569.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -2.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "be907c11-5a37-4cf5-9736-0f3c61ba7014": {
+    "component_info": {
+      "guid": "be907c11-5a37-4cf5-9736-0f3c61ba7014",
+      "type": "Construct Point",
+      "nickname": "CP",
+      "position": {
+        "x": 9688.0,
+        "y": 2518.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              2.5,
+              0.04,
+              0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92": {
+    "component_info": {
+      "guid": "d63be87d-b9e6-4c52-9aeb-adc1d5f15e92",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 9424.0,
+        "y": 2609.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -0.04
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "680b290d-e662-4a76-9b3c-e5e921230589": {
+    "component_info": {
+      "guid": "680b290d-e662-4a76-9b3c-e5e921230589",
+      "type": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10162.0,
+        "y": 2690.0
+      }
+    },
+    "outputs": {
+      "Series": {
+        "branches": {
+          "(0,)": [
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07,
+            -0.07
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1": {
+    "component_info": {
+      "guid": "f9a68fee-bd6c-477a-9d8e-ae9e35697ab1",
+      "type": "Division",
+      "nickname": "/",
+      "position": {
+        "x": 9801.0,
+        "y": 2941.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            0.07777777777777775
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "524ba570-d8ac-4fc6-beee-87eab3265a4f": {
+    "component_info": {
+      "guid": "524ba570-d8ac-4fc6-beee-87eab3265a4f",
+      "type": "Division",
+      "nickname": "/",
+      "position": {
+        "x": 9801.0,
+        "y": 2991.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            0.3888888888888889
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "84b7e65e-450c-4d9c-a13b-273ccc8283d5": {
+    "component_info": {
+      "guid": "84b7e65e-450c-4d9c-a13b-273ccc8283d5",
+      "type": "LB SunPath",
+      "nickname": "Sunpath",
+      "position": {
+        "x": 11543.0,
+        "y": 1777.0
+      }
+    },
+    "outputs": {
+      "out": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "vectors": {
+        "branches": {
+          "(0, 0)": [
+            [
+              -0.33219837229078014,
+              0.6116452101596277,
+              -0.7180072272172064
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "altitudes": {
+        "branches": {
+          "(0, 0)": [
+            45.89019756835867
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "azimuths": {
+        "branches": {
+          "(0, 0)": [
+            151.49261250172668
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "hoys": {
+        "branches": {
+          "(0, 0)": [
+            5387
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "sun_pts": {
+        "branches": {
+          "(0, 0)": [
+            [
+              33219.83722907802,
+              -61164.52101596277,
+              71800.72272172064
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "analemma": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "daily": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "compass": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "legend": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "title": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "color_pts": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "vis_set": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "6991f781-7047-4cdb-b1d9-ffacaca51fdf": {
+    "component_info": {
+      "guid": "6991f781-7047-4cdb-b1d9-ffacaca51fdf",
+      "type": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11014.0,
+        "y": 2915.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            {
+              "corner_a": [
+                0.0,
+                -2.0,
+                7.0
+              ],
+              "corner_b": [
+                0.0,
+                3.0,
+                -3.0
+              ],
+              "plane": null
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "67b3eb53-9ea7-4280-bf8b-ae16c080cc23": {
+    "component_info": {
+      "guid": "67b3eb53-9ea7-4280-bf8b-ae16c080cc23",
+      "type": "Construct Point",
+      "nickname": "CP",
+      "position": {
+        "x": 9688.0,
+        "y": 2587.0
+      }
+    },
+    "outputs": {
+      "Point": {
+        "branches": {
+          "(0,)": [
+            [
+              -2.5,
+              -0.04,
+              0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "268410b9-4d90-4bb6-b716-3e8df5798c14": {
+    "component_info": {
+      "guid": "268410b9-4d90-4bb6-b716-3e8df5798c14",
+      "type": "Unit Y",
+      "nickname": "Unit Y",
+      "position": {
+        "x": 10323.0,
+        "y": 2732.0
+      }
+    },
+    "outputs": {
+      "Unit vector": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ],
+            [
+              0,
+              -0.07,
+              0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "b785e424-ebb1-42fc-ac03-dee2d7d764b4": {
+    "component_info": {
+      "guid": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
+      "type": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10162.0,
+        "y": 2758.0
+      }
+    },
+    "outputs": {
+      "Series": {
+        "branches": {
+          "(0,)": [
+            -3.8,
+            -3.722222222222222,
+            -3.6444444444444444,
+            -3.5666666666666664,
+            -3.488888888888889,
+            -3.411111111111111,
+            -3.3333333333333335,
+            -3.2555555555555555,
+            -3.177777777777778,
+            -3.1
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "474a94bf-3e89-4a45-8598-c5ccdb21edae": {
+    "component_info": {
+      "guid": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
+      "type": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10162.0,
+        "y": 2826.0
+      }
+    },
+    "outputs": {
+      "Series": {
+        "branches": {
+          "(0,)": [
+            0.0,
+            0.3888888888888889,
+            0.7777777777777778,
+            1.1666666666666667,
+            1.5555555555555556,
+            1.9444444444444444,
+            2.3333333333333335,
+            2.7222222222222223,
+            3.111111111111111,
+            3.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "44387b24-9fda-46f7-9d1b-9e4790d8dbfe": {
+    "component_info": {
+      "guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
+      "type": "Explode Tree",
+      "nickname": "Ex Tree",
+      "position": {
+        "x": 11529.0,
+        "y": 2415.0
+      }
+    },
+    "outputs": {
+      "Branch 0": {
+        "branches": {
+          "(0,)": [
+            [
+              33219.83722907802,
+              -61164.52101596277,
+              71800.72272172064
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Branch 1": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      },
+      "Branch 2": {
+        "branches": {},
+        "branch_count": 0,
+        "item_count": 0
+      }
+    }
+  },
+  "77f7eddb-d54b-4280-aad9-4c4a8400a56b": {
+    "component_info": {
+      "guid": "77f7eddb-d54b-4280-aad9-4c4a8400a56b",
+      "type": "Area",
+      "nickname": "Area",
+      "position": {
+        "x": 11290.0,
+        "y": 2937.0
+      }
+    },
+    "outputs": {
+      "Area": {
+        "branches": {
+          "(0,)": [
+            100.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Centroid": {
+        "branches": {
+          "(0,)": [
+            [
+              0.0,
+              0.5,
+              2.0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "a3eb185f-a7cb-4727-aeaf-d5899f934b99": {
+    "component_info": {
+      "guid": "a3eb185f-a7cb-4727-aeaf-d5899f934b99",
+      "type": "Rectangle 2Pt",
+      "nickname": "Rectangle 2Pt",
+      "position": {
+        "x": 9827.0,
+        "y": 2556.0
+      }
+    },
+    "outputs": {
+      "Rectangle": {
+        "branches": {
+          "(0,)": [
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.04,
+                  0
+                ],
+                [
+                  -2.5,
+                  0.04,
+                  0
+                ],
+                [
+                  -2.5,
+                  -0.04,
+                  0
+                ],
+                [
+                  2.5,
+                  -0.04,
+                  0
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            5.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Width": {
+        "branches": {
+          "(0,)": [
+            0.08
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b": {
+    "component_info": {
+      "guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
+      "type": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 10299.0,
+        "y": 2789.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            3.8,
+            3.722222222222222,
+            3.6444444444444444,
+            3.5666666666666664,
+            3.488888888888889,
+            3.411111111111111,
+            3.3333333333333335,
+            3.2555555555555555,
+            3.177777777777778,
+            3.1
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "ebcd02a2-ac68-43a5-b02e-701fa8770206": {
+    "component_info": {
+      "guid": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
+      "type": "Negative",
+      "nickname": "Negative",
+      "position": {
+        "x": 10433.0,
+        "y": 2901.0
+      }
+    },
+    "outputs": {
+      "Result": {
+        "branches": {
+          "(0,)": [
+            -0.0,
+            -0.3888888888888889,
+            -0.7777777777777778,
+            -1.1666666666666667,
+            -1.5555555555555556,
+            -1.9444444444444444,
+            -2.3333333333333335,
+            -2.7222222222222223,
+            -3.111111111111111,
+            -3.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "0f6e14e7-bff0-4d57-9f75-cd3f83812578": {
+    "component_info": {
+      "guid": "0f6e14e7-bff0-4d57-9f75-cd3f83812578",
+      "type": "YZ Plane",
+      "nickname": "YZ Plane",
+      "position": {
+        "x": 11529.0,
+        "y": 2911.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.5,
+                2.0
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "3732df33-c378-4227-b549-b5ab541e82c6": {
+    "component_info": {
+      "guid": "3732df33-c378-4227-b549-b5ab541e82c6",
+      "type": "Unit Z",
+      "nickname": "Unit Z",
+      "position": {
+        "x": 10439.0,
+        "y": 2815.0
+      }
+    },
+    "outputs": {
+      "Unit vector": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              0,
+              3.8
+            ],
+            [
+              0,
+              0,
+              3.722222222222222
+            ],
+            [
+              0,
+              0,
+              3.6444444444444444
+            ],
+            [
+              0,
+              0,
+              3.5666666666666664
+            ],
+            [
+              0,
+              0,
+              3.488888888888889
+            ],
+            [
+              0,
+              0,
+              3.411111111111111
+            ],
+            [
+              0,
+              0,
+              3.3333333333333335
+            ],
+            [
+              0,
+              0,
+              3.2555555555555555
+            ],
+            [
+              0,
+              0,
+              3.177777777777778
+            ],
+            [
+              0,
+              0,
+              3.1
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "af7efbe5-8f3d-4101-ad11-c9efc24d5577": {
+    "component_info": {
+      "guid": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
+      "type": "Unit Y",
+      "nickname": "Unit Y",
+      "position": {
+        "x": 10611.0,
+        "y": 3049.0
+      }
+    },
+    "outputs": {
+      "Unit vector": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              -0.0,
+              0
+            ],
+            [
+              0,
+              -0.3888888888888889,
+              0
+            ],
+            [
+              0,
+              -0.7777777777777778,
+              0
+            ],
+            [
+              0,
+              -1.1666666666666667,
+              0
+            ],
+            [
+              0,
+              -1.5555555555555556,
+              0
+            ],
+            [
+              0,
+              -1.9444444444444444,
+              0
+            ],
+            [
+              0,
+              -2.3333333333333335,
+              0
+            ],
+            [
+              0,
+              -2.7222222222222223,
+              0
+            ],
+            [
+              0,
+              -3.111111111111111,
+              0
+            ],
+            [
+              0,
+              -3.5,
+              0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "1162b56a-787a-4446-8b26-56947cad14f5": {
+    "component_info": {
+      "guid": "1162b56a-787a-4446-8b26-56947cad14f5",
+      "type": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11786.0,
+        "y": 2854.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.5,
+                2.0
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "ea032caa-ddff-403c-ab58-8ab6e24931ac": {
+    "component_info": {
+      "guid": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
+      "type": "Vector 2Pt",
+      "nickname": "Vector 2Pt",
+      "position": {
+        "x": 10606.0,
+        "y": 2796.0
+      }
+    },
+    "outputs": {
+      "Vector": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              0.07,
+              3.8
+            ],
+            [
+              0,
+              0.07,
+              3.722222222222222
+            ],
+            [
+              0,
+              0.07,
+              3.6444444444444444
+            ],
+            [
+              0,
+              0.07,
+              3.5666666666666664
+            ],
+            [
+              0,
+              0.07,
+              3.488888888888889
+            ],
+            [
+              0,
+              0.07,
+              3.411111111111111
+            ],
+            [
+              0,
+              0.07,
+              3.3333333333333335
+            ],
+            [
+              0,
+              0.07,
+              3.2555555555555555
+            ],
+            [
+              0,
+              0.07,
+              3.177777777777778
+            ],
+            [
+              0,
+              0.07,
+              3.1
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            3.80064468215591,
+            3.722880372991447,
+            3.645116638551087,
+            3.5673535164195753,
+            3.4895910475315506,
+            3.411829276553221,
+            3.3340682523174463,
+            3.256308028321129,
+            3.178548663295604,
+            3.1007902218628076
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "c2ab4791-ae5f-4087-82af-dfd4587ed22e": {
+    "component_info": {
+      "guid": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
+      "type": "Move",
+      "nickname": "Move",
+      "position": {
+        "x": 10798.0,
+        "y": 3039.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            [
+              0,
+              4.5,
+              4.0
+            ],
+            [
+              0,
+              4.111111111111111,
+              4.0
+            ],
+            [
+              0,
+              3.7222222222222223,
+              4.0
+            ],
+            [
+              0,
+              3.333333333333333,
+              4.0
+            ],
+            [
+              0,
+              2.9444444444444446,
+              4.0
+            ],
+            [
+              0,
+              2.5555555555555554,
+              4.0
+            ],
+            [
+              0,
+              2.1666666666666665,
+              4.0
+            ],
+            [
+              0,
+              1.7777777777777777,
+              4.0
+            ],
+            [
+              0,
+              1.3888888888888888,
+              4.0
+            ],
+            [
+              0,
+              1.0,
+              4.0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "translation": [
+                0,
+                -0.0,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -0.3888888888888889,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -0.7777777777777778,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -1.1666666666666667,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -1.5555555555555556,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -1.9444444444444444,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -2.3333333333333335,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -2.7222222222222223,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -3.111111111111111,
+                0
+              ]
+            },
+            {
+              "translation": [
+                0,
+                -3.5,
+                0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "ddb9e6ae-7d3e-41ae-8c75-fc726c984724": {
+    "component_info": {
+      "guid": "ddb9e6ae-7d3e-41ae-8c75-fc726c984724",
+      "type": "Move",
+      "nickname": "Slats original",
+      "position": {
+        "x": 10800.0,
+        "y": 2758.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.8
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.8
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.8
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.8
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.722222222222222
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.722222222222222
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.722222222222222
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.722222222222222
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.6444444444444444
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.6444444444444444
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.6444444444444444
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.6444444444444444
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.5666666666666664
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.5666666666666664
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.5666666666666664
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.5666666666666664
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.488888888888889
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.488888888888889
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.488888888888889
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.488888888888889
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.411111111111111
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.411111111111111
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.411111111111111
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.411111111111111
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.3333333333333335
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.3333333333333335
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.3333333333333335
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.3333333333333335
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.2555555555555555
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.2555555555555555
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.2555555555555555
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.2555555555555555
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.177777777777778
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.177777777777778
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.177777777777778
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.177777777777778
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.1
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.1
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.1
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.1
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "translation": [
+                0,
+                0.07,
+                3.8
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.722222222222222
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.6444444444444444
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.5666666666666664
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.488888888888889
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.411111111111111
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.3333333333333335
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.2555555555555555
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.177777777777778
+              ]
+            },
+            {
+              "translation": [
+                0,
+                0.07,
+                3.1
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "464c66b3-4ac6-4cc0-b283-407f8fe787a3": {
+    "component_info": {
+      "guid": "464c66b3-4ac6-4cc0-b283-407f8fe787a3",
+      "type": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11019.0,
+        "y": 3049.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            [
+              0.0,
+              4.5,
+              4.0
+            ],
+            [
+              0.0,
+              4.111111111111111,
+              4.0
+            ],
+            [
+              0.0,
+              3.7222222222222223,
+              4.0
+            ],
+            [
+              0.0,
+              3.333333333333333,
+              4.0
+            ],
+            [
+              0.0,
+              2.9444444444444446,
+              4.0
+            ],
+            [
+              0.0,
+              2.5555555555555554,
+              4.0
+            ],
+            [
+              0.0,
+              2.1666666666666665,
+              4.0
+            ],
+            [
+              0.0,
+              1.7777777777777777,
+              4.0
+            ],
+            [
+              0.0,
+              1.3888888888888888,
+              4.0
+            ],
+            [
+              0.0,
+              1.0,
+              4.0
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "505e72fd-e7f0-4e7d-ba69-88f047b56bb9": {
+    "component_info": {
+      "guid": "505e72fd-e7f0-4e7d-ba69-88f047b56bb9",
+      "type": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11016.0,
+        "y": 2811.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.8
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.8
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.8
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.8
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.722222222222222
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.722222222222222
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.722222222222222
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.722222222222222
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.6444444444444444
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.6444444444444444
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.6444444444444444
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.6444444444444444
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.5666666666666664
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.5666666666666664
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.5666666666666664
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.5666666666666664
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.488888888888889
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.488888888888889
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.488888888888889
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.488888888888889
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.411111111111111
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.411111111111111
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.411111111111111
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.411111111111111
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.3333333333333335
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.3333333333333335
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.3333333333333335
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.3333333333333335
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.2555555555555555
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.2555555555555555
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.2555555555555555
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.2555555555555555
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.177777777777778
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.177777777777778
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.177777777777778
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.177777777777778
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "corners": [
+                [
+                  2.5,
+                  0.11000000000000001,
+                  3.1
+                ],
+                [
+                  -2.5,
+                  0.11000000000000001,
+                  3.1
+                ],
+                [
+                  -2.5,
+                  0.030000000000000006,
+                  3.1
+                ],
+                [
+                  2.5,
+                  0.030000000000000006,
+                  3.1
+                ]
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            },
+            {
+              "rotation": 0.0,
+              "axis": {
+                "origin": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "z_axis": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "ef803855-36ec-4b48-8d76-89d870a0438f": {
+    "component_info": {
+      "guid": "ef803855-36ec-4b48-8d76-89d870a0438f",
+      "type": "PolyLine",
+      "nickname": "PolyLine",
+      "position": {
+        "x": 11865.0,
+        "y": 2981.0
+      }
+    },
+    "outputs": {
+      "Polyline": {
+        "branches": {
+          "(0,)": [
+            {
+              "vertices": [
+                [
+                  0.0,
+                  4.5,
+                  4.0
+                ],
+                [
+                  0.0,
+                  4.111111111111111,
+                  4.0
+                ],
+                [
+                  0.0,
+                  3.7222222222222223,
+                  4.0
+                ],
+                [
+                  0.0,
+                  3.333333333333333,
+                  4.0
+                ],
+                [
+                  0.0,
+                  2.9444444444444446,
+                  4.0
+                ],
+                [
+                  0.0,
+                  2.5555555555555554,
+                  4.0
+                ],
+                [
+                  0.0,
+                  2.1666666666666665,
+                  4.0
+                ],
+                [
+                  0.0,
+                  1.7777777777777777,
+                  4.0
+                ],
+                [
+                  0.0,
+                  1.3888888888888888,
+                  4.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  4.0
+                ]
+              ],
+              "closed": false
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            3.5
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "3bd2c1d3-149d-49fb-952c-8db272035f9e": {
+    "component_info": {
+      "guid": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
+      "type": "Area",
+      "nickname": "Area",
+      "position": {
+        "x": 11293.0,
+        "y": 2815.0
+      }
+    },
+    "outputs": {
+      "Area": {
+        "branches": {
+          "(0,)": [
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001,
+            0.4000000000000001
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Centroid": {
+        "branches": {
+          "(0,)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.8
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.722222222222222
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.6444444444444444
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.5666666666666664
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.488888888888889
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.411111111111111
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.3333333333333335
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.2555555555555555
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.177777777777778
+            ],
+            [
+              0.0,
+              0.07000000000000002,
+              3.1
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "0f529988-b68b-4d48-9a48-cf099af69050": {
+    "component_info": {
+      "guid": "0f529988-b68b-4d48-9a48-cf099af69050",
+      "type": "Move",
+      "nickname": "New Sun",
+      "position": {
+        "x": 11484.0,
+        "y": 2761.0
+      }
+    },
+    "outputs": {
+      "Geometry": {
+        "branches": {
+          "(0,)": [
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71804.52272172064
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71804.44494394286
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71804.36716616509
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71804.2893883873
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71804.21161060952
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71804.13383283175
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71804.05605505397
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71803.9782772762
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71803.90049949841
+            ],
+            [
+              33219.83722907802,
+              -61164.45101596277,
+              71803.82272172064
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Transform": {
+        "branches": {
+          "(0,)": [
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            },
+            {
+              "translation": [
+                33219.83722907802,
+                -61164.52101596277,
+                71800.72272172064
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "c7dba531-36f1-4a2d-8e0e-ed94b3873bba": {
+    "component_info": {
+      "guid": "c7dba531-36f1-4a2d-8e0e-ed94b3873bba",
+      "type": "Line",
+      "nickname": "In Ray",
+      "position": {
+        "x": 12022.0,
+        "y": 2743.0
+      }
+    },
+    "outputs": {
+      "Line": {
+        "branches": {
+          "(0, 0)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "end": [
+                0.0,
+                4.5,
+                4.0
+              ]
+            }
+          ],
+          "(0, 1)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "end": [
+                0.0,
+                4.111111111111111,
+                4.0
+              ]
+            }
+          ],
+          "(0, 2)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "end": [
+                0.0,
+                3.7222222222222223,
+                4.0
+              ]
+            }
+          ],
+          "(0, 3)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "end": [
+                0.0,
+                3.333333333333333,
+                4.0
+              ]
+            }
+          ],
+          "(0, 4)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "end": [
+                0.0,
+                2.9444444444444446,
+                4.0
+              ]
+            }
+          ],
+          "(0, 5)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "end": [
+                0.0,
+                2.5555555555555554,
+                4.0
+              ]
+            }
+          ],
+          "(0, 6)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "end": [
+                0.0,
+                2.1666666666666665,
+                4.0
+              ]
+            }
+          ],
+          "(0, 7)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "end": [
+                0.0,
+                1.7777777777777777,
+                4.0
+              ]
+            }
+          ],
+          "(0, 8)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "end": [
+                0.0,
+                1.3888888888888888,
+                4.0
+              ]
+            }
+          ],
+          "(0, 9)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "end": [
+                0.0,
+                1.0,
+                4.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Length": {
+        "branches": {
+          "(0, 0)": [
+            4.434512374545819
+          ],
+          "(0, 1)": [
+            4.050646800965598
+          ],
+          "(0, 2)": [
+            3.669488644699728
+          ],
+          "(0, 3)": [
+            3.2919784662452187
+          ],
+          "(0, 4)": [
+            2.9195317145218285
+          ],
+          "(0, 5)": [
+            2.5543642150660264
+          ],
+          "(0, 6)": [
+            2.2001035329173844
+          ],
+          "(0, 7)": [
+            1.8629821440732601
+          ],
+          "(0, 8)": [
+            1.5541934512635858
+          ],
+          "(0, 9)": [
+            1.2941792766073794
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "9ff79870-05d0-483d-87be-b3641d71c6fc": {
+    "component_info": {
+      "guid": "9ff79870-05d0-483d-87be-b3641d71c6fc",
+      "type": "List Item",
+      "nickname": "List Item",
+      "position": {
+        "x": 11883.0,
+        "y": 3138.0
+      }
+    },
+    "outputs": {
+      "Item": {
+        "branches": {
+          "(0,)": [
+            [
+              0.0,
+              0.07000000000000002,
+              3.1
+            ]
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "326da981-351e-4794-9d60-77e8e87bd778": {
+    "component_info": {
+      "guid": "326da981-351e-4794-9d60-77e8e87bd778",
+      "type": "Plane Normal",
+      "nickname": "Plane Normal",
+      "position": {
+        "x": 12046.0,
+        "y": 2982.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "910c335c-b5e8-41bf-bfb4-576cb17432c7": {
+    "component_info": {
+      "guid": "910c335c-b5e8-41bf-bfb4-576cb17432c7",
+      "type": "PolyLine",
+      "nickname": "PolyLine",
+      "position": {
+        "x": 11870.0,
+        "y": 3055.0
+      }
+    },
+    "outputs": {
+      "Polyline": {
+        "branches": {
+          "(0,)": [
+            {
+              "vertices": [
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.1
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.177777777777778
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.2555555555555555
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.3333333333333335
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.411111111111111
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.488888888888889
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.5666666666666664
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.6444444444444444
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.722222222222222
+                ],
+                [
+                  0.0,
+                  0.07000000000000002,
+                  3.8
+                ]
+              ],
+              "closed": false
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            0.6999999999999997
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "d52b786d-9ccd-411a-824c-3ae52ddc5438": {
+    "component_info": {
+      "guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
+      "type": "YZ Plane",
+      "nickname": "YZ Plane",
+      "position": {
+        "x": 11862.0,
+        "y": 2653.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0,
+                1,
+                0
+              ],
+              "y_axis": [
+                0,
+                0,
+                1
+              ],
+              "z_axis": [
+                1,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "9a33273a-910e-439d-98d5-d225e29faebf": {
+    "component_info": {
+      "guid": "9a33273a-910e-439d-98d5-d225e29faebf",
+      "type": "Line",
+      "nickname": "Out Ray",
+      "position": {
+        "x": 11737.0,
+        "y": 2717.0
+      }
+    },
+    "outputs": {
+      "Line": {
+        "branches": {
+          "(0,)": [
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71804.52272172064
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71804.44494394286
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71804.36716616509
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71804.2893883873
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71804.21161060952
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71804.13383283175
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71804.05605505397
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71803.9782772762
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71803.90049949841
+              ]
+            },
+            {
+              "start": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "end": [
+                33219.83722907802,
+                -61164.45101596277,
+                71803.82272172064
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      },
+      "Length": {
+        "branches": {
+          "(0,)": [
+            100000.0,
+            100000.0,
+            100000.0,
+            100000.0,
+            100000.0,
+            100000.0,
+            100000.0,
+            100000.0,
+            100000.0,
+            100000.0
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "157c48b5-0aed-49e5-a808-d4c64666062d": {
+    "component_info": {
+      "guid": "157c48b5-0aed-49e5-a808-d4c64666062d",
+      "type": "List Item",
+      "nickname": "List Item",
+      "position": {
+        "x": 12198.0,
+        "y": 2962.0
+      }
+    },
+    "outputs": {
+      "Item": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 1
+      }
+    }
+  },
+  "30f76ec5-d532-4903-aa18-cd18b27442f9": {
+    "component_info": {
+      "guid": "30f76ec5-d532-4903-aa18-cd18b27442f9",
+      "type": "Construct Plane",
+      "nickname": "Construct Plane",
+      "position": {
+        "x": 12042.0,
+        "y": 3110.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "2c8beafc-c3a7-425a-905e-4830f637c094": {
+    "component_info": {
+      "guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
+      "type": "Circle",
+      "nickname": "Circle",
+      "position": {
+        "x": 12022.0,
+        "y": 2669.0
+      }
+    },
+    "outputs": {
+      "Circle": {
+        "branches": {
+          "(0,)": [
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.8
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.8
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.722222222222222
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.722222222222222
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.6444444444444444
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.6444444444444444
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.5666666666666664
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.5666666666666664
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.488888888888889
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.488888888888889
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.411111111111111
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.411111111111111
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.3333333333333335
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.3333333333333335
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.2555555555555555
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.2555555555555555
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.177777777777778
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.177777777777778
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            },
+            {
+              "center": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "plane": {
+                "origin": [
+                  0.0,
+                  0.07000000000000002,
+                  3.1
+                ],
+                "x_axis": [
+                  0,
+                  1,
+                  0
+                ],
+                "y_axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "z_axis": [
+                  1,
+                  0,
+                  0
+                ]
+              },
+              "radius": 0.1
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "9cd053c9-3dd2-432b-aa46-a29a4b05c339": {
+    "component_info": {
+      "guid": "9cd053c9-3dd2-432b-aa46-a29a4b05c339",
+      "type": "Project",
+      "nickname": "Project Curve",
+      "position": {
+        "x": 11984.0,
+        "y": 2808.0
+      }
+    },
+    "outputs": {
+      "Curve": {
+        "branches": {
+          "(0, 0)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.8969042542788717
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.703095745721128
+              ]
+            }
+          ],
+          "(0, 1)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.8191264765010937
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.62531796794335
+              ]
+            }
+          ],
+          "(0, 2)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.7413486987233162
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.547540190165573
+              ]
+            }
+          ],
+          "(0, 3)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.6635709209455383
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.469762412387794
+              ]
+            }
+          ],
+          "(0, 4)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.5857931431677608
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.391984634610017
+              ]
+            }
+          ],
+          "(0, 5)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.5080153653899828
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.314206856832239
+              ]
+            }
+          ],
+          "(0, 6)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.4302375876122053
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.236429079054462
+              ]
+            }
+          ],
+          "(0, 7)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.3524598098344274
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.1586513012766835
+              ]
+            }
+          ],
+          "(0, 8)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.2746820320566499
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.080873523498906
+              ]
+            }
+          ],
+          "(0, 9)": [
+            {
+              "start": [
+                0.0,
+                1.6911806138176408,
+                1.196904254278872
+              ],
+              "end": [
+                0.0,
+                -1.5511806138176407,
+                5.0030957457211285
+              ]
+            }
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "011398ea-ce1d-412a-afeb-fe91e8fac96c": {
+    "component_info": {
+      "guid": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
+      "type": "Plane Normal",
+      "nickname": "Plane Normal",
+      "position": {
+        "x": 12187.0,
+        "y": 3066.0
+      }
+    },
+    "outputs": {
+      "Plane": {
+        "branches": {
+          "(0,)": [
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "origin": [
+                0.0,
+                0.07000000000000002,
+                3.1
+              ],
+              "x_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "z_axis": [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "branch_count": 1,
+        "item_count": 10
+      }
+    }
+  },
+  "bdde1ec6-2004-476b-b670-3de72b6fb0b0": {
+    "component_info": {
+      "guid": "bdde1ec6-2004-476b-b670-3de72b6fb0b0",
+      "type": "Curve | Curve",
+      "nickname": "Curve | Curve",
+      "position": {
+        "x": 12225.0,
+        "y": 2693.0
+      }
+    },
+    "outputs": {
+      "Points": {
+        "branches": {
+          "(0, 0)": [
+            [
+              0.0,
+              0.16989824417738197,
+              3.8045100787439
+            ]
+          ],
+          "(0, 1)": [
+            [
+              0.0,
+              0.1697645884639408,
+              3.7290798375964274
+            ]
+          ],
+          "(0, 2)": [
+            [
+              0.0,
+              0.16952945971089337,
+              3.65413395679841
+            ]
+          ],
+          "(0, 3)": [
+            [
+              0.0,
+              0.1691298505380396,
+              3.5798299767483264
+            ]
+          ],
+          "(0, 4)": [
+            [
+              0.0,
+              0.1684556677410587,
+              3.506395501629858
+            ]
+          ],
+          "(0, 5)": [
+            [
+              0.0,
+              0.1673062314643845,
+              3.4341653367151004
+            ]
+          ],
+          "(0, 6)": [
+            [
+              0.0,
+              0.16529854551373965,
+              3.36363493763023
+            ]
+          ],
+          "(0, 7)": [
+            [
+              0.0,
+              0.16166903629273977,
+              3.295515382696828
+            ]
+          ],
+          "(0, 8)": [
+            [
+              0.0,
+              0.15486002098494303,
+              3.23068124494615
+            ]
+          ],
+          "(0, 9)": [
+            [
+              0.0,
+              0.14186021417665912,
+              3.1695421427516055
+            ]
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Params A": {
+        "branches": {
+          "(0, 0)": [
+            0.045116091227266654
+          ],
+          "(0, 1)": [
+            0.06863001652411396
+          ],
+          "(0, 2)": [
+            0.09704738702746929
+          ],
+          "(0, 3)": [
+            0.13201623626215497
+          ],
+          "(0, 4)": [
+            0.1759729324178346
+          ],
+          "(0, 5)": [
+            0.23263491364577762
+          ],
+          "(0, 6)": [
+            0.30785590479584357
+          ],
+          "(0, 7)": [
+            0.41107856614696053
+          ],
+          "(0, 8)": [
+            0.5574626077397825
+          ],
+          "(0, 9)": [
+            0.7690061890894431
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Params B": {
+        "branches": {
+          "(0, 0)": [
+            0.022550393719499313
+          ],
+          "(0, 1)": [
+            0.024687415347139596
+          ],
+          "(0, 2)": [
+            0.027251753495529055
+          ],
+          "(0, 3)": [
+            0.030376869419215403
+          ],
+          "(0, 4)": [
+            0.034252068406243834
+          ],
+          "(0, 5)": [
+            0.03914868498790614
+          ],
+          "(0, 6)": [
+            0.04545240644534482
+          ],
+          "(0, 7)": [
+            0.053677379742007654
+          ],
+          "(0, 8)": [
+            0.0643420546642365
+          ],
+          "(0, 9)": [
+            0.07726904750178398
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "0974a3a7-c1f6-4451-89e4-ad726846f035": {
+    "component_info": {
+      "guid": "0974a3a7-c1f6-4451-89e4-ad726846f035",
+      "type": "Curve | Curve",
+      "nickname": "Curve | Curve",
+      "position": {
+        "x": 12259.0,
+        "y": 2827.0
+      }
+    },
+    "outputs": {
+      "Points": {
+        "branches": {
+          "(0, 0)": [
+            [
+              0.0,
+              0.005152775447297975,
+              3.8761238298288405
+            ]
+          ],
+          "(0, 1)": [
+            [
+              0.0,
+              0.005152775447290869,
+              3.7983460520510715
+            ]
+          ],
+          "(0, 2)": [
+            [
+              0.0,
+              0.005152775447290869,
+              3.720568274273294
+            ]
+          ],
+          "(0, 3)": [
+            [
+              0.0,
+              0.005152775447297975,
+              3.642790496495507
+            ]
+          ],
+          "(0, 4)": [
+            [
+              0.0,
+              0.005152775447297975,
+              3.5650127187177296
+            ]
+          ],
+          "(0, 5)": [
+            [
+              0.0,
+              0.005152775447290869,
+              3.4872349409399606
+            ]
+          ],
+          "(0, 6)": [
+            [
+              0.0,
+              0.005152775447290869,
+              3.409457163162183
+            ]
+          ],
+          "(0, 7)": [
+            [
+              0.0,
+              0.005152775447297975,
+              3.3316793853843962
+            ]
+          ],
+          "(0, 8)": [
+            [
+              0.0,
+              0.005152775447297975,
+              3.2539016076066187
+            ]
+          ],
+          "(0, 9)": [
+            [
+              0.0,
+              0.005152775447290869,
+              3.1761238298288497
+            ]
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Params A": {
+        "branches": {
+          "(0, 0)": [
+            2.276372110388169
+          ],
+          "(0, 1)": [
+            2.2763721103881656
+          ],
+          "(0, 2)": [
+            2.2763721103881656
+          ],
+          "(0, 3)": [
+            2.276372110388169
+          ],
+          "(0, 4)": [
+            2.276372110388169
+          ],
+          "(0, 5)": [
+            2.2763721103881656
+          ],
+          "(0, 6)": [
+            2.2763721103881656
+          ],
+          "(0, 7)": [
+            2.276372110388169
+          ],
+          "(0, 8)": [
+            2.276372110388169
+          ],
+          "(0, 9)": [
+            2.2763721103881656
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Params B": {
+        "branches": {
+          "(0, 0)": [
+            0.5199999999999989
+          ],
+          "(0, 1)": [
+            0.5200000000000011
+          ],
+          "(0, 2)": [
+            0.5200000000000011
+          ],
+          "(0, 3)": [
+            0.5199999999999989
+          ],
+          "(0, 4)": [
+            0.5199999999999989
+          ],
+          "(0, 5)": [
+            0.5200000000000011
+          ],
+          "(0, 6)": [
+            0.5200000000000011
+          ],
+          "(0, 7)": [
+            0.5199999999999989
+          ],
+          "(0, 8)": [
+            0.5199999999999989
+          ],
+          "(0, 9)": [
+            0.5200000000000011
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "ff77f5b8-1125-4565-bdf6-0922a443efcf": {
+    "component_info": {
+      "guid": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
+      "type": "Line",
+      "nickname": "Line",
+      "position": {
+        "x": 12489.0,
+        "y": 2760.0
+      }
+    },
+    "outputs": {
+      "Line": {
+        "branches": {
+          "(0, 0)": [
+            {
+              "start": [
+                0.0,
+                0.16989824417738197,
+                3.8045100787439
+              ],
+              "end": [
+                0.0,
+                0.005152775447297975,
+                3.8761238298288405
+              ]
+            }
+          ],
+          "(0, 1)": [
+            {
+              "start": [
+                0.0,
+                0.1697645884639408,
+                3.7290798375964274
+              ],
+              "end": [
+                0.0,
+                0.005152775447290869,
+                3.7983460520510715
+              ]
+            }
+          ],
+          "(0, 2)": [
+            {
+              "start": [
+                0.0,
+                0.16952945971089337,
+                3.65413395679841
+              ],
+              "end": [
+                0.0,
+                0.005152775447290869,
+                3.720568274273294
+              ]
+            }
+          ],
+          "(0, 3)": [
+            {
+              "start": [
+                0.0,
+                0.1691298505380396,
+                3.5798299767483264
+              ],
+              "end": [
+                0.0,
+                0.005152775447297975,
+                3.642790496495507
+              ]
+            }
+          ],
+          "(0, 4)": [
+            {
+              "start": [
+                0.0,
+                0.1684556677410587,
+                3.506395501629858
+              ],
+              "end": [
+                0.0,
+                0.005152775447297975,
+                3.5650127187177296
+              ]
+            }
+          ],
+          "(0, 5)": [
+            {
+              "start": [
+                0.0,
+                0.1673062314643845,
+                3.4341653367151004
+              ],
+              "end": [
+                0.0,
+                0.005152775447290869,
+                3.4872349409399606
+              ]
+            }
+          ],
+          "(0, 6)": [
+            {
+              "start": [
+                0.0,
+                0.16529854551373965,
+                3.36363493763023
+              ],
+              "end": [
+                0.0,
+                0.005152775447290869,
+                3.409457163162183
+              ]
+            }
+          ],
+          "(0, 7)": [
+            {
+              "start": [
+                0.0,
+                0.16166903629273977,
+                3.295515382696828
+              ],
+              "end": [
+                0.0,
+                0.005152775447297975,
+                3.3316793853843962
+              ]
+            }
+          ],
+          "(0, 8)": [
+            {
+              "start": [
+                0.0,
+                0.15486002098494303,
+                3.23068124494615
+              ],
+              "end": [
+                0.0,
+                0.005152775447297975,
+                3.2539016076066187
+              ]
+            }
+          ],
+          "(0, 9)": [
+            {
+              "start": [
+                0.0,
+                0.14186021417665912,
+                3.1695421427516055
+              ],
+              "end": [
+                0.0,
+                0.005152775447290869,
+                3.1761238298288497
+              ]
+            }
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Length": {
+        "branches": {
+          "(0, 0)": [
+            0.17963740927643917
+          ],
+          "(0, 1)": [
+            0.17859131403712014
+          ],
+          "(0, 2)": [
+            0.17729414222655446
+          ],
+          "(0, 3)": [
+            0.17564882066825802
+          ],
+          "(0, 4)": [
+            0.17350450360331943
+          ],
+          "(0, 5)": [
+            0.17061689890181106
+          ],
+          "(0, 6)": [
+            0.1665723387086735
+          ],
+          "(0, 7)": [
+            0.1606398923039505
+          ],
+          "(0, 8)": [
+            0.15149734191909914
+          ],
+          "(0, 9)": [
+            0.13686578246123732
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "0d695e6b-3696-4337-bc80-d14104f8a59e": {
+    "component_info": {
+      "guid": "0d695e6b-3696-4337-bc80-d14104f8a59e",
+      "type": "Angle",
+      "nickname": "Angle",
+      "position": {
+        "x": 12645.0,
+        "y": 2826.0
+      }
+    },
+    "outputs": {
+      "Angle": {
+        "branches": {
+          "(0, 0)": [
+            0.4100522259871638
+          ],
+          "(0, 1)": [
+            0.3982952633387711
+          ],
+          "(0, 2)": [
+            0.38408657808709484
+          ],
+          "(0, 3)": [
+            0.36660215346971986
+          ],
+          "(0, 4)": [
+            0.34462380539187853
+          ],
+          "(0, 5)": [
+            0.3162928147779412
+          ],
+          "(0, 6)": [
+            0.27868231920291053
+          ],
+          "(0, 7)": [
+            0.22707098852731028
+          ],
+          "(0, 8)": [
+            0.1538789677308978
+          ],
+          "(0, 9)": [
+            0.048107177056123905
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      },
+      "Reflex": {
+        "branches": {
+          "(0, 0)": [
+            5.873133081192423
+          ],
+          "(0, 1)": [
+            5.884890043840815
+          ],
+          "(0, 2)": [
+            5.899098729092492
+          ],
+          "(0, 3)": [
+            5.916583153709866
+          ],
+          "(0, 4)": [
+            5.938561501787707
+          ],
+          "(0, 5)": [
+            5.966892492401645
+          ],
+          "(0, 6)": [
+            6.004502987976676
+          ],
+          "(0, 7)": [
+            6.056114318652276
+          ],
+          "(0, 8)": [
+            6.129306339448688
+          ],
+          "(0, 9)": [
+            6.235078130123462
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  },
+  "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58": {
+    "component_info": {
+      "guid": "fa0ba5a6-7dd9-43f4-a82a-cf02841d0f58",
+      "type": "Degrees",
+      "nickname": "Degrees",
+      "position": {
+        "x": 12820.0,
+        "y": 2815.0
+      }
+    },
+    "outputs": {
+      "Degrees": {
+        "branches": {
+          "(0, 0)": [
+            23.49426192900914
+          ],
+          "(0, 1)": [
+            22.82063758936329
+          ],
+          "(0, 2)": [
+            22.006539892012462
+          ],
+          "(0, 3)": [
+            21.004756154222235
+          ],
+          "(0, 4)": [
+            19.745489568692463
+          ],
+          "(0, 5)": [
+            18.122243377089106
+          ],
+          "(0, 6)": [
+            15.967320715244389
+          ],
+          "(0, 7)": [
+            13.010209292478416
+          ],
+          "(0, 8)": [
+            8.816615406810229
+          ],
+          "(0, 9)": [
+            2.756338209604488
+          ]
+        },
+        "branch_count": 10,
+        "item_count": 10
+      }
+    }
+  }
+}
