@@ -38,7 +38,7 @@ void targets_group_eval(const ShadeConfig *cfg, TargetsGroupOutput *out) {
     
     // Series for target distances
     SeriesInput series_in = {
-        .start = cfg->first_target_from_slats,
+        .start = 0.0f,
         .step = div_step_out.result,
         .count = cfg->number_of_slats
     };
@@ -48,25 +48,86 @@ void targets_group_eval(const ShadeConfig *cfg, TargetsGroupOutput *out) {
            series_in.start, series_in.step, series_in.count,
            series_out.series[0], series_out.series[series_out.actual_count-1]);
     
-    // Create target points
+    // Negative - negate the entire series (list mode)
+    NegativeInput neg_in = {
+        .value = 0.0f,  // Not used when value_count > 0
+        .value_count = series_out.actual_count
+    };
+    // Copy series values to negative input
+    for (int i = 0; i < series_out.actual_count && i < NEGATIVE_MAX_COUNT; i++) {
+        neg_in.values[i] = series_out.series[i];
+    }
+    NegativeOutput neg_out = {0};  // Initialize to zero
+    Negative_eval(&neg_in, &neg_out);
+    printf("  [DEBUG] Negative: input_count=%d, result_count=%d\n",
+           neg_in.value_count, neg_out.result_count);
+    if (neg_out.result_count > 0) {
+        printf("    First: %.6f -> %.6f, Last: %.6f -> %.6f\n",
+               series_out.series[0], neg_out.results[0],
+               series_out.series[neg_out.result_count-1], 
+               neg_out.results[neg_out.result_count-1]);
+    }
+    
+    // UnitY - use negated values as factors (list mode)
+    UnitYInput unity_in = {
+        .factor = 0.0f,  // Not used when factor_count > 0
+        .factor_count = neg_out.result_count
+    };
+    // Copy negated values to UnitY input
+    for (int i = 0; i < neg_out.result_count && i < UNITY_MAX_COUNT; i++) {
+        unity_in.factors[i] = neg_out.results[i];
+    }
+    UnitYOutput unity_out;
+    UnitY_eval(&unity_in, &unity_out);
+    printf("  [DEBUG] UnitY: input factor_count=%d, output vector_count=%d\n",
+           unity_in.factor_count, unity_out.vector_count);
+    if (unity_out.vector_count > 0) {
+        printf("    First: factor=%.6f -> vector=(%.6f, %.6f, %.6f)\n",
+               unity_in.factors[0],
+               unity_out.unit_vectors[0][0], unity_out.unit_vectors[0][1], unity_out.unit_vectors[0][2]);
+        if (unity_out.vector_count > 1) {
+            int last_idx = unity_out.vector_count - 1;
+            printf("    Last: factor=%.6f -> vector=(%.6f, %.6f, %.6f)\n",
+                   unity_in.factors[last_idx],
+                   unity_out.unit_vectors[last_idx][0], unity_out.unit_vectors[last_idx][1], unity_out.unit_vectors[last_idx][2]);
+        }
+    }
+    
+    // Construct Point - create base point at (0, last_target_from_slats, targets_height)
+    ConstructPointInput cp_base_in = {
+        .x = 0.0f,
+        .y = cfg->last_target_from_slats,
+        .z = cfg->targets_height
+    };
+    ConstructPointOutput cp_base_out;
+    ConstructPoint_eval(&cp_base_in, &cp_base_out);
+    printf("  [DEBUG] ConstructPoint (base): (%.6f, %.6f, %.6f) -> (%.6f, %.6f, %.6f)\n",
+           cp_base_in.x, cp_base_in.y, cp_base_in.z,
+           cp_base_out.point[0], cp_base_out.point[1], cp_base_out.point[2]);
+    
+    // Create target points - Move base point by each UnitY vector
     out->target_count = cfg->number_of_slats;
-    for (int i = 0; i < cfg->number_of_slats && i < MAX_TARGETS; i++) {
-        // Construct point at (0, series_out.series[i], targets_height)
-        ConstructPointInput cp_in = {
-            .x = 0.0f,
-            .y = series_out.series[i],
-            .z = cfg->targets_height
+    int move_count = (unity_out.vector_count < cfg->number_of_slats) ? 
+                     unity_out.vector_count : cfg->number_of_slats;
+    for (int i = 0; i < move_count && i < MAX_TARGETS; i++) {
+        // Move - move the base point by the UnitY vector
+        MoveInput move_in = {
+            .geometry_type = 0,  // point
         };
-        ConstructPointOutput cp_out;
-        ConstructPoint_eval(&cp_in, &cp_out);
+        memcpy(move_in.point, cp_base_out.point, sizeof(float) * 3);
+        memcpy(move_in.motion, unity_out.unit_vectors[i], sizeof(float) * 3);
+        MoveOutput move_out;
+        Move_eval(&move_in, &move_out);
         
         if (i < 3) {
-            printf("  [DEBUG] ConstructPoint (target %d): (%.6f, %.6f, %.6f) -> (%.6f, %.6f, %.6f)\n",
-                   i, cp_in.x, cp_in.y, cp_in.z, cp_out.point[0], cp_out.point[1], cp_out.point[2]);
+            printf("  [DEBUG] Move (target %d): point=(%.6f, %.6f, %.6f), motion=(%.6f, %.6f, %.6f) -> (%.6f, %.6f, %.6f)\n",
+                   i, move_in.point[0], move_in.point[1], move_in.point[2],
+                   move_in.motion[0], move_in.motion[1], move_in.motion[2],
+                   move_out.point[0], move_out.point[1], move_out.point[2]);
         }
         
-        // Copy directly - no need for Move
-        memcpy(out->target_points[i], cp_out.point, sizeof(float) * 3);
+        // Store the moved point
+        memcpy(out->target_points[i], move_out.point, sizeof(float) * 3);
     }
 }
 
