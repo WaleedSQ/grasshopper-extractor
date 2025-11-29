@@ -280,43 +280,72 @@ void slats_group_eval(const ShadeConfig *cfg, SlatsGroupOutput *out) {
                vec_out.vector[0], vec_out.vector[1], vec_out.vector[2]);
     }
     
-    // 9. Move rectangle (Slats original)
-    MoveInput move_in = {
-        .geometry_type = 2,  // rectangle
-        .motion = {0.0f, 0.0f, 10.0f}  // Default motion from persistent data
-    };
-    memcpy(move_in.rectangle_corners, rect_out.corners, sizeof(float) * 4 * 3);
-    memcpy(move_in.motion, vec_out.vector, sizeof(float) * 3);
-    MoveOutput move_out;
-    Move_eval(&move_in, &move_out);
-    printf("  [DEBUG] Move: motion=(%.6f, %.6f, %.6f) -> corner[0]=(%.6f, %.6f, %.6f)\n",
-           move_in.motion[0], move_in.motion[1], move_in.motion[2],
-           move_out.rectangle_corners[0][0], move_out.rectangle_corners[0][1], move_out.rectangle_corners[0][2]);
+    // 9. Move rectangle (Slats original) - list mode: move base rectangle by each vector
+    int move_count = vec_out.vector_count;
+    if (move_count > cfg->number_of_slats) {
+        move_count = cfg->number_of_slats;
+    }
+    if (move_count > MAX_SLATS) {
+        move_count = MAX_SLATS;
+    }
+
+    MoveInput move_in;
+    memset(&move_in, 0, sizeof(MoveInput));
+    move_in.geometry_type = 2;  // rectangle
+    move_in.rectangle_count = move_count;
     
-    // 10. Rotate slats (orientation)
-    float orientation_rad = cfg->orientation_deg * M_PI / 180.0f;
-    RotateInput rotate_in = {
-        .geometry_type = 2,  // rectangle
-        .angle = orientation_rad,
-        .rot_origin = {0.0f, 0.0f, 0.0f},
-        .rot_axis = {0.0f, 0.0f, 1.0f}
-    };
-    memcpy(rotate_in.rectangle_corners, move_out.rectangle_corners, sizeof(float) * 4 * 3);
-    RotateOutput rotate_out;
-    Rotate_eval(&rotate_in, &rotate_out);
-    printf("  [DEBUG] Rotate: angle=%.6f rad (%.6f deg) -> corner[0]=(%.6f, %.6f, %.6f)\n",
-           rotate_in.angle, cfg->orientation_deg,
-           rotate_out.rectangle_corners[0][0], rotate_out.rectangle_corners[0][1], rotate_out.rectangle_corners[0][2]);
-    
-    // Store output - for now, just store the first rotated rectangle
-    // In a full implementation, we'd loop through all slats
-    if (cfg->number_of_slats > 0 && cfg->number_of_slats <= MAX_SLATS) {
-        memcpy(out->slat_rectangles[0], rotate_out.rectangle_corners, sizeof(float) * 4 * 3);
-        // For simplicity, copy the same rectangle for all slats
-        // In a full implementation, each slat would have its own position
-        for (int i = 1; i < cfg->number_of_slats && i < MAX_SLATS; i++) {
-            memcpy(out->slat_rectangles[i], rotate_out.rectangle_corners, sizeof(float) * 4 * 3);
+    // Copy base rectangle to all positions, and corresponding motion vectors
+    for (int i = 0; i < move_count; ++i) {
+        memcpy(move_in.rectangles[i], rect_out.corners, sizeof(float) * 4 * 3);
+        if (i < vec_out.vector_count) {
+            memcpy(move_in.motions[i], vec_out.vectors[i], sizeof(float) * 3);
+        } else {
+            memcpy(move_in.motions[i], vec_out.vector, sizeof(float) * 3);
         }
     }
+
+    MoveOutput move_out;
+    Move_eval(&move_in, &move_out);
+    printf("  [DEBUG] Move: rectangle_count=%d, first motion=(%.6f, %.6f, %.6f) -> corner[0]=(%.6f, %.6f, %.6f)\n",
+           move_out.rectangle_count,
+           move_in.motions[0][0], move_in.motions[0][1], move_in.motions[0][2],
+           move_out.rectangles[0][0][0], move_out.rectangles[0][0][1], move_out.rectangles[0][0][2]);
+    
+    // 10. Rotate slats (orientation) - list mode: rotate all moved rectangles
+    float orientation_rad = cfg->orientation_deg * M_PI / 180.0f;
+    RotateInput rotate_in;
+    memset(&rotate_in, 0, sizeof(RotateInput));
+    rotate_in.geometry_type = 2;  // rectangle
+    rotate_in.angle = orientation_rad;
+    rotate_in.rot_origin[0] = 0.0f;
+    rotate_in.rot_origin[1] = 0.0f;
+    rotate_in.rot_origin[2] = 0.0f;
+    rotate_in.rot_axis[0] = 0.0f;
+    rotate_in.rot_axis[1] = 0.0f;
+    rotate_in.rot_axis[2] = 1.0f;
+    rotate_in.rectangle_count = move_out.rectangle_count;
+    
+    for (int i = 0; i < move_out.rectangle_count; ++i) {
+        memcpy(rotate_in.rectangles[i], move_out.rectangles[i], sizeof(float) * 4 * 3);
+    }
+
+    RotateOutput rotate_out;
+    Rotate_eval(&rotate_in, &rotate_out);
+    printf("  [DEBUG] Rotate: rectangle_count=%d, angle=%.6f rad (%.6f deg) -> corner[0]=(%.6f, %.6f, %.6f)\n",
+           rotate_out.rectangle_count, rotate_in.angle, cfg->orientation_deg,
+           rotate_out.rectangles[0][0][0], rotate_out.rectangles[0][0][1], rotate_out.rectangles[0][0][2]);
+    
+    // Store output - copy all rotated rectangles
+    int store_count = rotate_out.rectangle_count;
+    if (store_count > cfg->number_of_slats) {
+        store_count = cfg->number_of_slats;
+    }
+    if (store_count > MAX_SLATS) {
+        store_count = MAX_SLATS;
+    }
+    for (int i = 0; i < store_count; ++i) {
+        memcpy(out->slat_rectangles[i], rotate_out.rectangles[i], sizeof(float) * 4 * 3);
+    }
+    out->slat_count = store_count;
 }
 

@@ -2,6 +2,7 @@
 
 #include "Rotate.h"
 #include <math.h>
+#include <string.h>
 
 static void normalize_vec(const float vec[3], float out[3]) {
     float length = sqrtf(vec[0]*vec[0] + vec[1]*vec[1] + vec[2]*vec[2]);
@@ -75,12 +76,54 @@ static void rotate_vec_around_axis(const float vec[3], const float rot_axis_norm
 }
 
 void Rotate_eval(const RotateInput *in, RotateOutput *out) {
+    // Initialize everything
+    memset(out, 0, sizeof(RotateOutput));
+
     // GH Rotate: rotate geometry around plane's Z-axis at plane's origin
     out->geometry_type = in->geometry_type;
     
     float rot_axis_norm[3];
     normalize_vec(in->rot_axis, rot_axis_norm);
     
+    // List mode for points
+    if (in->geometry_type == 0 && in->point_count > 0) {
+        int count = in->point_count;
+        if (count > ROTATE_MAX_ITEMS) count = ROTATE_MAX_ITEMS;
+
+        for (int i = 0; i < count; ++i) {
+            rotate_point_around_axis(in->points[i], in->rot_origin, rot_axis_norm, in->angle, out->points[i]);
+        }
+        out->point_count = count;
+
+        // Backward-compatible single point = first element
+        out->point[0] = out->points[0][0];
+        out->point[1] = out->points[0][1];
+        out->point[2] = out->points[0][2];
+        return;
+    }
+
+    // List mode for rectangles (all rotated by same angle)
+    if (in->geometry_type == 2 && in->rectangle_count > 0) {
+        int count = in->rectangle_count;
+        if (count > ROTATE_MAX_ITEMS) count = ROTATE_MAX_ITEMS;
+
+        for (int i = 0; i < count; ++i) {
+            for (int k = 0; k < 4; k++) {
+                rotate_point_around_axis(in->rectangles[i][k], in->rot_origin, rot_axis_norm, in->angle, out->rectangles[i][k]);
+            }
+        }
+        out->rectangle_count = count;
+
+        // Backward-compatible single rectangle = first element
+        for (int k = 0; k < 4; k++) {
+            out->rectangle_corners[k][0] = out->rectangles[0][k][0];
+            out->rectangle_corners[k][1] = out->rectangles[0][k][1];
+            out->rectangle_corners[k][2] = out->rectangles[0][k][2];
+        }
+        return;
+    }
+    
+    // Single-geometry mode (unchanged logic)
     if (in->geometry_type == 0) {
         // Point
         rotate_point_around_axis(in->point, in->rot_origin, rot_axis_norm, in->angle, out->point);
