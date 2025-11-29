@@ -225,190 +225,197 @@ void core_group_eval(
            proj_out.line_starts[0][0], proj_out.line_starts[0][1], proj_out.line_starts[0][2]);
 
     // ---------------------------------------------------------------------
-    // Remaining stages are still per-slat, but they now reuse the list-mode
-    // results above (no repeated Move/Line/Project work per slat).
+    // 5-10. Vectorized stages: PolyLine, PlaneNormal, ConstructPlane,
+    //       YZPlane, Circle, CurveCurve (list mode)
     // ---------------------------------------------------------------------
 
+    printf("  [DEBUG Slat 0] Starting angle calculation...\n");
+
+    // 5. PolyLine from projected points (list mode: forward)
+    PolyLineInput poly_in;
+    memset(&poly_in, 0, sizeof(PolyLineInput));
+    poly_in.closed = 0;
+    poly_in.polyline_count = n;
     for (int i = 0; i < n; ++i) {
-        if (i == 0) {
-            printf("  [DEBUG Slat 0] Starting angle calculation...\n");
-        }
+        memcpy(poly_in.polyline_vertices[i][0], proj_out.line_starts[i], sizeof(float) * 3);
+        memcpy(poly_in.polyline_vertices[i][1], proj_out.line_ends[i],   sizeof(float) * 3);
+    }
+    PolyLineOutput poly_out;
+    PolyLine_eval(&poly_in, &poly_out);
+    printf("  [DEBUG Slat 0] PolyLine: vertex[0]=(%.6f, %.6f, %.6f), vertex[1]=(%.6f, %.6f, %.6f)\n",
+           poly_out.polyline_vertices[0][0][0], poly_out.polyline_vertices[0][0][1], poly_out.polyline_vertices[0][0][2],
+           poly_out.polyline_vertices[0][1][0], poly_out.polyline_vertices[0][1][1], poly_out.polyline_vertices[0][1][2]);
 
-        const float *slat_centroid = slat_centroids[i];
+    // 6. Plane Normal from polyline (list mode)
+    PlaneNormalInput pn_in;
+    memset(&pn_in, 0, sizeof(PlaneNormalInput));
+    pn_in.plane_count = n;
+    for (int i = 0; i < n; ++i) {
+        memcpy(pn_in.origins[i], slat_centroids[i], sizeof(float) * 3);
+        memcpy(pn_in.z_axes[i], poly_out.polyline_vertices[i][0], sizeof(float) * 3);
+    }
+    PlaneNormalOutput pn_out;
+    PlaneNormal_eval(&pn_in, &pn_out);
+    printf("  [DEBUG Slat 0] PlaneNormal (pn): origin=(%.6f, %.6f, %.6f), z_axis=(%.6f, %.6f, %.6f) -> x_axis=(%.6f, %.6f, %.6f)\n",
+           pn_in.origins[0][0], pn_in.origins[0][1], pn_in.origins[0][2],
+           pn_in.z_axes[0][0], pn_in.z_axes[0][1], pn_in.z_axes[0][2],
+           pn_out.x_axes[0][0], pn_out.x_axes[0][1], pn_out.x_axes[0][2]);
 
-        // 5. PolyLine from projected points (per slat)
-        PolyLineInput poly_in = {
-            .vertex_count = 2,
-            .closed = 0
-        };
-        memcpy(poly_in.vertices[0], proj_out.line_starts[i], sizeof(float) * 3);
-        memcpy(poly_in.vertices[1], proj_out.line_ends[i],   sizeof(float) * 3);
-        PolyLineOutput poly_out;
-        PolyLine_eval(&poly_in, &poly_out);
-        if (i == 0) {
-            printf("  [DEBUG Slat 0] PolyLine: vertex[0]=(%.6f, %.6f, %.6f), vertex[1]=(%.6f, %.6f, %.6f)\n",
-                   poly_out.vertices[0][0], poly_out.vertices[0][1], poly_out.vertices[0][2],
-                   poly_out.vertices[1][0], poly_out.vertices[1][1], poly_out.vertices[1][2]);
-        }
+    // 7. PolyLine reversed (list mode)
+    PolyLineInput poly_rev_in;
+    memset(&poly_rev_in, 0, sizeof(PolyLineInput));
+    poly_rev_in.closed = 0;
+    poly_rev_in.polyline_count = n;
+    for (int i = 0; i < n; ++i) {
+        memcpy(poly_rev_in.polyline_vertices[i][0], proj_out.line_ends[i],   sizeof(float) * 3);
+        memcpy(poly_rev_in.polyline_vertices[i][1], proj_out.line_starts[i], sizeof(float) * 3);
+    }
+    PolyLineOutput poly_rev_out;
+    PolyLine_eval(&poly_rev_in, &poly_rev_out);
 
-        // 6. Plane Normal from polyline
-        PlaneNormalInput pn_in;
-        memcpy(pn_in.origin, slat_centroid, sizeof(float) * 3);
-        memcpy(pn_in.z_axis, poly_out.vertices[0], sizeof(float) * 3);
-        PlaneNormalOutput pn_out;
-        PlaneNormal_eval(&pn_in, &pn_out);
-        if (i == 0) {
-            printf("  [DEBUG Slat 0] PlaneNormal (pn): origin=(%.6f, %.6f, %.6f), z_axis=(%.6f, %.6f, %.6f) -> x_axis=(%.6f, %.6f, %.6f)\n",
-                   pn_in.origin[0], pn_in.origin[1], pn_in.origin[2],
-                   pn_in.z_axis[0], pn_in.z_axis[1], pn_in.z_axis[2],
-                   pn_out.x_axis[0], pn_out.x_axis[1], pn_out.x_axis[2]);
-        }
+    // 7. Construct Plane (list mode)
+    ConstructPlaneInput cp_in;
+    memset(&cp_in, 0, sizeof(ConstructPlaneInput));
+    cp_in.plane_count = n;
+    for (int i = 0; i < n; ++i) {
+        memcpy(cp_in.origins[i], slat_centroids[i], sizeof(float) * 3);
+        memcpy(cp_in.x_axes[i], poly_out.polyline_vertices[i][0], sizeof(float) * 3);
+        memcpy(cp_in.y_axes[i], poly_rev_out.polyline_vertices[i][0], sizeof(float) * 3);
+    }
+    ConstructPlaneOutput cp_out;
+    ConstructPlane_eval(&cp_in, &cp_out);
+    printf("  [DEBUG Slat 0] ConstructPlane: x_axis=(%.6f, %.6f, %.6f), y_axis=(%.6f, %.6f, %.6f) -> z_axis=(%.6f, %.6f, %.6f)\n",
+           cp_in.x_axes[0][0], cp_in.x_axes[0][1], cp_in.x_axes[0][2],
+           cp_in.y_axes[0][0], cp_in.y_axes[0][1], cp_in.y_axes[0][2],
+           cp_out.z_axes[0][0], cp_out.z_axes[0][1], cp_out.z_axes[0][2]);
 
-        // 7. Construct Plane (uses forward and reversed polylines)
-        ConstructPlaneInput cp_in;
-        memcpy(cp_in.origin, slat_centroid, sizeof(float) * 3);
-        memcpy(cp_in.x_axis, poly_out.vertices[0], sizeof(float) * 3);
-
-        PolyLineInput poly_rev_in = {
-            .vertex_count = 2,
-            .closed = 0
-        };
-        memcpy(poly_rev_in.vertices[0], proj_out.line_ends[i],   sizeof(float) * 3);
-        memcpy(poly_rev_in.vertices[1], proj_out.line_starts[i], sizeof(float) * 3);
-        PolyLineOutput poly_rev_out;
-        PolyLine_eval(&poly_rev_in, &poly_rev_out);
-        memcpy(cp_in.y_axis, poly_rev_out.vertices[0], sizeof(float) * 3);
-
-        ConstructPlaneOutput cp_out;
-        ConstructPlane_eval(&cp_in, &cp_out);
-        if (i == 0) {
-            printf("  [DEBUG Slat 0] ConstructPlane: x_axis=(%.6f, %.6f, %.6f), y_axis=(%.6f, %.6f, %.6f) -> z_axis=(%.6f, %.6f, %.6f)\n",
-                   cp_in.x_axis[0], cp_in.x_axis[1], cp_in.x_axis[2],
-                   cp_in.y_axis[0], cp_in.y_axis[1], cp_in.y_axis[2],
-                   cp_out.z_axis[0], cp_out.z_axis[1], cp_out.z_axis[2]);
-        }
-
-        // 8. List Item to get plane normal toggle (same logic as before)
+    // 8. List Item to get plane normal toggle (per-slat, but prepare for pn2)
+    float pn2_origins[MAX_ANGLES][3];
+    for (int i = 0; i < n; ++i) {
         ListItemInput li_in = {
             .list_size = 3,
             .index = 0,
             .wrap = 1
         };
-        li_in.list[0] = slat_centroid[0];
-        li_in.list[1] = slat_centroid[1];
-        li_in.list[2] = slat_centroid[2];
+        li_in.list[0] = slat_centroids[i][0];
+        li_in.list[1] = slat_centroids[i][1];
+        li_in.list[2] = slat_centroids[i][2];
         ListItemOutput li_out;
         ListItem_eval(&li_in, &li_out);
         if (i == 0) {
             printf("  [DEBUG Slat 0] ListItem: list[0]=%.6f, list[1]=%.6f, list[2]=%.6f, index=%d -> item=%.6f, valid=%d\n",
                    li_in.list[0], li_in.list[1], li_in.list[2], li_in.index, li_out.item, li_out.valid);
         }
-
-        // 9. Plane Normal for angle calculation
-        PlaneNormalInput pn2_in;
         if (li_out.item != 0.0f) {
-            memcpy(pn2_in.origin, slat_centroid, sizeof(float) * 3);
+            memcpy(pn2_origins[i], slat_centroids[i], sizeof(float) * 3);
         } else {
             int tgt_idx = (i < targets->target_count) ? i : 0;
-            memcpy(pn2_in.origin, targets->target_points[tgt_idx], sizeof(float) * 3);
+            memcpy(pn2_origins[i], targets->target_points[tgt_idx], sizeof(float) * 3);
         }
-        memcpy(pn2_in.z_axis, cp_out.z_axis, sizeof(float) * 3);
-        PlaneNormalOutput pn2_out;
-        PlaneNormal_eval(&pn2_in, &pn2_out);
-        if (i == 0) {
-            printf("  [DEBUG Slat 0] PlaneNormal (pn2): origin=(%.6f, %.6f, %.6f), z_axis=(%.6f, %.6f, %.6f) -> x_axis=(%.6f, %.6f, %.6f)\n",
-                   pn2_in.origin[0], pn2_in.origin[1], pn2_in.origin[2],
-                   pn2_in.z_axis[0], pn2_in.z_axis[1], pn2_in.z_axis[2],
-                   pn2_out.x_axis[0], pn2_out.x_axis[1], pn2_out.x_axis[2]);
-        }
+    }
 
-        // 10. YZ Plane, Circle and Curve|Curve intersection
-        YZPlaneInput yz_in;
-        memcpy(yz_in.origin, slat_centroid, sizeof(float) * 3);
-        YZPlaneOutput yz_out;
-        YZPlane_eval(&yz_in, &yz_out);
-        if (i == 0) {
-            printf("  [DEBUG Slat 0] YZPlane: origin=(%.6f, %.6f, %.6f) -> z_axis=(%.6f, %.6f, %.6f)\n",
-                   yz_in.origin[0], yz_in.origin[1], yz_in.origin[2],
-                   yz_out.z_axis[0], yz_out.z_axis[1], yz_out.z_axis[2]);
-        }
+    // 9. Plane Normal for angle calculation (list mode)
+    PlaneNormalInput pn2_in;
+    memset(&pn2_in, 0, sizeof(PlaneNormalInput));
+    pn2_in.plane_count = n;
+    for (int i = 0; i < n; ++i) {
+        memcpy(pn2_in.origins[i], pn2_origins[i], sizeof(float) * 3);
+        memcpy(pn2_in.z_axes[i], cp_out.z_axes[i], sizeof(float) * 3);
+    }
+    PlaneNormalOutput pn2_out;
+    PlaneNormal_eval(&pn2_in, &pn2_out);
+    printf("  [DEBUG Slat 0] PlaneNormal (pn2): origin=(%.6f, %.6f, %.6f), z_axis=(%.6f, %.6f, %.6f) -> x_axis=(%.6f, %.6f, %.6f)\n",
+           pn2_in.origins[0][0], pn2_in.origins[0][1], pn2_in.origins[0][2],
+           pn2_in.z_axes[0][0], pn2_in.z_axes[0][1], pn2_in.z_axes[0][2],
+           pn2_out.x_axes[0][0], pn2_out.x_axes[0][1], pn2_out.x_axes[0][2]);
 
-        float circle_radius = 0.1f;
-        CircleInput circle_in = {
-            .radius = circle_radius
-        };
-        memcpy(circle_in.plane_origin, yz_out.origin, sizeof(float) * 3);
-        memcpy(circle_in.plane_x_axis, yz_out.x_axis, sizeof(float) * 3);
-        memcpy(circle_in.plane_y_axis, yz_out.y_axis, sizeof(float) * 3);
-        memcpy(circle_in.plane_z_axis, yz_out.z_axis, sizeof(float) * 3);
-        CircleOutput circle_out;
-        Circle_eval(&circle_in, &circle_out);
-        if (i == 0) {
-            printf("  [DEBUG Slat 0] Circle: center=(%.6f, %.6f, %.6f), radius=%.6f\n",
-                   circle_out.center[0], circle_out.center[1], circle_out.center[2], circle_out.radius);
-        }
+    // 10. YZ Plane (list mode)
+    YZPlaneInput yz_in;
+    memset(&yz_in, 0, sizeof(YZPlaneInput));
+    yz_in.plane_count = n;
+    for (int i = 0; i < n; ++i) {
+        memcpy(yz_in.origins[i], slat_centroids[i], sizeof(float) * 3);
+    }
+    YZPlaneOutput yz_out;
+    YZPlane_eval(&yz_in, &yz_out);
+    printf("  [DEBUG Slat 0] YZPlane: origin=(%.6f, %.6f, %.6f) -> z_axis=(%.6f, %.6f, %.6f)\n",
+           yz_in.origins[0][0], yz_in.origins[0][1], yz_in.origins[0][2],
+           yz_out.z_axes[0][0], yz_out.z_axes[0][1], yz_out.z_axes[0][2]);
 
-        CurveCurveInput cc_in = {
-            .curve_a_type = 1,  // circle
-            .curve_b_type = 0   // line
-        };
-        memcpy(cc_in.circle_a_center, circle_out.center, sizeof(float) * 3);
-        cc_in.circle_a_radius = circle_out.radius;
-        memcpy(cc_in.circle_a_x_axis, yz_out.x_axis, sizeof(float) * 3);
-        memcpy(cc_in.circle_a_y_axis, yz_out.y_axis, sizeof(float) * 3);
-        memcpy(cc_in.circle_a_z_axis, yz_out.z_axis, sizeof(float) * 3);
-        memcpy(cc_in.line_b_start, line_in_out.starts[i], sizeof(float) * 3);
-        memcpy(cc_in.line_b_end,   line_in_out.ends[i],   sizeof(float) * 3);
+    // 10. Circle (list mode)
+    float circle_radius = 0.1f;
+    CircleInput circle_in;
+    memset(&circle_in, 0, sizeof(CircleInput));
+    circle_in.radius = circle_radius;
+    circle_in.circle_count = n;
+    for (int i = 0; i < n; ++i) {
+        memcpy(circle_in.plane_origins[i], yz_out.origins[i], sizeof(float) * 3);
+        memcpy(circle_in.plane_x_axes[i], yz_out.x_axes[i], sizeof(float) * 3);
+        memcpy(circle_in.plane_y_axes[i], yz_out.y_axes[i], sizeof(float) * 3);
+        memcpy(circle_in.plane_z_axes[i], yz_out.z_axes[i], sizeof(float) * 3);
+    }
+    CircleOutput circle_out;
+    Circle_eval(&circle_in, &circle_out);
+    printf("  [DEBUG Slat 0] Circle: center=(%.6f, %.6f, %.6f), radius=%.6f\n",
+           circle_out.centers[0][0], circle_out.centers[0][1], circle_out.centers[0][2], circle_out.radius);
 
-        CurveCurveOutput cc_out;
-        CurveCurve_eval(&cc_in, &cc_out);
-        if (i == 0) {
-            printf("  [DEBUG Slat 0] CurveCurve: circle center=(%.6f, %.6f, %.6f), radius=%.6f, line start=(%.6f, %.6f, %.6f) -> point_count=%d\n",
-                   cc_in.circle_a_center[0], cc_in.circle_a_center[1], cc_in.circle_a_center[2],
-                   cc_in.circle_a_radius,
-                   cc_in.line_b_start[0], cc_in.line_b_start[1], cc_in.line_b_start[2],
-                   cc_out.point_count);
-            if (cc_out.point_count > 0) {
-                printf("    [DEBUG Slat 0] CurveCurve points: first=(%.6f, %.6f, %.6f)\n",
-                       cc_out.points[0][0], cc_out.points[0][1], cc_out.points[0][2]);
-            }
-            if (cc_out.point_count > 1) {
-                printf("    [DEBUG Slat 0] CurveCurve points: second=(%.6f, %.6f, %.6f)\n",
-                       cc_out.points[1][0], cc_out.points[1][1], cc_out.points[1][2]);
-            }
-            if (cc_out.point_count > 2) {
-                int last_idx = cc_out.point_count - 1;
-                printf("    [DEBUG Slat 0] CurveCurve points: last=(%.6f, %.6f, %.6f)\n",
-                       cc_out.points[last_idx][0], cc_out.points[last_idx][1], cc_out.points[last_idx][2]);
-            }
-        }
+    // 10. CurveCurve intersection (list mode)
+    CurveCurveInput cc_in;
+    memset(&cc_in, 0, sizeof(CurveCurveInput));
+    cc_in.curve_a_type = 1;  // circle
+    cc_in.curve_b_type = 0;  // line
+    cc_in.intersection_count = n;
+    for (int i = 0; i < n; ++i) {
+        memcpy(cc_in.circle_a_centers[i], circle_out.centers[i], sizeof(float) * 3);
+        cc_in.circle_a_radii[i] = circle_out.radius;
+        memcpy(cc_in.circle_a_x_axes[i], yz_out.x_axes[i], sizeof(float) * 3);
+        memcpy(cc_in.circle_a_y_axes[i], yz_out.y_axes[i], sizeof(float) * 3);
+        memcpy(cc_in.circle_a_z_axes[i], yz_out.z_axes[i], sizeof(float) * 3);
+        memcpy(cc_in.line_b_starts[i], line_in_out.starts[i], sizeof(float) * 3);
+        memcpy(cc_in.line_b_ends[i],   line_in_out.ends[i],   sizeof(float) * 3);
+    }
+    CurveCurveOutput cc_out;
+    CurveCurve_eval(&cc_in, &cc_out);
+    printf("  [DEBUG Slat 0] CurveCurve: circle center=(%.6f, %.6f, %.6f), radius=%.6f, line start=(%.6f, %.6f, %.6f) -> intersection_count=%d\n",
+           cc_in.circle_a_centers[0][0], cc_in.circle_a_centers[0][1], cc_in.circle_a_centers[0][2],
+           cc_in.circle_a_radii[0],
+           cc_in.line_b_starts[0][0], cc_in.line_b_starts[0][1], cc_in.line_b_starts[0][2],
+           cc_out.intersection_count);
+    if (cc_out.intersection_count > 0) {
+        printf("    [DEBUG Slat 0] CurveCurve points: first=(%.6f, %.6f, %.6f)\n",
+               cc_out.points_list[0][0], cc_out.points_list[0][1], cc_out.points_list[0][2]);
+    }
 
+    // ---------------------------------------------------------------------
+    // 11-13. Per-slat final stages: Line from intersection, Angle, Degrees
+    //        (These depend on variable CurveCurve results, so kept per-slat)
+    // ---------------------------------------------------------------------
+
+    for (int i = 0; i < n; ++i) {
         // 11. Line from intersection points
-        if (cc_out.point_count >= 1) {
+        if (i < cc_out.intersection_count && 
+            (cc_out.points_list[i][0] != 0.0f || cc_out.points_list[i][1] != 0.0f || cc_out.points_list[i][2] != 0.0f)) {
             LineInput line_final_in = {
                 .use_two_points = 1
             };
-            if (cc_out.point_count >= 2) {
-                memcpy(line_final_in.start_point, cc_out.points[0], sizeof(float) * 3);
-                memcpy(line_final_in.end_point,   cc_out.points[1], sizeof(float) * 3);
+            memcpy(line_final_in.start_point, cc_out.points_list[i], sizeof(float) * 3);
+            
+            // Compute end point from line direction
+            float line_dir[3] = {
+                line_in_out.ends[i][0] - line_in_out.starts[i][0],
+                line_in_out.ends[i][1] - line_in_out.starts[i][1],
+                line_in_out.ends[i][2] - line_in_out.starts[i][2]
+            };
+            float line_len = sqrtf(line_dir[0]*line_dir[0] + line_dir[1]*line_dir[1] + line_dir[2]*line_dir[2]);
+            if (line_len > 0.0001f) {
+                float scale = 100.0f / line_len;
+                line_final_in.end_point[0] = cc_out.points_list[i][0] + line_dir[0] * scale;
+                line_final_in.end_point[1] = cc_out.points_list[i][1] + line_dir[1] * scale;
+                line_final_in.end_point[2] = cc_out.points_list[i][2] + line_dir[2] * scale;
             } else {
-                memcpy(line_final_in.start_point, cc_out.points[0], sizeof(float) * 3);
-                float line_dir[3] = {
-                    line_in_out.ends[i][0] - line_in_out.starts[i][0],
-                    line_in_out.ends[i][1] - line_in_out.starts[i][1],
-                    line_in_out.ends[i][2] - line_in_out.starts[i][2]
-                };
-                float line_len = sqrtf(line_dir[0]*line_dir[0] + line_dir[1]*line_dir[1] + line_dir[2]*line_dir[2]);
-                if (line_len > 0.0001f) {
-                    float scale = 100.0f / line_len;
-                    line_final_in.end_point[0] = cc_out.points[0][0] + line_dir[0] * scale;
-                    line_final_in.end_point[1] = cc_out.points[0][1] + line_dir[1] * scale;
-                    line_final_in.end_point[2] = cc_out.points[0][2] + line_dir[2] * scale;
-                } else {
-                    line_final_in.end_point[0] = cc_out.points[0][0];
-                    line_final_in.end_point[1] = cc_out.points[0][1] + 100.0f;
-                    line_final_in.end_point[2] = cc_out.points[0][2];
-                }
+                line_final_in.end_point[0] = cc_out.points_list[i][0];
+                line_final_in.end_point[1] = cc_out.points_list[i][1] + 100.0f;
+                line_final_in.end_point[2] = cc_out.points_list[i][2];
             }
 
             LineOutput line_final_out;
@@ -419,12 +426,7 @@ void core_group_eval(
                        line_final_out.end[0],   line_final_out.end[1],   line_final_out.end[2]);
             }
 
-            // 12. Angle calculation
-            AngleInput angle_in = {
-                .use_oriented = 0
-            };
-            memcpy(angle_in.vector_a, pn2_out.x_axis, sizeof(float) * 3);
-
+            // 12-13. Angle and Degrees (list mode)
             float vec_b[3] = {
                 line_final_out.end[0] - line_final_out.start[0],
                 line_final_out.end[1] - line_final_out.start[1],
@@ -432,15 +434,21 @@ void core_group_eval(
             };
             float len_b = sqrtf(vec_b[0] * vec_b[0] + vec_b[1] * vec_b[1] + vec_b[2] * vec_b[2]);
             if (len_b > 0.0001f) {
-                angle_in.vector_b[0] = vec_b[0] / len_b;
-                angle_in.vector_b[1] = vec_b[1] / len_b;
-                angle_in.vector_b[2] = vec_b[2] / len_b;
+                vec_b[0] /= len_b;
+                vec_b[1] /= len_b;
+                vec_b[2] /= len_b;
             } else {
-                angle_in.vector_b[0] = 0.0f;
-                angle_in.vector_b[1] = 0.0f;
-                angle_in.vector_b[2] = 1.0f;
+                vec_b[0] = 0.0f;
+                vec_b[1] = 0.0f;
+                vec_b[2] = 1.0f;
             }
-            memcpy(angle_in.plane_normal, pn2_out.z_axis, sizeof(float) * 3);
+
+            AngleInput angle_in = {
+                .use_oriented = 0
+            };
+            memcpy(angle_in.vector_a, pn2_out.x_axes[i], sizeof(float) * 3);
+            memcpy(angle_in.vector_b, vec_b, sizeof(float) * 3);
+            memcpy(angle_in.plane_normal, pn2_out.z_axes[i], sizeof(float) * 3);
 
             AngleOutput angle_out;
             Angle_eval(&angle_in, &angle_out);
@@ -451,7 +459,6 @@ void core_group_eval(
                        angle_out.angle);
             }
 
-            // 13. Convert to degrees
             DegreesInput deg_in = { .radians = angle_out.angle };
             DegreesOutput deg_out;
             Degrees_eval(&deg_in, &deg_out);
@@ -464,7 +471,7 @@ void core_group_eval(
         } else {
             out->slat_angles[i] = 0.0f;
             if (i == 0) {
-                printf("  [DEBUG Slat 0] No intersection found (point_count=%d, expected >=1)\n", cc_out.point_count);
+                printf("  [DEBUG Slat 0] No intersection found (intersection_count=%d, expected >=1)\n", cc_out.intersection_count);
             }
         }
     }

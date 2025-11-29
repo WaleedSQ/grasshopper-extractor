@@ -3,6 +3,7 @@
 #include "CurveCurve.h"
 #include <math.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define PI 3.14159265358979323846f
 #define TOL 1e-6f
@@ -221,7 +222,40 @@ static void line_circle_intersection(const float line_start[3], const float line
 }
 
 void CurveCurve_eval(const CurveCurveInput *in, CurveCurveOutput *out) {
-    // GH Curve | Curve: find intersections between two curves
+    memset(out, 0, sizeof(CurveCurveOutput));
+
+    // List mode: multiple circle-line intersections
+    if (in->curve_a_type == 1 && in->curve_b_type == 0 && in->intersection_count > 0) {
+        int count = in->intersection_count;
+        if (count > CURVECURVE_MAX_ITEMS) count = CURVECURVE_MAX_ITEMS;
+
+        for (int i = 0; i < count; ++i) {
+            bool found;
+            line_circle_intersection(in->line_b_starts[i], in->line_b_ends[i],
+                                    in->circle_a_centers[i], in->circle_a_radii[i],
+                                    in->circle_a_x_axes[i], in->circle_a_y_axes[i],
+                                    in->circle_a_z_axes[i],
+                                    out->points_list[i], &found);
+            if (!found) {
+                // No intersection - set to zero point
+                out->points_list[i][0] = 0.0f;
+                out->points_list[i][1] = 0.0f;
+                out->points_list[i][2] = 0.0f;
+            }
+        }
+        out->intersection_count = count;
+
+        // Backward-compatible single output = first element
+        if (count > 0) {
+            out->points[0][0] = out->points_list[0][0];
+            out->points[0][1] = out->points_list[0][1];
+            out->points[0][2] = out->points_list[0][2];
+            out->point_count = 1;
+        }
+        return;
+    }
+
+    // Single curve mode (backward compatible)
     out->point_count = 0;
     
     if (in->curve_a_type == 0 && in->curve_b_type == 0) {
