@@ -1,6 +1,8 @@
 #ifndef LISTITEM_H
 #define LISTITEM_H
 
+#include <stdbool.h>
+
 // Derived from evaluate_list_item in gh_components_stripped.py
 
 #define LISTITEM_MAX_SIZE 1000

@@ -2,6 +2,7 @@
 
 #include "CurveCurve.h"
 #include <math.h>
+#include <stdbool.h>
 
 #define PI 3.14159265358979323846f
 #define TOL 1e-6f
@@ -150,33 +151,71 @@ static void line_circle_intersection(const float line_start[3], const float line
         }
     } else {
         // Line intersects the plane at one point
-        float t = -v_dot_normal / dir_dot_normal;
+        // Project line onto circle's plane to solve 2D line-circle intersection
+        // This handles the case where line starts at center or anywhere else
         
-        if (t >= 0.0f && t <= 1.0f) {
-            float inter_point[3] = {
-                line_start[0] + t * direction[0],
-                line_start[1] + t * direction[1],
-                line_start[2] + t * direction[2]
-            };
-            
-            // Check if this point is on the circle
-            float diff[3] = {
-                inter_point[0] - circle_center[0],
-                inter_point[1] - circle_center[1],
-                inter_point[2] - circle_center[2]
-            };
-            float dist_sq = diff[0]*diff[0] + diff[1]*diff[1] + diff[2]*diff[2];
-            
-            if (fabsf(dist_sq - circle_radius*circle_radius) < TOL) {
-                out[0] = inter_point[0];
-                out[1] = inter_point[1];
-                out[2] = inter_point[2];
+        // Project line start (relative to center) onto circle plane
+        float start_2d_x = v[0] * circle_x_axis[0] + v[1] * circle_x_axis[1] + v[2] * circle_x_axis[2];
+        float start_2d_y = v[0] * circle_y_axis[0] + v[1] * circle_y_axis[1] + v[2] * circle_y_axis[2];
+        
+        // Project line direction onto circle plane
+        float dir_2d_x = direction[0] * circle_x_axis[0] + direction[1] * circle_x_axis[1] + direction[2] * circle_x_axis[2];
+        float dir_2d_y = direction[0] * circle_y_axis[0] + direction[1] * circle_y_axis[1] + direction[2] * circle_y_axis[2];
+        
+        // 2D line-circle intersection: |P0 + t*d|² = r²
+        // where P0 = (start_2d_x, start_2d_y), d = (dir_2d_x, dir_2d_y)
+        // a*t² + b*t + c = 0
+        float a = dir_2d_x*dir_2d_x + dir_2d_y*dir_2d_y;
+        
+        if (a < TOL) {
+            // Line has zero length in plane
+            *found = false;
+            return;
+        }
+        
+        float b = 2.0f * (start_2d_x * dir_2d_x + start_2d_y * dir_2d_y);
+        float c = start_2d_x*start_2d_x + start_2d_y*start_2d_y - circle_radius*circle_radius;
+        
+        float discriminant = b*b - 4.0f*a*c;
+        
+        if (discriminant < -TOL) {
+            // No intersection
+            *found = false;
+            return;
+        } else if (discriminant < TOL) {
+            // One intersection (tangent)
+            float t = -b / (2.0f*a);
+            if (t >= 0.0f && t <= 1.0f) {
+                out[0] = line_start[0] + t * direction[0];
+                out[1] = line_start[1] + t * direction[1];
+                out[2] = line_start[2] + t * direction[2];
                 *found = true;
             } else {
                 *found = false;
             }
         } else {
-            *found = false;
+            // Two intersections - keep only the EXIT point (larger t value)
+            // This matches Grasshopper's CCX behavior for line-circle intersections
+            float sqrt_disc = sqrtf(discriminant);
+            float t1 = (-b - sqrt_disc) / (2.0f*a);  // entry point (smaller t)
+            float t2 = (-b + sqrt_disc) / (2.0f*a);  // exit point (larger t)
+            
+            // Prefer exit point (t2), fall back to entry point (t1) if exit is out of bounds
+            float t = -1.0f;
+            if (t2 >= 0.0f && t2 <= 1.0f) {
+                t = t2;
+            } else if (t1 >= 0.0f && t1 <= 1.0f) {
+                t = t1;
+            }
+            
+            if (t >= 0.0f) {
+                out[0] = line_start[0] + t * direction[0];
+                out[1] = line_start[1] + t * direction[1];
+                out[2] = line_start[2] + t * direction[2];
+                *found = true;
+            } else {
+                *found = false;
+            }
         }
     }
 }

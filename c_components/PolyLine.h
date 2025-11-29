@@ -1,6 +1,8 @@
 #ifndef POLYLINE_H
 #define POLYLINE_H
 
+#include <stdbool.h>
+
 // Derived from evaluate_polyline in gh_components_stripped.py
 
 #define POLYLINE_MAX_VERTICES 1000

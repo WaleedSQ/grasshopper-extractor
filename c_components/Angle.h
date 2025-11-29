@@ -1,6 +1,8 @@
 #ifndef ANGLE_H
 #define ANGLE_H
 
+#include <stdbool.h>
+
 // Derived from evaluate_angle in gh_components_stripped.py
 
 typedef struct {

@@ -1,6 +1,8 @@
 #ifndef LINE_H
 #define LINE_H
 
+#include <stdbool.h>
+
 // Derived from evaluate_line in gh_components_stripped.py
 
 typedef struct {

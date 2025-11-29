@@ -5,13 +5,13 @@
 
 #define PI 3.14159265358979323846f
 
+static int is_leap_year(int yr) {
+    return (yr % 4 == 0 && (yr % 100 != 0 || yr % 400 == 0));
+}
+
 static int days_from_010119(int year, int month, int day) {
     const int NUMOFDAYSEACHMONTH[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     const int NUMOFDAYSEACHMONTHLEAP[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    
-    static int is_leap_year(int yr) {
-        return (yr % 4 == 0 && (yr % 100 != 0 || yr % 400 == 0));
-    }
     
     int days_in_preceding_years = 0;
     if (year == 2017) {
