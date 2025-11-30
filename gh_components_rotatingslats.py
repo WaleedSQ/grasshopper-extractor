@@ -470,6 +470,71 @@ def evaluate_vector_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     return {'Vector': vector_result, 'Length': length_result}
 
 
+@COMPONENT_REGISTRY.register("Vector XYZ")
+def evaluate_vector_xyz(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH Vector XYZ component: create vector from X, Y, Z components.
+    
+    Inputs:
+        X component: X component of vector
+        Y component: Y component of vector
+        Z component: Z component of vector
+    
+    Outputs:
+        Vector: Vector [x, y, z]
+        Length: Magnitude of vector
+    """
+    # GH Vector XYZ: create vector from X, Y, Z components
+    x_tree = inputs.get('X component', DataTree.from_scalar(0))
+    y_tree = inputs.get('Y component', DataTree.from_scalar(0))
+    z_tree = inputs.get('Z component', DataTree.from_scalar(0))
+    
+    # Match all three inputs using longest strategy
+    x_matched, y_matched, z_matched = match_longest(x_tree, y_tree, z_tree)
+    
+    vector_result = DataTree()
+    length_result = DataTree()
+    
+    for path in x_matched.get_paths():
+        x_items = x_matched.get_branch(path)
+        y_items = y_matched.get_branch(path)
+        z_items = z_matched.get_branch(path)
+        
+        vectors = []
+        lengths = []
+        
+        for x_val, y_val, z_val in zip(x_items, y_items, z_items):
+            # GH Vector XYZ: create vector from components
+            if x_val is None:
+                x_val = 0.0
+            if y_val is None:
+                y_val = 0.0
+            if z_val is None:
+                z_val = 0.0
+            
+            # Convert to float
+            try:
+                x_float = float(x_val)
+                y_float = float(y_val)
+                z_float = float(z_val)
+            except (TypeError, ValueError):
+                raise ValueError(f"GH Vector XYZ: invalid component values (x={x_val}, y={y_val}, z={z_val})")
+            
+            # GH Vector XYZ: vector = [x, y, z]
+            vector = [x_float, y_float, z_float]
+            
+            # GH Vector XYZ: compute length
+            length = math.sqrt(x_float**2 + y_float**2 + z_float**2)
+            
+            vectors.append(vector)
+            lengths.append(length)
+        
+        vector_result.set_branch(path, vectors)
+        length_result.set_branch(path, lengths)
+    
+    return {'Vector': vector_result, 'Length': length_result}
+
+
 @COMPONENT_REGISTRY.register("Unit Y")
 def evaluate_unit_y(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     """
