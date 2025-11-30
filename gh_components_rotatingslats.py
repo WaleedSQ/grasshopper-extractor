@@ -1430,10 +1430,16 @@ def evaluate_area(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     corner_a = geom['corner_a']
                     corner_b = geom['corner_b']
                     
+                    # Use stored dimensions if available (preserves area through rotation)
+                    # Otherwise compute from corners (axis-aligned box)
+                    if 'dimensions' in geom and geom['dimensions']:
+                        dx, dy, dz = geom['dimensions']
+                    else:
+                        dx = abs(corner_b[0] - corner_a[0])
+                        dy = abs(corner_b[1] - corner_a[1])
+                        dz = abs(corner_b[2] - corner_a[2])
+                    
                     # Compute surface area (sum of all 6 faces)
-                    dx = abs(corner_b[0] - corner_a[0])
-                    dy = abs(corner_b[1] - corner_a[1])
-                    dz = abs(corner_b[2] - corner_a[2])
                     area = 2 * (dx * dy + dy * dz + dz * dx)
                     
                     # Centroid is midpoint of diagonal
@@ -1492,11 +1498,15 @@ def evaluate_box_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         boxes = []
         
         for plane, pt_a, pt_b in zip(planes, a_points, b_points):
-            # GH Box 2Pt: create box
+            # GH Box 2Pt: create box with stored dimensions for rotation-invariant area
+            dx = abs(pt_b[0] - pt_a[0])
+            dy = abs(pt_b[1] - pt_a[1])
+            dz = abs(pt_b[2] - pt_a[2])
             box = {
                 'corner_a': pt_a,
                 'corner_b': pt_b,
-                'plane': plane
+                'plane': plane,
+                'dimensions': [dx, dy, dz]  # Store original dimensions
             }
             boxes.append(box)
         
@@ -1619,8 +1629,10 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         
         for geom, angle, plane in zip(geometries, angles, planes):
             # GH Rotate: rotate geometry around plane's Z-axis at plane's origin
-            cos_a = math.cos(angle)
-            sin_a = math.sin(angle)
+            # Convert angle from degrees to radians (Grasshopper sliders output degrees)
+            angle_rad = math.radians(angle)
+            cos_a = math.cos(angle_rad)
+            sin_a = math.sin(angle_rad)
             
             # Determine rotation origin/axis (Grasshopper: plane origin, plane Z)
             if plane and isinstance(plane, dict):
@@ -1643,13 +1655,14 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                 py = pt[1] - rot_origin[1]
                 pz = pt[2] - rot_origin[2]
 
-                # Rodrigues' rotation formula
+                # Rodrigues' rotation formula: v_rot = v*cos(θ) + (k × v)*sin(θ) + k*(k·v)*(1-cos(θ))
                 ax, ay, az = rot_axis_norm
                 dot = px*ax + py*ay + pz*az
+                # Cross product k × v (axis cross point), NOT v × k
                 cross = [
-                    py*az - pz*ay,
-                    pz*ax - px*az,
-                    px*ay - py*ax
+                    ay*pz - az*py,
+                    az*px - ax*pz,
+                    ax*py - ay*px
                 ]
 
                 rotated = [
@@ -1686,11 +1699,12 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     }
                     rotated_geoms.append(rotated)
                 elif 'corner_a' in geom and 'corner_b' in geom:
-                    # Box
+                    # Box - preserve original dimensions for area calculation
                     rotated = {
                         'corner_a': rotate_point(geom['corner_a']),
                         'corner_b': rotate_point(geom['corner_b']),
-                        'plane': geom.get('plane')
+                        'plane': geom.get('plane'),
+                        'dimensions': geom.get('dimensions')  # Preserve original dimensions
                     }
                     rotated_geoms.append(rotated)
                 elif 'origin' in geom and 'x_axis' in geom and 'y_axis' in geom and 'z_axis' in geom:
@@ -1700,10 +1714,11 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                         ax, ay, az = rot_axis_norm
                         vx, vy, vz = vec
                         dot = vx*ax + vy*ay + vz*az
+                        # Cross product k × v (axis cross vector), NOT v × k
                         cross = [
-                            vy*az - vz*ay,
-                            vz*ax - vx*az,
-                            vx*ay - vy*ax
+                            ay*vz - az*vy,
+                            az*vx - ax*vz,
+                            ax*vy - ay*vx
                         ]
                         return [
                             vx * cos_a + cross[0] * sin_a + ax * dot * (1 - cos_a),
@@ -1728,8 +1743,8 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             else:
                 rotated_geoms.append(geom)
             
-            # Transformation matrix
-            transform = {'rotation': angle, 'axis': plane}
+            # Transformation matrix (store angle in radians)
+            transform = {'rotation': angle_rad, 'axis': plane}
             transforms.append(transform)
         
         geometry_result.set_branch(path, rotated_geoms)
@@ -2822,9 +2837,9 @@ def evaluate_curve_curve(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         
         intersections = []
         
-        if abs(dir_dot_normal) < 1e-10:
-            # Line is parallel to the plane
-            if abs(v_dot_normal) < 1e-10:
+        if abs(dir_dot_normal) < 0.01:
+            # Line is nearly parallel to the plane (within ~0.6 degrees)
+            if abs(v_dot_normal) < 0.01:
                 # Line lies in the circle's plane - 2D line-circle intersection
                 # Project everything to 2D using circle's plane axes
                 
