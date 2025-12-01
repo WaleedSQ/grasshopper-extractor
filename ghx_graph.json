@@ -6,8 +6,8 @@
       "type_name": "LB Download Weather",
       "nickname": "DownloadEPW",
       "position": {
-        "x": 11057.0,
-        "y": 1835.0
+        "x": 11560.0,
+        "y": 2480.0
       },
       "params": [
         {
@@ -70,8 +70,8 @@
       "type_name": "LB Import EPW",
       "nickname": "ImportEPW",
       "position": {
-        "x": 11226.0,
-        "y": 1815.0
+        "x": 11777.0,
+        "y": 2415.0
       },
       "params": [
         {
@@ -264,8 +264,8 @@
       "type_name": "LB SunPath",
       "nickname": "Sunpath",
       "position": {
-        "x": 11543.0,
-        "y": 1777.0
+        "x": 11294.0,
+        "y": 2452.0
       },
       "params": [
         {
@@ -532,8 +532,8 @@
       "type_name": "Move",
       "nickname": "Slats original",
       "position": {
-        "x": 10800.0,
-        "y": 2758.0
+        "x": 10721.0,
+        "y": 2567.0
       },
       "params": [
         {
@@ -560,7 +560,7 @@
             ]
           ],
           "sources": [
-            "07dcee6c-9ef1-4893-a77f-18130fa2c9ea"
+            "bdf045ed-d878-4ecc-99cd-ee0e3dfe9aea"
           ],
           "expression": null,
           "mapping": 0,
@@ -589,77 +589,13 @@
       ]
     },
     {
-      "guid": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
-      "instance_guid": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
-      "type_name": "Series",
-      "nickname": "Series",
-      "position": {
-        "x": 10162.0,
-        "y": 2758.0
-      },
-      "params": [
-        {
-          "param_guid": "cc1e7e44-c1aa-4ee7-8dfa-849726cdb7c5",
-          "name": "Start",
-          "type": "input",
-          "persistent_data": [
-            0
-          ],
-          "sources": [
-            "f8fdffb7-41e7-43c7-93a7-44bdc965ed27"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "ef467247-5327-4364-b897-38a904554a85",
-          "name": "Step",
-          "type": "input",
-          "persistent_data": [
-            1
-          ],
-          "sources": [
-            "20f5465a-8288-49ad-acd1-2eb24e1f8765"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "23cf7783-b37e-42a5-b01e-ff22b04c20f2",
-          "name": "Count",
-          "type": "input",
-          "persistent_data": [
-            10
-          ],
-          "sources": [
-            "537142d8-e672-4d12-8254-46dbe1e3c7ef"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "160dcd76-1555-48ba-a352-8e284348cd05",
-          "name": "Series",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
       "instance_guid": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
       "type_name": "Number Slider",
       "nickname": "Number of slats",
       "position": {
-        "x": 9148.496,
-        "y": 2904.609
+        "x": 9527.967,
+        "y": 2804.9202
       },
       "params": [
         {
@@ -681,8 +617,8 @@
       "type_name": "Number Slider",
       "nickname": "Distance from window",
       "position": {
-        "x": 9121.51,
-        "y": 2932.794
+        "x": 9509.711,
+        "y": 2678.3726
       },
       "params": [
         {
@@ -699,215 +635,13 @@
       ]
     },
     {
-      "guid": "3732df33-c378-4227-b549-b5ab541e82c6",
-      "instance_guid": "3732df33-c378-4227-b549-b5ab541e82c6",
-      "type_name": "Unit Z",
-      "nickname": "Unit Z",
-      "position": {
-        "x": 10439.0,
-        "y": 2815.0
-      },
-      "params": [
-        {
-          "param_guid": "156d24aa-d953-47d9-968a-f53eaf2e97eb",
-          "name": "Factor",
-          "type": "input",
-          "persistent_data": [
-            1
-          ],
-          "sources": [
-            "3a96e7fa-3a91-4dd9-a965-18049ca7617e"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "4fa54506-86c5-4395-99c0-4fea6344d470",
-          "name": "Unit vector",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "268410b9-4d90-4bb6-b716-3e8df5798c14",
-      "instance_guid": "268410b9-4d90-4bb6-b716-3e8df5798c14",
-      "type_name": "Unit Y",
-      "nickname": "Unit Y",
-      "position": {
-        "x": 10323.0,
-        "y": 2732.0
-      },
-      "params": [
-        {
-          "param_guid": "d8c566f5-4ee4-45cd-a663-2b3622892b76",
-          "name": "Factor",
-          "type": "input",
-          "persistent_data": [
-            1
-          ],
-          "sources": [
-            "306c324a-3b04-4c46-bd5a-d11cacfe8fdb"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "81565b66-9edb-40aa-af52-a7bb6218de84",
-          "name": "Unit vector",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
-      "instance_guid": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
-      "type_name": "Vector 2Pt",
-      "nickname": "Vector 2Pt",
-      "position": {
-        "x": 10606.0,
-        "y": 2796.0
-      },
-      "params": [
-        {
-          "param_guid": "3d26c657-b61d-4e4d-b613-a78cd2851bc9",
-          "name": "Point A",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "81565b66-9edb-40aa-af52-a7bb6218de84"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "b2a79070-e04f-4c54-9874-bb876bd116a9",
-          "name": "Point B",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "4fa54506-86c5-4395-99c0-4fea6344d470"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "26a250c4-f6e7-40c3-9064-9576bcf8f704",
-          "name": "Unitize",
-          "type": "input",
-          "persistent_data": [
-            false
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "07dcee6c-9ef1-4893-a77f-18130fa2c9ea",
-          "name": "Vector",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "a77c669e-1e7b-4515-b005-b1f6347b8c2e",
-          "name": "Length",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
-      "instance_guid": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
-      "type_name": "Series",
-      "nickname": "Series",
-      "position": {
-        "x": 10162.0,
-        "y": 2826.0
-      },
-      "params": [
-        {
-          "param_guid": "2a1f35c4-2c0e-4f2c-9e3f-01ffb5749aec",
-          "name": "Start",
-          "type": "input",
-          "persistent_data": [
-            0
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "5555e87c-cbec-4fd7-8f19-91671b29ca4a",
-          "name": "Step",
-          "type": "input",
-          "persistent_data": [
-            1
-          ],
-          "sources": [
-            "133aa1b3-f899-4543-88d4-cde6da741d95"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "663e13ce-1b1d-4ab4-a564-8b7261377b65",
-          "name": "Count",
-          "type": "input",
-          "persistent_data": [
-            10
-          ],
-          "sources": [
-            "537142d8-e672-4d12-8254-46dbe1e3c7ef"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "04a32494-760d-465e-85e5-f1a91dd0d1ee",
-          "name": "Series",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
       "instance_guid": "577ce3f3-2b5e-4a55-ae60-c5c3c6c12e3c",
       "type_name": "Construct Point",
       "nickname": "p1",
       "position": {
-        "x": 10675.0,
-        "y": 2879.0
+        "x": 10147.0,
+        "y": 2936.0
       },
       "params": [
         {
@@ -964,8 +698,8 @@
       "type_name": "Construct Point",
       "nickname": "p1",
       "position": {
-        "x": 10679.0,
-        "y": 2955.0
+        "x": 10156.0,
+        "y": 3024.0
       },
       "params": [
         {
@@ -1022,8 +756,8 @@
       "type_name": "Box 2Pt",
       "nickname": "Box 2Pt",
       "position": {
-        "x": 10837.0,
-        "y": 2895.0
+        "x": 10351.0,
+        "y": 2956.0
       },
       "params": [
         {
@@ -1101,77 +835,13 @@
       ]
     },
     {
-      "guid": "680b290d-e662-4a76-9b3c-e5e921230589",
-      "instance_guid": "680b290d-e662-4a76-9b3c-e5e921230589",
-      "type_name": "Series",
-      "nickname": "Series",
-      "position": {
-        "x": 10162.0,
-        "y": 2690.0
-      },
-      "params": [
-        {
-          "param_guid": "44c022d2-8866-43b1-ab91-1e88d5e0fa5c",
-          "name": "Start",
-          "type": "input",
-          "persistent_data": [
-            0
-          ],
-          "sources": [
-            "507b14ee-692b-41df-973f-6bfef76514c2"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "eab69ed6-bdcf-4313-9a91-924ee114c1f3",
-          "name": "Step",
-          "type": "input",
-          "persistent_data": [
-            1
-          ],
-          "sources": [
-            "bdac63ee-60a4-4873-8860-06e887053c0e"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "b2093866-34f2-47ea-a0b1-19f63ca7dbc7",
-          "name": "Count",
-          "type": "input",
-          "persistent_data": [
-            10
-          ],
-          "sources": [
-            "537142d8-e672-4d12-8254-46dbe1e3c7ef"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "306c324a-3b04-4c46-bd5a-d11cacfe8fdb",
-          "name": "Series",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "08edbcda-c850-40fd-9900-c6ab83acca1b",
       "instance_guid": "08edbcda-c850-40fd-9900-c6ab83acca1b",
       "type_name": "Number Slider",
       "nickname": "Horizontal shift between slats",
       "position": {
-        "x": 9120.66,
-        "y": 3016.9438
+        "x": 9508.142,
+        "y": 2708.0208
       },
       "params": [
         {
@@ -1193,8 +863,8 @@
       "type_name": "Rectangle 2Pt",
       "nickname": "Rectangle 2Pt",
       "position": {
-        "x": 9827.0,
-        "y": 2556.0
+        "x": 10532.0,
+        "y": 2562.0
       },
       "params": [
         {
@@ -1311,8 +981,8 @@
       "type_name": "Construct Point",
       "nickname": "CP",
       "position": {
-        "x": 9688.0,
-        "y": 2518.0
+        "x": 10242.0,
+        "y": 2525.0
       },
       "params": [
         {
@@ -1373,8 +1043,8 @@
       "type_name": "Number Slider",
       "nickname": "Slat width",
       "position": {
-        "x": 9157.531,
-        "y": 2815.344
+        "x": 9578.525,
+        "y": 2570.083
       },
       "params": [
         {
@@ -1396,8 +1066,8 @@
       "type_name": "Construct Point",
       "nickname": "CP",
       "position": {
-        "x": 9688.0,
-        "y": 2587.0
+        "x": 10371.0,
+        "y": 2619.0
       },
       "params": [
         {
@@ -1458,8 +1128,8 @@
       "type_name": "Negative",
       "nickname": "-",
       "position": {
-        "x": 9416.0,
-        "y": 2569.0
+        "x": 10198.0,
+        "y": 2590.0
       },
       "params": [
         {
@@ -1492,8 +1162,8 @@
       "type_name": "Negative",
       "nickname": "-",
       "position": {
-        "x": 9424.0,
-        "y": 2609.0
+        "x": 10196.0,
+        "y": 2626.0
       },
       "params": [
         {
@@ -1521,67 +1191,13 @@
       ]
     },
     {
-      "guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
-      "instance_guid": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
-      "type_name": "Explode Tree",
-      "nickname": "Ex Tree",
-      "position": {
-        "x": 11529.0,
-        "y": 2415.0
-      },
-      "params": [
-        {
-          "param_guid": "06d8458e-06fe-40d8-a33d-a757b07fe993",
-          "name": "Data",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "c53c0d0c-971b-4bce-a82c-4c495c1d6590"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
-          "name": "Branch 0",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "7b596afb-0787-405f-a751-78ec69c7f450",
-          "name": "Branch 1",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "cc8c9c0f-c3ed-491d-a3a4-f6d462e710bd",
-          "name": "Branch 2",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
       "instance_guid": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
       "type_name": "Division",
       "nickname": "/",
       "position": {
-        "x": 9232.0,
-        "y": 2545.0
+        "x": 10039.0,
+        "y": 2526.0
       },
       "params": [
         {
@@ -1626,8 +1242,8 @@
       "type_name": "Number Slider",
       "nickname": "Slats height (top)",
       "position": {
-        "x": 9151.26,
-        "y": 2989.744
+        "x": 9538.99,
+        "y": 2734.5684
       },
       "params": [
         {
@@ -1649,8 +1265,8 @@
       "type_name": "Number Slider",
       "nickname": "Last target from slats",
       "position": {
-        "x": 9139.146,
-        "y": 2852.4268
+        "x": 9588.629,
+        "y": 3584.646
       },
       "params": [
         {
@@ -1672,8 +1288,8 @@
       "type_name": "Division",
       "nickname": "/",
       "position": {
-        "x": 9221.0,
-        "y": 2609.0
+        "x": 10018.0,
+        "y": 2589.0
       },
       "params": [
         {
@@ -1713,47 +1329,13 @@
       ]
     },
     {
-      "guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
-      "instance_guid": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
-      "type_name": "Negative",
-      "nickname": "-",
-      "position": {
-        "x": 10299.0,
-        "y": 2789.0
-      },
-      "params": [
-        {
-          "param_guid": "fe22979a-ae9f-48e8-b1a6-a1a5c6af8575",
-          "name": "Value",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "160dcd76-1555-48ba-a352-8e284348cd05"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "3a96e7fa-3a91-4dd9-a965-18049ca7617e",
-          "name": "Result",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "b3c71890-f270-4efd-b308-60428215f2be",
       "instance_guid": "b3c71890-f270-4efd-b308-60428215f2be",
       "type_name": "Negative",
       "nickname": "-",
       "position": {
-        "x": 9994.0,
-        "y": 2754.0
+        "x": 10191.0,
+        "y": 2776.0
       },
       "params": [
         {
@@ -1762,7 +1344,7 @@
           "type": "input",
           "persistent_data": [],
           "sources": [
-            "456d176f-14cf-4134-9062-b4623202c00e"
+            "20f5465a-8288-49ad-acd1-2eb24e1f8765"
           ],
           "expression": null,
           "mapping": 0,
@@ -1786,8 +1368,8 @@
       "type_name": "Negative",
       "nickname": "-",
       "position": {
-        "x": 9993.0,
-        "y": 2690.0
+        "x": 10044.0,
+        "y": 2700.0
       },
       "params": [
         {
@@ -1820,8 +1402,8 @@
       "type_name": "Subtraction",
       "nickname": "-",
       "position": {
-        "x": 9616.0,
-        "y": 2946.0
+        "x": 9918.0,
+        "y": 2754.0
       },
       "params": [
         {
@@ -1866,8 +1448,8 @@
       "type_name": "Number Slider",
       "nickname": "Slats height (threshold)",
       "position": {
-        "x": 9151.26,
-        "y": 2958.294
+        "x": 9537.392,
+        "y": 2766.9695
       },
       "params": [
         {
@@ -1889,8 +1471,8 @@
       "type_name": "Division",
       "nickname": "/",
       "position": {
-        "x": 9801.0,
-        "y": 2941.0
+        "x": 10049.0,
+        "y": 2776.0
       },
       "params": [
         {
@@ -1935,8 +1517,8 @@
       "type_name": "Subtraction",
       "nickname": "-",
       "position": {
-        "x": 9615.0,
-        "y": 2899.0
+        "x": 9916.0,
+        "y": 2800.0
       },
       "params": [
         {
@@ -1981,8 +1563,8 @@
       "type_name": "Number Slider",
       "nickname": "1st targets from slats",
       "position": {
-        "x": 9138.921,
-        "y": 2879.8713
+        "x": 9584.427,
+        "y": 3668.8235
       },
       "params": [
         {
@@ -2004,8 +1586,8 @@
       "type_name": "Move",
       "nickname": "New Sun",
       "position": {
-        "x": 11484.0,
-        "y": 2761.0
+        "x": 11633.0,
+        "y": 2831.0
       },
       "params": [
         {
@@ -2032,7 +1614,7 @@
             ]
           ],
           "sources": [
-            "e932b554-bb15-4f31-bb75-7157a92b9a0a"
+            "6cfec9e2-e831-46ea-b3e7-c42c36fec35a"
           ],
           "expression": null,
           "mapping": 0,
@@ -2066,8 +1648,8 @@
       "type_name": "Project",
       "nickname": "Project Curve",
       "position": {
-        "x": 11984.0,
-        "y": 2808.0
+        "x": 11981.0,
+        "y": 3012.0
       },
       "params": [
         {
@@ -2130,8 +1712,8 @@
       "type_name": "Line",
       "nickname": "Out Ray",
       "position": {
-        "x": 11737.0,
-        "y": 2717.0
+        "x": 11823.0,
+        "y": 2894.0
       },
       "params": [
         {
@@ -2176,8 +1758,8 @@
       "type_name": "Line",
       "nickname": "In Ray",
       "position": {
-        "x": 12022.0,
-        "y": 2743.0
+        "x": 11776.0,
+        "y": 2956.0
       },
       "params": [
         {
@@ -2222,8 +1804,8 @@
       "type_name": "Division",
       "nickname": "/",
       "position": {
-        "x": 9801.0,
-        "y": 2991.0
+        "x": 10528.0,
+        "y": 3146.0
       },
       "params": [
         {
@@ -2268,8 +1850,8 @@
       "type_name": "Subtraction",
       "nickname": "-",
       "position": {
-        "x": 9616.0,
-        "y": 3041.0
+        "x": 10408.0,
+        "y": 3178.0
       },
       "params": [
         {
@@ -2314,8 +1896,8 @@
       "type_name": "Subtraction",
       "nickname": "-",
       "position": {
-        "x": 9616.0,
-        "y": 2993.0
+        "x": 10409.0,
+        "y": 3115.0
       },
       "params": [
         {
@@ -2360,8 +1942,8 @@
       "type_name": "Number Slider",
       "nickname": "Targets Height",
       "position": {
-        "x": 9198.862,
-        "y": 3069.6438
+        "x": 9636.83,
+        "y": 3476.7275
       },
       "params": [
         {
@@ -2383,8 +1965,8 @@
       "type_name": "Number Slider",
       "nickname": "room width",
       "position": {
-        "x": 9152.507,
-        "y": 2776.6138
+        "x": 9582.99,
+        "y": 2518.736
       },
       "params": [
         {
@@ -2406,8 +1988,8 @@
       "type_name": "Angle",
       "nickname": "Angle",
       "position": {
-        "x": 12645.0,
-        "y": 2826.0
+        "x": 11855.0,
+        "y": 3545.0
       },
       "params": [
         {
@@ -2416,7 +1998,7 @@
           "type": "input",
           "persistent_data": [],
           "sources": [
-            "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a"
+            "4b0092c3-9120-4e4b-bdf3-8035944050a7"
           ],
           "expression": null,
           "mapping": 1,
@@ -2474,8 +2056,8 @@
       "type_name": "Degrees",
       "nickname": "Degrees",
       "position": {
-        "x": 12820.0,
-        "y": 2815.0
+        "x": 12004.0,
+        "y": 3537.0
       },
       "params": [
         {
@@ -2508,8 +2090,8 @@
       "type_name": "List Item",
       "nickname": "List Item",
       "position": {
-        "x": 11883.0,
-        "y": 3138.0
+        "x": 11503.0,
+        "y": 3579.0
       },
       "params": [
         {
@@ -2568,8 +2150,8 @@
       "type_name": "PolyLine",
       "nickname": "PolyLine",
       "position": {
-        "x": 11865.0,
-        "y": 2981.0
+        "x": 11226.0,
+        "y": 3662.0
       },
       "params": [
         {
@@ -2614,8 +2196,8 @@
       "type_name": "Plane Normal",
       "nickname": "Plane Normal",
       "position": {
-        "x": 12046.0,
-        "y": 2982.0
+        "x": 11496.0,
+        "y": 3487.0
       },
       "params": [
         {
@@ -2672,8 +2254,8 @@
       "type_name": "Construct Plane",
       "nickname": "Construct Plane",
       "position": {
-        "x": 12042.0,
-        "y": 3110.0
+        "x": 11494.0,
+        "y": 3693.0
       },
       "params": [
         {
@@ -2748,8 +2330,8 @@
       "type_name": "PolyLine",
       "nickname": "PolyLine",
       "position": {
-        "x": 11870.0,
-        "y": 3055.0
+        "x": 11240.0,
+        "y": 3749.0
       },
       "params": [
         {
@@ -2789,71 +2371,13 @@
       ]
     },
     {
-      "guid": "157c48b5-0aed-49e5-a808-d4c64666062d",
-      "instance_guid": "157c48b5-0aed-49e5-a808-d4c64666062d",
-      "type_name": "List Item",
-      "nickname": "List Item",
-      "position": {
-        "x": 12198.0,
-        "y": 2962.0
-      },
-      "params": [
-        {
-          "param_guid": "128cdce4-9043-4e4c-a6d7-ad52c8af0dfd",
-          "name": "List",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "4b0092c3-9120-4e4b-bdf3-8035944050a7"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "e14c768a-9383-4fee-b9de-b1cdeec1c6a6",
-          "name": "Index",
-          "type": "input",
-          "persistent_data": [
-            0
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "ac280e60-85a6-4d3d-8f01-cca6076701db",
-          "name": "Wrap",
-          "type": "input",
-          "persistent_data": [
-            true
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a",
-          "name": "Item",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
       "instance_guid": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
       "type_name": "Plane Normal",
       "nickname": "Plane Normal",
       "position": {
-        "x": 12187.0,
-        "y": 3066.0
+        "x": 11673.0,
+        "y": 3610.0
       },
       "params": [
         {
@@ -2910,8 +2434,8 @@
       "type_name": "Area",
       "nickname": "Area",
       "position": {
-        "x": 11293.0,
-        "y": 2815.0
+        "x": 11076.0,
+        "y": 2807.0
       },
       "params": [
         {
@@ -2954,8 +2478,8 @@
       "type_name": "Area",
       "nickname": "Area",
       "position": {
-        "x": 11290.0,
-        "y": 2937.0
+        "x": 10696.0,
+        "y": 2961.0
       },
       "params": [
         {
@@ -2998,8 +2522,8 @@
       "type_name": "Rotate",
       "nickname": "Rotate",
       "position": {
-        "x": 11014.0,
-        "y": 2915.0
+        "x": 10517.0,
+        "y": 2976.0
       },
       "params": [
         {
@@ -3094,8 +2618,8 @@
       "type_name": "Number Slider",
       "nickname": "Orientation",
       "position": {
-        "x": 9194.566,
-        "y": 3107.6519
+        "x": 9583.631,
+        "y": 3022.95
       },
       "params": [
         {
@@ -3103,203 +2627,9 @@
           "name": "Value",
           "type": "output",
           "persistent_data": [
-            0.0
+            4.0
           ],
           "sources": [],
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
-      "instance_guid": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
-      "type_name": "Construct Point",
-      "nickname": "Construct Point",
-      "position": {
-        "x": 10457.0,
-        "y": 3029.0
-      },
-      "params": [
-        {
-          "param_guid": "c6d99abc-0d60-498c-82b0-565e05e62bcb",
-          "name": "X coordinate",
-          "type": "input",
-          "persistent_data": [
-            0
-          ],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "2be05eb0-b047-4927-a81a-99da92df51d7",
-          "name": "Y coordinate",
-          "type": "input",
-          "persistent_data": [
-            0
-          ],
-          "sources": [
-            "125e7c20-d243-4cdc-927b-568ceb6315b5"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "3988aa76-a3cf-48be-bd80-9c4724d37edc",
-          "name": "Z coordinate",
-          "type": "input",
-          "persistent_data": [
-            0
-          ],
-          "sources": [
-            "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "3e0431d2-2630-4f1b-9ebd-078d00994cf5",
-          "name": "Point",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
-      "instance_guid": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
-      "type_name": "Move",
-      "nickname": "Move",
-      "position": {
-        "x": 10798.0,
-        "y": 3039.0
-      },
-      "params": [
-        {
-          "param_guid": "5dc1cdfb-4a69-42c7-ae9f-1861a22c96e7",
-          "name": "Geometry",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "3e0431d2-2630-4f1b-9ebd-078d00994cf5"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "d9fc6b37-e624-460f-8425-264eb213fbec",
-          "name": "Motion",
-          "type": "input",
-          "persistent_data": [
-            [
-              0.0,
-              0.0,
-              10.0
-            ]
-          ],
-          "sources": [
-            "800ae5cf-6f77-4b7e-aec7-5725d272bd84"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "904fae86-dbbe-46a6-ad19-bd7d1c6539bf",
-          "name": "Geometry",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "14611b82-7236-4830-8e0a-9a29f3a3f82e",
-          "name": "Transform",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
-      "instance_guid": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
-      "type_name": "Negative",
-      "nickname": "Negative",
-      "position": {
-        "x": 10433.0,
-        "y": 2901.0
-      },
-      "params": [
-        {
-          "param_guid": "9e171c22-f1b3-4ab9-83eb-fdb23144e4af",
-          "name": "Value",
-          "type": "input",
-          "persistent_data": [],
-          "sources": [
-            "04a32494-760d-465e-85e5-f1a91dd0d1ee"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "1288cc78-451b-423d-bbc4-2e1a268f1389",
-          "name": "Result",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
-      "guid": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
-      "instance_guid": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
-      "type_name": "Unit Y",
-      "nickname": "Unit Y",
-      "position": {
-        "x": 10611.0,
-        "y": 3049.0
-      },
-      "params": [
-        {
-          "param_guid": "273178c0-f287-4b37-9638-b35292973455",
-          "name": "Factor",
-          "type": "input",
-          "persistent_data": [
-            1
-          ],
-          "sources": [
-            "1288cc78-451b-423d-bbc4-2e1a268f1389"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "800ae5cf-6f77-4b7e-aec7-5725d272bd84",
-          "name": "Unit vector",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
           "mapping": 0,
           "reverse_data": false
         }
@@ -3311,8 +2641,8 @@
       "type_name": "Rotate",
       "nickname": "Rotate",
       "position": {
-        "x": 11016.0,
-        "y": 2811.0
+        "x": 10911.0,
+        "y": 2574.0
       },
       "params": [
         {
@@ -3407,8 +2737,8 @@
       "type_name": "Rotate",
       "nickname": "Rotate",
       "position": {
-        "x": 11019.0,
-        "y": 3049.0
+        "x": 11169.0,
+        "y": 3156.0
       },
       "params": [
         {
@@ -3417,7 +2747,7 @@
           "type": "input",
           "persistent_data": [],
           "sources": [
-            "904fae86-dbbe-46a6-ad19-bd7d1c6539bf"
+            "84f1e797-61cf-4ca9-a3e6-df65642418f0"
           ],
           "expression": null,
           "mapping": 0,
@@ -3503,8 +2833,8 @@
       "type_name": "LB Calculate HOY",
       "nickname": "HOY",
       "position": {
-        "x": 11304.0,
-        "y": 1572.0
+        "x": 11822.0,
+        "y": 2221.0
       },
       "params": [
         {
@@ -3591,8 +2921,8 @@
       "type_name": "YZ Plane",
       "nickname": "YZ Plane",
       "position": {
-        "x": 11529.0,
-        "y": 2911.0
+        "x": 10846.0,
+        "y": 2971.0
       },
       "params": [
         {
@@ -3631,8 +2961,8 @@
       "type_name": "Rotate",
       "nickname": "Rotate",
       "position": {
-        "x": 11786.0,
-        "y": 2854.0
+        "x": 11171.0,
+        "y": 2958.0
       },
       "params": [
         {
@@ -3727,8 +3057,8 @@
       "type_name": "Number Slider",
       "nickname": "Month",
       "position": {
-        "x": 10856.79,
-        "y": 1532.1403
+        "x": 11346.963,
+        "y": 2197.042
       },
       "params": [
         {
@@ -3750,8 +3080,8 @@
       "type_name": "Number Slider",
       "nickname": "Day",
       "position": {
-        "x": 10859.067,
-        "y": 1572.4626
+        "x": 11349.24,
+        "y": 2237.3645
       },
       "params": [
         {
@@ -3773,8 +3103,8 @@
       "type_name": "Number Slider",
       "nickname": "Hour",
       "position": {
-        "x": 10854.785,
-        "y": 1610.0178
+        "x": 11341.559,
+        "y": 2273.2192
       },
       "params": [
         {
@@ -3791,53 +3121,13 @@
       ]
     },
     {
-      "guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-      "instance_guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-      "type_name": "YZ Plane",
-      "nickname": "YZ Plane",
-      "position": {
-        "x": 11862.0,
-        "y": 2653.0
-      },
-      "params": [
-        {
-          "param_guid": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
-          "name": "Origin",
-          "type": "input",
-          "persistent_data": [
-            [
-              0.0,
-              0.0,
-              0.0
-            ]
-          ],
-          "sources": [
-            "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
-          "name": "Plane",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
       "instance_guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
       "type_name": "Circle",
       "nickname": "Circle",
       "position": {
-        "x": 12022.0,
-        "y": 2669.0
+        "x": 11976.0,
+        "y": 2853.0
       },
       "params": [
         {
@@ -3874,7 +3164,7 @@
             }
           ],
           "sources": [
-            "b8cbaed8-c6f7-4c1c-b9ba-88320b975081"
+            "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a"
           ],
           "expression": null,
           "mapping": 0,
@@ -3910,8 +3200,8 @@
       "type_name": "Curve | Curve",
       "nickname": "Curve | Curve",
       "position": {
-        "x": 12225.0,
-        "y": 2693.0
+        "x": 12139.0,
+        "y": 2868.0
       },
       "params": [
         {
@@ -3976,8 +3266,8 @@
       "type_name": "Curve | Curve",
       "nickname": "Curve | Curve",
       "position": {
-        "x": 12259.0,
-        "y": 2827.0
+        "x": 12143.0,
+        "y": 2982.0
       },
       "params": [
         {
@@ -4042,8 +3332,8 @@
       "type_name": "Line",
       "nickname": "Line",
       "position": {
-        "x": 12489.0,
-        "y": 2760.0
+        "x": 12348.0,
+        "y": 2911.0
       },
       "params": [
         {
@@ -4073,6 +3363,618 @@
         {
           "param_guid": "944abd50-d894-4e46-893e-7a2cdf566398",
           "name": "Line",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "b039ccc0-e007-4f5c-acf4-a2d4c422bb06",
+      "instance_guid": "b039ccc0-e007-4f5c-acf4-a2d4c422bb06",
+      "type_name": "Vector XYZ",
+      "nickname": "Vector XYZ",
+      "position": {
+        "x": 10595.0,
+        "y": 2745.0
+      },
+      "params": [
+        {
+          "param_guid": "aa468ec4-5a4a-48d7-975f-b0bd65cae22e",
+          "name": "X component",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "38485828-3ecf-45f3-a6c2-07087c7dc81d",
+          "name": "Y component",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [
+            "67f4de90-a796-4b58-82cd-e3d52c291ee4"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "127e7861-77a2-406c-8328-d7d48f4e0a7a",
+          "name": "Z component",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [
+            "6d041be6-4424-4912-a301-f6c784a923a4"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "bdf045ed-d878-4ecc-99cd-ee0e3dfe9aea",
+          "name": "Vector",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "ef7f3391-ec4c-4683-a985-365e257bef01",
+          "name": "Length",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "9e5c8978-0215-4e24-9de7-2835cc9d4420",
+      "instance_guid": "9e5c8978-0215-4e24-9de7-2835cc9d4420",
+      "type_name": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10189.0,
+        "y": 2701.0
+      },
+      "params": [
+        {
+          "param_guid": "a45a9332-760e-4d4a-87d5-340f5d105f6a",
+          "name": "Start",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [
+            "507b14ee-692b-41df-973f-6bfef76514c2"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "4964aa6d-7856-45f2-9fc1-1bb70203474c",
+          "name": "Step",
+          "type": "input",
+          "persistent_data": [
+            1
+          ],
+          "sources": [
+            "bdac63ee-60a4-4873-8860-06e887053c0e"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "4c12d3fd-aa56-4148-aad0-5b38ffb63266",
+          "name": "Count",
+          "type": "input",
+          "persistent_data": [
+            10
+          ],
+          "sources": [
+            "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "44ca5912-0d25-402c-be7f-c98b6c8b9b00",
+          "name": "Series",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "3226d29d-f856-49b8-8bec-b96e3d29405c",
+      "instance_guid": "3226d29d-f856-49b8-8bec-b96e3d29405c",
+      "type_name": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 10346.0,
+        "y": 2701.0
+      },
+      "params": [
+        {
+          "param_guid": "8bd09659-9f25-4fab-a42d-4fbc4682631b",
+          "name": "Value",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "44ca5912-0d25-402c-be7f-c98b6c8b9b00"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "67f4de90-a796-4b58-82cd-e3d52c291ee4",
+          "name": "Result",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "406ae5c3-f564-48cb-a706-012ed4f59c28",
+      "instance_guid": "406ae5c3-f564-48cb-a706-012ed4f59c28",
+      "type_name": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10344.0,
+        "y": 2781.0
+      },
+      "params": [
+        {
+          "param_guid": "d4bc851e-94e4-405c-9ee2-f0c51bec1852",
+          "name": "Start",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [
+            "456d176f-14cf-4134-9062-b4623202c00e"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "1225ab89-c54a-4b81-b4e4-5cb407289642",
+          "name": "Step",
+          "type": "input",
+          "persistent_data": [
+            1
+          ],
+          "sources": [
+            "f8fdffb7-41e7-43c7-93a7-44bdc965ed27"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "8d8804a5-837d-4627-a0ef-f13c6f113f78",
+          "name": "Count",
+          "type": "input",
+          "persistent_data": [
+            10
+          ],
+          "sources": [
+            "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "6d041be6-4424-4912-a301-f6c784a923a4",
+          "name": "Series",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "74e65ef4-f002-469e-9fa5-a755ea3bf267",
+      "instance_guid": "74e65ef4-f002-469e-9fa5-a755ea3bf267",
+      "type_name": "Series",
+      "nickname": "Series",
+      "position": {
+        "x": 10799.0,
+        "y": 3146.0
+      },
+      "params": [
+        {
+          "param_guid": "5ac445e2-a1d3-4ffc-a1a5-abec4945973f",
+          "name": "Start",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [
+            "125e7c20-d243-4cdc-927b-568ceb6315b5"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "0b7fc08f-4fb6-4ea7-a29c-1bf3b8cce3b4",
+          "name": "Step",
+          "type": "input",
+          "persistent_data": [
+            1
+          ],
+          "sources": [
+            "81c03ecf-146f-4720-86f7-6625464457cb"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "0a775990-2105-443b-ab06-006b83b9a96b",
+          "name": "Count",
+          "type": "input",
+          "persistent_data": [
+            10
+          ],
+          "sources": [
+            "537142d8-e672-4d12-8254-46dbe1e3c7ef"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "6eec66f9-0d6d-4b75-8390-74a5e14e0d02",
+          "name": "Series",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "83163d4d-2c2b-4fcf-90e7-83cdec38378f",
+      "instance_guid": "83163d4d-2c2b-4fcf-90e7-83cdec38378f",
+      "type_name": "Construct Point",
+      "nickname": "Construct Point",
+      "position": {
+        "x": 10977.0,
+        "y": 3147.0
+      },
+      "params": [
+        {
+          "param_guid": "15771a8b-3040-4231-b19a-591a4da37fbb",
+          "name": "X coordinate",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "2175529d-4992-4964-b81c-9d95c55e8b0f",
+          "name": "Y coordinate",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [
+            "6eec66f9-0d6d-4b75-8390-74a5e14e0d02"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "c4bf7b66-bc03-4427-bd71-6cda6b3a0f56",
+          "name": "Z coordinate",
+          "type": "input",
+          "persistent_data": [
+            0
+          ],
+          "sources": [
+            "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "84f1e797-61cf-4ca9-a3e6-df65642418f0",
+          "name": "Point",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "afa074ab-9392-42bc-b1cf-bdbe085f5f7a",
+      "instance_guid": "afa074ab-9392-42bc-b1cf-bdbe085f5f7a",
+      "type_name": "Negative",
+      "nickname": "-",
+      "position": {
+        "x": 10661.0,
+        "y": 3146.0
+      },
+      "params": [
+        {
+          "param_guid": "65175dd9-8315-41f3-81c2-a1ca670d4a74",
+          "name": "Value",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "133aa1b3-f899-4543-88d4-cde6da741d95"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "81c03ecf-146f-4720-86f7-6625464457cb",
+          "name": "Result",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "d0fb35cd-1f77-47e7-84ce-c06fa18904b2",
+      "instance_guid": "d0fb35cd-1f77-47e7-84ce-c06fa18904b2",
+      "type_name": "Unit Z",
+      "nickname": "Unit Z",
+      "position": {
+        "x": 10811.0,
+        "y": 2868.0
+      },
+      "params": [
+        {
+          "param_guid": "6cde7ca8-03bf-4c24-9990-3b06faaae39b",
+          "name": "Factor",
+          "type": "input",
+          "persistent_data": [
+            1
+          ],
+          "sources": [
+            "6d041be6-4424-4912-a301-f6c784a923a4"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "d21112d0-a188-401e-9b64-229d6115077f",
+          "name": "Unit vector",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "bcff2e7f-e5f2-42d5-8b4c-eed87d2b057c",
+      "instance_guid": "bcff2e7f-e5f2-42d5-8b4c-eed87d2b057c",
+      "type_name": "Explode Tree",
+      "nickname": "Explode Tree",
+      "position": {
+        "x": 11453.0,
+        "y": 2550.0
+      },
+      "params": [
+        {
+          "param_guid": "62b8808d-bd2e-4448-a268-fc97fd9b352b",
+          "name": "Data",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "c53c0d0c-971b-4bce-a82c-4c495c1d6590"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "6cfec9e2-e831-46ea-b3e7-c42c36fec35a",
+          "name": "Branch 0",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "74ff3fab-8698-4a81-b2ff-56a4ca6adc8d",
+          "name": "Branch 1",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+      "instance_guid": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+      "type_name": "YZ Plane",
+      "nickname": "YZ Plane",
+      "position": {
+        "x": 11625.0,
+        "y": 2752.0
+      },
+      "params": [
+        {
+          "param_guid": "b8b47e38-fdc2-4ca8-aa52-a78d7ad351cc",
+          "name": "Origin",
+          "type": "input",
+          "persistent_data": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "sources": [
+            "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "0d271b78-75c7-4a94-95c3-86215b217000",
+          "name": "Plane",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "instance_guid": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "type_name": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11820.0,
+        "y": 2772.0
+      },
+      "params": [
+        {
+          "param_guid": "d09a4ae4-a514-4dbb-adf1-56a5dcfd0d36",
+          "name": "Geometry",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "0d271b78-75c7-4a94-95c3-86215b217000"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "a037cb6c-8a21-4f40-9cf5-6a4cdf8c534b",
+          "name": "Angle",
+          "type": "input",
+          "persistent_data": [
+            1.5707963267948966
+          ],
+          "sources": [
+            "5354f884-8b45-418e-968a-55689cb2e986"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "cfdd0c56-9b9d-45bc-965d-f92fa77fedce",
+          "name": "Plane",
+          "type": "input",
+          "persistent_data": [
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ],
+          "sources": [
+            "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a",
+          "name": "Geometry",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "ff795236-54a1-43fe-be43-13d7693bdcee",
+          "name": "Transform",
           "type": "output",
           "persistent_data": [],
           "sources": [],
@@ -4120,74 +4022,11 @@
       "to_param_name": "Geometry"
     },
     {
-      "from_component": "07dcee6c-9ef1-4893-a77f-18130fa2c9ea",
-      "from_param": "07dcee6c-9ef1-4893-a77f-18130fa2c9ea",
+      "from_component": "bdf045ed-d878-4ecc-99cd-ee0e3dfe9aea",
+      "from_param": "bdf045ed-d878-4ecc-99cd-ee0e3dfe9aea",
       "to_component": "ddb9e6ae-7d3e-41ae-8c75-fc726c984724",
       "to_param": "f43c38ad-5987-445b-9abe-6d6f79487522",
       "to_param_name": "Motion"
-    },
-    {
-      "from_component": "f8fdffb7-41e7-43c7-93a7-44bdc965ed27",
-      "from_param": "f8fdffb7-41e7-43c7-93a7-44bdc965ed27",
-      "to_component": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
-      "to_param": "cc1e7e44-c1aa-4ee7-8dfa-849726cdb7c5",
-      "to_param_name": "Start"
-    },
-    {
-      "from_component": "20f5465a-8288-49ad-acd1-2eb24e1f8765",
-      "from_param": "20f5465a-8288-49ad-acd1-2eb24e1f8765",
-      "to_component": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
-      "to_param": "ef467247-5327-4364-b897-38a904554a85",
-      "to_param_name": "Step"
-    },
-    {
-      "from_component": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
-      "from_param": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
-      "to_component": "b785e424-ebb1-42fc-ac03-dee2d7d764b4",
-      "to_param": "23cf7783-b37e-42a5-b01e-ff22b04c20f2",
-      "to_param_name": "Count"
-    },
-    {
-      "from_component": "3a96e7fa-3a91-4dd9-a965-18049ca7617e",
-      "from_param": "3a96e7fa-3a91-4dd9-a965-18049ca7617e",
-      "to_component": "3732df33-c378-4227-b549-b5ab541e82c6",
-      "to_param": "156d24aa-d953-47d9-968a-f53eaf2e97eb",
-      "to_param_name": "Factor"
-    },
-    {
-      "from_component": "306c324a-3b04-4c46-bd5a-d11cacfe8fdb",
-      "from_param": "306c324a-3b04-4c46-bd5a-d11cacfe8fdb",
-      "to_component": "268410b9-4d90-4bb6-b716-3e8df5798c14",
-      "to_param": "d8c566f5-4ee4-45cd-a663-2b3622892b76",
-      "to_param_name": "Factor"
-    },
-    {
-      "from_component": "81565b66-9edb-40aa-af52-a7bb6218de84",
-      "from_param": "81565b66-9edb-40aa-af52-a7bb6218de84",
-      "to_component": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
-      "to_param": "3d26c657-b61d-4e4d-b613-a78cd2851bc9",
-      "to_param_name": "Point A"
-    },
-    {
-      "from_component": "4fa54506-86c5-4395-99c0-4fea6344d470",
-      "from_param": "4fa54506-86c5-4395-99c0-4fea6344d470",
-      "to_component": "ea032caa-ddff-403c-ab58-8ab6e24931ac",
-      "to_param": "b2a79070-e04f-4c54-9874-bb876bd116a9",
-      "to_param_name": "Point B"
-    },
-    {
-      "from_component": "133aa1b3-f899-4543-88d4-cde6da741d95",
-      "from_param": "133aa1b3-f899-4543-88d4-cde6da741d95",
-      "to_component": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
-      "to_param": "5555e87c-cbec-4fd7-8f19-91671b29ca4a",
-      "to_param_name": "Step"
-    },
-    {
-      "from_component": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
-      "from_param": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
-      "to_component": "474a94bf-3e89-4a45-8598-c5ccdb21edae",
-      "to_param": "663e13ce-1b1d-4ab4-a564-8b7261377b65",
-      "to_param_name": "Count"
     },
     {
       "from_component": "0fb443ce-5a5e-455f-999f-96fcaec0e113",
@@ -4202,27 +4041,6 @@
       "to_component": "b908d823-e613-4684-9e94-65a0f60f19b7",
       "to_param": "1626f4be-98c5-4b05-8953-e8b7140d4b40",
       "to_param_name": "Point B"
-    },
-    {
-      "from_component": "507b14ee-692b-41df-973f-6bfef76514c2",
-      "from_param": "507b14ee-692b-41df-973f-6bfef76514c2",
-      "to_component": "680b290d-e662-4a76-9b3c-e5e921230589",
-      "to_param": "44c022d2-8866-43b1-ab91-1e88d5e0fa5c",
-      "to_param_name": "Start"
-    },
-    {
-      "from_component": "bdac63ee-60a4-4873-8860-06e887053c0e",
-      "from_param": "bdac63ee-60a4-4873-8860-06e887053c0e",
-      "to_component": "680b290d-e662-4a76-9b3c-e5e921230589",
-      "to_param": "eab69ed6-bdcf-4313-9a91-924ee114c1f3",
-      "to_param_name": "Step"
-    },
-    {
-      "from_component": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
-      "from_param": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
-      "to_component": "680b290d-e662-4a76-9b3c-e5e921230589",
-      "to_param": "b2093866-34f2-47ea-a0b1-19f63ca7dbc7",
-      "to_param_name": "Count"
     },
     {
       "from_component": "902866aa-e5b3-4461-9877-73b22ea3618a",
@@ -4281,13 +4099,6 @@
       "to_param_name": "Value"
     },
     {
-      "from_component": "c53c0d0c-971b-4bce-a82c-4c495c1d6590",
-      "from_param": "c53c0d0c-971b-4bce-a82c-4c495c1d6590",
-      "to_component": "44387b24-9fda-46f7-9d1b-9e4790d8dbfe",
-      "to_param": "06d8458e-06fe-40d8-a33d-a757b07fe993",
-      "to_param_name": "Data"
-    },
-    {
       "from_component": "a7d2817a-3182-496e-a453-80e7eeba16fa",
       "from_param": "a7d2817a-3182-496e-a453-80e7eeba16fa",
       "to_component": "32cc502c-07b0-4d58-aef1-8acf8b2f4015",
@@ -4302,15 +4113,8 @@
       "to_param_name": "A"
     },
     {
-      "from_component": "160dcd76-1555-48ba-a352-8e284348cd05",
-      "from_param": "160dcd76-1555-48ba-a352-8e284348cd05",
-      "to_component": "4775d3bf-e4d7-45c5-bd64-2ca4d0143e4b",
-      "to_param": "fe22979a-ae9f-48e8-b1a6-a1a5c6af8575",
-      "to_param_name": "Value"
-    },
-    {
-      "from_component": "456d176f-14cf-4134-9062-b4623202c00e",
-      "from_param": "456d176f-14cf-4134-9062-b4623202c00e",
+      "from_component": "20f5465a-8288-49ad-acd1-2eb24e1f8765",
+      "from_param": "20f5465a-8288-49ad-acd1-2eb24e1f8765",
       "to_component": "b3c71890-f270-4efd-b308-60428215f2be",
       "to_param": "c66c4f71-fc20-4b9f-a374-f8d2b17dd8a5",
       "to_param_name": "Value"
@@ -4365,8 +4169,8 @@
       "to_param_name": "Geometry"
     },
     {
-      "from_component": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
-      "from_param": "e932b554-bb15-4f31-bb75-7157a92b9a0a",
+      "from_component": "6cfec9e2-e831-46ea-b3e7-c42c36fec35a",
+      "from_param": "6cfec9e2-e831-46ea-b3e7-c42c36fec35a",
       "to_component": "0f529988-b68b-4d48-9a48-cf099af69050",
       "to_param": "b1398a69-fbda-4447-af1b-e68aa5938736",
       "to_param_name": "Motion"
@@ -4456,8 +4260,8 @@
       "to_param_name": "B"
     },
     {
-      "from_component": "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a",
-      "from_param": "6b94f6c4-5a0a-46e6-89d9-fc0324f3f13a",
+      "from_component": "4b0092c3-9120-4e4b-bdf3-8035944050a7",
+      "from_param": "4b0092c3-9120-4e4b-bdf3-8035944050a7",
       "to_component": "0d695e6b-3696-4337-bc80-d14104f8a59e",
       "to_param": "2c5ac9e7-64aa-47d8-b945-2254ab2b047e",
       "to_param_name": "Vector A"
@@ -4547,13 +4351,6 @@
       "to_param_name": "Vertices"
     },
     {
-      "from_component": "4b0092c3-9120-4e4b-bdf3-8035944050a7",
-      "from_param": "4b0092c3-9120-4e4b-bdf3-8035944050a7",
-      "to_component": "157c48b5-0aed-49e5-a808-d4c64666062d",
-      "to_param": "128cdce4-9043-4e4c-a6d7-ad52c8af0dfd",
-      "to_param_name": "List"
-    },
-    {
       "from_component": "f78fb52e-b019-4ac1-bd55-7bee81f356a4",
       "from_param": "f78fb52e-b019-4ac1-bd55-7bee81f356a4",
       "to_component": "011398ea-ce1d-412a-afeb-fe91e8fac96c",
@@ -4596,48 +4393,6 @@
       "to_param_name": "Angle"
     },
     {
-      "from_component": "125e7c20-d243-4cdc-927b-568ceb6315b5",
-      "from_param": "125e7c20-d243-4cdc-927b-568ceb6315b5",
-      "to_component": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
-      "to_param": "2be05eb0-b047-4927-a81a-99da92df51d7",
-      "to_param_name": "Y coordinate"
-    },
-    {
-      "from_component": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
-      "from_param": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
-      "to_component": "9754db2b-c513-48b6-bbf7-0d06f53b3ce4",
-      "to_param": "3988aa76-a3cf-48be-bd80-9c4724d37edc",
-      "to_param_name": "Z coordinate"
-    },
-    {
-      "from_component": "3e0431d2-2630-4f1b-9ebd-078d00994cf5",
-      "from_param": "3e0431d2-2630-4f1b-9ebd-078d00994cf5",
-      "to_component": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
-      "to_param": "5dc1cdfb-4a69-42c7-ae9f-1861a22c96e7",
-      "to_param_name": "Geometry"
-    },
-    {
-      "from_component": "800ae5cf-6f77-4b7e-aec7-5725d272bd84",
-      "from_param": "800ae5cf-6f77-4b7e-aec7-5725d272bd84",
-      "to_component": "c2ab4791-ae5f-4087-82af-dfd4587ed22e",
-      "to_param": "d9fc6b37-e624-460f-8425-264eb213fbec",
-      "to_param_name": "Motion"
-    },
-    {
-      "from_component": "04a32494-760d-465e-85e5-f1a91dd0d1ee",
-      "from_param": "04a32494-760d-465e-85e5-f1a91dd0d1ee",
-      "to_component": "ebcd02a2-ac68-43a5-b02e-701fa8770206",
-      "to_param": "9e171c22-f1b3-4ab9-83eb-fdb23144e4af",
-      "to_param_name": "Value"
-    },
-    {
-      "from_component": "1288cc78-451b-423d-bbc4-2e1a268f1389",
-      "from_param": "1288cc78-451b-423d-bbc4-2e1a268f1389",
-      "to_component": "af7efbe5-8f3d-4101-ad11-c9efc24d5577",
-      "to_param": "273178c0-f287-4b37-9638-b35292973455",
-      "to_param_name": "Factor"
-    },
-    {
       "from_component": "47af807c-369d-4bd2-bbbb-d53a4605f8e6",
       "from_param": "47af807c-369d-4bd2-bbbb-d53a4605f8e6",
       "to_component": "505e72fd-e7f0-4e7d-ba69-88f047b56bb9",
@@ -4652,8 +4407,8 @@
       "to_param_name": "Angle"
     },
     {
-      "from_component": "904fae86-dbbe-46a6-ad19-bd7d1c6539bf",
-      "from_param": "904fae86-dbbe-46a6-ad19-bd7d1c6539bf",
+      "from_component": "84f1e797-61cf-4ca9-a3e6-df65642418f0",
+      "from_param": "84f1e797-61cf-4ca9-a3e6-df65642418f0",
       "to_component": "464c66b3-4ac6-4cc0-b283-407f8fe787a3",
       "to_param": "25aaaa70-2339-4889-b4db-ff8e27090e1d",
       "to_param_name": "Geometry"
@@ -4708,15 +4463,8 @@
       "to_param_name": "Angle"
     },
     {
-      "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
-      "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
-      "to_component": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-      "to_param": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
-      "to_param_name": "Origin"
-    },
-    {
-      "from_component": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
-      "from_param": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
+      "from_component": "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a",
+      "from_param": "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a",
       "to_component": "2c8beafc-c3a7-425a-905e-4830f637c094",
       "to_param": "5cf732f4-5636-4d38-843b-7261c7d04ed4",
       "to_param_name": "Plane"
@@ -4762,8 +4510,155 @@
       "to_component": "ff77f5b8-1125-4565-bdf6-0922a443efcf",
       "to_param": "87eb3f27-bb21-4cc3-9edd-e1575b045048",
       "to_param_name": "End Point"
+    },
+    {
+      "from_component": "67f4de90-a796-4b58-82cd-e3d52c291ee4",
+      "from_param": "67f4de90-a796-4b58-82cd-e3d52c291ee4",
+      "to_component": "b039ccc0-e007-4f5c-acf4-a2d4c422bb06",
+      "to_param": "38485828-3ecf-45f3-a6c2-07087c7dc81d",
+      "to_param_name": "Y component"
+    },
+    {
+      "from_component": "6d041be6-4424-4912-a301-f6c784a923a4",
+      "from_param": "6d041be6-4424-4912-a301-f6c784a923a4",
+      "to_component": "b039ccc0-e007-4f5c-acf4-a2d4c422bb06",
+      "to_param": "127e7861-77a2-406c-8328-d7d48f4e0a7a",
+      "to_param_name": "Z component"
+    },
+    {
+      "from_component": "507b14ee-692b-41df-973f-6bfef76514c2",
+      "from_param": "507b14ee-692b-41df-973f-6bfef76514c2",
+      "to_component": "9e5c8978-0215-4e24-9de7-2835cc9d4420",
+      "to_param": "a45a9332-760e-4d4a-87d5-340f5d105f6a",
+      "to_param_name": "Start"
+    },
+    {
+      "from_component": "bdac63ee-60a4-4873-8860-06e887053c0e",
+      "from_param": "bdac63ee-60a4-4873-8860-06e887053c0e",
+      "to_component": "9e5c8978-0215-4e24-9de7-2835cc9d4420",
+      "to_param": "4964aa6d-7856-45f2-9fc1-1bb70203474c",
+      "to_param_name": "Step"
+    },
+    {
+      "from_component": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
+      "from_param": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
+      "to_component": "9e5c8978-0215-4e24-9de7-2835cc9d4420",
+      "to_param": "4c12d3fd-aa56-4148-aad0-5b38ffb63266",
+      "to_param_name": "Count"
+    },
+    {
+      "from_component": "44ca5912-0d25-402c-be7f-c98b6c8b9b00",
+      "from_param": "44ca5912-0d25-402c-be7f-c98b6c8b9b00",
+      "to_component": "3226d29d-f856-49b8-8bec-b96e3d29405c",
+      "to_param": "8bd09659-9f25-4fab-a42d-4fbc4682631b",
+      "to_param_name": "Value"
+    },
+    {
+      "from_component": "456d176f-14cf-4134-9062-b4623202c00e",
+      "from_param": "456d176f-14cf-4134-9062-b4623202c00e",
+      "to_component": "406ae5c3-f564-48cb-a706-012ed4f59c28",
+      "to_param": "d4bc851e-94e4-405c-9ee2-f0c51bec1852",
+      "to_param_name": "Start"
+    },
+    {
+      "from_component": "f8fdffb7-41e7-43c7-93a7-44bdc965ed27",
+      "from_param": "f8fdffb7-41e7-43c7-93a7-44bdc965ed27",
+      "to_component": "406ae5c3-f564-48cb-a706-012ed4f59c28",
+      "to_param": "1225ab89-c54a-4b81-b4e4-5cb407289642",
+      "to_param_name": "Step"
+    },
+    {
+      "from_component": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
+      "from_param": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
+      "to_component": "406ae5c3-f564-48cb-a706-012ed4f59c28",
+      "to_param": "8d8804a5-837d-4627-a0ef-f13c6f113f78",
+      "to_param_name": "Count"
+    },
+    {
+      "from_component": "125e7c20-d243-4cdc-927b-568ceb6315b5",
+      "from_param": "125e7c20-d243-4cdc-927b-568ceb6315b5",
+      "to_component": "74e65ef4-f002-469e-9fa5-a755ea3bf267",
+      "to_param": "5ac445e2-a1d3-4ffc-a1a5-abec4945973f",
+      "to_param_name": "Start"
+    },
+    {
+      "from_component": "81c03ecf-146f-4720-86f7-6625464457cb",
+      "from_param": "81c03ecf-146f-4720-86f7-6625464457cb",
+      "to_component": "74e65ef4-f002-469e-9fa5-a755ea3bf267",
+      "to_param": "0b7fc08f-4fb6-4ea7-a29c-1bf3b8cce3b4",
+      "to_param_name": "Step"
+    },
+    {
+      "from_component": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
+      "from_param": "537142d8-e672-4d12-8254-46dbe1e3c7ef",
+      "to_component": "74e65ef4-f002-469e-9fa5-a755ea3bf267",
+      "to_param": "0a775990-2105-443b-ab06-006b83b9a96b",
+      "to_param_name": "Count"
+    },
+    {
+      "from_component": "6eec66f9-0d6d-4b75-8390-74a5e14e0d02",
+      "from_param": "6eec66f9-0d6d-4b75-8390-74a5e14e0d02",
+      "to_component": "83163d4d-2c2b-4fcf-90e7-83cdec38378f",
+      "to_param": "2175529d-4992-4964-b81c-9d95c55e8b0f",
+      "to_param_name": "Y coordinate"
+    },
+    {
+      "from_component": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
+      "from_param": "bd24b9c6-a1a1-42dd-a0be-e1c33df4146b",
+      "to_component": "83163d4d-2c2b-4fcf-90e7-83cdec38378f",
+      "to_param": "c4bf7b66-bc03-4427-bd71-6cda6b3a0f56",
+      "to_param_name": "Z coordinate"
+    },
+    {
+      "from_component": "133aa1b3-f899-4543-88d4-cde6da741d95",
+      "from_param": "133aa1b3-f899-4543-88d4-cde6da741d95",
+      "to_component": "afa074ab-9392-42bc-b1cf-bdbe085f5f7a",
+      "to_param": "65175dd9-8315-41f3-81c2-a1ca670d4a74",
+      "to_param_name": "Value"
+    },
+    {
+      "from_component": "6d041be6-4424-4912-a301-f6c784a923a4",
+      "from_param": "6d041be6-4424-4912-a301-f6c784a923a4",
+      "to_component": "d0fb35cd-1f77-47e7-84ce-c06fa18904b2",
+      "to_param": "6cde7ca8-03bf-4c24-9990-3b06faaae39b",
+      "to_param_name": "Factor"
+    },
+    {
+      "from_component": "c53c0d0c-971b-4bce-a82c-4c495c1d6590",
+      "from_param": "c53c0d0c-971b-4bce-a82c-4c495c1d6590",
+      "to_component": "bcff2e7f-e5f2-42d5-8b4c-eed87d2b057c",
+      "to_param": "62b8808d-bd2e-4448-a268-fc97fd9b352b",
+      "to_param_name": "Data"
+    },
+    {
+      "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "to_component": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+      "to_param": "b8b47e38-fdc2-4ca8-aa52-a78d7ad351cc",
+      "to_param_name": "Origin"
+    },
+    {
+      "from_component": "0d271b78-75c7-4a94-95c3-86215b217000",
+      "from_param": "0d271b78-75c7-4a94-95c3-86215b217000",
+      "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "to_param": "d09a4ae4-a514-4dbb-adf1-56a5dcfd0d36",
+      "to_param_name": "Geometry"
+    },
+    {
+      "from_component": "5354f884-8b45-418e-968a-55689cb2e986",
+      "from_param": "5354f884-8b45-418e-968a-55689cb2e986",
+      "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "to_param": "a037cb6c-8a21-4f40-9cf5-6a4cdf8c534b",
+      "to_param_name": "Angle"
+    },
+    {
+      "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "to_param": "cfdd0c56-9b9d-45bc-965d-f92fa77fedce",
+      "to_param_name": "Plane"
     }
   ],
-  "component_count": 74,
-  "wire_count": 97
+  "component_count": 71,
+  "wire_count": 96
 }

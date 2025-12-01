@@ -62,7 +62,7 @@ def isolate_simple():
     
     components = graph['components']
     wires = graph['wires']
-    ghx_path = 'refactored-sun-simple.ghx'
+    ghx_path = 'lovers-v3.ghx'
     
     print(f"Loaded {len(components)} components, {len(wires)} wires")
     print()

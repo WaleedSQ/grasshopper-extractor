@@ -470,6 +470,71 @@ def evaluate_vector_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     return {'Vector': vector_result, 'Length': length_result}
 
 
+@COMPONENT_REGISTRY.register("Vector XYZ")
+def evaluate_vector_xyz(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
+    """
+    GH Vector XYZ component: create vector from X, Y, Z components.
+    
+    Inputs:
+        X component: X component of vector
+        Y component: Y component of vector
+        Z component: Z component of vector
+    
+    Outputs:
+        Vector: Vector [x, y, z]
+        Length: Magnitude of vector
+    """
+    # GH Vector XYZ: create vector from X, Y, Z components
+    x_tree = inputs.get('X component', DataTree.from_scalar(0))
+    y_tree = inputs.get('Y component', DataTree.from_scalar(0))
+    z_tree = inputs.get('Z component', DataTree.from_scalar(0))
+    
+    # Match all three inputs using longest strategy
+    x_matched, y_matched, z_matched = match_longest(x_tree, y_tree, z_tree)
+    
+    vector_result = DataTree()
+    length_result = DataTree()
+    
+    for path in x_matched.get_paths():
+        x_items = x_matched.get_branch(path)
+        y_items = y_matched.get_branch(path)
+        z_items = z_matched.get_branch(path)
+        
+        vectors = []
+        lengths = []
+        
+        for x_val, y_val, z_val in zip(x_items, y_items, z_items):
+            # GH Vector XYZ: create vector from components
+            if x_val is None:
+                x_val = 0.0
+            if y_val is None:
+                y_val = 0.0
+            if z_val is None:
+                z_val = 0.0
+            
+            # Convert to float
+            try:
+                x_float = float(x_val)
+                y_float = float(y_val)
+                z_float = float(z_val)
+            except (TypeError, ValueError):
+                raise ValueError(f"GH Vector XYZ: invalid component values (x={x_val}, y={y_val}, z={z_val})")
+            
+            # GH Vector XYZ: vector = [x, y, z]
+            vector = [x_float, y_float, z_float]
+            
+            # GH Vector XYZ: compute length
+            length = math.sqrt(x_float**2 + y_float**2 + z_float**2)
+            
+            vectors.append(vector)
+            lengths.append(length)
+        
+        vector_result.set_branch(path, vectors)
+        length_result.set_branch(path, lengths)
+    
+    return {'Vector': vector_result, 'Length': length_result}
+
+
 @COMPONENT_REGISTRY.register("Unit Y")
 def evaluate_unit_y(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
     """
@@ -1365,10 +1430,16 @@ def evaluate_area(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     corner_a = geom['corner_a']
                     corner_b = geom['corner_b']
                     
+                    # Use stored dimensions if available (preserves area through rotation)
+                    # Otherwise compute from corners (axis-aligned box)
+                    if 'dimensions' in geom and geom['dimensions']:
+                        dx, dy, dz = geom['dimensions']
+                    else:
+                        dx = abs(corner_b[0] - corner_a[0])
+                        dy = abs(corner_b[1] - corner_a[1])
+                        dz = abs(corner_b[2] - corner_a[2])
+                    
                     # Compute surface area (sum of all 6 faces)
-                    dx = abs(corner_b[0] - corner_a[0])
-                    dy = abs(corner_b[1] - corner_a[1])
-                    dz = abs(corner_b[2] - corner_a[2])
                     area = 2 * (dx * dy + dy * dz + dz * dx)
                     
                     # Centroid is midpoint of diagonal
@@ -1427,11 +1498,15 @@ def evaluate_box_2pt(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         boxes = []
         
         for plane, pt_a, pt_b in zip(planes, a_points, b_points):
-            # GH Box 2Pt: create box
+            # GH Box 2Pt: create box with stored dimensions for rotation-invariant area
+            dx = abs(pt_b[0] - pt_a[0])
+            dy = abs(pt_b[1] - pt_a[1])
+            dz = abs(pt_b[2] - pt_a[2])
             box = {
                 'corner_a': pt_a,
                 'corner_b': pt_b,
-                'plane': plane
+                'plane': plane,
+                'dimensions': [dx, dy, dz]  # Store original dimensions
             }
             boxes.append(box)
         
@@ -1554,13 +1629,22 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         
         for geom, angle, plane in zip(geometries, angles, planes):
             # GH Rotate: rotate geometry around plane's Z-axis at plane's origin
-            cos_a = math.cos(angle)
-            sin_a = math.sin(angle)
+            # Convert angle from degrees to radians (Grasshopper sliders output degrees)
+            angle_rad = math.radians(angle)
+            cos_a = math.cos(angle_rad)
+            sin_a = math.sin(angle_rad)
             
             # Determine rotation origin/axis (Grasshopper: plane origin, plane Z)
+            # In Grasshopper, the Plane input can be:
+            # - A plane dict with origin and axes
+            # - A point (list/tuple) which creates a plane at that point with world Z axis
             if plane and isinstance(plane, dict):
                 rot_origin = plane.get('origin', [0, 0, 0])
                 rot_axis = plane.get('z_axis', plane.get('normal', [0, 0, 1]))
+            elif plane and isinstance(plane, (list, tuple)) and len(plane) >= 3:
+                # Point input: use point as rotation center with world Z axis
+                rot_origin = list(plane[:3])
+                rot_axis = [0, 0, 1]
             else:
                 rot_origin = [0, 0, 0]
                 rot_axis = [0, 0, 1]
@@ -1578,13 +1662,14 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                 py = pt[1] - rot_origin[1]
                 pz = pt[2] - rot_origin[2]
 
-                # Rodrigues' rotation formula
+                # Rodrigues' rotation formula: v_rot = v*cos(θ) + (k × v)*sin(θ) + k*(k·v)*(1-cos(θ))
                 ax, ay, az = rot_axis_norm
                 dot = px*ax + py*ay + pz*az
+                # Cross product k × v (axis cross point), NOT v × k
                 cross = [
-                    py*az - pz*ay,
-                    pz*ax - px*az,
-                    px*ay - py*ax
+                    ay*pz - az*py,
+                    az*px - ax*pz,
+                    ax*py - ay*px
                 ]
 
                 rotated = [
@@ -1621,11 +1706,12 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                     }
                     rotated_geoms.append(rotated)
                 elif 'corner_a' in geom and 'corner_b' in geom:
-                    # Box
+                    # Box - preserve original dimensions for area calculation
                     rotated = {
                         'corner_a': rotate_point(geom['corner_a']),
                         'corner_b': rotate_point(geom['corner_b']),
-                        'plane': geom.get('plane')
+                        'plane': geom.get('plane'),
+                        'dimensions': geom.get('dimensions')  # Preserve original dimensions
                     }
                     rotated_geoms.append(rotated)
                 elif 'origin' in geom and 'x_axis' in geom and 'y_axis' in geom and 'z_axis' in geom:
@@ -1635,10 +1721,11 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
                         ax, ay, az = rot_axis_norm
                         vx, vy, vz = vec
                         dot = vx*ax + vy*ay + vz*az
+                        # Cross product k × v (axis cross vector), NOT v × k
                         cross = [
-                            vy*az - vz*ay,
-                            vz*ax - vx*az,
-                            vx*ay - vy*ax
+                            ay*vz - az*vy,
+                            az*vx - ax*vz,
+                            ax*vy - ay*vx
                         ]
                         return [
                             vx * cos_a + cross[0] * sin_a + ax * dot * (1 - cos_a),
@@ -1663,8 +1750,8 @@ def evaluate_rotate(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
             else:
                 rotated_geoms.append(geom)
             
-            # Transformation matrix
-            transform = {'rotation': angle, 'axis': plane}
+            # Transformation matrix (store angle in radians)
+            transform = {'rotation': angle_rad, 'axis': plane}
             transforms.append(transform)
         
         geometry_result.set_branch(path, rotated_geoms)
@@ -1714,11 +1801,65 @@ def evaluate_project(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         # Brep is approximated as a plane target for projection
         if isinstance(item, dict) and 'origin' in item and 'z_axis' in item:
             return item
-        # Handle Box geometry (from Box 2Pt component)
+        # Handle Box geometry (from Box 2Pt component, possibly rotated)
         if isinstance(item, dict) and 'corner_a' in item and 'corner_b' in item:
             ca = item['corner_a']
             cb = item['corner_b']
-            # Determine which plane the box lies in based on which coordinate is constant
+            
+            # Check if dimensions are provided (indicates which axis is thin/planar)
+            # dimensions = [dx, dy, dz] where 0 means planar in that direction
+            dims = item.get('dimensions', None)
+            if dims and len(dims) == 3:
+                # Find the smallest dimension (this is the planar axis)
+                min_dim = min(dims)
+                if min_dim < 0.01:  # Very thin in one direction = planar
+                    min_idx = dims.index(min_dim)
+                    center = [(ca[0] + cb[0]) / 2, (ca[1] + cb[1]) / 2, (ca[2] + cb[2]) / 2]
+                    
+                    if min_idx == 0:
+                        # Thin in X - YZ plane, but may be rotated
+                        # Compute actual normal from corner difference
+                        # For a rotated YZ plane, the normal is approximately in the X direction
+                        # but we need to account for the rotation
+                        dx = cb[0] - ca[0]
+                        dy = cb[1] - ca[1]
+                        dz = cb[2] - ca[2]
+                        # The plane normal is perpendicular to the large dimensions (Y and Z)
+                        # For a rotated panel, use the cross product of the edge vectors
+                        # Edge 1 (along Y-ish): approximate from corners
+                        # Edge 2 (along Z): [0, 0, dz]
+                        # For simplicity, use the direction from ca to cb projected onto XY
+                        edge_xy_len = math.sqrt(dx*dx + dy*dy)
+                        if edge_xy_len > 0.01:
+                            # Rotated panel - normal is perpendicular to the XY projection
+                            # Normal in XY plane, perpendicular to (dx, dy)
+                            normal = [dy / edge_xy_len, -dx / edge_xy_len, 0]
+                        else:
+                            normal = [1, 0, 0]
+                        return {
+                            'origin': center,
+                            'z_axis': normal,
+                            'x_axis': [0, 1, 0] if abs(normal[1]) < 0.9 else [1, 0, 0],
+                            'y_axis': [0, 0, 1]
+                        }
+                    elif min_idx == 1:
+                        # Thin in Y - XZ plane
+                        return {
+                            'origin': center,
+                            'z_axis': [0, 1, 0],
+                            'x_axis': [1, 0, 0],
+                            'y_axis': [0, 0, 1]
+                        }
+                    else:  # min_idx == 2
+                        # Thin in Z - XY plane
+                        return {
+                            'origin': center,
+                            'z_axis': [0, 0, 1],
+                            'x_axis': [1, 0, 0],
+                            'y_axis': [0, 1, 0]
+                        }
+            
+            # Fallback: check if coordinates match (axis-aligned box)
             tol = 1e-6
             if abs(ca[0] - cb[0]) < tol:
                 # YZ plane (x is constant)
@@ -2729,6 +2870,10 @@ def evaluate_curve_curve(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         """
         Find intersection(s) between a line segment and a circle in 3D.
         
+        This implements Grasshopper's CCX (Curve|Curve) behavior:
+        - Circle: C(θ) = center + radius * (cos(θ) * x_axis + sin(θ) * y_axis)
+        - Line: L(t) = start + t * direction, t in [0, 1]
+        
         Returns list of (point, line_param, circle_param) tuples.
         - line_param: parameter t in [0, 1] along line segment
         - circle_param: angle in radians [0, 2*pi) around circle
@@ -2737,129 +2882,152 @@ def evaluate_curve_curve(inputs: Dict[str, DataTree]) -> Dict[str, DataTree]:
         radius = circle['radius']
         plane = circle.get('plane', {})
         
-        # Get circle's plane axes
+        # Get circle's plane axes (orthonormal basis)
         x_axis = plane.get('x_axis', [1, 0, 0])
         y_axis = plane.get('y_axis', [0, 1, 0])
         z_axis = plane.get('z_axis', [0, 0, 1])  # plane normal
         
-        # Line: P(t) = start + t * direction, t in [0, 1]
+        # Line parameters
         start = line['start']
         end = line['end']
         direction = [end[0] - start[0], end[1] - start[1], end[2] - start[2]]
+        line_len = math.sqrt(direction[0]**2 + direction[1]**2 + direction[2]**2)
+        
+        if line_len < 1e-10:
+            return []
         
         # Vector from circle center to line start
-        v = [start[0] - center[0], start[1] - center[1], start[2] - center[2]]
+        w = [start[0] - center[0], start[1] - center[1], start[2] - center[2]]
         
-        # Project line onto circle's plane
-        # Check if line is parallel to the plane (direction · normal ≈ 0)
-        dir_dot_normal = direction[0] * z_axis[0] + direction[1] * z_axis[1] + direction[2] * z_axis[2]
-        v_dot_normal = v[0] * z_axis[0] + v[1] * z_axis[1] + v[2] * z_axis[2]
+        # Compute dot products
+        d_dot_n = direction[0] * z_axis[0] + direction[1] * z_axis[1] + direction[2] * z_axis[2]
+        w_dot_n = w[0] * z_axis[0] + w[1] * z_axis[1] + w[2] * z_axis[2]
+        d_dot_u = direction[0] * x_axis[0] + direction[1] * x_axis[1] + direction[2] * x_axis[2]
+        d_dot_v = direction[0] * y_axis[0] + direction[1] * y_axis[1] + direction[2] * y_axis[2]
+        w_dot_u = w[0] * x_axis[0] + w[1] * x_axis[1] + w[2] * x_axis[2]
+        w_dot_v = w[0] * y_axis[0] + w[1] * y_axis[1] + w[2] * y_axis[2]
         
         intersections = []
+        tolerance = 1e-6  # Grasshopper uses model tolerance, typically 1e-6 to 1e-3
         
-        if abs(dir_dot_normal) < 1e-10:
-            # Line is parallel to the plane
-            if abs(v_dot_normal) < 1e-10:
-                # Line lies in the circle's plane - 2D line-circle intersection
-                # Project everything to 2D using circle's plane axes
-                
-                # Line start in 2D (relative to circle center)
-                start_2d_x = v[0] * x_axis[0] + v[1] * x_axis[1] + v[2] * x_axis[2]
-                start_2d_y = v[0] * y_axis[0] + v[1] * y_axis[1] + v[2] * y_axis[2]
-                
-                # Line direction in 2D
-                dir_2d_x = direction[0] * x_axis[0] + direction[1] * x_axis[1] + direction[2] * x_axis[2]
-                dir_2d_y = direction[0] * y_axis[0] + direction[1] * y_axis[1] + direction[2] * y_axis[2]
-                
-                # 2D line-circle intersection
-                # |P0 + t*d|² = r²  where P0 = (start_2d_x, start_2d_y), d = (dir_2d_x, dir_2d_y)
-                # a*t² + b*t + c = 0
-                a = dir_2d_x**2 + dir_2d_y**2
-                b = 2 * (start_2d_x * dir_2d_x + start_2d_y * dir_2d_y)
-                c = start_2d_x**2 + start_2d_y**2 - radius**2
-                
-                if a < 1e-10:
-                    # Line has zero length in plane
-                    return []
-                
-                discriminant = b**2 - 4*a*c
-                
-                if discriminant < -1e-10:
-                    # No intersection
-                    return []
-                elif discriminant < 1e-10:
-                    # One intersection (tangent)
-                    t = -b / (2*a)
-                    if 0 <= t <= 1:
-                        # Calculate 3D intersection point
-                        inter_point = [
-                            start[0] + t * direction[0],
-                            start[1] + t * direction[1],
-                            start[2] + t * direction[2]
-                        ]
-                        # Calculate circle parameter (angle)
-                        inter_2d_x = start_2d_x + t * dir_2d_x
-                        inter_2d_y = start_2d_y + t * dir_2d_y
-                        circle_param = math.atan2(inter_2d_y, inter_2d_x)
-                        if circle_param < 0:
-                            circle_param += 2 * math.pi
-                        intersections.append((inter_point, t, circle_param))
-                else:
-                    # Two intersections - keep only the EXIT point (larger t value)
-                    # This matches Grasshopper's CCX behavior for line-circle intersections
-                    sqrt_disc = math.sqrt(discriminant)
-                    t1 = (-b - sqrt_disc) / (2*a)  # entry point (smaller t)
-                    t2 = (-b + sqrt_disc) / (2*a)  # exit point (larger t)
-                    
-                    # Prefer exit point (t2), fall back to entry point (t1) if exit is out of bounds
-                    t = None
-                    if 0 <= t2 <= 1:
-                        t = t2
-                    elif 0 <= t1 <= 1:
-                        t = t1
-                    
-                    if t is not None:
-                        # Calculate 3D intersection point
-                        inter_point = [
-                            start[0] + t * direction[0],
-                            start[1] + t * direction[1],
-                            start[2] + t * direction[2]
-                        ]
-                        # Calculate circle parameter (angle)
-                        inter_2d_x = start_2d_x + t * dir_2d_x
-                        inter_2d_y = start_2d_y + t * dir_2d_y
-                        circle_param = math.atan2(inter_2d_y, inter_2d_x)
-                        if circle_param < 0:
-                            circle_param += 2 * math.pi
-                        intersections.append((inter_point, t, circle_param))
-            # else: line is parallel but not in plane - no intersection
-        else:
-            # Line intersects the plane at one point
-            # Solve: (start + t * direction - center) · normal = 0
-            # v · normal + t * (direction · normal) = 0
-            # t = -v_dot_normal / dir_dot_normal
-            t = -v_dot_normal / dir_dot_normal
+        # Case 1: Line is NOT parallel to circle plane (d_dot_n != 0)
+        # Find where line intersects the plane, check if that point is on the circle
+        if abs(d_dot_n) > tolerance:
+            # t where line hits plane: w_dot_n + t * d_dot_n = 0
+            t_plane = -w_dot_n / d_dot_n
             
-            if 0 <= t <= 1:
-                # Calculate intersection point with plane
-                inter_point = [
-                    start[0] + t * direction[0],
-                    start[1] + t * direction[1],
-                    start[2] + t * direction[2]
-                ]
+            if -tolerance <= t_plane <= 1 + tolerance:
+                t_plane = max(0, min(1, t_plane))  # Clamp to [0, 1]
                 
-                # Check if this point is on the circle (distance from center = radius)
-                diff = [inter_point[0] - center[0], inter_point[1] - center[1], inter_point[2] - center[2]]
-                dist_sq = diff[0]**2 + diff[1]**2 + diff[2]**2
+                # Point on line at t_plane
+                px = start[0] + t_plane * direction[0]
+                py = start[1] + t_plane * direction[1]
+                pz = start[2] + t_plane * direction[2]
                 
-                if abs(dist_sq - radius**2) < 1e-6:  # On the circle
-                    # Calculate circle parameter (angle in circle's plane)
-                    proj_x = diff[0] * x_axis[0] + diff[1] * x_axis[1] + diff[2] * x_axis[2]
-                    proj_y = diff[0] * y_axis[0] + diff[1] * y_axis[1] + diff[2] * y_axis[2]
-                    circle_param = math.atan2(proj_y, proj_x)
+                # Vector from center to this point
+                dx = px - center[0]
+                dy = py - center[1]
+                dz = pz - center[2]
+                
+                # Project onto circle plane to get 2D coordinates
+                local_x = dx * x_axis[0] + dy * x_axis[1] + dz * x_axis[2]
+                local_y = dx * y_axis[0] + dy * y_axis[1] + dz * y_axis[2]
+                
+                # Distance from center in the plane
+                dist_in_plane = math.sqrt(local_x**2 + local_y**2)
+                
+                # Check if on circle (within tolerance)
+                if abs(dist_in_plane - radius) < max(tolerance, radius * 0.01):
+                    circle_param = math.atan2(local_y, local_x)
                     if circle_param < 0:
                         circle_param += 2 * math.pi
-                    intersections.append((inter_point, t, circle_param))
+                    intersections.append(([px, py, pz], t_plane, circle_param))
+        
+        # Case 2: Line is parallel to circle plane (d_dot_n ≈ 0)
+        # Check if line lies in or near the plane, then solve 2D line-circle
+        if abs(d_dot_n) <= tolerance or len(intersections) == 0:
+            # Distance from line to plane (along normal)
+            # For parallel line, all points have same distance = w_dot_n
+            plane_dist = abs(w_dot_n)
+            
+            # Line lies in or near the plane if distance is small
+            # For a circle with y_axis in Z direction, "near" means within the circle's extent
+            if plane_dist < radius + tolerance:
+                # Project line onto circle's plane and solve 2D intersection
+                # Line in 2D: P(t) = (w_dot_u + t*d_dot_u, w_dot_v + t*d_dot_v)
+                # Circle in 2D: x² + y² = r²
+                
+                # But we need to account for the plane offset if line is not exactly in plane
+                # The effective radius in the 2D projection is reduced:
+                # r_eff² = r² - plane_dist²
+                r_eff_sq = radius**2 - plane_dist**2
+                
+                if r_eff_sq >= 0:
+                    r_eff = math.sqrt(r_eff_sq)
+                    
+                    # Solve: |P(t)|² = r_eff²
+                    # (w_dot_u + t*d_dot_u)² + (w_dot_v + t*d_dot_v)² = r_eff²
+                    # Expanding: a*t² + b*t + c = 0
+                    a = d_dot_u**2 + d_dot_v**2
+                    b = 2 * (w_dot_u * d_dot_u + w_dot_v * d_dot_v)
+                    c = w_dot_u**2 + w_dot_v**2 - r_eff_sq
+                    
+                    if a > 1e-10:  # Line has non-zero projection in plane
+                        discriminant = b**2 - 4*a*c
+                        
+                        if discriminant >= -tolerance:
+                            discriminant = max(0, discriminant)
+                            sqrt_disc = math.sqrt(discriminant)
+                            
+                            # Two potential intersections
+                            t_values = [(-b - sqrt_disc) / (2*a), (-b + sqrt_disc) / (2*a)]
+                            
+                            for t in t_values:
+                                if -tolerance <= t <= 1 + tolerance:
+                                    t = max(0, min(1, t))
+                                    
+                                    # 3D point on line
+                                    px = start[0] + t * direction[0]
+                                    py = start[1] + t * direction[1]
+                                    pz = start[2] + t * direction[2]
+                                    
+                                    # Find closest point on circle to this line point
+                                    # The 2D angle in the plane
+                                    local_x = w_dot_u + t * d_dot_u
+                                    local_y = w_dot_v + t * d_dot_v
+                                    angle = math.atan2(local_y, local_x)
+                                    
+                                    # Actual point on circle at this angle
+                                    circle_pt = [
+                                        center[0] + radius * (math.cos(angle) * x_axis[0] + math.sin(angle) * y_axis[0]),
+                                        center[1] + radius * (math.cos(angle) * x_axis[1] + math.sin(angle) * y_axis[1]),
+                                        center[2] + radius * (math.cos(angle) * x_axis[2] + math.sin(angle) * y_axis[2])
+                                    ]
+                                    
+                                    # Distance between line point and circle point
+                                    dist = math.sqrt((px - circle_pt[0])**2 + (py - circle_pt[1])**2 + (pz - circle_pt[2])**2)
+                                    
+                                    # Accept if within tolerance (Grasshopper-style)
+                                    if dist < max(tolerance, radius * 0.05):
+                                        circle_param = angle
+                                        if circle_param < 0:
+                                            circle_param += 2 * math.pi
+                                        
+                                        # Check if we already have this intersection
+                                        is_duplicate = False
+                                        for existing in intersections:
+                                            if abs(existing[1] - t) < 0.01:
+                                                is_duplicate = True
+                                                break
+                                        
+                                        if not is_duplicate:
+                                            intersections.append((circle_pt, t, circle_param))
+        
+        # Grasshopper typically returns only one intersection per curve pair (the "exit" point)
+        # Sort by t and return the one with larger t (exit point)
+        if len(intersections) > 1:
+            intersections.sort(key=lambda x: x[1])
+            return [intersections[-1]]  # Return exit point
         
         return intersections
     
