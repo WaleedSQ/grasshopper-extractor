@@ -279,8 +279,8 @@
     "type_name": "Number Slider",
     "nickname": "Slats height (top)",
     "position": {
-      "x": 9542.99,
-      "y": 2735.5684
+      "x": 9538.99,
+      "y": 2734.5684
     },
     "params": {
       "Value": "456d176f-14cf-4134-9062-b4623202c00e"
@@ -409,8 +409,8 @@
     "type_name": "Move",
     "nickname": "New Sun",
     "position": {
-      "x": 11551.0,
-      "y": 2813.0
+      "x": 11633.0,
+      "y": 2831.0
     },
     "params": {
       "Geometry": "dd0f4d1f-3f64-487c-8949-41d09cbe51d7",
@@ -423,8 +423,8 @@
     "type_name": "Project",
     "nickname": "Project Curve",
     "position": {
-      "x": 11899.0,
-      "y": 2994.0
+      "x": 11981.0,
+      "y": 3012.0
     },
     "params": {
       "Curve": "aeedb946-4c19-44d8-8e7d-77f9dd230432",
@@ -437,8 +437,8 @@
     "type_name": "Line",
     "nickname": "Out Ray",
     "position": {
-      "x": 11735.0,
-      "y": 2774.0
+      "x": 11823.0,
+      "y": 2894.0
     },
     "params": {
       "Start Point": "2eada1e3-f9eb-4d37-b594-660291d0d149",
@@ -451,8 +451,8 @@
     "type_name": "Line",
     "nickname": "In Ray",
     "position": {
-      "x": 11694.0,
-      "y": 2938.0
+      "x": 11776.0,
+      "y": 2956.0
     },
     "params": {
       "Start Point": "8a12ed41-13aa-4a75-a70f-ef3e7b37aaff",
@@ -689,7 +689,7 @@
     "type_name": "Number Slider",
     "nickname": "Orientation",
     "position": {
-      "x": 9583.821,
+      "x": 9583.631,
       "y": 3022.95
     },
     "params": {
@@ -808,26 +808,13 @@
       "Value": "bf058e10-b0e8-4f60-b1c9-0bc02970dfa7"
     }
   },
-  "d52b786d-9ccd-411a-824c-3ae52ddc5438": {
-    "guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-    "type_name": "YZ Plane",
-    "nickname": "YZ Plane",
-    "position": {
-      "x": 11696.0,
-      "y": 2856.0
-    },
-    "params": {
-      "Origin": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
-      "Plane": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081"
-    }
-  },
   "2c8beafc-c3a7-425a-905e-4830f637c094": {
     "guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
     "type_name": "Circle",
     "nickname": "Circle",
     "position": {
-      "x": 11888.0,
-      "y": 2845.0
+      "x": 11976.0,
+      "y": 2853.0
     },
     "params": {
       "Plane": "5cf732f4-5636-4d38-843b-7261c7d04ed4",
@@ -840,8 +827,8 @@
     "type_name": "Curve | Curve",
     "nickname": "Curve | Curve",
     "position": {
-      "x": 12057.0,
-      "y": 2850.0
+      "x": 12139.0,
+      "y": 2868.0
     },
     "params": {
       "Curve A": "bc29d83e-a3b9-4fe4-97b6-8a60358f152c",
@@ -856,8 +843,8 @@
     "type_name": "Curve | Curve",
     "nickname": "Curve | Curve",
     "position": {
-      "x": 12061.0,
-      "y": 2964.0
+      "x": 12143.0,
+      "y": 2982.0
     },
     "params": {
       "Curve A": "16663cb6-e2eb-4ac0-90aa-034384945d05",
@@ -872,8 +859,8 @@
     "type_name": "Line",
     "nickname": "Line",
     "position": {
-      "x": 12266.0,
-      "y": 2893.0
+      "x": 12348.0,
+      "y": 2911.0
     },
     "params": {
       "Start Point": "a649d825-c688-43e3-bcdc-4519ce395a6a",
@@ -1001,13 +988,41 @@
     "type_name": "Explode Tree",
     "nickname": "Explode Tree",
     "position": {
-      "x": 11988.0,
-      "y": 2630.0
+      "x": 11453.0,
+      "y": 2550.0
     },
     "params": {
       "Data": "62b8808d-bd2e-4448-a268-fc97fd9b352b",
       "Branch 0": "6cfec9e2-e831-46ea-b3e7-c42c36fec35a",
       "Branch 1": "74ff3fab-8698-4a81-b2ff-56a4ca6adc8d"
+    }
+  },
+  "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b": {
+    "guid": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+    "type_name": "YZ Plane",
+    "nickname": "YZ Plane",
+    "position": {
+      "x": 11625.0,
+      "y": 2752.0
+    },
+    "params": {
+      "Origin": "b8b47e38-fdc2-4ca8-aa52-a78d7ad351cc",
+      "Plane": "0d271b78-75c7-4a94-95c3-86215b217000"
+    }
+  },
+  "478f48c6-ee53-44b9-8059-da8776f8f1c0": {
+    "guid": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+    "type_name": "Rotate",
+    "nickname": "Rotate",
+    "position": {
+      "x": 11820.0,
+      "y": 2772.0
+    },
+    "params": {
+      "Geometry": "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a",
+      "Angle": "a037cb6c-8a21-4f40-9cf5-6a4cdf8c534b",
+      "Plane": "cfdd0c56-9b9d-45bc-965d-f92fa77fedce",
+      "Transform": "ff795236-54a1-43fe-be43-13d7693bdcee"
     }
   }
 }

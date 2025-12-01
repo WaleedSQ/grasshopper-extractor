@@ -314,7 +314,7 @@ def main():
     print("=" * 80)
     print()
     
-    ghx_path = 'lovers-v2.ghx'
+    ghx_path = 'lovers-v3.ghx'
     
     print(f"Parsing {ghx_path}...")
     components, wires = parse_ghx(ghx_path)

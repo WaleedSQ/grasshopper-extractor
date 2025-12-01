@@ -1242,8 +1242,8 @@
       "type_name": "Number Slider",
       "nickname": "Slats height (top)",
       "position": {
-        "x": 9542.99,
-        "y": 2735.5684
+        "x": 9538.99,
+        "y": 2734.5684
       },
       "params": [
         {
@@ -1586,8 +1586,8 @@
       "type_name": "Move",
       "nickname": "New Sun",
       "position": {
-        "x": 11551.0,
-        "y": 2813.0
+        "x": 11633.0,
+        "y": 2831.0
       },
       "params": [
         {
@@ -1648,8 +1648,8 @@
       "type_name": "Project",
       "nickname": "Project Curve",
       "position": {
-        "x": 11899.0,
-        "y": 2994.0
+        "x": 11981.0,
+        "y": 3012.0
       },
       "params": [
         {
@@ -1712,8 +1712,8 @@
       "type_name": "Line",
       "nickname": "Out Ray",
       "position": {
-        "x": 11735.0,
-        "y": 2774.0
+        "x": 11823.0,
+        "y": 2894.0
       },
       "params": [
         {
@@ -1758,8 +1758,8 @@
       "type_name": "Line",
       "nickname": "In Ray",
       "position": {
-        "x": 11694.0,
-        "y": 2938.0
+        "x": 11776.0,
+        "y": 2956.0
       },
       "params": [
         {
@@ -2618,7 +2618,7 @@
       "type_name": "Number Slider",
       "nickname": "Orientation",
       "position": {
-        "x": 9583.821,
+        "x": 9583.631,
         "y": 3022.95
       },
       "params": [
@@ -2627,7 +2627,7 @@
           "name": "Value",
           "type": "output",
           "persistent_data": [
-            0.0
+            4.0
           ],
           "sources": [],
           "mapping": 0,
@@ -3121,53 +3121,13 @@
       ]
     },
     {
-      "guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-      "instance_guid": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-      "type_name": "YZ Plane",
-      "nickname": "YZ Plane",
-      "position": {
-        "x": 11696.0,
-        "y": 2856.0
-      },
-      "params": [
-        {
-          "param_guid": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
-          "name": "Origin",
-          "type": "input",
-          "persistent_data": [
-            [
-              0.0,
-              0.0,
-              0.0
-            ]
-          ],
-          "sources": [
-            "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
-          ],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        },
-        {
-          "param_guid": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
-          "name": "Plane",
-          "type": "output",
-          "persistent_data": [],
-          "sources": [],
-          "expression": null,
-          "mapping": 0,
-          "reverse_data": false
-        }
-      ]
-    },
-    {
       "guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
       "instance_guid": "2c8beafc-c3a7-425a-905e-4830f637c094",
       "type_name": "Circle",
       "nickname": "Circle",
       "position": {
-        "x": 11888.0,
-        "y": 2845.0
+        "x": 11976.0,
+        "y": 2853.0
       },
       "params": [
         {
@@ -3204,7 +3164,7 @@
             }
           ],
           "sources": [
-            "b8cbaed8-c6f7-4c1c-b9ba-88320b975081"
+            "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a"
           ],
           "expression": null,
           "mapping": 0,
@@ -3240,8 +3200,8 @@
       "type_name": "Curve | Curve",
       "nickname": "Curve | Curve",
       "position": {
-        "x": 12057.0,
-        "y": 2850.0
+        "x": 12139.0,
+        "y": 2868.0
       },
       "params": [
         {
@@ -3306,8 +3266,8 @@
       "type_name": "Curve | Curve",
       "nickname": "Curve | Curve",
       "position": {
-        "x": 12061.0,
-        "y": 2964.0
+        "x": 12143.0,
+        "y": 2982.0
       },
       "params": [
         {
@@ -3372,8 +3332,8 @@
       "type_name": "Line",
       "nickname": "Line",
       "position": {
-        "x": 12266.0,
-        "y": 2893.0
+        "x": 12348.0,
+        "y": 2911.0
       },
       "params": [
         {
@@ -3848,8 +3808,8 @@
       "type_name": "Explode Tree",
       "nickname": "Explode Tree",
       "position": {
-        "x": 11988.0,
-        "y": 2630.0
+        "x": 11453.0,
+        "y": 2550.0
       },
       "params": [
         {
@@ -3877,6 +3837,144 @@
         {
           "param_guid": "74ff3fab-8698-4a81-b2ff-56a4ca6adc8d",
           "name": "Branch 1",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+      "instance_guid": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+      "type_name": "YZ Plane",
+      "nickname": "YZ Plane",
+      "position": {
+        "x": 11625.0,
+        "y": 2752.0
+      },
+      "params": [
+        {
+          "param_guid": "b8b47e38-fdc2-4ca8-aa52-a78d7ad351cc",
+          "name": "Origin",
+          "type": "input",
+          "persistent_data": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "sources": [
+            "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "0d271b78-75c7-4a94-95c3-86215b217000",
+          "name": "Plane",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        }
+      ]
+    },
+    {
+      "guid": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "instance_guid": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "type_name": "Rotate",
+      "nickname": "Rotate",
+      "position": {
+        "x": 11820.0,
+        "y": 2772.0
+      },
+      "params": [
+        {
+          "param_guid": "d09a4ae4-a514-4dbb-adf1-56a5dcfd0d36",
+          "name": "Geometry",
+          "type": "input",
+          "persistent_data": [],
+          "sources": [
+            "0d271b78-75c7-4a94-95c3-86215b217000"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "a037cb6c-8a21-4f40-9cf5-6a4cdf8c534b",
+          "name": "Angle",
+          "type": "input",
+          "persistent_data": [
+            1.5707963267948966
+          ],
+          "sources": [
+            "5354f884-8b45-418e-968a-55689cb2e986"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "cfdd0c56-9b9d-45bc-965d-f92fa77fedce",
+          "name": "Plane",
+          "type": "input",
+          "persistent_data": [
+            {
+              "origin": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "x_axis": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "z_axis": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            }
+          ],
+          "sources": [
+            "01fd4f89-2b73-4e61-a51f-9c3df0c876fa"
+          ],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a",
+          "name": "Geometry",
+          "type": "output",
+          "persistent_data": [],
+          "sources": [],
+          "expression": null,
+          "mapping": 0,
+          "reverse_data": false
+        },
+        {
+          "param_guid": "ff795236-54a1-43fe-be43-13d7693bdcee",
+          "name": "Transform",
           "type": "output",
           "persistent_data": [],
           "sources": [],
@@ -4365,15 +4463,8 @@
       "to_param_name": "Angle"
     },
     {
-      "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
-      "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
-      "to_component": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-      "to_param": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
-      "to_param_name": "Origin"
-    },
-    {
-      "from_component": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
-      "from_param": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
+      "from_component": "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a",
+      "from_param": "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a",
       "to_component": "2c8beafc-c3a7-425a-905e-4830f637c094",
       "to_param": "5cf732f4-5636-4d38-843b-7261c7d04ed4",
       "to_param_name": "Plane"
@@ -4538,8 +4629,36 @@
       "to_component": "bcff2e7f-e5f2-42d5-8b4c-eed87d2b057c",
       "to_param": "62b8808d-bd2e-4448-a268-fc97fd9b352b",
       "to_param_name": "Data"
+    },
+    {
+      "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "to_component": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+      "to_param": "b8b47e38-fdc2-4ca8-aa52-a78d7ad351cc",
+      "to_param_name": "Origin"
+    },
+    {
+      "from_component": "0d271b78-75c7-4a94-95c3-86215b217000",
+      "from_param": "0d271b78-75c7-4a94-95c3-86215b217000",
+      "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "to_param": "d09a4ae4-a514-4dbb-adf1-56a5dcfd0d36",
+      "to_param_name": "Geometry"
+    },
+    {
+      "from_component": "5354f884-8b45-418e-968a-55689cb2e986",
+      "from_param": "5354f884-8b45-418e-968a-55689cb2e986",
+      "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "to_param": "a037cb6c-8a21-4f40-9cf5-6a4cdf8c534b",
+      "to_param_name": "Angle"
+    },
+    {
+      "from_component": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+      "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+      "to_param": "cfdd0c56-9b9d-45bc-965d-f92fa77fedce",
+      "to_param_name": "Plane"
     }
   ],
-  "component_count": 70,
-  "wire_count": 93
+  "component_count": 71,
+  "wire_count": 96
 }

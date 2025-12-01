@@ -476,15 +476,8 @@
     "to_param_name": "Angle"
   },
   {
-    "from_component": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
-    "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
-    "to_component": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-    "to_param": "477d80e8-ed01-4072-b030-d3ebc8c8b23d",
-    "to_param_name": "Origin"
-  },
-  {
-    "from_component": "d52b786d-9ccd-411a-824c-3ae52ddc5438",
-    "from_param": "b8cbaed8-c6f7-4c1c-b9ba-88320b975081",
+    "from_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+    "from_param": "9aa7848d-70ec-4bf3-9fd9-6f5800d8a35a",
     "to_component": "2c8beafc-c3a7-425a-905e-4830f637c094",
     "to_param": "5cf732f4-5636-4d38-843b-7261c7d04ed4",
     "to_param_name": "Plane"
@@ -649,5 +642,33 @@
     "to_component": "bcff2e7f-e5f2-42d5-8b4c-eed87d2b057c",
     "to_param": "62b8808d-bd2e-4448-a268-fc97fd9b352b",
     "to_param_name": "Data"
+  },
+  {
+    "from_component": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
+    "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+    "to_component": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+    "to_param": "b8b47e38-fdc2-4ca8-aa52-a78d7ad351cc",
+    "to_param_name": "Origin"
+  },
+  {
+    "from_component": "d03c68ca-a43f-4f2b-a36b-2bc68c4c8f0b",
+    "from_param": "0d271b78-75c7-4a94-95c3-86215b217000",
+    "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+    "to_param": "d09a4ae4-a514-4dbb-adf1-56a5dcfd0d36",
+    "to_param_name": "Geometry"
+  },
+  {
+    "from_component": "5354f884-8b45-418e-968a-55689cb2e986",
+    "from_param": "5354f884-8b45-418e-968a-55689cb2e986",
+    "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+    "to_param": "a037cb6c-8a21-4f40-9cf5-6a4cdf8c534b",
+    "to_param_name": "Angle"
+  },
+  {
+    "from_component": "3bd2c1d3-149d-49fb-952c-8db272035f9e",
+    "from_param": "01fd4f89-2b73-4e61-a51f-9c3df0c876fa",
+    "to_component": "478f48c6-ee53-44b9-8059-da8776f8f1c0",
+    "to_param": "cfdd0c56-9b9d-45bc-965d-f92fa77fedce",
+    "to_param_name": "Plane"
   }
 ]
